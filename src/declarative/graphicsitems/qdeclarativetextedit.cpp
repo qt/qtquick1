@@ -56,8 +56,9 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <QPainter>
+#include <QtGui/QInputPanel>
 
-#include <private/qtextcontrol_p.h>
+#include <private/qwidgettextcontrol_p.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -126,10 +127,10 @@ QString QDeclarativeTextEdit::text() const
 
 #ifndef QT_NO_TEXTHTMLPARSER
     if (d->richText)
-        return d->document->toHtml();
+        return d->control->toHtml();
     else
 #endif
-        return d->document->toPlainText();
+        return d->control->toPlainText();
 }
 
 /*!
@@ -548,9 +549,12 @@ bool QDeclarativeTextEditPrivate::determineHorizontalAlignment()
     if (hAlignImplicit && q->isComponentComplete()) {
         bool alignToRight;
         if (text.isEmpty()) {
-            const QString preeditText = control->textCursor().block().layout()->preeditAreaText();
+            QTextCursor cursor = control->textCursor();
+            const QString preeditText = cursor.block().isValid()
+                    ? control->textCursor().block().layout()->preeditAreaText()
+                    : QString();
             alignToRight = preeditText.isEmpty()
-                    ? QApplication::keyboardInputDirection() == Qt::RightToLeft
+                    ? qApp->inputPanel()->inputDirection() == Qt::RightToLeft
                     : preeditText.isRightToLeft();
         } else {
             alignToRight = rightToLeftText;
@@ -1537,12 +1541,12 @@ void QDeclarativeTextEditPrivate::init()
     q->setFlag(QGraphicsItem::ItemHasNoContents, false);
     q->setFlag(QGraphicsItem::ItemAcceptsInputMethod);
 
-    control = new QTextControl(q);
+    control = new QWidgetTextControl(q);
     control->setIgnoreUnusedNavigationEvents(true);
-    control->setTextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::TextSelectableByKeyboard | Qt::TextEditable);
+    control->setTextInteractionFlags(Qt::TextInteractionFlags(Qt::LinksAccessibleByMouse | Qt::TextSelectableByKeyboard | Qt::TextEditable));
     control->setDragEnabled(false);
 
-    // QTextControl follows the default text color
+    // QWidgetTextControl follows the default text color
     // defined by the platform, declarative text
     // should be black by default
     QPalette pal = control->palette();
@@ -1777,9 +1781,8 @@ void QDeclarativeTextEditPrivate::updateDefaultTextOption()
     customizing when you want the input keyboard to be shown and hidden in
     your application.
 
-    By default the opening of input panels follows the platform style. On Symbian^1 and
-    Symbian^3 -based devices the panels are opened by clicking TextEdit. On other platforms
-    the panels are automatically opened when TextEdit element gains active focus. Input panels are
+    By default the opening of input panels follows the platform style.
+    The panels are automatically opened when TextEdit element gains active focus. Input panels are
     always closed if no editor has active focus.
 
     You can disable the automatic behavior by setting the property \c activeFocusOnPress to false
@@ -1811,11 +1814,10 @@ void QDeclarativeTextEditPrivate::updateDefaultTextOption()
 */
 void QDeclarativeTextEdit::openSoftwareInputPanel()
 {
-    QEvent event(QEvent::RequestSoftwareInputPanel);
     if (qApp) {
         if (QGraphicsView * view = qobject_cast<QGraphicsView*>(qApp->focusWidget())) {
             if (view->scene() && view->scene() == scene()) {
-                QApplication::sendEvent(view, &event);
+                qApp->inputPanel()->show();
             }
         }
     }
@@ -1828,9 +1830,8 @@ void QDeclarativeTextEdit::openSoftwareInputPanel()
     for customizing when you want the input keyboard to be shown and hidden in
     your application.
 
-    By default the opening of input panels follows the platform style. On Symbian^1 and
-    Symbian^3 -based devices the panels are opened by clicking TextEdit. On other platforms
-    the panels are automatically opened when TextEdit element gains active focus. Input panels are
+    By default the opening of input panels follows the platform style.
+    The panels are automatically opened when TextEdit element gains active focus. Input panels are
     always closed if no editor has active focus.
 
     You can disable the automatic behavior by setting the property \c activeFocusOnPress to false
@@ -1862,11 +1863,10 @@ void QDeclarativeTextEdit::openSoftwareInputPanel()
 */
 void QDeclarativeTextEdit::closeSoftwareInputPanel()
 {
-    QEvent event(QEvent::CloseSoftwareInputPanel);
     if (qApp) {
         if (QGraphicsView * view = qobject_cast<QGraphicsView*>(qApp->focusWidget())) {
             if (view->scene() && view->scene() == scene()) {
-                QApplication::sendEvent(view, &event);
+                qApp->inputPanel()->hide();
             }
         }
     }

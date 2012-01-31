@@ -51,7 +51,7 @@
 #include <QInputContext>
 #include <private/qapplication_p.h>
 #include <private/qinputpanel_p.h>
-#include <private/qlinecontrol_p.h>
+#include <private/qwidgetlinecontrol_p.h>
 #include "../shared/platforminputcontext.h"
 
 #include "qplatformdefs.h"
@@ -1757,7 +1757,7 @@ void tst_qdeclarativetextinput::canPasteEmpty() {
     QDeclarativeTextInput *textInput = qobject_cast<QDeclarativeTextInput*>(textInputComponent.create());
     QVERIFY(textInput != 0);
 
-    QLineControl lc;
+    QWidgetLineControl lc;
     bool cp = !lc.isReadOnly() && QApplication::clipboard()->text().length() != 0;
     QCOMPARE(textInput->canPaste(), cp);
 
@@ -1775,7 +1775,7 @@ void tst_qdeclarativetextinput::canPaste() {
     QDeclarativeTextInput *textInput = qobject_cast<QDeclarativeTextInput*>(textInputComponent.create());
     QVERIFY(textInput != 0);
 
-    QLineControl lc;
+    QWidgetLineControl lc;
     bool cp = !lc.isReadOnly() && QApplication::clipboard()->text().length() != 0;
     QCOMPARE(textInput->canPaste(), cp);
 

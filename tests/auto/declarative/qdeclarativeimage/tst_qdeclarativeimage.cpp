@@ -782,7 +782,7 @@ void tst_qdeclarativeimage::readerCrash_QTBUG_22125()
 
         // shouldn't crash when deleting cancelled QDeclarativePixmapReplys.
         QTest::qWait(1000);
-        qApp->processEvents(QEventLoop::DeferredDeletion);
+        QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
     }
 
     {

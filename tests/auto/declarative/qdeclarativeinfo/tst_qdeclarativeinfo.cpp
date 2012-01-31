@@ -161,9 +161,6 @@ void tst_qdeclarativeinfo::types()
     QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: \"Qt\"");
     qmlInfo(0) << QByteArray("Qt");
 
-    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: true");
-    qmlInfo(0) << QBool(true);
-
     //### do we actually want QUrl to show up in the output?
     //### why the extra space at the end?
     QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: QUrl(\"http://qt.nokia.com\") ");
@@ -189,7 +186,7 @@ void tst_qdeclarativeinfo::chaining()
     //### should more of these be automatically inserting spaces?
     QString str("Hello World");
     QStringRef ref(&str, 6, 5);
-    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: false 1.1 1.2 15 hello 'b' QUrl(\"http://qt.nokia.com\") World \"Qt\" true Quick ");
+    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: false 1.1 1.2 15 hello 'b' QUrl(\"http://qt.nokia.com\") World \"Qt\" Quick ");
     qmlInfo(0) << false << ' '
                << 1.1 << ' '
                << 1.2f << ' '
@@ -199,7 +196,6 @@ void tst_qdeclarativeinfo::chaining()
                << QUrl("http://qt.nokia.com")
                << ref
                << QByteArray("Qt")
-               << QBool(true)
                << QString ("Quick");
 }
 

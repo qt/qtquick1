@@ -47,8 +47,8 @@
 
 #include <QtCore/QObject>
 #include <QtCore/QList>
-#include <QtWidgets/qgraphicsitem.h>
 #include <QtWidgets/qgraphicstransform.h>
+#include <QtWidgets/qgraphicswidget.h>
 #include <QtGui/qfont.h>
 #include <QtWidgets/qaction.h>
 

@@ -992,12 +992,12 @@ void tst_qdeclarativeecmascript::dynamicDestruction()
 
     QMetaObject::invokeMethod(object, "killOther");
     QVERIFY(createdQmlObject);
-    QCoreApplication::instance()->processEvents(QEventLoop::DeferredDeletion);
+    QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
     QVERIFY(createdQmlObject);
     for (int ii = 0; createdQmlObject && ii < 50; ++ii) { // After 5 seconds we should give up
         if (createdQmlObject) {
             QTest::qWait(100);
-            QCoreApplication::instance()->processEvents(QEventLoop::DeferredDeletion);
+            QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
         }
     }
     QVERIFY(!createdQmlObject);
@@ -1006,7 +1006,7 @@ void tst_qdeclarativeecmascript::dynamicDestruction()
     QMetaObject::invokeMethod(object, "killMe");
     QVERIFY(object);
     QTest::qWait(0);
-    QCoreApplication::instance()->processEvents(QEventLoop::DeferredDeletion);
+    QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
     QVERIFY(!object);
 }
 
@@ -2129,7 +2129,7 @@ void tst_qdeclarativeecmascript::ownership()
         QObject *object = component.create(context);
         QDeclarativeEnginePrivate::getScriptEngine(&engine)->collectGarbage();
 
-        QCoreApplication::processEvents(QEventLoop::DeferredDeletion);
+        QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
 
         QVERIFY(own.object == 0);
 
@@ -2146,7 +2146,7 @@ void tst_qdeclarativeecmascript::ownership()
         QObject *object = component.create(context);
         QDeclarativeEnginePrivate::getScriptEngine(&engine)->collectGarbage();
 
-        QCoreApplication::processEvents(QEventLoop::DeferredDeletion);
+        QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
 
         QVERIFY(own.object != 0);
 
@@ -2199,7 +2199,7 @@ void tst_qdeclarativeecmascript::cppOwnershipReturnValue()
     delete object;
     }
 
-    QCoreApplication::instance()->processEvents(QEventLoop::DeferredDeletion);
+    QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
 
     QVERIFY(source.value != 0);
 }
@@ -2226,7 +2226,7 @@ void tst_qdeclarativeecmascript::ownershipCustomReturnValue()
     delete object;
     }
 
-    QCoreApplication::instance()->processEvents(QEventLoop::DeferredDeletion);
+    QCoreApplication::sendPostedEvents(0, QEvent::DeferredDelete);
 
     QVERIFY(source.value == 0);
 }
