@@ -48,6 +48,7 @@
 QT_FORWARD_DECLARE_CLASS(QAction)
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class ZoomTool : public AbstractLiveEditTool
 {
@@ -102,6 +103,7 @@ private:
     qreal m_currentScale;
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // ZOOMTOOL_H

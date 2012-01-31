@@ -92,7 +92,6 @@ public:
     static void objectNameChanged(QAbstractDeclarativeData *, QObject *);
 
     void destroyed(QObject *);
-    void parentChanged(QObject *, QObject *);
     void objectNameChanged(QObject *);
 
     void setImplicitDestructible() {

@@ -2,7 +2,7 @@ TARGET  = qmlfolderlistmodelplugin
 TARGETPATH = Qt/labs/folderlistmodel
 include(../qimportbase.pri)
 
-QT += declarative script
+QT += widgets quick1 script
 
 SOURCES += qdeclarativefolderlistmodel.cpp plugin.cpp
 HEADERS += qdeclarativefolderlistmodel.h

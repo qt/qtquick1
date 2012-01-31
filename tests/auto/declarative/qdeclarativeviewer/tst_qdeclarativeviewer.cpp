@@ -40,16 +40,14 @@
 ****************************************************************************/
 
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativeview.h>
-#include <QtDeclarative/qdeclarativeitem.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtGui/qmenubar.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativeitem.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtWidgets/qmenubar.h>
 #include <QSignalSpy>
-#include "../../../shared/util.h"
 #include "qmlruntime.h"
 #include "deviceorientation.h"
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir
@@ -114,8 +112,10 @@ void tst_QDeclarativeViewer::runtimeContextProperty()
     
     viewer->show();
     QApplication::setActiveWindow(viewer);
+    //viewer->requestActivateWindow();
     QTest::qWaitForWindowShown(viewer);
     QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
+    //QTRY_VERIFY(viewer == qGuiApp->focusWindow());
 
     QVERIFY(runtimeObject->property("isActiveWindow").toBool());
     

@@ -45,7 +45,7 @@
 #include "private/qdeclarativeflickable_p_p.h"
 
 #include "private/qdeclarativesmoothedanimation_p_p.h"
-#include <qdeclarativeguard_p.h>
+#include <private/qdeclarativeguard_p.h>
 
 #include <qlistmodelinterface_p.h>
 #include <QKeyEvent>

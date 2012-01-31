@@ -42,15 +42,15 @@
 #ifndef QDECLARATIVEITEM_H
 #define QDECLARATIVEITEM_H
 
-#include <QtDeclarative/qdeclarative.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarative.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 
 #include <QtCore/QObject>
 #include <QtCore/QList>
-#include <QtGui/qgraphicsitem.h>
-#include <QtGui/qgraphicstransform.h>
+#include <QtWidgets/qgraphicsitem.h>
+#include <QtWidgets/qgraphicstransform.h>
 #include <QtGui/qfont.h>
-#include <QtGui/qaction.h>
+#include <QtWidgets/qaction.h>
 
 QT_BEGIN_HEADER
 

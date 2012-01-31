@@ -40,13 +40,14 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QSignalSpy>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeview.h>
+#include <QGuiApplication>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeview.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativetextedit_p.h>
 #include <private/qdeclarativetext_p.h>
-#include <QtDeclarative/private/qdeclarativefocusscope_p.h>
+#include <QtQuick1/private/qdeclarativefocusscope_p.h>
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir

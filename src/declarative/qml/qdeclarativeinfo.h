@@ -44,7 +44,7 @@
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qurl.h>
-#include <QtDeclarative/qdeclarativeerror.h>
+#include <QtQuick1/qdeclarativeerror.h>
 
 QT_BEGIN_HEADER
 

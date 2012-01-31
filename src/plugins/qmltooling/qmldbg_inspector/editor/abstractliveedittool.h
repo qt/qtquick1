@@ -43,7 +43,7 @@
 #define ABSTRACTLIVEEDITTOOL_H
 
 #include <QtCore/QList>
-#include "../abstracttool.h"
+#include "abstracttool.h"
 
 QT_BEGIN_NAMESPACE
 class QMouseEvent;
@@ -57,6 +57,7 @@ class QDeclarativeView;
 QT_END_NAMESPACE
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class QDeclarativeViewInspector;
 
@@ -99,6 +100,7 @@ private:
     QList<QGraphicsItem*> m_itemList;
 };
 
-}
+} // namespace QtQuick1
+} // namesacpe QmlJSDebugger
 
 #endif // ABSTRACTLIVEEDITTOOL_H

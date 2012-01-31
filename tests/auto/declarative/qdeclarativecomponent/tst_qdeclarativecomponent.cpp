@@ -41,11 +41,11 @@
 #include <qtest.h>
 #include <QDebug>
 
-#include <QtGui/qgraphicsitem.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeitem.h>
-#include <QtDeclarative/qdeclarativeproperty.h>
+#include <QtWidgets/qgraphicsitem.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeitem.h>
+#include <QtQuick1/qdeclarativeproperty.h>
 #include <qcolor.h>
 
 #ifdef Q_OS_SYMBIAN

@@ -42,22 +42,23 @@
 #include "liveselectiontool.h"
 #include "livelayeritem.h"
 
-#include "../qdeclarativeviewinspector_p.h"
+#include "qdeclarativeviewinspector_p.h"
 
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include <QtGui/QWheelEvent>
 #include <QtGui/QMouseEvent>
 #include <QtGui/QClipboard>
-#include <QtGui/QMenu>
-#include <QtGui/QAction>
-#include <QtGui/QGraphicsObject>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QGraphicsObject>
 
-#include <QtDeclarative/QDeclarativeItem>
-#include <QtDeclarative/QDeclarativeEngine>
+#include <QtQuick1/QDeclarativeItem>
+#include <QtQuick1/QDeclarativeEngine>
 
 #include <QtCore/QDebug>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 LiveSelectionTool::LiveSelectionTool(QDeclarativeViewInspector *editorView) :
     AbstractLiveEditTool(editorView),
@@ -363,9 +364,7 @@ void LiveSelectionTool::setSelectOnlyContentItems(bool selectOnlyContentItems)
 
 void LiveSelectionTool::clear()
 {
-#ifndef QT_NO_CURSOR
     view()->setCursor(Qt::ArrowCursor);
-#endif
     m_rubberbandSelectionManipulator.clear(),
             m_singleSelectionManipulator.clear();
     m_selectionIndicator.clear();
@@ -422,4 +421,5 @@ void LiveSelectionTool::selectUnderPoint(QMouseEvent *event)
     m_singleSelectionManipulator.end(event->pos());
 }
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

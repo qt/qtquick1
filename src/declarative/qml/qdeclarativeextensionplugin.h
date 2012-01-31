@@ -44,7 +44,7 @@
 
 #include <QtCore/qplugin.h>
 
-#include <QtDeclarative/qdeclarativeextensioninterface.h>
+#include <QtQuick1/qdeclarativeextensioninterface.h>
 
 QT_BEGIN_HEADER
 

@@ -49,6 +49,7 @@
 QT_FORWARD_DECLARE_CLASS(QPoint)
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class ColorPickerTool : public AbstractLiveEditTool
 {
@@ -87,6 +88,7 @@ private:
     QColor m_selectedColor;
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // COLORPICKERTOOL_H

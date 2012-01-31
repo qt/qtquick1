@@ -56,6 +56,7 @@ QT_FORWARD_DECLARE_CLASS(QKeyEvent)
 QT_FORWARD_DECLARE_CLASS(QAction)
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class LiveSelectionTool : public AbstractLiveEditTool
 {
@@ -115,6 +116,7 @@ private:
     QList<QGraphicsItem*> m_contextMenuItemList;
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // LIVESELECTIONTOOL_H

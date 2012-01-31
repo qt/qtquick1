@@ -40,9 +40,8 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QtTest/QSignalSpy>
-#include "../../../shared/util.h"
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <QtCore/qdir.h>
 #include <QtCore/qfile.h>
 #include <QtCore/qabstractitemmodel.h>

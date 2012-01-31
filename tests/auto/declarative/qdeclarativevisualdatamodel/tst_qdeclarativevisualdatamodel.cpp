@@ -38,15 +38,14 @@
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
-#include "../../../shared/util.h"
 #include <qtest.h>
 #include <QtTest/QSignalSpy>
 #include <QStandardItemModel>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtDeclarative/qdeclarativeexpression.h>
-#include <QtDeclarative/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativeexpression.h>
+#include <QtQuick1/qdeclarativeview.h>
 #include <private/qdeclarativelistview_p.h>
 #include <private/qdeclarativetext_p.h>
 #include <private/qdeclarativevisualitemmodel_p.h>
@@ -215,6 +214,7 @@ void tst_qdeclarativevisualdatamodel::updateLayout()
     view.rootContext()->setContextProperty("myModel", &model);
 
     view.setSource(QUrl::fromLocalFile(SRCDIR "/data/datalist.qml"));
+    qDebug() << "setSource";
 
     QDeclarativeListView *listview = qobject_cast<QDeclarativeListView*>(view.rootObject());
     QVERIFY(listview != 0);

@@ -42,11 +42,11 @@
 #ifndef QDECLARATIVE_H
 #define QDECLARATIVE_H
 
-#include <QtDeclarative/qdeclarativeprivate.h>
-#include <QtDeclarative/qdeclarativeparserstatus.h>
-#include <QtDeclarative/qdeclarativepropertyvaluesource.h>
-#include <QtDeclarative/qdeclarativepropertyvalueinterceptor.h>
-#include <QtDeclarative/qdeclarativelist.h>
+#include <QtQuick1/qdeclarativeprivate.h>
+#include <QtQuick1/qdeclarativeparserstatus.h>
+#include <QtQuick1/qdeclarativepropertyvaluesource.h>
+#include <QtQuick1/qdeclarativepropertyvalueinterceptor.h>
+#include <QtQuick1/qdeclarativelist.h>
 
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetaobject.h>

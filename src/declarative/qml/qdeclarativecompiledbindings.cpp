@@ -44,7 +44,7 @@
 
 #include "private/qdeclarativecompiledbindings_p.h"
 
-#include <QtDeclarative/qdeclarativeinfo.h>
+#include <QtQuick1/qdeclarativeinfo.h>
 #include <private/qdeclarativecontext_p.h>
 #include <private/qdeclarativejsast_p.h>
 #include <private/qdeclarativejsengine_p.h>

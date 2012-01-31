@@ -46,7 +46,7 @@
 
 #include <qdeclarativeinfo.h>
 
-#include <QtGui/qgraphicstransform.h>
+#include <QtWidgets/qgraphicstransform.h>
 
 QT_BEGIN_NAMESPACE
 

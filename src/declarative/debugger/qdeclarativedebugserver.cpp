@@ -116,7 +116,7 @@ void QDeclarativeDebugServerPrivate::advertisePlugins()
         QDataStream out(&message, QIODevice::WriteOnly);
         out << QString(QLatin1String("QDeclarativeDebugClient")) << 1 << plugins.keys();
     }
-    connection->send(message);
+    connection->send(QList<QByteArray>() << message);
 }
 
 QDeclarativeDebugServerConnection *QDeclarativeDebugServerPrivate::loadConnectionPlugin(
@@ -268,7 +268,7 @@ void QDeclarativeDebugServer::receiveMessage(const QByteArray &message)
             QDataStream out(&helloAnswer, QIODevice::WriteOnly);
             out << QString(QLatin1String("QDeclarativeDebugClient")) << 0 << protocolVersion << d->plugins.keys();
         }
-        d->connection->send(helloAnswer);
+        d->connection->send(QList<QByteArray>() << helloAnswer);
 
         d->gotHello = true;
 
@@ -399,7 +399,7 @@ void QDeclarativeDebugServer::sendMessage(QDeclarativeDebugService *service,
         QDataStream out(&msg, QIODevice::WriteOnly);
         out << service->name() << message;
     }
-    d->connection->send(msg);
+    d->connection->send(QList<QByteArray>() << msg);
 }
 
 bool QDeclarativeDebugServer::waitForMessage(QDeclarativeDebugService *service)

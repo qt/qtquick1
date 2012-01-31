@@ -41,11 +41,10 @@
 #include <qtest.h>
 #include <QtTest/QtTest>
 #include <private/qdeclarativepixmapcache_p.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativeimageprovider.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativeimageprovider.h>
 #include <QNetworkReply>
 #include "testhttpserver.h"
-#include "../../../shared/util.h"
 
 #ifndef QT_NO_CONCURRENT
 #include <qtconcurrentrun.h>

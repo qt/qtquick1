@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui widgets
 
 TARGET = guitartuner
 TEMPLATE = app
@@ -65,8 +65,8 @@ symbian {
     TARGET.CAPABILITY = UserEnvironment
 }
 
-# Add declarative module
-QT       += declarative
+# Add quick1 module
+QT       += quick1
 
 OTHER_FILES += \
     src/application.qml \

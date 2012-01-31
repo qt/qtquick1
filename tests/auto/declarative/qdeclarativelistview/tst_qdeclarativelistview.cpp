@@ -40,18 +40,17 @@
 ****************************************************************************/
 
 #include <QtTest/QtTest>
-#include <QtGui/QStringListModel>
-#include <QtDeclarative/qdeclarativeview.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtDeclarative/qdeclarativeexpression.h>
-#include <QtDeclarative/private/qdeclarativeitem_p.h>
-#include <QtDeclarative/private/qdeclarativelistview_p.h>
-#include <QtDeclarative/private/qdeclarativetext_p.h>
-#include <QtDeclarative/private/qdeclarativevisualitemmodel_p.h>
-#include <QtDeclarative/private/qdeclarativelistmodel_p.h>
-#include <QtDeclarative/private/qlistmodelinterface_p.h>
-#include "../../../shared/util.h"
+#include <QtCore/QStringListModel>
+#include <QtQuick1/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativeexpression.h>
+#include <QtQuick1/private/qdeclarativeitem_p.h>
+#include <QtQuick1/private/qdeclarativelistview_p.h>
+#include <QtQuick1/private/qdeclarativetext_p.h>
+#include <QtQuick1/private/qdeclarativevisualitemmodel_p.h>
+#include <QtQuick1/private/qdeclarativelistmodel_p.h>
+#include <QtQuick1/private/qlistmodelinterface_p.h>
 #include "incrementalmodel.h"
 
 #ifdef Q_OS_SYMBIAN

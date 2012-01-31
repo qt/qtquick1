@@ -41,15 +41,16 @@
 
 #include "liveselectionindicator.h"
 
-#include "../qdeclarativeviewinspector_p.h"
-#include "../qmlinspectorconstants.h"
+#include "qdeclarativeviewinspector_p.h"
+#include "qmlinspectorconstants.h"
 
-#include <QtGui/QGraphicsRectItem>
-#include <QtGui/QGraphicsObject>
-#include <QtGui/QGraphicsScene>
+#include <QtWidgets/QGraphicsRectItem>
+#include <QtWidgets/QGraphicsObject>
+#include <QtWidgets/QGraphicsScene>
 #include <QtGui/QPen>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 LiveSelectionIndicator::LiveSelectionIndicator(QDeclarativeViewInspector *viewInspector,
                                                QGraphicsObject *layerItem)
@@ -114,5 +115,6 @@ void LiveSelectionIndicator::setItems(const QList<QWeakPointer<QGraphicsObject> 
     }
 }
 
-} //namespace QmlJSDebugger
+} // namespace QtQuick1
+} // namespace QmlJSDebugger
 

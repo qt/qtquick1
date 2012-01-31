@@ -1,5 +1,8 @@
-load(qttest_p4)
-contains(QT_CONFIG,declarative): QT += declarative
+CONFIG += testcase
+TARGET = tst_qdeclarativeerror
+
+QT += testlib
+contains(QT_CONFIG,quick1): QT += quick1
 SOURCES += tst_qdeclarativeerror.cpp
 macx:CONFIG -= app_bundle
 

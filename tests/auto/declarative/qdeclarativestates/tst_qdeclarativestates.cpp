@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativeanchors_p_p.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativeimage_p.h>

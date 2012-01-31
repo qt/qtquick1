@@ -39,9 +39,9 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/private/qdeclarativedom_p.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/private/qdeclarativedom_p.h>
 
 #include <QtCore/QDebug>
 #include <QtCore/QFile>

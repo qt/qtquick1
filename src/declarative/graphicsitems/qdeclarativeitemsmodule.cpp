@@ -41,9 +41,9 @@
 
 #include "private/qdeclarativeitemsmodule_p.h"
 
-#include <QtGui/qaction.h>
+#include <QtWidgets/qaction.h>
 #include <QtGui/qvalidator.h>
-#include <QtGui/qgraphicseffect.h>
+#include <QtWidgets/qgraphicseffect.h>
 
 #include "private/qdeclarativeevents_p_p.h"
 #include "private/qdeclarativescalegrid_p_p.h"

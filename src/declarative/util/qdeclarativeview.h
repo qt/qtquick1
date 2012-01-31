@@ -44,10 +44,10 @@
 
 #include <QtCore/qdatetime.h>
 #include <QtCore/qurl.h>
-#include <QtGui/qgraphicssceneevent.h>
-#include <QtGui/qgraphicsview.h>
-#include <QtGui/qwidget.h>
-#include <QtDeclarative/qdeclarativedebug.h>
+#include <QtWidgets/qgraphicssceneevent.h>
+#include <QtWidgets/qgraphicsview.h>
+#include <QtWidgets/qwidget.h>
+#include <QtQuick1/qdeclarativedebug.h>
 
 QT_BEGIN_HEADER
 

@@ -46,7 +46,7 @@
 #include "private/qdeclarativerefcount_p.h"
 #include "private/qdeclarativeengine_p.h"
 #include "private/qdeclarativeexpression_p.h"
-#include "qdeclarativeglobal_p.h"
+#include "private/qdeclarativeglobal_p.h"
 
 #include <QtCore/qobject.h>
 #include <QtScript/qscriptvalue.h>

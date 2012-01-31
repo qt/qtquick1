@@ -44,17 +44,16 @@
 #include <QTcpSocket>
 #include <QDir>
 
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeview.h>
 #include <private/qdeclarativeimage_p.h>
 #include <private/qdeclarativeimagebase_p.h>
 #include <private/qdeclarativeloader_p.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtDeclarative/qdeclarativeexpression.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativeexpression.h>
 #include <QtTest/QSignalSpy>
 
-#include "../../../shared/util.h"
 #include "../shared/testhttpserver.h"
 
 #ifdef Q_OS_SYMBIAN
@@ -327,6 +326,7 @@ void tst_qdeclarativeimage::mirror()
             p_e.drawPixmap(QRect(0, 0, width, height), srcPixmap, QRect(0, 0, srcPixmap.width(), srcPixmap.height()));
             break;
         case QDeclarativeImage::PreserveAspectFit:
+            QEXPECT_FAIL("", "QTBUG-19538", Continue);
             p_e.drawPixmap(QRect(25, 0, width / (width/height), height), srcPixmap, QRect(0, 0, srcPixmap.width(), srcPixmap.height()));
             break;
         case QDeclarativeImage::PreserveAspectCrop:

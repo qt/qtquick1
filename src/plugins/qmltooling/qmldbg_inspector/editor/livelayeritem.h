@@ -42,9 +42,10 @@
 #ifndef LIVELAYERITEM_H
 #define LIVELAYERITEM_H
 
-#include <QtGui/QGraphicsObject>
+#include <QtWidgets/QGraphicsObject>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class LiveLayerItem : public QGraphicsObject
 {
@@ -62,6 +63,7 @@ protected:
     QList<QGraphicsItem*> findAllChildItems(const QGraphicsItem *item) const;
 };
 
-}
+} // namespace QtQuick1
+} // namespace QmlJSDebugger
 
 #endif // LIVELAYERITEM_H

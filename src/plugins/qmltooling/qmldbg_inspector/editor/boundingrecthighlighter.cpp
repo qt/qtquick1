@@ -41,16 +41,17 @@
 
 #include "boundingrecthighlighter.h"
 
-#include "../qdeclarativeviewinspector.h"
-#include "../qmlinspectorconstants.h"
+#include "qdeclarativeviewinspector.h"
+#include "qmlinspectorconstants.h"
 
-#include <QtGui/QGraphicsPolygonItem>
+#include <QtWidgets/QGraphicsPolygonItem>
 
 #include <QtCore/QTimer>
 #include <QtCore/QObject>
 #include <QtCore/QDebug>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 BoundingBox::BoundingBox(QGraphicsObject *itemToHighlight, QGraphicsItem *parentItem,
                          QObject *parent)
@@ -236,5 +237,5 @@ void BoundingRectHighlighter::refresh()
         highlightAll();
 }
 
-
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

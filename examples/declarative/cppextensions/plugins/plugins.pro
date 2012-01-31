@@ -1,6 +1,6 @@
 TEMPLATE = lib
 CONFIG += qt plugin
-QT += declarative
+QT += widgets quick1
 
 DESTDIR = com/nokia/TimeExample
 TARGET  = qmlqtimeexampleplugin

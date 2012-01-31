@@ -44,16 +44,15 @@
 #include "abstracttool.h"
 #include "qdeclarativeinspectorprotocol.h"
 
-#include <QtDeclarative/QDeclarativeEngine>
-#include <QtDeclarative/QDeclarativeComponent>
-#include <QtDeclarative/private/qdeclarativedebughelper_p.h>
-#include "QtDeclarative/private/qdeclarativeinspectorservice_p.h"
+#include <QtQuick1/QDeclarativeEngine>
+#include <QtQuick1/QDeclarativeComponent>
+#include <QtCore/private/qabstractanimation_p.h>
+#include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
 
-#include <QtGui/QVBoxLayout>
 #include <QtGui/QMouseEvent>
-#include <QtGui/QWidget>
 
 namespace QmlJSDebugger {
+
 
 AbstractViewInspector::AbstractViewInspector(QObject *parent) :
     QObject(parent),
@@ -62,11 +61,8 @@ AbstractViewInspector::AbstractViewInspector(QObject *parent) :
     m_designModeBehavior(false),
     m_animationPaused(false),
     m_slowDownFactor(1.0),
-    m_debugService(0)
+    m_debugService(QDeclarativeInspectorService::instance())
 {
-    m_debugService = QDeclarativeInspectorService::instance();
-    connect(m_debugService, SIGNAL(gotMessage(QByteArray)),
-            this, SLOT(handleMessage(QByteArray)));
 }
 
 void AbstractViewInspector::createQmlObject(const QString &qml, QObject *parent,
@@ -134,7 +130,8 @@ void AbstractViewInspector::animationSpeedChangeRequested(qreal factor)
     }
 
     const float effectiveFactor = m_animationPaused ? 0 : factor;
-    QDeclarativeDebugHelper::setAnimationSlowDownFactor(effectiveFactor);
+    QUnifiedTimer::instance()->setSlowModeEnabled(effectiveFactor != 1.0);
+    QUnifiedTimer::instance()->setSlowdownFactor(effectiveFactor);
 }
 
 void AbstractViewInspector::animationPausedChangeRequested(bool paused)
@@ -145,22 +142,19 @@ void AbstractViewInspector::animationPausedChangeRequested(bool paused)
     }
 
     const float effectiveFactor = paused ? 0 : m_slowDownFactor;
-    QDeclarativeDebugHelper::setAnimationSlowDownFactor(effectiveFactor);
+    QUnifiedTimer::instance()->setSlowModeEnabled(effectiveFactor != 1.0);
+    QUnifiedTimer::instance()->setSlowdownFactor(effectiveFactor);
 }
 
 void AbstractViewInspector::setShowAppOnTop(bool appOnTop)
 {
-    if (viewWidget()) {
-        QWidget *window = viewWidget()->window();
-        Qt::WindowFlags flags = window->windowFlags();
-        if (appOnTop)
-            flags |= Qt::WindowStaysOnTopHint;
-        else
-            flags &= ~Qt::WindowStaysOnTopHint;
+    Qt::WindowFlags flags = windowFlags();
+    if (appOnTop)
+        flags |= Qt::WindowStaysOnTopHint;
+    else
+        flags &= ~Qt::WindowStaysOnTopHint;
 
-        window->setWindowFlags(flags);
-        window->show();
-    }
+    setWindowFlags(flags);
 
     m_showAppOnTop = appOnTop;
     sendShowAppOnTop(appOnTop);
@@ -508,4 +502,3 @@ QString AbstractViewInspector::idStringForObject(QObject *obj) const
 }
 
 } // namespace QmlJSDebugger
-

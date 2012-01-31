@@ -1,8 +1,19 @@
-TARGET     = QtDeclarative
+load(qt_module)
+
+TARGET     = QtQuick1
 QPRO_PWD   = $$PWD
-QT         = core gui script network
+
+QT         += core core-private gui gui-private widgets widgets-private script script-private network xmlpatterns
 contains(QT_CONFIG, svg): QT += svg
+
+CONFIG += module
+MODULE_PRI = ../../modules/qt_quick1.pri
+
+MODULE=quick1
+load(qt_module_config)
+
 DEFINES   += QT_BUILD_DECLARATIVE_LIB QT_NO_URL_CAST_FROM_STRING
+
 win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
 solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
 
@@ -13,28 +24,11 @@ exists("qdeclarative_enable_gcov") {
     LIBS += -lgcov
 }
 
-include(../qbase.pri)
-
-#INCLUDEPATH -= $$QMAKE_INCDIR_QT/$$TARGET
-#DESTDIR=.
-
 #modules
+include(qml/qml.pri)
 include(util/util.pri)
 include(graphicsitems/graphicsitems.pri)
-include(qml/qml.pri)
 include(debugger/debugger.pri)
-
-symbian: {
-    TARGET.UID3=0x2001E623
-    LIBS += -lefsrv -lhal
-
-    contains(QT_CONFIG, freetype) {
-        DEFINES += QT_NO_FONTCONFIG
-        INCLUDEPATH += \
-            ../3rdparty/freetype/src \
-            ../3rdparty/freetype/include
-    }
-}
 
 linux-g++-maemo:DEFINES += QDECLARATIVEVIEW_NOBACKGROUND
 

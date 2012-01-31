@@ -39,42 +39,39 @@
 **
 ****************************************************************************/
 
-#include "qdeclarativeinspectorplugin.h"
+#ifndef QDECLARATIVEINSPECTORPLUGIN_H
+#define QDECLARATIVEINSPECTORPLUGIN_H
 
-#include "qdeclarativeviewinspector_p.h"
-
-#include <QtCore/qplugin.h>
-#include <QtDeclarative/private/qdeclarativeinspectorservice_p.h>
+#include <QtCore/QPointer>
+#include <QtQuick1/private/qdeclarativeinspectorinterface_p.h>
 
 namespace QmlJSDebugger {
 
-QDeclarativeInspectorPlugin::QDeclarativeInspectorPlugin() :
-    m_inspector(0)
+class AbstractViewInspector;
+
+namespace QtQuick1 {
+
+class QtQuick1Plugin : public QObject, public QDeclarativeInspectorInterface
 {
-}
+    Q_OBJECT
+    Q_DISABLE_COPY(QtQuick1Plugin)
+    Q_INTERFACES(QDeclarativeInspectorInterface)
 
-QDeclarativeInspectorPlugin::~QDeclarativeInspectorPlugin()
-{
-    delete m_inspector;
-}
+public:
+    QtQuick1Plugin();
+    ~QtQuick1Plugin();
 
-void QDeclarativeInspectorPlugin::activate()
-{
-    QDeclarativeInspectorService *service = QDeclarativeInspectorService::instance();
-    QList<QDeclarativeView*> views = service->views();
-    if (views.isEmpty())
-        return;
+    // QDeclarativeInspectorInterface
+    bool canHandleView(QObject *view);
+    void activate();
+    void deactivate();
+    void clientMessage(const QByteArray &message);
 
-    // TODO: Support multiple views
-    QDeclarativeView *view = service->views().at(0);
-    m_inspector = new QDeclarativeViewInspector(view, view);
-}
+private:
+    QPointer<AbstractViewInspector> m_inspector;
+};
 
-void QDeclarativeInspectorPlugin::deactivate()
-{
-    delete m_inspector;
-}
-
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
-Q_EXPORT_PLUGIN2(declarativeinspector, QmlJSDebugger::QDeclarativeInspectorPlugin)
+#endif // QDECLARATIVEINSPECTORPLUGIN_H

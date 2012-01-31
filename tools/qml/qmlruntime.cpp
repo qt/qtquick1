@@ -92,6 +92,7 @@
 #include <QKeyEvent>
 #include <QMutex>
 #include <QMutexLocker>
+#include <QMimeData>
 #include "proxysettings.h"
 #include "deviceorientation.h"
 

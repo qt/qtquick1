@@ -45,8 +45,8 @@
 #include <qdeclarativeitem.h>
 #include <qdeclarativeengine.h>
 #include <qdeclarativecontext.h>
-#include <qdeclarativeglobal_p.h>
-#include <qdeclarativeguard_p.h>
+#include <private/qdeclarativeglobal_p.h>
+#include <private/qdeclarativeguard_p.h>
 
 #include <private/qdeclarativedebugtrace_p.h>
 #include <private/qdeclarativeinspectorservice_p.h>

@@ -1,5 +1,8 @@
-load(qttest_p4)
-contains(QT_CONFIG,declarative): QT += declarative
+CONFIG += testcase
+TARGET = tst_qmetaobjectbuilder
+
+QT += testlib
+contains(QT_CONFIG,quick1): QT += quick1 quick1-private
 macx:CONFIG -= app_bundle
 
 SOURCES += \

@@ -40,10 +40,10 @@
 ****************************************************************************/
 #include <QtTest/QSignalSpy>
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativetimer_p.h>
-#include <QtDeclarative/qdeclarativeitem.h>
+#include <QtQuick1/qdeclarativeitem.h>
 #include <QDebug>
 
 #ifdef Q_OS_SYMBIAN

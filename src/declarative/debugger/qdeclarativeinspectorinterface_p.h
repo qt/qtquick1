@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEOBSERVERINTERFACE_H
 #define QDECLARATIVEOBSERVERINTERFACE_H
 
-#include <QtDeclarative/private/qdeclarativeglobal_p.h>
+#include <QtQuick1/private/qdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 

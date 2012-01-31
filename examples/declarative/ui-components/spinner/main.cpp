@@ -39,7 +39,7 @@
 ****************************************************************************/
 
 #include "qmlapplicationviewer.h"
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 
 Q_DECL_EXPORT int main(int argc, char *argv[])
 {

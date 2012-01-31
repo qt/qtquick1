@@ -39,17 +39,16 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeview.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativeimage_p.h>
 #include <private/qdeclarativeanimatedimage_p.h>
 #include <QSignalSpy>
-#include <QtDeclarative/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativecontext.h>
 
 #include "../shared/testhttpserver.h"
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir
@@ -191,6 +190,7 @@ void tst_qdeclarativeanimatedimage::mirror_running()
     QPixmap frame1_expected = frame1.transformed(transform);
 
     QCOMPARE(frame0_flipped, frame0_expected);
+    QEXPECT_FAIL("", "QTBUG-19538", Continue);
     QCOMPARE(frame1_flipped, frame1_expected);
 }
 

@@ -44,13 +44,13 @@
 
 #include <private/qdeclarativeglobal_p.h>
 
-#include "qmlinspectorconstants.h"
 #include "abstractviewinspector.h"
 
 #include <QtCore/QScopedPointer>
-#include <QtDeclarative/QDeclarativeView>
+#include <QtQuick1/QDeclarativeView>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class AbstractLiveEditTool;
 class QDeclarativeViewInspectorPrivate;
@@ -68,7 +68,8 @@ public:
     void reloadView();
     void reparentQmlObject(QObject *object, QObject *newParent);
     void changeTool(InspectorProtocol::Tool tool);
-    QWidget *viewWidget() const { return declarativeView(); }
+    Qt::WindowFlags windowFlags() const;
+    void setWindowFlags(Qt::WindowFlags flags);
     QDeclarativeEngine *declarativeEngine() const;
 
     void setSelectedItems(QList<QGraphicsItem *> items);
@@ -95,6 +96,7 @@ private:
     friend class AbstractLiveEditTool;
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // QDECLARATIVEVIEWINSPECTOR_H

@@ -40,12 +40,11 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QtTest/QtTest>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativeimageprovider.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativeimageprovider.h>
 #include <private/qdeclarativeimage_p.h>
 #include <QImageReader>
 #include <QWaitCondition>
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir

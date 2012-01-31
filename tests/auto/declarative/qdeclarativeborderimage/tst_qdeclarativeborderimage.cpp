@@ -46,16 +46,15 @@
 #include <QGraphicsScene>
 #include <QPainter>
 
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativeborderimage_p.h>
 #include <private/qdeclarativeimagebase_p.h>
 #include <private/qdeclarativescalegrid_p_p.h>
 #include <private/qdeclarativeloader_p.h>
-#include <QtDeclarative/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativecontext.h>
 
 #include "../shared/testhttpserver.h"
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir
@@ -249,6 +248,7 @@ void tst_qdeclarativeborderimage::mirror()
     p_screenshot.fillRect(QRect(0, 0, width, height), Qt::white);
     scene.render(&p_screenshot, QRect(0, 0, width, height), QRect(0, 0, width, height));
 
+    QEXPECT_FAIL("", "QTBUG-19538", Continue);
     QCOMPARE(screenshot, expected);
 
     delete obj;

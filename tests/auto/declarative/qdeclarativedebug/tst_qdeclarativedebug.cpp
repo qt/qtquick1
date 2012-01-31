@@ -45,11 +45,11 @@
 #include <QDebug>
 #include <QThread>
 
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeexpression.h>
-#include <QtDeclarative/qdeclarativeproperty.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeexpression.h>
+#include <QtQuick1/qdeclarativeproperty.h>
 
 #include <private/qdeclarativebinding_p.h>
 #include <private/qdeclarativeenginedebug_p.h>
@@ -59,7 +59,6 @@
 #include <private/qdeclarativemetatype_p.h>
 #include <private/qdeclarativeproperty_p.h>
 
-#include "../../../shared/util.h"
 #include "../shared/debugutil_p.h"
 
 Q_DECLARE_METATYPE(QDeclarativeDebugWatch::State)

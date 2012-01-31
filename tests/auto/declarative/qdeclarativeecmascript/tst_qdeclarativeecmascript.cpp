@@ -39,13 +39,13 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativeexpression.h>
-#include <QtDeclarative/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativeexpression.h>
+#include <QtQuick1/qdeclarativecontext.h>
 #include <QtCore/qfileinfo.h>
 #include <QtCore/qdebug.h>
-#include <QtDeclarative/private/qdeclarativeguard_p.h>
+#include <QtQuick1/private/qdeclarativeguard_p.h>
 #include <QtCore/qdir.h>
 #include <QtCore/qnumeric.h>
 #include <private/qdeclarativeengine_p.h>
@@ -53,7 +53,6 @@
 #include <private/qscriptdeclarativeclass_p.h>
 #include "testtypes.h"
 #include "testhttpserver.h"
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir

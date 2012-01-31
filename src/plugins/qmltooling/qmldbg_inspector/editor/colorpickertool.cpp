@@ -41,17 +41,18 @@
 
 #include "colorpickertool.h"
 
-#include "../qdeclarativeviewinspector.h"
+#include "qdeclarativeviewinspector.h"
 
 #include <QtGui/QMouseEvent>
 #include <QtGui/QKeyEvent>
 #include <QtCore/QRectF>
 #include <QtGui/QRgb>
 #include <QtGui/QImage>
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include <QtGui/QPalette>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 ColorPickerTool::ColorPickerTool(QDeclarativeViewInspector *view) :
     AbstractLiveEditTool(view)
@@ -75,9 +76,7 @@ void ColorPickerTool::mouseMoveEvent(QMouseEvent *event)
 
 void ColorPickerTool::clear()
 {
-#ifndef QT_NO_CURSOR
     view()->setCursor(Qt::CrossCursor);
-#endif
 }
 
 void ColorPickerTool::pickColor(const QPoint &pos)
@@ -97,4 +96,5 @@ void ColorPickerTool::pickColor(const QPoint &pos)
     emit selectedColorChanged(m_selectedColor);
 }
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

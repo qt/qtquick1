@@ -41,13 +41,14 @@
 
 #include <QtTest/QtTest>
 #include <QtTest/QSignalSpy>
+#include <QApplication>
 #include <private/qdeclarativemousearea_p.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativeflickable_p.h>
-#include <QtDeclarative/qdeclarativeview.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativeproperty.h>
+#include <QtQuick1/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativeproperty.h>
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir

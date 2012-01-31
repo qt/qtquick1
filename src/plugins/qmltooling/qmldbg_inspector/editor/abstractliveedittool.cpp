@@ -40,7 +40,7 @@
 ****************************************************************************/
 
 #include "abstractliveedittool.h"
-#include "../qdeclarativeviewinspector_p.h"
+#include "qdeclarativeviewinspector_p.h"
 
 #include <QDeclarativeEngine>
 
@@ -49,6 +49,7 @@
 #include <QDeclarativeItem>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 AbstractLiveEditTool::AbstractLiveEditTool(QDeclarativeViewInspector *editorView)
     : AbstractTool(editorView)
@@ -192,5 +193,5 @@ QString AbstractLiveEditTool::titleForItem(QGraphicsItem *item)
     return constructedName;
 }
 
-
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

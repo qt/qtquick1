@@ -44,7 +44,7 @@
 #include <QDeclarativeComponent>
 #include <QDeclarativeEngine>
 #include <QStringList>
-#include <QtDeclarative/private/qdeclarativedebugservice_p.h>
+#include <QtQuick1/private/qdeclarativedebugservice_p.h>
 
 int main(int argc, char *argv[])
 {

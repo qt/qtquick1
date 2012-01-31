@@ -44,23 +44,23 @@
 #include "qdeclarativeitem.h"
 
 #include <qdeclarativecontext.h>
-#include <qdeclarativecontext_p.h>
+#include <private/qdeclarativecontext_p.h>
 #include <qdeclarativeengine.h>
 #include <qdeclarativeexpression.h>
 #include <qdeclarativepackage_p.h>
 #include <qdeclarativeopenmetaobject_p.h>
 #include <qdeclarativelistaccessor_p.h>
 #include <qdeclarativeinfo.h>
-#include <qdeclarativedata_p.h>
-#include <qdeclarativepropertycache_p.h>
-#include <qdeclarativeguard_p.h>
-#include <qdeclarativeglobal_p.h>
+#include <private/qdeclarativedata_p.h>
+#include <private/qdeclarativepropertycache_p.h>
+#include <private/qdeclarativeguard_p.h>
+#include <private/qdeclarativeglobal_p.h>
 
 #include <qgraphicsscene.h>
 #include <qlistmodelinterface_p.h>
 #include <qhash.h>
 #include <qlist.h>
-#include <qmetaobjectbuilder_p.h>
+#include <private/qmetaobjectbuilder_p.h>
 #include <QtCore/qdebug.h>
 
 #include <private/qobject_p.h>
@@ -288,8 +288,8 @@ public:
                 for (int ii = 0; ii < m_roles.count(); ++ii)
                     m_roleNames.insert(m_listModelInterface->toString(m_roles.at(ii)).toUtf8(), m_roles.at(ii));
             } else if (m_abstractItemModel) {
-                for (QHash<int,QByteArray>::const_iterator it = m_abstractItemModel->roleNames().begin();
-                        it != m_abstractItemModel->roleNames().end(); ++it) {
+                for (QHash<int,QByteArray>::const_iterator it = m_abstractItemModel->roleNames().constBegin();
+                        it != m_abstractItemModel->roleNames().constEnd(); ++it) {
                     m_roles.append(it.key());
                     m_roleNames.insert(*it, it.key());
                 }
@@ -316,8 +316,8 @@ public:
         if (!m_metaDataCreated) {
             ensureRoles();
             if (m_roleNames.count()) {
-                QHash<QByteArray, int>::const_iterator it = m_roleNames.begin();
-                while (it != m_roleNames.end()) {
+                QHash<QByteArray, int>::const_iterator it = m_roleNames.constBegin();
+                while (it != m_roleNames.constEnd()) {
                     int propId = m_delegateDataType->createProperty(it.key()) - m_delegateDataType->propertyOffset();
                     m_roleToPropId.insert(*it, propId);
                     ++it;
@@ -349,7 +349,7 @@ public:
         QObject *item(int index) {
             QObject *item = 0;
             QHash<int, ObjectRef>::const_iterator it = find(index);
-            if (it != end())
+            if (it != constEnd())
                 item = (*it).obj;
             return item;
         }
@@ -458,7 +458,7 @@ int QDeclarativeVisualDataModelData::propForRole(int id) const
 {
     QDeclarativeVisualDataModelPrivate *model = QDeclarativeVisualDataModelPrivate::get(m_model);
     QHash<int,int>::const_iterator it = model->m_roleToPropId.find(id);
-    if (it != model->m_roleToPropId.end())
+    if (it != model->m_roleToPropId.constEnd())
         return *it;
 
     return -1;
@@ -515,7 +515,7 @@ QVariant QDeclarativeVisualDataModelDataMetaObject::initialValue(int propId)
     } else if (model->m_listModelInterface) {
         model->ensureRoles();
         QHash<QByteArray,int>::const_iterator it = model->m_roleNames.find(propName);
-        if (it != model->m_roleNames.end()) {
+        if (it != model->m_roleNames.constEnd()) {
             QVariant value = model->m_listModelInterface->data(data->m_index, *it);
             return value;
         } else if (model->m_roles.count() == 1 && propName == "modelData") {
@@ -530,7 +530,7 @@ QVariant QDeclarativeVisualDataModelDataMetaObject::initialValue(int propId)
             return model->m_abstractItemModel->hasChildren(index);
         } else {
             QHash<QByteArray,int>::const_iterator it = model->m_roleNames.find(propName);
-            if (it != model->m_roleNames.end()) {
+            if (it != model->m_roleNames.constEnd()) {
                 return model->m_abstractItemModel->data(index, *it);
             } else if (model->m_roles.count() == 1 && propName == "modelData") {
                 //for compatibility with other lists, assign modelData if there is only a single role
@@ -1203,8 +1203,8 @@ void QDeclarativeVisualDataModel::_q_itemsChanged(int index, int count,
         }
     }
 
-    for (QHash<int,QDeclarativeVisualDataModelPrivate::ObjectRef>::ConstIterator iter = d->m_cache.begin();
-        iter != d->m_cache.end(); ++iter) {
+    for (QHash<int,QDeclarativeVisualDataModelPrivate::ObjectRef>::ConstIterator iter = d->m_cache.constBegin();
+        iter != d->m_cache.constEnd(); ++iter) {
         const int idx = iter.key();
 
         if (idx >= index && idx < index+count) {

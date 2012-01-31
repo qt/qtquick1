@@ -42,7 +42,18 @@
 #ifndef QDECLARATIVEDEBUGSERVERCONNECTION_H
 #define QDECLARATIVEDEBUGSERVERCONNECTION_H
 
-#include <QtDeclarative/private/qdeclarativeglobal_p.h>
+#include <private/qdeclarativeglobal_p.h>
+
+//
+//  W A R N I N G
+//  -------------
+//
+// This file is not part of the Qt API.  It exists purely as an
+// implementation detail.  This header file may change from version to
+// version without notice, or even be removed.
+//
+// We mean it.
+//
 
 QT_BEGIN_HEADER
 
@@ -60,7 +71,7 @@ public:
     virtual void setServer(QDeclarativeDebugServer *server) = 0;
     virtual void setPort(int port, bool bock) = 0;
     virtual bool isConnected() const = 0;
-    virtual void send(const QByteArray &message) = 0;
+    virtual void send(const QList<QByteArray> &messages) = 0;
     virtual void disconnect() = 0;
     virtual bool waitForMessage() = 0;
 };

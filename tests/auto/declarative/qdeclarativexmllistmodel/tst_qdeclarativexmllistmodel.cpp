@@ -46,7 +46,7 @@
 
 #include <qtest.h>
 #include <QtTest/qsignalspy.h>
-#include <QtDeclarative/qdeclarativenetworkaccessmanagerfactory.h>
+#include <QtQuick1/qdeclarativenetworkaccessmanagerfactory.h>
 #include <QtNetwork/qnetworkaccessmanager.h>
 #include <QtNetwork/qnetworkrequest.h>
 #include <QtCore/qtimer.h>
@@ -54,10 +54,9 @@
 #include <QtCore/qtemporaryfile.h>
 
 #ifdef QTEST_XMLPATTERNS
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativexmllistmodel_p.h>
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir

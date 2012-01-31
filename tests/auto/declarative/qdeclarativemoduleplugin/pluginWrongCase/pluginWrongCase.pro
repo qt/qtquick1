@@ -1,7 +1,7 @@
 TEMPLATE = lib
 CONFIG += plugin
 SOURCES = plugin.cpp
-QT = core declarative
+QT = core quick1
 TARGET = Plugin
 DESTDIR = ../imports/com/nokia/WrongCase
 

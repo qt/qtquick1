@@ -40,8 +40,8 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QTextDocument>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativetext_p.h>
 #include <private/qdeclarativetext_p_p.h>
 #include <private/qdeclarativevaluetype_p.h>
@@ -52,7 +52,6 @@
 #include <private/qapplication_p.h>
 #include <limits.h>
 
-#include "../../../shared/util.h"
 #include "testhttpserver.h"
 
 #ifdef Q_OS_SYMBIAN

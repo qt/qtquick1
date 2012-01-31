@@ -53,6 +53,7 @@ class QPolygonF;
 QT_END_NAMESPACE
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class QDeclarativeViewInspector;
 
@@ -75,6 +76,7 @@ private:
     QDeclarativeViewInspector *m_view;
 };
 
-}
+} // namespace QtQuick1
+} // namespace QmlJSDebugger
 
 #endif // LIVESELECTIONINDICATOR_H

@@ -47,7 +47,6 @@
 #include <qgraphicsscene.h>
 #include <qgraphicswidget.h>
 #include <qgraphicslinearlayout.h>
-#include "../../../shared/util.h"
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir

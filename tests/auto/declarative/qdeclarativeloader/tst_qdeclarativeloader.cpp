@@ -39,15 +39,14 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtGui/QGraphicsWidget>
-#include <QtGui/QGraphicsScene>
+#include <QtWidgets/QGraphicsWidget>
+#include <QtWidgets/QGraphicsScene>
 
 #include <QSignalSpy>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativeloader_p.h>
 #include "testhttpserver.h"
-#include "../../../shared/util.h"
 
 #define SERVER_PORT 14450
 

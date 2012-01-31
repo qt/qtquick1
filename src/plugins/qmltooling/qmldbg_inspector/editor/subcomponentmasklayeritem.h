@@ -42,9 +42,10 @@
 #ifndef SUBCOMPONENTMASKLAYERITEM_H
 #define SUBCOMPONENTMASKLAYERITEM_H
 
-#include <QtGui/QGraphicsPolygonItem>
+#include <QtWidgets/QGraphicsPolygonItem>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class QDeclarativeViewInspector;
 
@@ -66,6 +67,7 @@ private:
     QRectF m_itemPolyRect;
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // SUBCOMPONENTMASKLAYERITEM_H

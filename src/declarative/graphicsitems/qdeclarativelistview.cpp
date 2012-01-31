@@ -47,7 +47,7 @@
 #include "private/qdeclarativesmoothedanimation_p_p.h"
 #include <qdeclarativeexpression.h>
 #include <qdeclarativeengine.h>
-#include <qdeclarativeguard_p.h>
+#include <private/qdeclarativeguard_p.h>
 #include <qdeclarativeinfo.h>
 
 #include <qlistmodelinterface_p.h>

@@ -29,6 +29,8 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # Add dependency to Symbian components
 # CONFIG += qt-components
 
+QT += widgets
+
 # input
 SOURCES += main.cpp \
            dataobject.cpp

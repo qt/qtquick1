@@ -40,12 +40,12 @@
 ****************************************************************************/
 
 #include <qtest.h>
-#include "../../../shared/util.h"
-#include <QtDeclarative/qdeclarativecomponent.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativeitem.h>
-#include <QtGui/qgraphicsview.h>
-#include <QtGui/qgraphicsscene.h>
+#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativeitem.h>
+#include <QtWidgets/qgraphicsview.h>
+#include <QtWidgets/qgraphicsscene.h>
+#include <QtWidgets/qapplication.h>
 
 class tst_qdeclarativeapplication : public QObject
 {

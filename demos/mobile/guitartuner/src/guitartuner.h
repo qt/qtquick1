@@ -42,7 +42,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtDeclarative>
+#include <QtQuick1>
 #include <QAudioDeviceInfo>
 #include <QAudioOutput>
 #include <QAudioInput>

@@ -38,10 +38,10 @@
 **
 ****************************************************************************/
 
-#include <QtDeclarative/QDeclarativeExtensionPlugin>
-#include <QtDeclarative/qdeclarative.h>
-#include <QtGui/QGraphicsProxyWidget>
-#include <QtGui/QPushButton>
+#include <QtQuick1/QDeclarativeExtensionPlugin>
+#include <QtQuick1/qdeclarative.h>
+#include <QtWidgets/QGraphicsProxyWidget>
+#include <QtWidgets/QPushButton>
 #include <QDebug>
 
 class MyPushButton : public QGraphicsProxyWidget

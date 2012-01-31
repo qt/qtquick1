@@ -40,7 +40,7 @@
 ****************************************************************************/
 
 #include <qtest.h>
-#include <QtDeclarative>
+#include <QtQuick1>
 #include "../../../../src/imports/shaders/shadereffectitem.h"
 #include "../../../../src/imports/shaders/shadereffectsource.h"
 #include "../../../../src/imports/shaders/shadereffect.h"

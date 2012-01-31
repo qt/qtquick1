@@ -1,6 +1,8 @@
-load(qttest_p4)
+CONFIG += testcase
+TARGET = tst_qmlshadersplugin
 
-QT += opengl declarative
+QT += testlib
+QT += opengl quick1 gui widgets
 SOURCES += tst_qmlshadersplugin.cpp
 
 SOURCES += \

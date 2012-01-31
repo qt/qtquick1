@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 #include <QStringList>
-#include <QtDeclarative/qdeclarativeextensionplugin.h>
-#include <QtDeclarative/qdeclarative.h>
+#include <QtQuick1/qdeclarativeextensionplugin.h>
+#include <QtQuick1/qdeclarative.h>
 #include <QDebug>
 
 class MyPlugin : public QDeclarativeExtensionPlugin

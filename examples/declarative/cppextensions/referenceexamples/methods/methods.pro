@@ -2,7 +2,7 @@ TEMPLATE = app
 TARGET = methods
 DEPENDPATH += .
 INCLUDEPATH += .
-QT += declarative
+QT += quick1
 
 # Input
 SOURCES += main.cpp \

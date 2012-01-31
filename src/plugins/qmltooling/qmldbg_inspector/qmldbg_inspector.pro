@@ -1,14 +1,14 @@
 TARGET = qmldbg_inspector
-QT       += declarative
+QT       += quick1 quick1-private gui widgets core-private
 
 include(../../qpluginbase.pri)
 
 QTDIR_build:DESTDIR  = $$QT_BUILD_TREE/plugins/qmltooling
-QTDIR_build:REQUIRES += "contains(QT_CONFIG, declarative)"
+QTDIR_build:REQUIRES += "contains(QT_CONFIG, quick1)"
 
 SOURCES += \
+    qtquick1plugin.cpp \
     abstractviewinspector.cpp \
-    qdeclarativeinspectorplugin.cpp \
     qdeclarativeviewinspector.cpp \
     editor/abstractliveedittool.cpp \
     editor/liveselectiontool.cpp \
@@ -24,8 +24,8 @@ SOURCES += \
     abstracttool.cpp
 
 HEADERS += \
+    qtquick1plugin.h \
     abstractviewinspector.h \
-    qdeclarativeinspectorplugin.h \
     qdeclarativeinspectorprotocol.h \
     qdeclarativeviewinspector.h \
     qdeclarativeviewinspector_p.h \

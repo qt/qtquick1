@@ -1,6 +1,8 @@
-load(qttest_p4)
-contains(QT_CONFIG,declarative): QT += declarative
-QT += network
+CONFIG += testcase
+TARGET = tst_qdeclarativeviewer
+
+QT += testlib
+contains(QT_CONFIG,quick1): QT += quick1 quick1-private network
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativepixmapcache.cpp

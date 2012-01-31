@@ -1,4 +1,4 @@
-QT += declarative script network sql
+QT += quick1 quick1-private script network sql core-private gui-private widgets-private
 contains(QT_CONFIG, opengl) {
     QT += opengl
     DEFINES += GL_SUPPORTED

@@ -41,18 +41,19 @@
 
 #include "liveselectionrectangle.h"
 
-#include "../qmlinspectorconstants.h"
+#include "qmlinspectorconstants.h"
 
 #include <QtGui/QPen>
-#include <QtGui/QGraphicsRectItem>
-#include <QtGui/QGraphicsObject>
-#include <QtGui/QGraphicsScene>
+#include <QtWidgets/QGraphicsRectItem>
+#include <QtWidgets/QGraphicsObject>
+#include <QtWidgets/QGraphicsScene>
 
 #include <QtCore/QtDebug>
 
 #include <cmath>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class SelectionRectShape : public QGraphicsRectItem
 {
@@ -110,4 +111,5 @@ void LiveSelectionRectangle::setRect(const QPointF &firstPoint,
     m_controlShape->setRect(rect);
 }
 
-}
+} // namespace QtQuick1
+} // namespace QmlJSDebugger

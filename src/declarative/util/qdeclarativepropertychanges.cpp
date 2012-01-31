@@ -47,14 +47,14 @@
 #include "private/qdeclarativecompiler_p.h"
 
 #include <qdeclarativeinfo.h>
-#include <qdeclarativecustomparser_p.h>
-#include <qdeclarativeparser_p.h>
+#include <private/qdeclarativecustomparser_p.h>
+#include <private/qdeclarativeparser_p.h>
 #include <qdeclarativeexpression.h>
-#include <qdeclarativebinding_p.h>
+#include <private/qdeclarativebinding_p.h>
 #include <qdeclarativecontext.h>
-#include <qdeclarativeguard_p.h>
-#include <qdeclarativeproperty_p.h>
-#include <qdeclarativecontext_p.h>
+#include <private/qdeclarativeguard_p.h>
+#include <private/qdeclarativeproperty_p.h>
+#include <private/qdeclarativecontext_p.h>
 #include <qdeclarativestate_p_p.h>
 
 #include <QtCore/qdebug.h>

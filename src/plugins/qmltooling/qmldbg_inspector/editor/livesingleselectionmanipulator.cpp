@@ -41,11 +41,12 @@
 
 #include "livesingleselectionmanipulator.h"
 
-#include "../qdeclarativeviewinspector_p.h"
+#include "qdeclarativeviewinspector_p.h"
 
 #include <QtDebug>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 LiveSingleSelectionManipulator::LiveSingleSelectionManipulator(QDeclarativeViewInspector *editorView)
     : m_editorView(editorView),
@@ -148,4 +149,5 @@ QPointF LiveSingleSelectionManipulator::beginPoint() const
     return m_beginPoint;
 }
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

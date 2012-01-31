@@ -40,13 +40,12 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <qdir.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <QDebug>
 #include <QtCore/qlibraryinfo.h>
 
 #include "../shared/testhttpserver.h"
-#include "../../../shared/util.h"
 
 #define SERVER_ADDR "http://127.0.0.1:14450"
 #define SERVER_PORT 14450

@@ -1,10 +1,12 @@
-load(qttest_p4)
+CONFIG += testcase
+TARGET = tst_qdeclarativemoduleplugin
+
+QT += quick1 network testlib
+CONFIG -= app_bundle
 
 HEADERS = ../shared/testhttpserver.h
 SOURCES = tst_qdeclarativemoduleplugin.cpp \
           ../shared/testhttpserver.cpp
-QT += declarative network
-CONFIG -= app_bundle
 
 symbian: {
     importFiles.files = data

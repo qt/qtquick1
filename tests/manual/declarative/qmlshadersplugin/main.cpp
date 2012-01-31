@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include <QtOpenGL>
 #include "qmlapplicationviewer.h"
 

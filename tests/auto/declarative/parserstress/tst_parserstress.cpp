@@ -94,11 +94,7 @@ void tst_parserstress::ecmascript_data()
 #ifdef Q_OS_SYMBIAN    
     QDir dir("tests");
 #else
-    QDir dir(SRCDIR);
-    dir.cdUp();
-    dir.cdUp();
-    dir.cd("qscriptjstestsuite");
-    dir.cd("tests");
+    QDir dir(SRCDIR "../../qscriptjstestsuite/tests");
 #endif
     QStringList files = findJSFiles(dir);
 
@@ -110,6 +106,8 @@ void tst_parserstress::ecmascript_data()
 
 void tst_parserstress::ecmascript()
 {
+    QSKIP("Test data (located in the QtScript module) not currently available");
+
     QFETCH(QString, file);
 
     QFile f(file);

@@ -41,11 +41,12 @@
 
 #include <QtTest/QtTest>
 #include <QtTest/QSignalSpy>
+#include <QWidget>
 #include <private/qdeclarativepincharea_p.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativeflickable_p.h>
-#include <QtDeclarative/qdeclarativeview.h>
-#include <QtDeclarative/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativeview.h>
+#include <QtQuick1/qdeclarativecontext.h>
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir
@@ -55,7 +56,16 @@
 class tst_QDeclarativePinchArea: public QObject
 {
     Q_OBJECT
+public:
+    tst_QDeclarativePinchArea() : device(0) { }
 private slots:
+    void initTestCase() {
+        if (!device) {
+            device = new QTouchDevice;
+            device->setType(QTouchDevice::TouchScreen);
+            QWindowSystemInterface::registerTouchDevice(device);
+        }
+    }
     void pinchProperties();
     void scale();
     void pan();
@@ -63,6 +73,7 @@ private slots:
 
 private:
     QDeclarativeView *createView();
+    QTouchDevice *device;
 };
 
 void tst_QDeclarativePinchArea::pinchProperties()
@@ -218,17 +229,17 @@ void tst_QDeclarativePinchArea::scale()
     QPoint p1(80, 80);
     QPoint p2(100, 100);
 
-    QTest::touchEvent(vp).press(0, p1);
-    QTest::touchEvent(vp).stationary(0).press(1, p2);
+    QTest::touchEvent(vp, device).press(0, p1, canvas);
+    QTest::touchEvent(vp, device).stationary(0).press(1, p2, canvas);
     p1 -= QPoint(10,10);
     p2 += QPoint(10,10);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(root->property("scale").toReal(), 1.0);
 
     p1 -= QPoint(10,10);
     p2 += QPoint(10,10);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(root->property("scale").toReal(), 1.5);
     QCOMPARE(root->property("center").toPointF(), QPointF(40, 40)); // blackrect is at 50,50
@@ -237,11 +248,11 @@ void tst_QDeclarativePinchArea::scale()
     // scale beyond bound
     p1 -= QPoint(50,50);
     p2 += QPoint(50,50);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(blackRect->scale(), 2.0);
 
-    QTest::touchEvent(vp).release(0, p1).release(1, p2);
+    QTest::touchEvent(vp, device).release(0, p1, canvas).release(1, p2, canvas);
 
     delete canvas;
 }
@@ -273,17 +284,17 @@ void tst_QDeclarativePinchArea::pan()
     QPoint p1(80, 80);
     QPoint p2(100, 100);
 
-    QTest::touchEvent(vp).press(0, p1);
-    QTest::touchEvent(vp).stationary(0).press(1, p2);
+    QTest::touchEvent(vp, device).press(0, p1, canvas);
+    QTest::touchEvent(vp, device).stationary(0).press(1, p2, canvas);
     p1 += QPoint(10,10);
     p2 += QPoint(10,10);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(root->property("scale").toReal(), 1.0);
 
     p1 += QPoint(10,10);
     p2 += QPoint(10,10);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(root->property("center").toPointF(), QPointF(60, 60)); // blackrect is at 50,50
 
@@ -293,12 +304,12 @@ void tst_QDeclarativePinchArea::pan()
     // pan x beyond bound
     p1 += QPoint(100,100);
     p2 += QPoint(100,100);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(blackRect->x(), 140.0);
     QCOMPARE(blackRect->y(), 160.0);
 
-    QTest::touchEvent(vp).release(0, p1).release(1, p2);
+    QTest::touchEvent(vp, device).release(0, p1, canvas).release(1, p2, canvas);
 
     delete canvas;
 }
@@ -328,24 +339,24 @@ void tst_QDeclarativePinchArea::flickable()
 
     // begin by moving one touch point (mouse)
     QTest::mousePress(vp, Qt::LeftButton, 0, canvas->mapFromScene(p1));
-    QTest::touchEvent(vp).press(0, p1);
+    QTest::touchEvent(vp, device).press(0, p1, canvas);
     {
         p1 -= QPoint(10,10);
         QMouseEvent mv(QEvent::MouseMove, canvas->mapFromScene(p1), Qt::LeftButton, Qt::LeftButton,Qt::NoModifier);
         QApplication::sendEvent(canvas->viewport(), &mv);
-        QTest::touchEvent(vp).move(0, p1);
+        QTest::touchEvent(vp, device).move(0, p1, canvas);
     }
     {
         p1 -= QPoint(10,10);
         QMouseEvent mv(QEvent::MouseMove, canvas->mapFromScene(p1), Qt::LeftButton, Qt::LeftButton,Qt::NoModifier);
         QApplication::sendEvent(vp, &mv);
-        QTest::touchEvent(vp).move(0, p1);
+        QTest::touchEvent(vp, device).move(0, p1, canvas);
     }
     {
         p1 -= QPoint(10,10);
         QMouseEvent mv(QEvent::MouseMove, canvas->mapFromScene(p1), Qt::LeftButton, Qt::LeftButton,Qt::NoModifier);
         QApplication::sendEvent(vp, &mv);
-        QTest::touchEvent(vp).move(0, p1);
+        QTest::touchEvent(vp, device).move(0, p1, canvas);
     }
 
     // Flickable has reacted to the gesture
@@ -353,23 +364,23 @@ void tst_QDeclarativePinchArea::flickable()
     QVERIFY(root->property("scale").toReal() == 1.0);
 
     // add another touch point and continue moving
-    QTest::touchEvent(vp).stationary(0).press(1, p2);
+    QTest::touchEvent(vp, device).stationary(0).press(1, p2, canvas);
     p1 -= QPoint(10,10);
     p2 += QPoint(10,10);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     QCOMPARE(root->property("scale").toReal(), 1.0);
 
     p1 -= QPoint(10,10);
     p2 += QPoint(10,10);
-    QTest::touchEvent(vp).move(0, p1).move(1, p2);
+    QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     // PinchArea has stolen the gesture.
     QVERIFY(!root->isMoving());
     QVERIFY(root->property("scale").toReal() > 1.0);
 
     QTest::mouseRelease(vp, Qt::LeftButton, 0, canvas->mapFromScene(p1));
-    QTest::touchEvent(vp).release(0, p1).release(1, p2);
+    QTest::touchEvent(vp, device).release(0, p1, canvas).release(1, p2, canvas);
 
     delete canvas;
 }

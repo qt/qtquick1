@@ -39,10 +39,10 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtDeclarative/qdeclarativeengine.h>
-#include <QtDeclarative/qdeclarativecontext.h>
-#include <QtDeclarative/qdeclarativepropertymap.h>
-#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtQuick1/qdeclarativeengine.h>
+#include <QtQuick1/qdeclarativecontext.h>
+#include <QtQuick1/qdeclarativepropertymap.h>
+#include <QtQuick1/qdeclarativecomponent.h>
 #include <private/qdeclarativetext_p.h>
 #include <QSignalSpy>
 

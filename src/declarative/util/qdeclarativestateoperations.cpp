@@ -47,7 +47,7 @@
 #include <qdeclarativeinfo.h>
 #include <qdeclarativeanchors_p_p.h>
 #include <qdeclarativeitem_p.h>
-#include <qdeclarativeguard_p.h>
+#include <private/qdeclarativeguard_p.h>
 #include <qdeclarativenullablevalue_p_p.h>
 #include "private/qdeclarativecontext_p.h"
 #include "private/qdeclarativeproperty_p.h"
@@ -55,7 +55,7 @@
 #include "private/qdeclarativestate_p_p.h"
 
 #include <QtCore/qdebug.h>
-#include <QtGui/qgraphicsitem.h>
+#include <QtWidgets/qgraphicsitem.h>
 #include <QtCore/qmath.h>
 
 #include <private/qobject_p.h>

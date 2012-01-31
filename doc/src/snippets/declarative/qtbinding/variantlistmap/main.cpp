@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 #include <QtCore>
-#include <QtDeclarative>
+#include <QtQuick1>
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

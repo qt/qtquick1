@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include <QDesktopWidget>
 #include "mainwindow.h"
 

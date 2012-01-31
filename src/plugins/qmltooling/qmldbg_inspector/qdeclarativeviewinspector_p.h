@@ -44,12 +44,15 @@
 
 #include "qdeclarativeviewinspector.h"
 
+#include <QtCore/QScopedPointer>
+#include <QtQuick1/QDeclarativeView>
 #include <QtCore/QWeakPointer>
 #include <QtCore/QPointF>
 
-#include "QtDeclarative/private/qdeclarativeinspectorservice_p.h"
+#include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class QDeclarativeViewInspector;
 class LiveSelectionTool;
@@ -112,6 +115,7 @@ public:
     static QDeclarativeViewInspectorPrivate *get(QDeclarativeViewInspector *v) { return v->d_func(); }
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // QDECLARATIVEVIEWINSPECTOR_P_H

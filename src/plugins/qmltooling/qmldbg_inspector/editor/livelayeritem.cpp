@@ -41,11 +41,12 @@
 
 #include "livelayeritem.h"
 
-#include "../qmlinspectorconstants.h"
+#include "qmlinspectorconstants.h"
 
 #include <QGraphicsScene>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 LiveLayerItem::LiveLayerItem(QGraphicsScene* scene)
     : QGraphicsObject()
@@ -89,4 +90,5 @@ QList<QGraphicsItem*> LiveLayerItem::findAllChildItems(const QGraphicsItem *item
     return itemList;
 }
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

@@ -48,12 +48,11 @@
 #include "editor/livelayeritem.h"
 #include "editor/boundingrecthighlighter.h"
 
-#include <QtDeclarative/QDeclarativeItem>
-#include <QtGui/QWidget>
+#include <QtQuick1/QDeclarativeItem>
 #include <QtGui/QMouseEvent>
-#include <QtGui/QGraphicsObject>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 QDeclarativeViewInspectorPrivate::QDeclarativeViewInspectorPrivate(QDeclarativeViewInspector *q) :
     q(q)
@@ -136,6 +135,17 @@ void QDeclarativeViewInspector::changeTool(InspectorProtocol::Tool tool)
         data->changeToZoomTool();
         break;
     }
+}
+
+Qt::WindowFlags QDeclarativeViewInspector::windowFlags() const
+{
+    return declarativeView()->window()->windowFlags();
+}
+
+void QDeclarativeViewInspector::setWindowFlags(Qt::WindowFlags flags)
+{
+    declarativeView()->window()->setWindowFlags(flags);
+    declarativeView()->window()->show();
 }
 
 AbstractLiveEditTool *QDeclarativeViewInspector::currentTool() const
@@ -433,4 +443,5 @@ QRectF QDeclarativeViewInspector::adjustToScreenBoundaries(const QRectF &boundin
     return boundingRect;
 }
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

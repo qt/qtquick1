@@ -41,12 +41,13 @@
 
 #include "subcomponentmasklayeritem.h"
 
-#include "../qmlinspectorconstants.h"
-#include "../qdeclarativeviewinspector.h"
+#include "qmlinspectorconstants.h"
+#include "qdeclarativeviewinspector.h"
 
 #include <QtGui/QPolygonF>
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 SubcomponentMaskLayerItem::SubcomponentMaskLayerItem(QDeclarativeViewInspector *inspector,
                                                      QGraphicsItem *parentItem) :
@@ -127,4 +128,5 @@ QGraphicsItem *SubcomponentMaskLayerItem::currentItem() const
     return m_currentItem;
 }
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger

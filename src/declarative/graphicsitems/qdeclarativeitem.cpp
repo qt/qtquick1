@@ -44,7 +44,7 @@
 #include "private/qdeclarativeevents_p_p.h"
 #include <private/qdeclarativeengine_p.h>
 #include <private/qgraphicsitem_p.h>
-#include <QtDeclarative/private/qdeclarativeitem_p.h>
+#include <QtQuick1/private/qdeclarativeitem_p.h>
 
 #include <qdeclarativeengine.h>
 #include <qdeclarativeopenmetaobject_p.h>
@@ -60,7 +60,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QtCore/qnumeric.h>
 #include <QtScript/qscriptengine.h>
-#include <QtGui/qgraphicstransform.h>
+#include <QtWidgets/qgraphicstransform.h>
 #include <qlistmodelinterface_p.h>
 
 #include <float.h>

@@ -44,8 +44,8 @@
 #include "private/qdeclarativetransition_p.h"
 #include "private/qdeclarativestate_p_p.h"
 
-#include <qdeclarativebinding_p.h>
-#include <qdeclarativeglobal_p.h>
+#include <private/qdeclarativebinding_p.h>
+#include <private/qdeclarativeglobal_p.h>
 
 #include <QtCore/qstringbuilder.h>
 #include <QtCore/qdebug.h>

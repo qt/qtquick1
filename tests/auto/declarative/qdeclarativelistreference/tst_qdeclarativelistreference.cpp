@@ -45,9 +45,9 @@
 #include <QDir>
 #include <QDeclarativeEngine>
 #include <QDeclarativeComponent>
-#include <QtDeclarative/qdeclarative.h>
-#include <QtDeclarative/qdeclarativeprivate.h>
-#include <QtDeclarative/qdeclarativeproperty.h>
+#include <QtQuick1/qdeclarative.h>
+#include <QtQuick1/qdeclarativeprivate.h>
+#include <QtQuick1/qdeclarativeproperty.h>
 #include <QDebug>
 
 inline QUrl TEST_FILE(const QString &filename)

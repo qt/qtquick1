@@ -48,6 +48,7 @@
 QT_FORWARD_DECLARE_CLASS(QGraphicsItem)
 
 namespace QmlJSDebugger {
+namespace QtQuick1 {
 
 class QDeclarativeViewInspector;
 
@@ -84,6 +85,7 @@ private:
     bool m_isActive;
 };
 
+} // namespace QtQuick1
 } // namespace QmlJSDebugger
 
 #endif // LIVESINGLESELECTIONMANIPULATOR_H

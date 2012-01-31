@@ -50,6 +50,9 @@
 #include <QVector3D>
 #include <QVector4D>
 #include <QQuaternion>
+#include <QPalette>
+#include <QIcon>
+#include <QCursor>
 #include <qdeclarative.h>
 
 #include <private/qdeclarativemetatype_p.h>

@@ -65,7 +65,6 @@ contains(QT_CONFIG, private_tests) {
            qdeclarativesmoothedanimation \
            qdeclarativespringanimation \
            qdeclarativestyledtext \
-           qdeclarativesqldatabase \
            qdeclarativestates \
            qdeclarativesystempalette \
            qdeclarativetext \

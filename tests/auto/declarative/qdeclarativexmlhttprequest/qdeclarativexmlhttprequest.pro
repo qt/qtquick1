@@ -1,5 +1,8 @@
-load(qttest_p4)
-contains(QT_CONFIG,declarative): QT += declarative network
+CONFIG += testcase
+TARGET = tst_qdeclarativexmlhttprequest
+
+QT += testlib
+contains(QT_CONFIG,quick1): QT += quick1 network
 macx:CONFIG -= app_bundle
 
 INCLUDEPATH += ../shared/

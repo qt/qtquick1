@@ -40,14 +40,13 @@
 ****************************************************************************/
 
 #include <qtest.h>
-#include <QtDeclarative/QDeclarativeEngine>
-#include <QtDeclarative/private/qdeclarativedebugclient_p.h>
-#include <QtDeclarative/private/qdeclarativedebugservice_p.h>
-#include <QtDeclarative/private/qjsdebuggeragent_p.h>
+#include <QtQuick1/QDeclarativeEngine>
+#include <QtQuick1/private/qdeclarativedebugclient_p.h>
+#include <QtQuick1/private/qdeclarativedebugservice_p.h>
+#include <QtQuick1/private/qjsdebuggeragent_p.h>
 #include <QtCore/QFileInfo>
 #include <QtCore/QDir>
 #include <QtCore/QProcess>
-#include "../../../shared/util.h"
 #include "../shared/debugutil_p.h"
 
 class QJSDebugClient : public QDeclarativeDebugClient

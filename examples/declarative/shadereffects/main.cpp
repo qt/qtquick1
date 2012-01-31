@@ -40,7 +40,7 @@
 ****************************************************************************/
 
 #include "qmlapplicationviewer.h"
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include <QtOpenGL>
 #include <QDeclarativeView>
 #include <QDeclarativeEngine>

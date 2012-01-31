@@ -96,7 +96,6 @@
 #include <QtCore/qmutex.h>
 #include <QtGui/qcolor.h>
 #include <QtGui/qvector3d.h>
-#include <QtGui/qsound.h>
 #include <QtCore/qcryptographichash.h>
 
 #include <private/qobject_p.h>
@@ -552,7 +551,9 @@ void QDeclarativeData::destroyed(QAbstractDeclarativeData *d, QObject *o)
 
 void QDeclarativeData::parentChanged(QAbstractDeclarativeData *d, QObject *o, QObject *p)
 {
-    static_cast<QDeclarativeData *>(d)->parentChanged(o, p);
+    Q_UNUSED(d)
+    Q_UNUSED(o)
+    Q_UNUSED(p)
 }
 
 void QDeclarativeData::objectNameChanged(QAbstractDeclarativeData *d, QObject *o)
@@ -1167,11 +1168,6 @@ void QDeclarativeData::destroyed(QObject *object)
 
     if (ownMemory)
         delete this;
-}
-
-void QDeclarativeData::parentChanged(QObject *, QObject *parent)
-{
-    if (!parent && scriptValue) { delete scriptValue; scriptValue = 0; }
 }
 
 void QDeclarativeData::objectNameChanged(QObject *)

@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 
-#include <QtDeclarative/qdeclarativeextensionplugin.h>
-#include <QtDeclarative/qdeclarative.h>
+#include <QtQuick1/qdeclarativeextensionplugin.h>
+#include <QtQuick1/qdeclarative.h>
 
 #include "qdeclarativegesturearea_p.h"
 

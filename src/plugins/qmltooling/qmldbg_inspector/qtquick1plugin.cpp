@@ -39,39 +39,55 @@
 **
 ****************************************************************************/
 
-#ifndef QOSTDEVICE_H
-#define QOSTDEVICE_H
+#include "qtquick1plugin.h"
+#include "qdeclarativeviewinspector.h"
 
-#include <QtCore/QIODevice>
+#include <QtCore/qplugin.h>
+#include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
+#include <QtQuick1/qdeclarativeview.h>
 
-QT_BEGIN_NAMESPACE
+namespace QmlJSDebugger {
+namespace QtQuick1 {
 
-class QOstDevicePrivate;
-
-class QOstDevice : public QIODevice
+QtQuick1Plugin::QtQuick1Plugin() :
+    m_inspector(0)
 {
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(QOstDevice)
-    Q_DISABLE_COPY(QOstDevice)
+}
 
-public:
-    explicit QOstDevice(QObject *parent=0);
-    ~QOstDevice();
+QtQuick1Plugin::~QtQuick1Plugin()
+{
+    delete m_inspector;
+}
 
-    bool open(int ostProtocolId);
-    void close();
+bool QtQuick1Plugin::canHandleView(QObject *view)
+{
+    return qobject_cast<QDeclarativeView*>(view);
+}
 
-    bool waitForReadyRead(int msecs);
-    qint64 bytesAvailable() const;
+void QtQuick1Plugin::activate()
+{
+    QDeclarativeInspectorService *service = QDeclarativeInspectorService::instance();
+    QList<QDeclarativeView*> views = service->views();
+    if (views.isEmpty())
+        return;
 
-protected:
-    qint64 readData(char *data, qint64 maxSize);
-    qint64 writeData(const char *data, qint64 maxSize);
+    // TODO: Support multiple views
+    QDeclarativeView *view = service->views().at(0);
+    m_inspector = new QDeclarativeViewInspector(view, view);
+}
 
-private:
-    QOstDevicePrivate* d_ptr;
-};
+void QtQuick1Plugin::deactivate()
+{
+    delete m_inspector;
+}
 
-QT_END_NAMESPACE
+void QtQuick1Plugin::clientMessage(const QByteArray &message)
+{
+    if (m_inspector)
+        m_inspector->handleMessage(message);
+}
 
-#endif // QOSTDEVICE_H
+} // namespace QtQuick1
+} // namespace QmlJSDebugger
+
+Q_EXPORT_PLUGIN2(qmldbg_qtquick1, QmlJSDebugger::QtQuick1::QtQuick1Plugin)
