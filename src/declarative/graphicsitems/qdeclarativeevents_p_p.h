@@ -60,7 +60,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class QDeclarativeKeyEvent : public QObject
+class Q_DECLARATIVE_EXPORT QDeclarativeKeyEvent : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int key READ key)
@@ -89,7 +89,7 @@ private:
     QKeyEvent event;
 };
 
-class QDeclarativeMouseEvent : public QObject
+class Q_DECLARATIVE_EXPORT QDeclarativeMouseEvent : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int x READ x)
