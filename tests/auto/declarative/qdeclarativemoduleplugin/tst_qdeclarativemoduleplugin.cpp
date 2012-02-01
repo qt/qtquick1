@@ -70,13 +70,7 @@ private slots:
     void remoteImportWithUnquotedUri();
     void versionNotInstalled();
     void versionNotInstalled_data();
-    void importPath();
 };
-
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
 
 #define VERIFY_ERRORS(errorfile) \
     if (!errorfile) { \
@@ -309,28 +303,6 @@ void tst_qdeclarativemoduleplugin::versionNotInstalled()
     VERIFY_ERRORS(errorFile.toLatin1().constData());
 }
 
-void tst_qdeclarativemoduleplugin::importPath()
-{
-#ifndef Q_OS_SYMBIAN
-    QSKIP("Import path order testing for Symbian only", SkipAll);
-#else
-    QDeclarativeEngine engine;
-    QStringList imports = engine.importPathList();
-    QString installImportsPath = QDir::cleanPath(QLibraryInfo::location(QLibraryInfo::ImportsPath));
-    QString driveOrder(QLatin1String("ZABCDEFGHIJKLMNOPQRSTUVWXY"));
-    int lastOrder = 30;
-    foreach(QString import, imports)
-    {
-        if (import.endsWith(installImportsPath))
-        {
-            int order = driveOrder.indexOf(import[0]);
-            QVERIFY(order < lastOrder);
-            lastOrder = order;
-        }
-    }
-    QVERIFY(lastOrder != 30);
-#endif
-}
 
 QTEST_MAIN(tst_qdeclarativemoduleplugin)
 
