@@ -167,7 +167,7 @@ public:
     }
 
     void moveItem(int from, int to) {
-        emit beginMoveRows(QModelIndex(), from, from, QModelIndex(), to);
+        emit beginMoveRows(QModelIndex(), from, from, QModelIndex(), to > from ? to + 1 : to);
         list.move(from, to);
         emit endMoveRows();
     }
