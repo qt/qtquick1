@@ -92,8 +92,14 @@ QDeclarativeValueTypeFactory::~QDeclarativeValueTypeFactory()
 
 bool QDeclarativeValueTypeFactory::isValueType(int idx)
 {
-    if ((uint)idx < QVariant::UserType)
+    if ((uint)idx < QVariant::UserType
+            && idx != QVariant::StringList
+            && idx != QMetaType::QObjectStar
+            && idx != QMetaType::QWidgetStar
+            && idx != QMetaType::VoidStar
+            && idx != QMetaType::QVariant) {
         return true;
+    }
     return false;
 }
 
