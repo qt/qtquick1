@@ -1,8 +1,7 @@
 TEMPLATE = subdirs
 !symbian: {
 SUBDIRS += \
-           qdeclarativemetatype \
-           qmetaobjectbuilder
+           qdeclarativemetatype
 }
 
 SUBDIRS += \

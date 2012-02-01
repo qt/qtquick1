@@ -33,7 +33,6 @@ SOURCES += \
     $$PWD/qdeclarativefastproperties.cpp \
     $$PWD/qdeclarativexmlhttprequest.cpp \
     $$PWD/qdeclarativesqldatabase.cpp \
-    $$PWD/qmetaobjectbuilder.cpp \
     $$PWD/qdeclarativewatcher.cpp \
     $$PWD/qdeclarativecleanup.cpp \
     $$PWD/qdeclarativepropertycache.cpp \
@@ -106,7 +105,6 @@ HEADERS += \
     $$PWD/qdeclarativefastproperties_p.h \
     $$PWD/qdeclarativexmlhttprequest_p.h \
     $$PWD/qdeclarativesqldatabase_p.h \
-    $$PWD/qmetaobjectbuilder_p.h \
     $$PWD/qdeclarativewatcher_p.h \
     $$PWD/qdeclarativecleanup_p.h \
     $$PWD/qdeclarativepropertycache_p.h \

@@ -196,7 +196,7 @@ bool QDeclarativeCompiler::testLiteralAssignment(const QMetaProperty &prop,
     }
     int type = prop.userType();
     switch(type) {
-        case -1:
+        case QMetaType::QVariant:
             break;
         case QVariant::String:
             if (!v->value.isString()) COMPILE_EXCEPTION(v, tr("Invalid property assignment: string expected"));
@@ -340,7 +340,7 @@ void QDeclarativeCompiler::genLiteralAssignment(const QMetaProperty &prop,
 
     int type = prop.userType();
     switch(type) {
-        case -1:
+        case QMetaType::QVariant:
             {
             if (v->value.isNumber()) {
                 double n = v->value.asNumber();
@@ -1145,7 +1145,7 @@ void QDeclarativeCompiler::genValueTypeProperty(QDeclarativeParser::Object *obj,
     fetch.fetchValue.bindingSkipList = 0;
     fetch.line = prop->location.start.line;
 
-    if (obj->type == -1 || output->types.at(obj->type).component) {
+    if (obj->type == QMetaType::QVariant || output->types.at(obj->type).component) {
         // We only have to do this if this is a composite type.  If it is a builtin
         // type it can't possibly already have bindings that need to be cleared.
         foreach(Property *vprop, prop->value->valueProperties) {
@@ -1675,7 +1675,7 @@ void QDeclarativeCompiler::genPropertyAssignment(QDeclarativeParser::Property *p
                 store.storeObject.propertyIndex = prop->index;
                 output->bytecode << store;
 
-            } else if (prop->type == -1) {
+            } else if (prop->type == QMetaType::QVariant) {
 
                 QDeclarativeInstruction store;
                 store.type = QDeclarativeInstruction::StoreVariantObject;
@@ -2064,7 +2064,7 @@ bool QDeclarativeCompiler::buildPropertyObjectAssignment(QDeclarativeParser::Pro
 
         v->type = Value::CreatedObject;
 
-    } else if (prop->type == -1) {
+    } else if (prop->type == QMetaType::QVariant) {
 
         // Assigning an object to a QVariant
         COMPILE_CHECK(buildObject(v->object, ctxt));
@@ -2491,7 +2491,7 @@ bool QDeclarativeCompiler::buildDynamicMeta(QDeclarativeParser::Object *obj, Dyn
             }
             break;
         case Object::DynamicProperty::Variant:
-            propertyType = -1;
+            propertyType = QMetaType::QVariant;
             type = "QVariant";
             break;
         case Object::DynamicProperty::Int:

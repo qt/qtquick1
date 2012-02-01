@@ -463,99 +463,94 @@ int QDeclarativeVMEMetaObject::metaCall(QMetaObject::Call c, int _id, void **a)
                int t = (metaData->propertyData() + id)->propertyType;
                 bool needActivate = false;
 
-                if (t == -1) {
-
-                    if (c == QMetaObject::ReadProperty) {
+                if (c == QMetaObject::ReadProperty) {
+                    switch(t) {
+                    case QVariant::Int:
+                        *reinterpret_cast<int *>(a[0]) = data[id].asInt();
+                        break;
+                    case QVariant::Bool:
+                        *reinterpret_cast<bool *>(a[0]) = data[id].asBool();
+                        break;
+                    case QVariant::Double:
+                        *reinterpret_cast<double *>(a[0]) = data[id].asDouble();
+                        break;
+                    case QVariant::String:
+                        *reinterpret_cast<QString *>(a[0]) = data[id].asQString();
+                        break;
+                    case QVariant::Url:
+                        *reinterpret_cast<QUrl *>(a[0]) = data[id].asQUrl();
+                        break;
+                    case QVariant::Color:
+                        *reinterpret_cast<QColor *>(a[0]) = data[id].asQColor();
+                        break;
+                    case QVariant::Date:
+                        *reinterpret_cast<QDate *>(a[0]) = data[id].asQDate();
+                        break;
+                    case QVariant::DateTime:
+                        *reinterpret_cast<QDateTime *>(a[0]) = data[id].asQDateTime();
+                        break;
+                    case QMetaType::QObjectStar:
+                        *reinterpret_cast<QObject **>(a[0]) = data[id].asQObject();
+                        break;
+                    case QMetaType::QVariant:
                         *reinterpret_cast<QVariant *>(a[0]) = readVarPropertyAsVariant(id);
-                    } else if (c == QMetaObject::WriteProperty) {
-                        writeVarProperty(id, *reinterpret_cast<QVariant *>(a[0]));
+                        break;
+                    default:
+                        break;
+                    }
+                    if (t == qMetaTypeId<QDeclarativeListProperty<QObject> >()) {
+                        int listIndex = data[id].asInt();
+                        const List *list = &listProperties.at(listIndex);
+                        *reinterpret_cast<QDeclarativeListProperty<QObject> *>(a[0]) =
+                            QDeclarativeListProperty<QObject>(object, (void *)list,
+                                                              list_append, list_count, list_at,
+                                                              list_clear);
                     }
 
-                } else {
+                } else if (c == QMetaObject::WriteProperty) {
 
-                    if (c == QMetaObject::ReadProperty) {
-                        switch(t) {
-                        case QVariant::Int:
-                            *reinterpret_cast<int *>(a[0]) = data[id].asInt();
-                            break;
-                        case QVariant::Bool:
-                            *reinterpret_cast<bool *>(a[0]) = data[id].asBool();
-                            break;
-                        case QVariant::Double:
-                            *reinterpret_cast<double *>(a[0]) = data[id].asDouble();
-                            break;
-                        case QVariant::String:
-                            *reinterpret_cast<QString *>(a[0]) = data[id].asQString();
-                            break;
-                        case QVariant::Url:
-                            *reinterpret_cast<QUrl *>(a[0]) = data[id].asQUrl();
-                            break;
-                        case QVariant::Color:
-                            *reinterpret_cast<QColor *>(a[0]) = data[id].asQColor();
-                            break;
-                        case QVariant::Date:
-                            *reinterpret_cast<QDate *>(a[0]) = data[id].asQDate();
-                            break;
-                        case QVariant::DateTime:
-                            *reinterpret_cast<QDateTime *>(a[0]) = data[id].asQDateTime();
-                            break;
-                        case QMetaType::QObjectStar:
-                            *reinterpret_cast<QObject **>(a[0]) = data[id].asQObject();
-                            break;
-                        default:
-                            break;
-                        }
-                        if (t == qMetaTypeId<QDeclarativeListProperty<QObject> >()) {
-                            int listIndex = data[id].asInt();
-                            const List *list = &listProperties.at(listIndex);
-                            *reinterpret_cast<QDeclarativeListProperty<QObject> *>(a[0]) = 
-                                QDeclarativeListProperty<QObject>(object, (void *)list,
-                                                                  list_append, list_count, list_at, 
-                                                                  list_clear);
-                        }
-
-                    } else if (c == QMetaObject::WriteProperty) {
-
-                        switch(t) {
-                        case QVariant::Int:
-                            needActivate = *reinterpret_cast<int *>(a[0]) != data[id].asInt();
-                            data[id].setValue(*reinterpret_cast<int *>(a[0]));
-                            break;
-                        case QVariant::Bool:
-                            needActivate = *reinterpret_cast<bool *>(a[0]) != data[id].asBool();
-                            data[id].setValue(*reinterpret_cast<bool *>(a[0]));
-                            break;
-                        case QVariant::Double:
-                            needActivate = *reinterpret_cast<double *>(a[0]) != data[id].asDouble();
-                            data[id].setValue(*reinterpret_cast<double *>(a[0]));
-                            break;
-                        case QVariant::String:
-                            needActivate = *reinterpret_cast<QString *>(a[0]) != data[id].asQString();
-                            data[id].setValue(*reinterpret_cast<QString *>(a[0]));
-                            break;
-                        case QVariant::Url:
-                            needActivate = *reinterpret_cast<QUrl *>(a[0]) != data[id].asQUrl();
-                            data[id].setValue(*reinterpret_cast<QUrl *>(a[0]));
-                            break;
-                        case QVariant::Color:
-                            needActivate = *reinterpret_cast<QColor *>(a[0]) != data[id].asQColor();
-                            data[id].setValue(*reinterpret_cast<QColor *>(a[0]));
-                            break;
-                        case QVariant::Date:
-                            needActivate = *reinterpret_cast<QDate *>(a[0]) != data[id].asQDate();
-                            data[id].setValue(*reinterpret_cast<QDate *>(a[0]));
-                            break;
-                        case QVariant::DateTime:
-                            needActivate = *reinterpret_cast<QDateTime *>(a[0]) != data[id].asQDateTime();
-                            data[id].setValue(*reinterpret_cast<QDateTime *>(a[0]));
-                            break;
-                        case QMetaType::QObjectStar:
-                            needActivate = *reinterpret_cast<QObject **>(a[0]) != data[id].asQObject();
-                            data[id].setValue(*reinterpret_cast<QObject **>(a[0]));
-                            break;
-                        default:
-                            break;
-                        }
+                    switch(t) {
+                    case QVariant::Int:
+                        needActivate = *reinterpret_cast<int *>(a[0]) != data[id].asInt();
+                        data[id].setValue(*reinterpret_cast<int *>(a[0]));
+                        break;
+                    case QVariant::Bool:
+                        needActivate = *reinterpret_cast<bool *>(a[0]) != data[id].asBool();
+                        data[id].setValue(*reinterpret_cast<bool *>(a[0]));
+                        break;
+                    case QVariant::Double:
+                        needActivate = *reinterpret_cast<double *>(a[0]) != data[id].asDouble();
+                        data[id].setValue(*reinterpret_cast<double *>(a[0]));
+                        break;
+                    case QVariant::String:
+                        needActivate = *reinterpret_cast<QString *>(a[0]) != data[id].asQString();
+                        data[id].setValue(*reinterpret_cast<QString *>(a[0]));
+                        break;
+                    case QVariant::Url:
+                        needActivate = *reinterpret_cast<QUrl *>(a[0]) != data[id].asQUrl();
+                        data[id].setValue(*reinterpret_cast<QUrl *>(a[0]));
+                        break;
+                    case QVariant::Color:
+                        needActivate = *reinterpret_cast<QColor *>(a[0]) != data[id].asQColor();
+                        data[id].setValue(*reinterpret_cast<QColor *>(a[0]));
+                        break;
+                    case QVariant::Date:
+                        needActivate = *reinterpret_cast<QDate *>(a[0]) != data[id].asQDate();
+                        data[id].setValue(*reinterpret_cast<QDate *>(a[0]));
+                        break;
+                    case QVariant::DateTime:
+                        needActivate = *reinterpret_cast<QDateTime *>(a[0]) != data[id].asQDateTime();
+                        data[id].setValue(*reinterpret_cast<QDateTime *>(a[0]));
+                        break;
+                    case QMetaType::QObjectStar:
+                        needActivate = *reinterpret_cast<QObject **>(a[0]) != data[id].asQObject();
+                        data[id].setValue(*reinterpret_cast<QObject **>(a[0]));
+                        break;
+                    case QMetaType::QVariant:
+                        writeVarProperty(id, *reinterpret_cast<QVariant *>(a[0]));
+                        break;
+                    default:
+                        break;
                     }
 
                 }
