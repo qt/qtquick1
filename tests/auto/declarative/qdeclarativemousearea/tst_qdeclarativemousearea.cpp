@@ -230,19 +230,19 @@ void tst_QDeclarativeMouseArea::dragging()
     // First move event triggers drag, second is acted upon.
     // This is due to possibility of higher stacked area taking precedence.
     QGraphicsSceneMouseEvent moveEvent(QEvent::GraphicsSceneMouseMove);
-    moveEvent.setScenePos(QPointF(106, 106));
+    moveEvent.setScenePos(QPointF(111, 111));
     moveEvent.setButton(Qt::LeftButton);
     moveEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &moveEvent);
 
-    moveEvent.setScenePos(QPointF(110, 110));
+    moveEvent.setScenePos(QPointF(122, 122));
     moveEvent.setButton(Qt::LeftButton);
     moveEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &moveEvent);
 
     QVERIFY(drag->active());
-    QCOMPARE(blackRect->x(), 60.0);
-    QCOMPARE(blackRect->y(), 60.0);
+    QCOMPARE(blackRect->x(), 72.0);
+    QCOMPARE(blackRect->y(), 72.0);
 
     QGraphicsSceneMouseEvent releaseEvent(QEvent::GraphicsSceneMouseRelease);
     releaseEvent.setScenePos(QPointF(110, 110));
@@ -251,8 +251,8 @@ void tst_QDeclarativeMouseArea::dragging()
     QApplication::sendEvent(scene, &releaseEvent);
 
     QVERIFY(!drag->active());
-    QCOMPARE(blackRect->x(), 60.0);
-    QCOMPARE(blackRect->y(), 60.0);
+    QCOMPARE(blackRect->x(), 72.0);
+    QCOMPARE(blackRect->y(), 72.0);
 
     delete canvas;
 }
@@ -546,18 +546,18 @@ void tst_QDeclarativeMouseArea::preventStealing()
 
     QSignalSpy mousePositionSpy(mouseArea, SIGNAL(positionChanged(QDeclarativeMouseEvent*)));
 
-    QTest::mousePress(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(80, 80)));
+    QTest::mousePress(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(95, 95)));
 
     // Without preventStealing, mouse movement over MouseArea would
     // cause the Flickable to steal mouse and trigger content movement.
     QGraphicsScene *scene = canvas->scene();
     QGraphicsSceneMouseEvent moveEvent(QEvent::GraphicsSceneMouseMove);
-    moveEvent.setScenePos(QPointF(70, 70));
+    moveEvent.setScenePos(QPointF(80, 80));
     moveEvent.setButton(Qt::LeftButton);
     moveEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &moveEvent);
 
-    moveEvent.setScenePos(QPointF(60, 60));
+    moveEvent.setScenePos(QPointF(65, 65));
     moveEvent.setButton(Qt::LeftButton);
     moveEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &moveEvent);
@@ -580,14 +580,14 @@ void tst_QDeclarativeMouseArea::preventStealing()
     // Now allow stealing and confirm Flickable does its thing.
     canvas->rootObject()->setProperty("stealing", false);
 
-    QTest::mousePress(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(80, 80)));
+    QTest::mousePress(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(95, 95)));
 
     // Without preventStealing, mouse movement over MouseArea would
     // cause the Flickable to steal mouse and trigger content movement.
-    moveEvent.setScenePos(QPointF(70, 70));
+    moveEvent.setScenePos(QPointF(80, 80));
     QApplication::sendEvent(scene, &moveEvent);
 
-    moveEvent.setScenePos(QPointF(60, 60));
+    moveEvent.setScenePos(QPointF(65, 65));
     QApplication::sendEvent(scene, &moveEvent);
 
     moveEvent.setScenePos(QPointF(50, 50));
@@ -599,8 +599,8 @@ void tst_QDeclarativeMouseArea::preventStealing()
     QVERIFY(!mouseArea->pressed());
 
     // Flickable content should have moved.
-    QCOMPARE(flickable->contentX(), 10.);
-    QCOMPARE(flickable->contentY(), 10.);
+    QCOMPARE(flickable->contentX(), 15.);
+    QCOMPARE(flickable->contentY(), 15.);
 
     QTest::mouseRelease(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(50, 50)));
 
