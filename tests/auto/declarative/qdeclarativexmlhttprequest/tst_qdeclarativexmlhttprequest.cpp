@@ -257,9 +257,9 @@ void tst_qdeclarativexmlhttprequest::open()
     QFETCH(QString, url);
     QFETCH(bool, remote);
 
-    TestHTTPServer *server = 0;
+    QScopedPointer<TestHTTPServer> server;
     if (remote) {
-        server = new TestHTTPServer(SERVER_PORT);
+        server.reset(new TestHTTPServer(SERVER_PORT));
         QVERIFY(server->isValid());
         QVERIFY(server->wait(TEST_FILE("open_network.expect"), 
                              TEST_FILE("open_network.reply"), 
@@ -281,7 +281,6 @@ void tst_qdeclarativexmlhttprequest::open()
 
     QTRY_VERIFY(object->property("dataOK").toBool() == true);
 
-    delete server;
     delete object;
 }
 
@@ -502,8 +501,8 @@ void tst_qdeclarativexmlhttprequest::send_ignoreData()
     {
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
-        QVERIFY(server.wait(TEST_FILE("send_ignoreData_GET.expect"), 
-                            TEST_FILE("send_ignoreData.reply"), 
+        QVERIFY(server.wait(TEST_FILE("send_ignoreData_GET.expect"),
+                            TEST_FILE("send_ignoreData.reply"),
                             TEST_FILE("testdocument.html")));
 
         QDeclarativeComponent component(&engine, TEST_FILE("send_ignoreData.qml"));
@@ -521,9 +520,9 @@ void tst_qdeclarativexmlhttprequest::send_ignoreData()
     {
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
-        QVERIFY(server.wait(TEST_FILE("send_ignoreData_PUT.expect"), 
-                            TEST_FILE("send_ignoreData.reply"), 
-                            TEST_FILE("testdocument.html")));
+        QVERIFY(server.wait(TEST_FILE("send_ignoreData_HEAD.expect"),
+                            TEST_FILE("send_ignoreData.reply"),
+                            QUrl()));
 
         QDeclarativeComponent component(&engine, TEST_FILE("send_ignoreData.qml"));
         QObject *object = component.beginCreate(engine.rootContext());
