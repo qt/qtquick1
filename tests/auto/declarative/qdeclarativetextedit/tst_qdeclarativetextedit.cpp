@@ -2117,8 +2117,6 @@ void tst_qdeclarativetextedit::textInput()
 void tst_qdeclarativetextedit::openInputPanelOnClick()
 {
     PlatformInputContext ic;
-    QInputPanelPrivate *inputPanelPrivate = QInputPanelPrivate::get(qApp->inputPanel());
-    inputPanelPrivate->testContext = &ic;
 
     QGraphicsScene scene;
     QGraphicsView view(&scene);
@@ -2167,8 +2165,6 @@ void tst_qdeclarativetextedit::openInputPanelOnClick()
 void tst_qdeclarativetextedit::openInputPanelOnFocus()
 {
     PlatformInputContext ic;
-    QInputPanelPrivate *inputPanelPrivate = QInputPanelPrivate::get(qApp->inputPanel());
-    inputPanelPrivate->testContext = &ic;
 
     QGraphicsScene scene;
     QGraphicsView view(&scene);
@@ -2447,8 +2443,6 @@ void tst_qdeclarativetextedit::testQtQuick11Attributes_data()
 void tst_qdeclarativetextedit::preeditMicroFocus()
 {
     PlatformInputContext ic;
-    QInputPanelPrivate *inputPanelPrivate = QInputPanelPrivate::get(qApp->inputPanel());
-    inputPanelPrivate->testContext = &ic;
 
     QGraphicsScene scene;
     QGraphicsView view(&scene);
@@ -2510,8 +2504,6 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
 void tst_qdeclarativetextedit::inputContextMouseHandler()
 {
     PlatformInputContext ic;
-    QInputPanelPrivate *inputPanelPrivate = QInputPanelPrivate::get(qApp->inputPanel());
-    inputPanelPrivate->testContext = &ic;
 
     QString text = "supercalifragisiticexpialidocious!";
 

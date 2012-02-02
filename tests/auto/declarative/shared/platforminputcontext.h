@@ -42,6 +42,8 @@
 #include <qplatforminputcontext_qpa.h>
 #include <QtGui/QInputPanel>
 
+#include <private/qinputpanel_p.h>
+
 class PlatformInputContext : public QPlatformInputContext
 {
 public:
@@ -50,6 +52,12 @@ public:
           m_invokeActionCallCount(0), m_showInputPanelCallCount(0), m_hideInputPanelCallCount(0),
           m_updateCallCount(0), m_direction(Qt::LeftToRight)
     {
+        QInputPanelPrivate::get(qApp->inputPanel())->testContext = this;
+    }
+
+    ~PlatformInputContext()
+    {
+        QInputPanelPrivate::get(qApp->inputPanel())->testContext = 0;
     }
 
     virtual void showInputPanel()
