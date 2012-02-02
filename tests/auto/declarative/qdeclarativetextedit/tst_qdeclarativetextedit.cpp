@@ -2535,6 +2535,7 @@ void tst_qdeclarativetextedit::inputContextMouseHandler()
     QTest::mouseRelease(view.viewport(), Qt::RightButton, Qt::ControlModifier, position2);
     QApplication::processEvents();
 
+    QEXPECT_FAIL("", "QTBUG-24035", Abort);
     QCOMPARE(ic.m_action, QInputPanel::Click);
     QCOMPARE(ic.m_invokeActionCallCount, 1);
     QCOMPARE(ic.m_cursorPosition, 2);

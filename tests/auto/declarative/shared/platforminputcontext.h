@@ -48,7 +48,7 @@ class PlatformInputContext : public QPlatformInputContext
 {
 public:
     PlatformInputContext()
-        : m_visible(false), m_action(QInputPanel::Click), m_cursorPosition(0),
+        : m_visible(false), m_action(QInputPanel::Action(-1)), m_cursorPosition(0),
           m_invokeActionCallCount(0), m_showInputPanelCallCount(0), m_hideInputPanelCallCount(0),
           m_updateCallCount(0), m_direction(Qt::LeftToRight)
     {
