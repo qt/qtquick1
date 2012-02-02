@@ -130,6 +130,7 @@ QDeclarativeItem *QDeclarativePathViewPrivate::getItem(int modelIndex)
             att->setOnPath(true);
         }
         item->setParentItem(q);
+        QDeclarative_setParent_noEvent(item, q);
         QDeclarativeItemPrivate *itemPrivate = static_cast<QDeclarativeItemPrivate*>(QGraphicsItemPrivate::get(item));
         itemPrivate->addItemChangeListener(this, QDeclarativeItemPrivate::Geometry);
     }

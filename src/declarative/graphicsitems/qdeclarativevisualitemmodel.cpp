@@ -991,6 +991,7 @@ QDeclarativeVisualDataModel::ReleaseFlags QDeclarativeVisualDataModel::release(Q
 
         if (inPackage) {
             emit destroyingPackage(qobject_cast<QDeclarativePackage*>(obj));
+            QDeclarative_setParent_noEvent(obj, this);
         } else {
             if (item->scene())
                 item->scene()->removeItem(item);
