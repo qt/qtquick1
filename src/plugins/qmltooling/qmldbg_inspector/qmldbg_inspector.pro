@@ -1,10 +1,9 @@
 TARGET = qmldbg_inspector
 QT       += quick1 quick1-private gui widgets core-private
 
-include(../../qpluginbase.pri)
+load(qt_plugin)
 
-QTDIR_build:DESTDIR  = $$QT_BUILD_TREE/plugins/qmltooling
-QTDIR_build:REQUIRES += "contains(QT_CONFIG, quick1)"
+DESTDIR  = $$QT.quick1.plugins/qmltooling
 
 SOURCES += \
     qtquick1plugin.cpp \

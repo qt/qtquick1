@@ -1,14 +1,10 @@
 TEMPLATE = app
-CONFIG += qt uic quick1_debug
-DESTDIR = ../../bin
+CONFIG += qt uic quick1_debug quick1
+DESTDIR = $$QT.quick1.bins
 
 include(qml.pri)
 
 SOURCES += main.cpp
-
-INCLUDEPATH += ../../include/QtDeclarative
-INCLUDEPATH += ../../src/declarative/util
-INCLUDEPATH += ../../src/declarative/graphicsitems
 
 DEFINES += QT_NO_CAST_FROM_ASCII QT_NO_CAST_TO_ASCII
 

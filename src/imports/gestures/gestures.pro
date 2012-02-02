@@ -7,7 +7,7 @@ QT += quick1 quick1-private widgets widgets-private gui gui-private core-private
 SOURCES += qdeclarativegesturearea.cpp plugin.cpp
 HEADERS += qdeclarativegesturearea_p.h
 
-QTDIR_build:DESTDIR = $$QT_BUILD_TREE/imports/$$TARGETPATH
+DESTDIR = $$QT.quick1.imports/imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 
 qmldir.files += $$PWD/qmldir
