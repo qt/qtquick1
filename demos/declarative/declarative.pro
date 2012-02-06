@@ -11,5 +11,3 @@ SUBDIRS = \
    rssnews \
    twitter
 
-contains(QT_CONFIG, webkit):SUBDIRS += webbrowser
-

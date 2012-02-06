@@ -11,6 +11,4 @@ SUBDIRS += \
     parallax \
     pathview \
     stringlistmodel \
-    visualitemmodel \
-    webview
-
+    visualitemmodel
