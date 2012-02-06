@@ -19,7 +19,14 @@ module_qtquick1_examples.depends = module_qtquick1_src
     module_qtquick1_examples.CONFIG = no_default_target no_default_install
 }
 
+module_qtquick1_tests.subdir = tests
+module_qtquick1_tests.target = module-qtquick1-tests
+module_qtquick1_tests.depends = module_qtquick1_src
+module_qtquick1_tests.CONFIG = no_default_install
+!contains(QT_BUILD_PARTS,tests): module_qtquick1_tests.CONFIG += no_default_target
+
 SUBDIRS += module_qtquick1_src \
            module_qtquick1_tools \
            module_qtquick1_demos \
            module_qtquick1_examples \
+           module_qtquick1_tests \
