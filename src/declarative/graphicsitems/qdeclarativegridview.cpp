@@ -209,7 +209,6 @@ public:
     }
 
     void mirrorChange() {
-        Q_Q(QDeclarativeGridView);
         regenerate();
     }
 

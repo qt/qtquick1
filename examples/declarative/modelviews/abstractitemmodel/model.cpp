@@ -73,7 +73,7 @@ void AnimalModel::addAnimal(const Animal &animal)
     endInsertRows();
 }
 
-int AnimalModel::rowCount(const QModelIndex & parent) const {
+int AnimalModel::rowCount(const QModelIndex &) const {
     return m_animals.count();
 }
 

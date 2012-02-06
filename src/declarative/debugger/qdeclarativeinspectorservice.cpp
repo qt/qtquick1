@@ -87,6 +87,7 @@ void QDeclarativeInspectorService::sendMessage(const QByteArray &message)
 
 void QDeclarativeInspectorService::statusChanged(Status status)
 {
+    Q_UNUSED(status)
     updateStatus();
 }
 

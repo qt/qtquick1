@@ -557,7 +557,8 @@ bool QDeclarativeObjectScriptClass::compare(Object *o1, Object *o2)
     return d1 == d2 || d1->object == d2->object;
 }
 
-struct MethodData : public QScriptDeclarativeClass::Object {
+class MethodData : public QScriptDeclarativeClass::Object {
+public:
     MethodData(QObject *o, const QDeclarativePropertyCache::Data &d) : object(o), data(d) {}
 
     QDeclarativeGuard<QObject> object;

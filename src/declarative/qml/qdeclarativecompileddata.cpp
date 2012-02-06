@@ -64,7 +64,7 @@ int QDeclarativeCompiledData::pack(const char *data, size_t size)
     }
 
     int rv = packData.size();
-    packData.append(data, size);
+    packData.append(data, int(size));
     return rv;
 }
 

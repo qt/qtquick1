@@ -5,6 +5,8 @@ load(qt_plugin)
 
 DESTDIR  = $$QT.quick1.plugins/qmltooling
 
+INCLUDEPATH *= $$PWD
+
 SOURCES += \
     qtquick1plugin.cpp \
     abstractviewinspector.cpp \

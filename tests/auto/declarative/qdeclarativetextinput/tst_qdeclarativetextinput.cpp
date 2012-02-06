@@ -2199,6 +2199,8 @@ void tst_qdeclarativetextinput::openInputPanelOnClick()
     QCOMPARE(ic.m_hideInputPanelCallCount, 0);
 }
 
+
+
 void tst_qdeclarativetextinput::openInputPanelOnFocus()
 {
     PlatformInputContext ic;
@@ -2693,7 +2695,7 @@ void tst_qdeclarativetextinput::cursorRectangleSize()
 
     QDeclarativeTextInput *textInput = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
     QVERIFY(textInput != 0);
-    textInput->setFocus(Qt::OtherFocusReason);
+    textInput->setFocus(true);
     QRectF cursorRect = textInput->positionToRectangle(textInput->cursorPosition());
     QRectF microFocusFromScene = canvas->scene()->inputMethodQuery(Qt::ImMicroFocus).toRectF();
     QRectF microFocusFromApp= QApplication::focusWidget()->inputMethodQuery(Qt::ImMicroFocus).toRectF();

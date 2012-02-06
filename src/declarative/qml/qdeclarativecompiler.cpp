@@ -2576,7 +2576,7 @@ bool QDeclarativeCompiler::buildDynamicMeta(QDeclarativeParser::Object *obj, Dyn
     for (int ii = 0; ii < obj->dynamicSlots.count(); ++ii) {
         Object::DynamicSlot &s = obj->dynamicSlots[ii];
         QByteArray sig(s.name + '(');
-        QString funcScript(QLatin1String("(function ") + s.name + QLatin1Char('('));
+        QString funcScript(QStringLiteral("(function ") + QLatin1String(s.name) + QLatin1Char('('));
 
         for (int jj = 0; jj < s.parameterNames.count(); ++jj) {
             if (jj) { 
