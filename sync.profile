@@ -6,6 +6,7 @@
 );
 %mastercontent = (
     "gui" => "#include <QtGui/QtGui>\n",
+    "widgets" => "#include <QtWidgets/QtWidgets>\n",
     "script" => "#include <QtScript/QtScript>\n",
     "network" => "#include <QtNetwork/QtNetwork>\n",
     "testlib" => "#include <QtTest/QtTest>\n",
@@ -21,5 +22,6 @@
 #
 %dependencies = (
     "qtbase" => "refs/heads/master",
+    "qtscript" => "refs/heads/master",
     "qtxmlpatterns" => "refs/heads/master",
 );
