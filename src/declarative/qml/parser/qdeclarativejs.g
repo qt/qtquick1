@@ -16,7 +16,8 @@
 -- will be met: http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html.
 --
 -- If you have questions regarding the use of this file, please contact
--- Nokia at qt-info@nokia.com.
+-- us via http://www.qt-project.org/.
+--
 -- $QT_END_LICENSE$
 --
 ----------------------------------------------------------------------------
@@ -118,6 +119,7 @@
 **
 **
 **
+**
 ** $QT_END_LICENSE$
 **
 ****************************************************************************/
@@ -166,6 +168,7 @@
 ** Other Usage
 ** Alternatively, this file may be used in accordance with the terms and
 ** conditions contained in a signed written agreement between you and Nokia.
+**
 **
 **
 **
