@@ -53,7 +53,6 @@
 #include <QFontMetrics>
 #include <QPainter>
 #include <QTextBoundaryFinder>
-#include <QInputContext>
 #include <qstyle.h>
 
 #ifndef QT_NO_LINEEDIT

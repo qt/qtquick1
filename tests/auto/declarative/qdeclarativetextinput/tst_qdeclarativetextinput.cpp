@@ -49,7 +49,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QStyle>
-#include <QInputContext>
 #include <private/qapplication_p.h>
 #include <private/qinputpanel_p.h>
 #include <private/qwidgetlinecontrol_p.h>
@@ -2318,7 +2317,6 @@ void tst_qdeclarativetextinput::openInputPanelOnFocus()
     // if TextInput loses focus
     input.setFocus(false);
     QApplication::processEvents();
-    QVERIFY(view.inputContext() == 0);
     QVERIFY(!view.testAttribute(Qt::WA_InputMethodEnabled));
 
     // input method should not be enabled
@@ -2328,7 +2326,6 @@ void tst_qdeclarativetextinput::openInputPanelOnFocus()
     input.setFocus(true);
     QApplication::processEvents();
     QCOMPARE(ic.isInputPanelVisible(), false);
-    QVERIFY(view.inputContext() == 0);
     QVERIFY(!view.testAttribute(Qt::WA_InputMethodEnabled));
 }
 
