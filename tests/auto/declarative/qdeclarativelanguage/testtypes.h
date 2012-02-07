@@ -588,6 +588,7 @@ public:
 class MyParserStatus : public QObject, public QDeclarativeParserStatus
 {
     Q_OBJECT
+    Q_INTERFACES(QDeclarativeParserStatus)
 public:
     MyParserStatus() : m_cbc(0), m_ccc(0) {}
 

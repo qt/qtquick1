@@ -1447,7 +1447,6 @@ struct ValueTypeSerializedData : public SerializedData {
 QByteArray QDeclarativePropertyPrivate::saveValueType(const QMetaObject *metaObject, int index, 
                                                  const QMetaObject *subObject, int subIndex)
 {
-    QMetaProperty prop = metaObject->property(index);
     QMetaProperty subProp = subObject->property(subIndex);
 
     ValueTypeSerializedData sd;

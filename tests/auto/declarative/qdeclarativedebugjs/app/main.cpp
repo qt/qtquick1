@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     }
 
     QObject *obj = component.create();
-
+    Q_UNUSED(obj)
 //    printf("%u\n", QDeclarativeDebugService::idForObject(obj));
 //    fflush(stdout);
 

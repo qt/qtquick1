@@ -80,7 +80,7 @@ class SingleRoleModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    SingleRoleModel(QObject *parent = 0) {
+    SingleRoleModel(QObject * /* parent */ = 0) {
         QHash<int, QByteArray> roles;
         roles.insert(Qt::DisplayRole , "name");
         setRoleNames(roles);
@@ -101,7 +101,7 @@ public slots:
     }
 
 protected:
-    int rowCount(const QModelIndex &parent = QModelIndex()) const {
+    int rowCount(const QModelIndex & /* parent */ = QModelIndex()) const {
         return list.count();
     }
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const {
