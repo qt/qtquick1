@@ -1,1 +1,0 @@
-contains(QT, qtquick1):DEFINES += QT_DECLARATIVE_DEBUG

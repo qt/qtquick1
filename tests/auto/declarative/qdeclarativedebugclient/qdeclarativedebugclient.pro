@@ -9,4 +9,4 @@ HEADERS += ../shared/debugutil_p.h
 SOURCES += tst_qdeclarativedebugclient.cpp \
            ../shared/debugutil.cpp
 
-CONFIG += quick1_debug
+CONFIG += declarative_debug
