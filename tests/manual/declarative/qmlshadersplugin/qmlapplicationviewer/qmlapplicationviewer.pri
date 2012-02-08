@@ -5,7 +5,7 @@
 # It is recommended not to modify this file, since newer versions of Qt Creator
 # may offer an updated version of it.
 
-QT += quick1
+QT += quick1 widgets
 
 SOURCES += $$PWD/qmlapplicationviewer.cpp
 HEADERS += $$PWD/qmlapplicationviewer.h
