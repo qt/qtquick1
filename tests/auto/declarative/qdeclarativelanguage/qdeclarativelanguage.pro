@@ -10,16 +10,9 @@ SOURCES += tst_qdeclarativelanguage.cpp \
            testtypes.cpp
 HEADERS += testtypes.h
 
-INCLUDEPATH += ../shared/
 HEADERS += ../shared/testhttpserver.h
 SOURCES += ../shared/testhttpserver.cpp
 
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+include(../shared/qdeclarativedatatest.pri)
 
 CONFIG += parallel_test

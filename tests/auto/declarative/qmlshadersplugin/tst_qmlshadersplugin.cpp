@@ -40,6 +40,7 @@
 ****************************************************************************/
 
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtQuick1>
 #include "../../../../src/imports/shaders/shadereffectitem.h"
 #include "../../../../src/imports/shaders/shadereffectsource.h"
@@ -64,7 +65,7 @@ static const char qt_default_fragment_code[] =
             "gl_FragColor = texture2D(source, qt_TexCoord0.st);\n"
         "}\n";
 
-class tst_qmlshadersplugin : public QObject
+class tst_qmlshadersplugin : public QDeclarativeDataTest
 {
     Q_OBJECT
 
@@ -80,6 +81,8 @@ private:
 
 void tst_qmlshadersplugin::initTestCase()
 {
+    QDeclarativeDataTest::initTestCase();
+
     const char *uri ="Qt.labs.shaders";
     qmlRegisterType<ShaderEffectItem>(uri, 1, 0, "ShaderEffectItem");
     qmlRegisterType<ShaderEffectSource>(uri, 1, 0, "ShaderEffectSource");
@@ -96,7 +99,7 @@ void tst_qmlshadersplugin::shaderEffectItemAPI()
             "width: 200; height: 300\n"
             "}";
     QDeclarativeComponent component(&engine);
-    component.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
+    component.setData(componentStr.toLatin1(), testFileUrl(""));
 
     QObject *obj = component.create();
     QTest::qWait(100);
@@ -134,7 +137,7 @@ void tst_qmlshadersplugin::shaderEffectSourceAPI()
             "import Qt.labs.shaders 1.0\n"
             "ShaderEffectSource {}";
     QDeclarativeComponent shaderEffectSourceComponent(&engine);
-    shaderEffectSourceComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
+    shaderEffectSourceComponent.setData(componentStr.toLatin1(), testFileUrl(""));
 
     QObject *obj = shaderEffectSourceComponent.create();
     QTest::qWait(100);
@@ -151,7 +154,7 @@ void tst_qmlshadersplugin::shaderEffectSourceAPI()
     componentStr = "import QtQuick 1.0\n"
         "Item {}";
     QDeclarativeComponent itemComponent(&engine);
-    itemComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
+    itemComponent.setData(componentStr.toLatin1(), testFileUrl(""));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem *> (itemComponent.create());
     QVERIFY(item != 0);
 
@@ -187,7 +190,7 @@ void tst_qmlshadersplugin::combined()
     view.setAttribute(Qt::WA_OpaquePaintEvent);
     view.setAttribute(Qt::WA_NoSystemBackground);
     view.setViewport(glWidget);
-    view.setSource(QUrl::fromLocalFile("main.qml"));
+    view.setSource(testFileUrl("main.qml"));
     view.show();
     QTest::qWait(1000);
 

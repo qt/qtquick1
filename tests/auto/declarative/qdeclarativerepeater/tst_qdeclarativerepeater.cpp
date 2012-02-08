@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 
+#include <qdeclarativedatatest.h>
 #include <QtTest/QtTest>
 #include <QtTest/QSignalSpy>
 #include <private/qlistmodelinterface_p.h>
@@ -49,17 +50,7 @@
 #include <private/qdeclarativerepeater_p.h>
 #include <private/qdeclarativetext_p.h>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
-inline QUrl TEST_FILE(const QString &filename)
-{
-    return QUrl::fromLocalFile(QLatin1String(SRCDIR) + QLatin1String("/data/") + filename);
-}
-
-class tst_QDeclarativeRepeater : public QObject
+class tst_QDeclarativeRepeater : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -185,7 +176,7 @@ void tst_QDeclarativeRepeater::numberModel()
     TestObject *testObject = new TestObject;
     ctxt->setContextProperty("testObject", testObject);
 
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/intmodel.qml"));
+    canvas->setSource(testFileUrl("intmodel.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -226,7 +217,7 @@ void tst_QDeclarativeRepeater::objectList()
     QDeclarativeContext *ctxt = canvas->rootContext();
     ctxt->setContextProperty("testData", QVariant::fromValue(data));
 
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/objlist.qml"));
+    canvas->setSource(testFileUrl("objlist.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -267,7 +258,7 @@ void tst_QDeclarativeRepeater::stringList()
     QDeclarativeContext *ctxt = canvas->rootContext();
     ctxt->setContextProperty("testData", data);
 
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/repeater1.qml"));
+    canvas->setSource(testFileUrl("repeater1.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -315,7 +306,7 @@ void tst_QDeclarativeRepeater::dataModel_adding()
 
     TestModel testModel;
     ctxt->setContextProperty("testData", &testModel);
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/repeater2.qml"));
+    canvas->setSource(testFileUrl("repeater2.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -383,7 +374,7 @@ void tst_QDeclarativeRepeater::dataModel_removing()
     testModel.addItem("five", "5");
 
     ctxt->setContextProperty("testData", &testModel);
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/repeater2.qml"));
+    canvas->setSource(testFileUrl("repeater2.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -449,7 +440,7 @@ void tst_QDeclarativeRepeater::dataModel_changes()
     testModel.addItem("three", "3");
 
     ctxt->setContextProperty("testData", &testModel);
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/repeater2.qml"));
+    canvas->setSource(testFileUrl("repeater2.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -483,7 +474,7 @@ void tst_QDeclarativeRepeater::itemModel()
     TestObject *testObject = new TestObject;
     ctxt->setContextProperty("testObject", testObject);
 
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/itemlist.qml"));
+    canvas->setSource(testFileUrl("itemlist.qml"));
     qApp->processEvents();
 
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
@@ -527,7 +518,7 @@ void tst_QDeclarativeRepeater::resetModel()
 
     QDeclarativeContext *ctxt = canvas->rootContext();
     ctxt->setContextProperty("testData", dataA);
-    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/repeater1.qml"));
+    canvas->setSource(testFileUrl("repeater1.qml"));
     qApp->processEvents();
     QDeclarativeRepeater *repeater = findItem<QDeclarativeRepeater>(canvas->rootObject(), "repeater");
     QVERIFY(repeater != 0);
@@ -584,7 +575,7 @@ void tst_QDeclarativeRepeater::resetModel()
 void tst_QDeclarativeRepeater::modelChanged()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, TEST_FILE("/modelChanged.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("modelChanged.qml"));
 
     QDeclarativeItem *rootObject = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(rootObject);
@@ -607,7 +598,7 @@ void tst_QDeclarativeRepeater::modelChanged()
 void tst_QDeclarativeRepeater::properties()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, TEST_FILE("/properties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("properties.qml"));
 
     QDeclarativeItem *rootObject = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(rootObject);

@@ -7,5 +7,7 @@ macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativelistreference.cpp
 
+include(../shared/qdeclarativedatatest.pri)
+
 CONFIG += parallel_test
 

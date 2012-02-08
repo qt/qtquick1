@@ -7,13 +7,7 @@ macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeproperty.cpp
 
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+include(../shared/qdeclarativedatatest.pri)
 
 CONFIG += parallel_test
 

@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtQuick1/qdeclarativeengine.h>
 #include <QtQuick1/qdeclarativecomponent.h>
 #include <QtCore/qfile.h>
@@ -54,10 +55,6 @@
 
 #include "testhttpserver.h"
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
 
 DEFINE_BOOL_CONFIG_OPTION(qmlCheckTypes, QML_CHECK_TYPES)
 
@@ -68,7 +65,7 @@ involve evaluating ECMAScript expressions and bindings.
 
 Evaluation of expressions and bindings is covered in qmlecmascript
 */
-class tst_qdeclarativelanguage : public QObject
+class tst_qdeclarativelanguage : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -173,7 +170,7 @@ private:
         QVERIFY(!component.isError()); \
         QVERIFY(component.errors().isEmpty()); \
     } else { \
-        QFile file(QLatin1String(SRCDIR) + QLatin1String("/data/") + QLatin1String(errorfile)); \
+        QFile file(testFile(errorfile)); \
         QVERIFY(file.open(QIODevice::ReadOnly | QIODevice::Text)); \
         QByteArray data = file.readAll(); \
         file.close(); \
@@ -202,20 +199,9 @@ private:
         } \
     }
 
-inline QUrl TEST_FILE(const QString &filename)
-{
-    QFileInfo fileInfo(__FILE__);
-    return QUrl::fromLocalFile(fileInfo.absoluteDir().filePath(QLatin1String("data/") + filename));
-}
-
-inline QUrl TEST_FILE(const char *filename)
-{
-    return TEST_FILE(QLatin1String(filename));
-}
-
 void tst_qdeclarativelanguage::cleanupTestCase()
 {
-    QVERIFY(QFile::remove(TEST_FILE(QString::fromUtf8("I18nType\303\201\303\242\303\243\303\244\303\245.qml")).toLocalFile()));
+    QVERIFY(QFile::remove(testFileUrl(QString::fromUtf8("I18nType\303\201\303\242\303\243\303\244\303\245.qml")).toLocalFile()));
 }
 
 void tst_qdeclarativelanguage::insertedSemicolon_data()
@@ -233,7 +219,7 @@ void tst_qdeclarativelanguage::insertedSemicolon()
     QFETCH(QString, errorFile);
     QFETCH(bool, create);
 
-    QDeclarativeComponent component(&engine, TEST_FILE(file));
+    QDeclarativeComponent component(&engine, testFileUrl(file));
 
     if(create) {
         QObject *object = component.create();
@@ -438,7 +424,7 @@ void tst_qdeclarativelanguage::errors()
     QFETCH(QString, errorFile);
     QFETCH(bool, create);
 
-    QDeclarativeComponent component(&engine, TEST_FILE(file));
+    QDeclarativeComponent component(&engine, testFileUrl(file));
 
     if(create) {
         QObject *object = component.create();
@@ -450,7 +436,7 @@ void tst_qdeclarativelanguage::errors()
 
 void tst_qdeclarativelanguage::simpleObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("simpleObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("simpleObject.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -458,7 +444,7 @@ void tst_qdeclarativelanguage::simpleObject()
 
 void tst_qdeclarativelanguage::simpleContainer()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("simpleContainer.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("simpleContainer.qml"));
     VERIFY_ERRORS(0);
     MyContainer *container= qobject_cast<MyContainer*>(component.create());
     QVERIFY(container != 0);
@@ -467,7 +453,7 @@ void tst_qdeclarativelanguage::simpleContainer()
 
 void tst_qdeclarativelanguage::interfaceProperty()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("interfaceProperty.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("interfaceProperty.qml"));
     VERIFY_ERRORS(0);
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
@@ -477,7 +463,7 @@ void tst_qdeclarativelanguage::interfaceProperty()
 
 void tst_qdeclarativelanguage::interfaceQList()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("interfaceQList.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("interfaceQList.qml"));
     VERIFY_ERRORS(0);
     MyContainer *container= qobject_cast<MyContainer*>(component.create());
     QVERIFY(container != 0);
@@ -488,7 +474,7 @@ void tst_qdeclarativelanguage::interfaceQList()
 
 void tst_qdeclarativelanguage::assignObjectToSignal()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignObjectToSignal.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignObjectToSignal.qml"));
     VERIFY_ERRORS(0);
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
@@ -498,7 +484,7 @@ void tst_qdeclarativelanguage::assignObjectToSignal()
 
 void tst_qdeclarativelanguage::assignObjectToVariant()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignObjectToVariant.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignObjectToVariant.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -508,7 +494,7 @@ void tst_qdeclarativelanguage::assignObjectToVariant()
 
 void tst_qdeclarativelanguage::assignLiteralSignalProperty()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignLiteralSignalProperty.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignLiteralSignalProperty.qml"));
     VERIFY_ERRORS(0);
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
@@ -518,7 +504,7 @@ void tst_qdeclarativelanguage::assignLiteralSignalProperty()
 // Test is an external component can be loaded and assigned (to a qlist)
 void tst_qdeclarativelanguage::assignQmlComponent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignQmlComponent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignQmlComponent.qml"));
     VERIFY_ERRORS(0);
     MyContainer *object = qobject_cast<MyContainer *>(component.create());
     QVERIFY(object != 0);
@@ -531,7 +517,7 @@ void tst_qdeclarativelanguage::assignQmlComponent()
 // Test literal assignment to all the basic types 
 void tst_qdeclarativelanguage::assignBasicTypes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignBasicTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignBasicTypes.qml"));
     VERIFY_ERRORS(0);
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
@@ -566,7 +552,7 @@ void tst_qdeclarativelanguage::assignBasicTypes()
 // Test edge case type assignments
 void tst_qdeclarativelanguage::assignTypeExtremes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignTypeExtremes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignTypeExtremes.qml"));
     VERIFY_ERRORS(0);
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
@@ -577,7 +563,7 @@ void tst_qdeclarativelanguage::assignTypeExtremes()
 // Test that a composite type can assign to a property of its base type
 void tst_qdeclarativelanguage::assignCompositeToType()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignCompositeToType.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignCompositeToType.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -586,7 +572,7 @@ void tst_qdeclarativelanguage::assignCompositeToType()
 // Test that literals are stored correctly in variant properties
 void tst_qdeclarativelanguage::assignLiteralToVariant()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignLiteralToVariant.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignLiteralToVariant.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -621,7 +607,7 @@ void tst_qdeclarativelanguage::assignLiteralToVariant()
 // Tests that custom parser types can be instantiated
 void tst_qdeclarativelanguage::customParserTypes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("customParserTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("customParserTypes.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -631,7 +617,7 @@ void tst_qdeclarativelanguage::customParserTypes()
 // Tests that the root item can be a custom component
 void tst_qdeclarativelanguage::rootAsQmlComponent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("rootAsQmlComponent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("rootAsQmlComponent.qml"));
     VERIFY_ERRORS(0);
     MyContainer *object = qobject_cast<MyContainer *>(component.create());
     QVERIFY(object != 0);
@@ -642,7 +628,7 @@ void tst_qdeclarativelanguage::rootAsQmlComponent()
 // Tests that components can be specified inline
 void tst_qdeclarativelanguage::inlineQmlComponents()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("inlineQmlComponents.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("inlineQmlComponents.qml"));
     VERIFY_ERRORS(0);
     MyContainer *object = qobject_cast<MyContainer *>(component.create());
     QVERIFY(object != 0);
@@ -657,7 +643,7 @@ void tst_qdeclarativelanguage::inlineQmlComponents()
 // Tests that types that have an id property have it set
 void tst_qdeclarativelanguage::idProperty()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("idProperty.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("idProperty.qml"));
     VERIFY_ERRORS(0);
     MyContainer *object = qobject_cast<MyContainer *>(component.create());
     QVERIFY(object != 0);
@@ -673,7 +659,7 @@ void tst_qdeclarativelanguage::idProperty()
 // even if the notify signal for "blah" is not called "blahChanged"
 void tst_qdeclarativelanguage::autoNotifyConnection()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("autoNotifyConnection.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("autoNotifyConnection.qml"));
     VERIFY_ERRORS(0);
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
@@ -688,7 +674,7 @@ void tst_qdeclarativelanguage::autoNotifyConnection()
 // Tests that signals can be assigned to
 void tst_qdeclarativelanguage::assignSignal()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignSignal.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignSignal.qml"));
     VERIFY_ERRORS(0);
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
@@ -701,7 +687,7 @@ void tst_qdeclarativelanguage::assignSignal()
 // Tests the creation and assignment of dynamic properties
 void tst_qdeclarativelanguage::dynamicProperties()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicProperties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicProperties.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -710,7 +696,7 @@ void tst_qdeclarativelanguage::dynamicProperties()
     QCOMPARE(object->property("doubleProperty"), QVariant(-10.1));
     QCOMPARE(object->property("realProperty"), QVariant((qreal)-19.9));
     QCOMPARE(object->property("stringProperty"), QVariant("Hello World!"));
-    QCOMPARE(object->property("urlProperty"), QVariant(TEST_FILE("main.qml")));
+    QCOMPARE(object->property("urlProperty"), QVariant(testFileUrl("main.qml")));
     QCOMPARE(object->property("colorProperty"), QVariant(QColor("red")));
     QCOMPARE(object->property("dateProperty"), QVariant(QDate(1945, 9, 2)));
     QCOMPARE(object->property("varProperty"), QVariant("Hello World!"));
@@ -719,7 +705,7 @@ void tst_qdeclarativelanguage::dynamicProperties()
 // Test that nested types can use dynamic properties
 void tst_qdeclarativelanguage::dynamicPropertiesNested()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicPropertiesNested.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicPropertiesNested.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -735,7 +721,7 @@ void tst_qdeclarativelanguage::dynamicPropertiesNested()
 // Tests the creation and assignment to dynamic list properties
 void tst_qdeclarativelanguage::listProperties()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("listProperties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("listProperties.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -748,7 +734,7 @@ void tst_qdeclarativelanguage::listProperties()
 void tst_qdeclarativelanguage::dynamicObjectProperties()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicObjectProperties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicObjectProperties.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -757,7 +743,7 @@ void tst_qdeclarativelanguage::dynamicObjectProperties()
     QVERIFY(object->property("objectProperty2") != qVariantFromValue((QObject*)0));
     }
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicObjectProperties.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicObjectProperties.2.qml"));
     QEXPECT_FAIL("", "QTBUG-10822", Abort);
     VERIFY_ERRORS(0);
     QObject *object = component.create();
@@ -772,7 +758,7 @@ void tst_qdeclarativelanguage::dynamicSignalsAndSlots()
 {
     QTest::ignoreMessage(QtDebugMsg, "1921");
 
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicSignalsAndSlots.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicSignalsAndSlots.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -788,7 +774,7 @@ void tst_qdeclarativelanguage::dynamicSignalsAndSlots()
 
 void tst_qdeclarativelanguage::simpleBindings()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("simpleBindings.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("simpleBindings.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -801,7 +787,7 @@ void tst_qdeclarativelanguage::simpleBindings()
 
 void tst_qdeclarativelanguage::autoComponentCreation()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("autoComponentCreation.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("autoComponentCreation.qml"));
     VERIFY_ERRORS(0);
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
@@ -814,7 +800,7 @@ void tst_qdeclarativelanguage::autoComponentCreation()
 void tst_qdeclarativelanguage::propertyValueSource()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("propertyValueSource.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("propertyValueSource.qml"));
     VERIFY_ERRORS(0);
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
@@ -835,7 +821,7 @@ void tst_qdeclarativelanguage::propertyValueSource()
     }
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("propertyValueSource.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("propertyValueSource.2.qml"));
     VERIFY_ERRORS(0);
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
@@ -858,7 +844,7 @@ void tst_qdeclarativelanguage::propertyValueSource()
 
 void tst_qdeclarativelanguage::attachedProperties()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("attachedProperties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("attachedProperties.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -871,7 +857,7 @@ void tst_qdeclarativelanguage::attachedProperties()
 // Tests non-static object properties
 void tst_qdeclarativelanguage::dynamicObjects()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicObject.1.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicObject.1.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -880,7 +866,7 @@ void tst_qdeclarativelanguage::dynamicObjects()
 // Tests the registration of custom variant string converters
 void tst_qdeclarativelanguage::customVariantTypes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("customVariantTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("customVariantTypes.qml"));
     VERIFY_ERRORS(0);
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
@@ -889,7 +875,7 @@ void tst_qdeclarativelanguage::customVariantTypes()
 
 void tst_qdeclarativelanguage::valueTypes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("valueTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("valueTypes.qml"));
     VERIFY_ERRORS(0);
 
     QString message = component.url().toString() + ":2:1: QML MyTypeObject: Binding loop detected for property \"rectProperty.width\"";
@@ -925,7 +911,7 @@ void tst_qdeclarativelanguage::valueTypes()
 void tst_qdeclarativelanguage::cppnamespace()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("cppnamespace.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("cppnamespace.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -933,7 +919,7 @@ void tst_qdeclarativelanguage::cppnamespace()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("cppnamespace.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("cppnamespace.2.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -945,7 +931,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 {
     // Simple "int" alias
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.1.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -965,7 +951,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Complex object alias
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.2.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -990,7 +976,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Nested aliases
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.3.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1011,7 +997,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Enum aliases
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.4.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1023,7 +1009,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Id aliases
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.5.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.5.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1045,7 +1031,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Nested aliases - this used to cause a crash
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.6.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.6.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1056,7 +1042,7 @@ void tst_qdeclarativelanguage::aliasProperties()
     // Ptr Alias Cleanup - check that aliases to ptr types return 0 
     // if the object aliased to is removed
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.7.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.7.qml"));
         VERIFY_ERRORS(0);
 
         QObject *object = component.create();
@@ -1082,7 +1068,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Simple composite type
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.8.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.8.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1094,7 +1080,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Complex composite type
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.9.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.9.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1107,7 +1093,7 @@ void tst_qdeclarativelanguage::aliasProperties()
     // Valuetype alias
     // Simple "int" alias
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.10.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.10.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1127,7 +1113,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 
     // Valuetype sub-alias
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("alias.11.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("alias.11.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1149,7 +1135,7 @@ void tst_qdeclarativelanguage::aliasProperties()
 // QTBUG-13374 Test that alias properties and signals can coexist
 void tst_qdeclarativelanguage::aliasPropertiesAndSignals()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasPropertiesAndSignals.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasPropertiesAndSignals.qml"));
     VERIFY_ERRORS(0);
     QObject *o = component.create();
     QVERIFY(o);
@@ -1160,7 +1146,7 @@ void tst_qdeclarativelanguage::aliasPropertiesAndSignals()
 // Test that the root element in a composite type can be a Component
 void tst_qdeclarativelanguage::componentCompositeType()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("componentCompositeType.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("componentCompositeType.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -1194,7 +1180,7 @@ void tst_qdeclarativelanguage::i18n()
 {
     QFETCH(QString, file);
     QFETCH(QString, stringProperty);
-    QDeclarativeComponent component(&engine, TEST_FILE(file));
+    QDeclarativeComponent component(&engine, testFileUrl(file));
     VERIFY_ERRORS(0);
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
@@ -1206,7 +1192,7 @@ void tst_qdeclarativelanguage::i18n()
 // Check that the Component::onCompleted attached property works
 void tst_qdeclarativelanguage::onCompleted()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("onCompleted.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("onCompleted.qml"));
     VERIFY_ERRORS(0);
     QTest::ignoreMessage(QtDebugMsg, "Completed 6 10");
     QTest::ignoreMessage(QtDebugMsg, "Completed 6 10");
@@ -1218,7 +1204,7 @@ void tst_qdeclarativelanguage::onCompleted()
 // Check that the Component::onDestruction attached property works
 void tst_qdeclarativelanguage::onDestruction()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("onDestruction.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("onDestruction.qml"));
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -1233,7 +1219,7 @@ void tst_qdeclarativelanguage::onDestruction()
 void tst_qdeclarativelanguage::scriptString()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptString.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptString.qml"));
         VERIFY_ERRORS(0);
 
         MyTypeObject *object = qobject_cast<MyTypeObject*>(component.create());
@@ -1249,7 +1235,7 @@ void tst_qdeclarativelanguage::scriptString()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptString2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptString2.qml"));
         VERIFY_ERRORS(0);
 
         MyTypeObject *object = qobject_cast<MyTypeObject*>(component.create());
@@ -1258,7 +1244,7 @@ void tst_qdeclarativelanguage::scriptString()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptString3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptString3.qml"));
         VERIFY_ERRORS(0);
 
         MyTypeObject *object = qobject_cast<MyTypeObject*>(component.create());
@@ -1267,7 +1253,7 @@ void tst_qdeclarativelanguage::scriptString()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptString4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptString4.qml"));
         VERIFY_ERRORS(0);
 
         MyTypeObject *object = qobject_cast<MyTypeObject*>(component.create());
@@ -1280,7 +1266,7 @@ void tst_qdeclarativelanguage::scriptString()
 // property assignments
 void tst_qdeclarativelanguage::defaultPropertyListOrder()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("defaultPropertyListOrder.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("defaultPropertyListOrder.qml"));
     VERIFY_ERRORS(0);
 
     MyContainer *container = qobject_cast<MyContainer *>(component.create());
@@ -1297,13 +1283,13 @@ void tst_qdeclarativelanguage::defaultPropertyListOrder()
 
 void tst_qdeclarativelanguage::declaredPropertyValues()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("declaredPropertyValues.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("declaredPropertyValues.qml"));
     VERIFY_ERRORS(0);
 }
 
 void tst_qdeclarativelanguage::dontDoubleCallClassBegin()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("dontDoubleCallClassBegin.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dontDoubleCallClassBegin.qml"));
     QObject *o = component.create();
     QVERIFY(o);
 
@@ -1393,7 +1379,7 @@ void tst_qdeclarativelanguage::reservedWords()
 void tst_qdeclarativelanguage::testType(const QString& qml, const QString& type, const QString& expectederror)
 {
     QDeclarativeComponent component(&engine);
-    component.setData(qml.toUtf8(), TEST_FILE("empty.qml")); // just a file for relative local imports
+    component.setData(qml.toUtf8(), testFileUrl("empty.qml")); // just a file for relative local imports
 
     QTRY_VERIFY(!component.isLoading());
 
@@ -1417,7 +1403,7 @@ void tst_qdeclarativelanguage::testType(const QString& qml, const QString& type,
 // QTBUG-17276
 void tst_qdeclarativelanguage::inlineAssignmentsOverrideBindings()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("inlineAssignmentsOverrideBindings.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("inlineAssignmentsOverrideBindings.qml"));
 
     QObject *o = component.create();
     QVERIFY(o != 0);
@@ -1428,7 +1414,7 @@ void tst_qdeclarativelanguage::inlineAssignmentsOverrideBindings()
 // QTBUG-19354
 void tst_qdeclarativelanguage::nestedComponentRoots()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("nestedComponentRoots.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("nestedComponentRoots.qml"));
 }
 
 // Import tests (QT-558)
@@ -1631,7 +1617,7 @@ void tst_qdeclarativelanguage::basicRemote()
     QFETCH(QString, error);
 
     TestHTTPServer server(14447);
-    server.serveDirectory(SRCDIR);
+    server.serveDirectory(directory());
 
     QDeclarativeComponent component(&engine, url);
 
@@ -1675,7 +1661,7 @@ void tst_qdeclarativelanguage::importsRemote()
     QFETCH(QString, error);
 
     TestHTTPServer server(14447);
-    server.serveDirectory(SRCDIR);
+    server.serveDirectory(directory());
 
     testType(qml,type,error);
 }
@@ -1830,7 +1816,7 @@ void tst_qdeclarativelanguage::importsOrder()
 
 void tst_qdeclarativelanguage::importIncorrectCase()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("importIncorrectCase.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("importIncorrectCase.qml"));
 
     QList<QDeclarativeError> errors = component.errors();
     QCOMPARE(errors.count(), 1);
@@ -1852,7 +1838,7 @@ void tst_qdeclarativelanguage::qmlAttachedPropertiesObjectMethod()
     QCOMPARE(qmlAttachedPropertiesObject<MyQmlObject>(&object, true), (QObject *)0);
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("qmlAttachedPropertiesObjectMethod.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("qmlAttachedPropertiesObjectMethod.1.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1862,7 +1848,7 @@ void tst_qdeclarativelanguage::qmlAttachedPropertiesObjectMethod()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("qmlAttachedPropertiesObjectMethod.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("qmlAttachedPropertiesObjectMethod.2.qml"));
         VERIFY_ERRORS(0);
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -1880,13 +1866,13 @@ void tst_qdeclarativelanguage::crash1()
 
 void tst_qdeclarativelanguage::crash2()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("crash2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("crash2.qml"));
 }
 
 // QTBUG-8676
 void tst_qdeclarativelanguage::customOnProperty()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("customOnProperty.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("customOnProperty.qml"));
 
     VERIFY_ERRORS(0);
     QObject *object = component.create();
@@ -1900,7 +1886,7 @@ void tst_qdeclarativelanguage::customOnProperty()
 // QTBUG-12601
 void tst_qdeclarativelanguage::variantNotify()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("variantNotify.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("variantNotify.qml"));
 
     VERIFY_ERRORS(0);
     QObject *object = component.create();
@@ -1914,7 +1900,7 @@ void tst_qdeclarativelanguage::variantNotify()
 void tst_qdeclarativelanguage::revisions()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("revisions11.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("revisions11.qml"));
 
         VERIFY_ERRORS(0);
         MyRevisionedClass *object = qobject_cast<MyRevisionedClass*>(component.create());
@@ -1926,7 +1912,7 @@ void tst_qdeclarativelanguage::revisions()
     }
     {
         QDeclarativeEngine myEngine;
-        QDeclarativeComponent component(&myEngine, TEST_FILE("revisionssub11.qml"));
+        QDeclarativeComponent component(&myEngine, testFileUrl("revisionssub11.qml"));
 
         VERIFY_ERRORS(0);
         MyRevisionedSubclass *object = qobject_cast<MyRevisionedSubclass*>(component.create());
@@ -1940,7 +1926,7 @@ void tst_qdeclarativelanguage::revisions()
         delete object;
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("versionedbase.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("versionedbase.qml"));
         VERIFY_ERRORS(0);
         MySubclass *object = qobject_cast<MySubclass*>(component.create());
         QVERIFY(object != 0);
@@ -1955,11 +1941,11 @@ void tst_qdeclarativelanguage::revisions()
 void tst_qdeclarativelanguage::revisionOverloads()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("allowedRevisionOverloads.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("allowedRevisionOverloads.qml"));
     VERIFY_ERRORS(0);
     }
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("disallowedRevisionOverloads.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("disallowedRevisionOverloads.qml"));
     QEXPECT_FAIL("", "QTBUG-13849", Abort);
     QVERIFY(0);
     VERIFY_ERRORS("disallowedRevisionOverloads.errors.txt");
@@ -1968,6 +1954,7 @@ void tst_qdeclarativelanguage::revisionOverloads()
 
 void tst_qdeclarativelanguage::initTestCase()
 {
+    QDeclarativeDataTest::initTestCase();
     registerTypes();
 
     // Registering the TestType class in other modules should have no adverse effects
@@ -1987,9 +1974,9 @@ void tst_qdeclarativelanguage::initTestCase()
     // For POSIX, this will just be data/I18nType.qml, since POSIX is 7-bit
     // For iso8859-1 locale, this will just be data/I18nType?????.qml where ????? is 5 8-bit characters
     // For utf-8 locale, this will be data/I18nType??????????.qml where ?????????? is 5 8-bit characters, UTF-8 encoded
-    QFile in(TEST_FILE(QLatin1String("I18nType30.qml")).toLocalFile());
+    QFile in(testFileUrl(QLatin1String("I18nType30.qml")).toLocalFile());
     QVERIFY(in.open(QIODevice::ReadOnly));
-    QFile out(TEST_FILE(QString::fromUtf8("I18nType\303\201\303\242\303\243\303\244\303\245.qml")).toLocalFile());
+    QFile out(testFileUrl(QString::fromUtf8("I18nType\303\201\303\242\303\243\303\244\303\245.qml")).toLocalFile());
     QVERIFY(out.open(QIODevice::WriteOnly));
     out.write(in.readAll());
 }
@@ -1997,7 +1984,7 @@ void tst_qdeclarativelanguage::initTestCase()
 void tst_qdeclarativelanguage::aliasPropertyChangeSignals()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("aliasPropertyChangeSignals.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("aliasPropertyChangeSignals.qml"));
 
         VERIFY_ERRORS(0);
         QObject *o = component.create();
@@ -2010,7 +1997,7 @@ void tst_qdeclarativelanguage::aliasPropertyChangeSignals()
 
     // QTCREATORBUG-2769
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("aliasPropertyChangeSignals.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("aliasPropertyChangeSignals.2.qml"));
 
         VERIFY_ERRORS(0);
         QObject *o = component.create();

@@ -6,13 +6,7 @@ contains(QT_CONFIG,quick1): QT += quick1 quick1-private widgets widgets-private 
 SOURCES += tst_qdeclarativeanchors.cpp
 macx:CONFIG -= app_bundle
 
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+include(../shared/qdeclarativedatatest.pri)
 
 CONFIG += parallel_test
 

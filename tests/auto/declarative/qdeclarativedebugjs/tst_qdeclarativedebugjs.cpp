@@ -40,6 +40,7 @@
 ****************************************************************************/
 
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtQuick1/QDeclarativeEngine>
 #include <QtQuick1/private/qdeclarativedebugclient_p.h>
 #include <QtQuick1/private/qdeclarativedebugservice_p.h>
@@ -55,6 +56,7 @@ class QJSDebugClient : public QDeclarativeDebugClient
 public:
     QJSDebugClient(QDeclarativeDebugConnection *connection) : QDeclarativeDebugClient(QLatin1String("JSDebugger"), connection) {}
 
+    void initTestCase();
     void ping();
     void exec(const QByteArray &debuggerId, const QString &expr);
     void setBreakpoints(const QSet<JSAgentBreakpointData> &breakpoints);
@@ -115,7 +117,7 @@ public:
     QJSDebugProcess();
     ~QJSDebugProcess();
 
-    void start(const QStringList &arguments);
+    void start(const QString &binary, const QStringList &arguments);
     bool waitForStarted();
 
 private slots:
@@ -128,7 +130,7 @@ private:
     bool m_started;
 };
 
-class tst_QDeclarativeDebugJS : public QObject
+class tst_QDeclarativeDebugJS : public QDeclarativeDataTest
 {
     Q_OBJECT
 private:
@@ -137,6 +139,7 @@ private:
     QJSDebugClient *m_client;
 
 private slots:
+    void initTestCase();
     void pingPong();
     void exec();
     void setBreakpoint();
@@ -164,8 +167,9 @@ private slots:
     void testCoverageCompleted();
     void testCoverageRun();
 
+private:
+    QString m_binary;
 };
-
 
 void QJSDebugClient::ping()
 {
@@ -398,10 +402,11 @@ QJSDebugProcess::~QJSDebugProcess()
     }
 }
 
-void QJSDebugProcess::start(const QStringList &arguments)
+void QJSDebugProcess::start(const QString &binary, const QStringList &arguments)
 {
-    QString currentDir = QFileInfo(__FILE__).absoluteDir().absolutePath();
-    m_process.start(currentDir + "/app/app", arguments);
+    m_process.start(binary, arguments);
+    QVERIFY2(m_process.waitForStarted(),
+             qPrintable(QString::fromLatin1("Unable to launch %1: %2").arg(binary, m_process.errorString())));
     m_timer.start();
 }
 
@@ -436,16 +441,24 @@ void QJSDebugProcess::processAppOutput()
     }
 }
 
-inline QString TEST_FILE(const QString &filename)
+void tst_QDeclarativeDebugJS::initTestCase()
 {
-    QFileInfo fileInfo(__FILE__);
-    return fileInfo.absoluteDir().filePath("data/" + filename);
+    QDeclarativeDataTest::initTestCase();
+    const QString appFolder = QFINDTESTDATA("app");
+    QVERIFY2(!appFolder.isEmpty(), qPrintable(QString::fromLatin1("Unable to locate app folder from %1").arg(QDir::currentPath())));
+    m_binary = appFolder + QStringLiteral("/app");
+#ifdef Q_OS_WIN
+    m_binary += QStringLiteral(".exe");
+#endif // Q_OS_WIN
+    const QFileInfo fi(m_binary);
+    QVERIFY2(fi.isExecutable(), qPrintable(QString::fromLatin1("%1 is not executable.").arg(m_binary)));
 }
 
 void tst_QDeclarativeDebugJS::pingPong()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771"
+                  << QDeclarativeDataTest::instance()->testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -463,7 +476,8 @@ void tst_QDeclarativeDebugJS::pingPong()
 void tst_QDeclarativeDebugJS::exec()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771"
+                  << QDeclarativeDataTest::instance()->testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -491,7 +505,8 @@ void tst_QDeclarativeDebugJS::exec()
 void tst_QDeclarativeDebugJS::setBreakpoint()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << QDeclarativeDataTest::instance()->testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -506,7 +521,7 @@ void tst_QDeclarativeDebugJS::setBreakpoint()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 11;
 
     //TEST LINE
@@ -522,7 +537,8 @@ void tst_QDeclarativeDebugJS::setBreakpoint()
 void tst_QDeclarativeDebugJS::stepOver()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << QDeclarativeDataTest::instance()->testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -537,7 +553,7 @@ void tst_QDeclarativeDebugJS::stepOver()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = QDeclarativeDataTest::instance()->testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 11;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -556,7 +572,8 @@ void tst_QDeclarativeDebugJS::stepOver()
 void tst_QDeclarativeDebugJS::stepInto()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << QDeclarativeDataTest::instance()->testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -571,7 +588,7 @@ void tst_QDeclarativeDebugJS::stepInto()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 12;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -585,13 +602,14 @@ void tst_QDeclarativeDebugJS::stepInto()
     QByteArray functionName("functionInScript");
     JSAgentStackData data = client.break_stackFrames.at(0);
     QCOMPARE(data.functionName, functionName);
-    QCOMPARE(data.fileUrl, QByteArray(QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded()));
+    QCOMPARE(data.fileUrl, QByteArray(testFileUrl("backtrace1.js").toEncoded()));
 }
 
 void tst_QDeclarativeDebugJS::interrupt()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -606,7 +624,7 @@ void tst_QDeclarativeDebugJS::interrupt()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 12;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -620,13 +638,14 @@ void tst_QDeclarativeDebugJS::interrupt()
     QByteArray functionName("functionInScript");
     JSAgentStackData data = client.break_stackFrames.at(0);
     QCOMPARE(data.functionName, functionName);
-    QCOMPARE(data.fileUrl, QByteArray(QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded()));
+    QCOMPARE(data.fileUrl, QByteArray(testFileUrl("backtrace1.js").toEncoded()));
 }
 
 void tst_QDeclarativeDebugJS::stepOut()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -641,10 +660,10 @@ void tst_QDeclarativeDebugJS::stepOut()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1,bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 12;
 
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp2.lineNumber = 13;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -667,7 +686,8 @@ void tst_QDeclarativeDebugJS::stepOut()
 void tst_QDeclarativeDebugJS::continueExecution()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -682,10 +702,10 @@ void tst_QDeclarativeDebugJS::continueExecution()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 11;
 
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp2.lineNumber = 13;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -704,7 +724,8 @@ void tst_QDeclarativeDebugJS::continueExecution()
 void tst_QDeclarativeDebugJS::expandObject()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -719,7 +740,7 @@ void tst_QDeclarativeDebugJS::expandObject()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -748,7 +769,8 @@ void tst_QDeclarativeDebugJS::expandObject()
 void tst_QDeclarativeDebugJS::setProperty()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -763,9 +785,9 @@ void tst_QDeclarativeDebugJS::setProperty()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp2.lineNumber = 18;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -809,7 +831,8 @@ void tst_QDeclarativeDebugJS::setProperty()
 void tst_QDeclarativeDebugJS::setProperty2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -824,9 +847,9 @@ void tst_QDeclarativeDebugJS::setProperty2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp2.lineNumber = 18;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -869,7 +892,8 @@ void tst_QDeclarativeDebugJS::setProperty2()
 void tst_QDeclarativeDebugJS::watchExpression()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -891,7 +915,7 @@ void tst_QDeclarativeDebugJS::watchExpression()
     client.setWatchExpressions(watchList);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 11;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -907,7 +931,8 @@ void tst_QDeclarativeDebugJS::watchExpression()
 void tst_QDeclarativeDebugJS::activateFrame()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -922,7 +947,7 @@ void tst_QDeclarativeDebugJS::activateFrame()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 3;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -954,7 +979,8 @@ void tst_QDeclarativeDebugJS::activateFrame()
 void tst_QDeclarativeDebugJS::setBreakpoint2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -969,7 +995,7 @@ void tst_QDeclarativeDebugJS::setBreakpoint2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 40;
 
     //TEST LINE
@@ -980,7 +1006,8 @@ void tst_QDeclarativeDebugJS::setBreakpoint2()
 void tst_QDeclarativeDebugJS::stepOver2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -995,7 +1022,7 @@ void tst_QDeclarativeDebugJS::stepOver2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 11;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -1016,7 +1043,8 @@ void tst_QDeclarativeDebugJS::stepOver2()
 void tst_QDeclarativeDebugJS::stepInto2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1031,7 +1059,7 @@ void tst_QDeclarativeDebugJS::stepInto2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -1047,13 +1075,14 @@ void tst_QDeclarativeDebugJS::stepInto2()
     QByteArray functionName("logger");
     JSAgentStackData data = client.break_stackFrames.at(0);
     QCOMPARE(data.functionName, functionName);
-    QCOMPARE(data.fileUrl, QByteArray(QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded()));
+    QCOMPARE(data.fileUrl, QByteArray(testFileUrl("backtrace1.js").toEncoded()));
 }
 
 void tst_QDeclarativeDebugJS::interrupt2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1068,7 +1097,7 @@ void tst_QDeclarativeDebugJS::interrupt2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -1084,13 +1113,14 @@ void tst_QDeclarativeDebugJS::interrupt2()
     QByteArray functionName("logger");
     JSAgentStackData data = client.break_stackFrames.at(0);
     QCOMPARE(data.functionName, functionName);
-    QCOMPARE(data.fileUrl, QByteArray(QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded()));
+    QCOMPARE(data.fileUrl, QByteArray(testFileUrl("backtrace1.js").toEncoded()));
 }
 
 void tst_QDeclarativeDebugJS::stepOut2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1105,10 +1135,10 @@ void tst_QDeclarativeDebugJS::stepOut2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1,bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 12;
 
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp2.lineNumber = 13;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -1137,7 +1167,8 @@ void tst_QDeclarativeDebugJS::stepOut2()
 void tst_QDeclarativeDebugJS::continueExecution2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1152,13 +1183,13 @@ void tst_QDeclarativeDebugJS::continueExecution2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2, bp3;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 11;
 
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp2.lineNumber = 12;
 
-    bp3.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp3.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp3.lineNumber = 13;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2 << bp3);
@@ -1179,7 +1210,8 @@ void tst_QDeclarativeDebugJS::continueExecution2()
 void tst_QDeclarativeDebugJS::expandObject2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1194,7 +1226,7 @@ void tst_QDeclarativeDebugJS::expandObject2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -1214,7 +1246,8 @@ void tst_QDeclarativeDebugJS::expandObject2()
 void tst_QDeclarativeDebugJS::setProperty3()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1229,9 +1262,9 @@ void tst_QDeclarativeDebugJS::setProperty3()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp2.lineNumber = 18;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -1268,7 +1301,8 @@ void tst_QDeclarativeDebugJS::setProperty3()
 void tst_QDeclarativeDebugJS::setProperty4()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1283,9 +1317,9 @@ void tst_QDeclarativeDebugJS::setProperty4()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 17;
-    bp2.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp2.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp2.lineNumber = 18;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1 << bp2);
@@ -1328,7 +1362,8 @@ void tst_QDeclarativeDebugJS::setProperty4()
 void tst_QDeclarativeDebugJS::activateFrame2()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1343,7 +1378,7 @@ void tst_QDeclarativeDebugJS::activateFrame2()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1, bp2;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.js")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.js").toEncoded();
     bp1.lineNumber = 4;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -1368,7 +1403,8 @@ void tst_QDeclarativeDebugJS::activateFrame2()
 void tst_QDeclarativeDebugJS::verifyQMLOptimizerDisabled()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1383,7 +1419,7 @@ void tst_QDeclarativeDebugJS::verifyQMLOptimizerDisabled()
     QCOMPARE(client.status(), QJSDebugClient::Enabled);
 
     JSAgentBreakpointData bp1;
-    bp1.fileUrl = QUrl::fromLocalFile(TEST_FILE("backtrace1.qml")).toEncoded();
+    bp1.fileUrl = testFileUrl("backtrace1.qml").toEncoded();
     bp1.lineNumber = 21;
 
     client.setBreakpoints(QSet<JSAgentBreakpointData>() << bp1);
@@ -1394,7 +1430,8 @@ void tst_QDeclarativeDebugJS::verifyQMLOptimizerDisabled()
 void tst_QDeclarativeDebugJS::testCoverageCompleted()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;
@@ -1414,7 +1451,8 @@ void tst_QDeclarativeDebugJS::testCoverageCompleted()
 void tst_QDeclarativeDebugJS::testCoverageRun()
 {
     QJSDebugProcess process;
-    process.start(QStringList() << "-qmljsdebugger=port:3771,block" << TEST_FILE("backtrace1.qml"));
+    process.start(m_binary, QStringList() << "-qmljsdebugger=port:3771,block"
+                  << testFile("backtrace1.qml"));
     QVERIFY(process.waitForStarted());
 
     QDeclarativeDebugConnection connection;

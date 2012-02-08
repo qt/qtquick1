@@ -41,6 +41,7 @@
 #include <private/qdeclarativeengine_p.h>
 
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QDebug>
 #include <QDeclarativeEngine>
 #include <QFontDatabase>
@@ -53,12 +54,7 @@
 #include <QDeclarativeItem>
 #include <QSignalSpy>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
-class tst_qdeclarativeqt : public QObject
+class tst_qdeclarativeqt : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -94,14 +90,9 @@ private:
     QDeclarativeEngine engine;
 };
 
-inline QUrl TEST_FILE(const QString &filename)
-{
-    return QUrl::fromLocalFile(QLatin1String(SRCDIR) + QLatin1String("/data/") + filename);
-}
-
 void tst_qdeclarativeqt::enums()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("enums.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("enums.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -115,7 +106,7 @@ void tst_qdeclarativeqt::enums()
 
 void tst_qdeclarativeqt::rgba()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("rgba.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("rgba.qml"));
 
     QString warning1 = component.url().toString() + ":6: Error: Qt.rgba(): Invalid arguments";
     QString warning2 = component.url().toString() + ":7: Error: Qt.rgba(): Invalid arguments";
@@ -138,7 +129,7 @@ void tst_qdeclarativeqt::rgba()
 
 void tst_qdeclarativeqt::hsla()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("hsla.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("hsla.qml"));
 
     QString warning1 = component.url().toString() + ":6: Error: Qt.hsla(): Invalid arguments";
     QString warning2 = component.url().toString() + ":7: Error: Qt.hsla(): Invalid arguments";
@@ -160,7 +151,7 @@ void tst_qdeclarativeqt::hsla()
 
 void tst_qdeclarativeqt::rect()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("rect.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("rect.qml"));
 
     QString warning1 = component.url().toString() + ":6: Error: Qt.rect(): Invalid arguments";
     QString warning2 = component.url().toString() + ":7: Error: Qt.rect(): Invalid arguments";
@@ -181,7 +172,7 @@ void tst_qdeclarativeqt::rect()
 
 void tst_qdeclarativeqt::point()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("point.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("point.qml"));
 
     QString warning1 = component.url().toString() + ":6: Error: Qt.point(): Invalid arguments";
     QString warning2 = component.url().toString() + ":7: Error: Qt.point(): Invalid arguments";
@@ -201,7 +192,7 @@ void tst_qdeclarativeqt::point()
 
 void tst_qdeclarativeqt::size()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("size.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("size.qml"));
 
     QString warning1 = component.url().toString() + ":7: Error: Qt.size(): Invalid arguments";
     QString warning2 = component.url().toString() + ":8: Error: Qt.size(): Invalid arguments";
@@ -222,7 +213,7 @@ void tst_qdeclarativeqt::size()
 
 void tst_qdeclarativeqt::vector()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("vector.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("vector.qml"));
 
     QString warning1 = component.url().toString() + ":6: Error: Qt.vector(): Invalid arguments";
     QString warning2 = component.url().toString() + ":7: Error: Qt.vector(): Invalid arguments";
@@ -242,7 +233,7 @@ void tst_qdeclarativeqt::vector()
 
 void tst_qdeclarativeqt::lighter()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("lighter.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("lighter.qml"));
 
     QString warning1 = component.url().toString() + ":5: Error: Qt.lighter(): Invalid arguments";
     QString warning2 = component.url().toString() + ":10: Error: Qt.lighter(): Invalid arguments";
@@ -264,7 +255,7 @@ void tst_qdeclarativeqt::lighter()
 
 void tst_qdeclarativeqt::darker()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("darker.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("darker.qml"));
 
     QString warning1 = component.url().toString() + ":5: Error: Qt.darker(): Invalid arguments";
     QString warning2 = component.url().toString() + ":10: Error: Qt.darker(): Invalid arguments";
@@ -286,7 +277,7 @@ void tst_qdeclarativeqt::darker()
 
 void tst_qdeclarativeqt::tint()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("tint.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("tint.qml"));
 
     QString warning1 = component.url().toString() + ":7: Error: Qt.tint(): Invalid arguments";
     QString warning2 = component.url().toString() + ":8: Error: Qt.tint(): Invalid arguments";
@@ -326,7 +317,7 @@ void tst_qdeclarativeqt::openUrlExternally()
     QDesktopServices::setUrlHandler("test", &handler, "noteCall");
     QDesktopServices::setUrlHandler("file", &handler, "noteCall");
 
-    QDeclarativeComponent component(&engine, TEST_FILE("openUrlExternally.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("openUrlExternally.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
     QCOMPARE(handler.called,1);
@@ -335,7 +326,7 @@ void tst_qdeclarativeqt::openUrlExternally()
     object->setProperty("testFile", true);
 
     QCOMPARE(handler.called,2);
-    QCOMPARE(handler.last, TEST_FILE("test.html"));
+    QCOMPARE(handler.last, testFileUrl("test.html"));
 
     QDesktopServices::unsetUrlHandler("test");
     QDesktopServices::unsetUrlHandler("file");
@@ -348,7 +339,7 @@ void tst_qdeclarativeqt::openUrlExternally_pragmaLibrary()
     QDesktopServices::setUrlHandler("test", &handler, "noteCall");
     QDesktopServices::setUrlHandler("file", &handler, "noteCall");
 
-    QDeclarativeComponent component(&engine, TEST_FILE("openUrlExternally_lib.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("openUrlExternally_lib.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
     QCOMPARE(handler.called,1);
@@ -357,7 +348,7 @@ void tst_qdeclarativeqt::openUrlExternally_pragmaLibrary()
     object->setProperty("testFile", true);
 
     QCOMPARE(handler.called,2);
-    QCOMPARE(handler.last, TEST_FILE("test.html"));
+    QCOMPARE(handler.last, testFileUrl("test.html"));
 
     QDesktopServices::unsetUrlHandler("test");
     QDesktopServices::unsetUrlHandler("file");
@@ -365,7 +356,7 @@ void tst_qdeclarativeqt::openUrlExternally_pragmaLibrary()
 
 void tst_qdeclarativeqt::md5()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("md5.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("md5.qml"));
 
     QString warning1 = component.url().toString() + ":4: Error: Qt.md5(): Invalid arguments";
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning1));
@@ -380,7 +371,7 @@ void tst_qdeclarativeqt::md5()
 
 void tst_qdeclarativeqt::createComponent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("createComponent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("createComponent.qml"));
 
     QString warning1 = component.url().toString() + ":9: Error: Qt.createComponent(): Invalid arguments";
     QString warning2 = component.url().toString() + ":10: Error: Qt.createComponent(): Invalid arguments";
@@ -391,7 +382,7 @@ void tst_qdeclarativeqt::createComponent()
     QVERIFY(object != 0);
 
     QCOMPARE(object->property("absoluteUrl").toString(), QString("http://www.example.com/test.qml"));
-    QCOMPARE(object->property("relativeUrl").toString(), TEST_FILE("createComponentData.qml").toString());
+    QCOMPARE(object->property("relativeUrl").toString(), testFileUrl("createComponentData.qml").toString());
 
     delete object;
 }
@@ -399,7 +390,7 @@ void tst_qdeclarativeqt::createComponent()
 void tst_qdeclarativeqt::createComponent_pragmaLibrary()
 {
     // Currently, just loading createComponent_lib.qml causes crash on some platforms
-    QDeclarativeComponent component(&engine, TEST_FILE("createComponent_lib.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("createComponent_lib.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
     QCOMPARE(object->property("status").toInt(), int(QDeclarativeComponent::Ready));
@@ -409,14 +400,14 @@ void tst_qdeclarativeqt::createComponent_pragmaLibrary()
 
 void tst_qdeclarativeqt::createQmlObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("createQmlObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("createQmlObject.qml"));
 
     QString warning1 = component.url().toString() + ":7: Error: Qt.createQmlObject(): Invalid arguments";
-    QString warning2 = component.url().toString()+ ":10: Error: Qt.createQmlObject() failed to create object:     " + TEST_FILE("inline").toString() + ":2:10: Blah is not a type\n";
-    QString warning3 = component.url().toString()+ ":11: Error: Qt.createQmlObject() failed to create object:     " + TEST_FILE("main.qml").toString() + ":4:1: Duplicate property name\n";
+    QString warning2 = component.url().toString()+ ":10: Error: Qt.createQmlObject() failed to create object:     " + testFileUrl("inline").toString() + ":2:10: Blah is not a type\n";
+    QString warning3 = component.url().toString()+ ":11: Error: Qt.createQmlObject() failed to create object:     " + testFileUrl("main.qml").toString() + ":4:1: Duplicate property name\n";
     QString warning4 = component.url().toString()+ ":9: Error: Qt.createQmlObject(): Missing parent object";
     QString warning5 = component.url().toString()+ ":8: Error: Qt.createQmlObject(): Invalid arguments";
-    QString warning6 = "RunTimeError:  Qt.createQmlObject() failed to create object:     " + TEST_FILE("inline").toString() + ":3: Cannot assign object type QObject with no default method\n";
+    QString warning6 = "RunTimeError:  Qt.createQmlObject() failed to create object:     " + testFileUrl("inline").toString() + ":3: Cannot assign object type QObject with no default method\n";
 
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning1));
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning2));
@@ -442,7 +433,7 @@ void tst_qdeclarativeqt::consoleLog()
 {
     QTest::ignoreMessage(QtDebugMsg, "completed ok");
     QTest::ignoreMessage(QtDebugMsg, "completed ok");
-    QDeclarativeComponent component(&engine, TEST_FILE("consoleLog.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("consoleLog.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
     delete object;
@@ -464,7 +455,7 @@ void tst_qdeclarativeqt::dateTimeFormatting()
     eng.rootContext()->setContextProperty("qtime", time);
     eng.rootContext()->setContextProperty("qdatetime", dateTime);
 
-    QDeclarativeComponent component(&eng, TEST_FILE("formatting.qml"));
+    QDeclarativeComponent component(&eng, testFileUrl("formatting.qml"));
 
     QStringList warnings;
     warnings << component.url().toString() + ":37: Error: Qt.formatDate(): Invalid date format"
@@ -532,7 +523,7 @@ void tst_qdeclarativeqt::dateTimeFormatting_data()
 
 void tst_qdeclarativeqt::isQtObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("isQtObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("isQtObject.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -547,7 +538,7 @@ void tst_qdeclarativeqt::isQtObject()
 
 void tst_qdeclarativeqt::btoa()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("btoa.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("btoa.qml"));
 
     QString warning1 = component.url().toString() + ":4: Error: Qt.btoa(): Invalid arguments";
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning1));
@@ -562,7 +553,7 @@ void tst_qdeclarativeqt::btoa()
 
 void tst_qdeclarativeqt::atob()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("atob.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("atob.qml"));
 
     QString warning1 = component.url().toString() + ":4: Error: Qt.atob(): Invalid arguments";
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning1));
@@ -577,7 +568,7 @@ void tst_qdeclarativeqt::atob()
 
 void tst_qdeclarativeqt::fontFamilies()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("fontFamilies.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("fontFamilies.qml"));
 
     QString warning1 = component.url().toString() + ":4: Error: Qt.fontFamilies(): Invalid arguments";
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning1));
@@ -593,7 +584,7 @@ void tst_qdeclarativeqt::fontFamilies()
 
 void tst_qdeclarativeqt::quit()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("quit.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("quit.qml"));
 
     QSignalSpy spy(&engine, SIGNAL(quit()));
     QObject *object = component.create();

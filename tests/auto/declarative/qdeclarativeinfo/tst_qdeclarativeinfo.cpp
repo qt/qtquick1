@@ -40,6 +40,7 @@
 ****************************************************************************/
 
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QDeclarativeEngine>
 #include <QDeclarativeComponent>
 #include <QPushButton>
@@ -51,7 +52,7 @@
 #define SRCDIR "."
 #endif
 
-class tst_qdeclarativeinfo : public QObject
+class tst_qdeclarativeinfo : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -70,14 +71,9 @@ private:
     QDeclarativeEngine engine;
 };
 
-inline QUrl TEST_FILE(const QString &filename)
-{
-    return QUrl::fromLocalFile(QLatin1String(SRCDIR) + QLatin1String("/data/") + filename);
-}
-
 void tst_qdeclarativeinfo::qmlObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qmlObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qmlObject.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -96,7 +92,7 @@ void tst_qdeclarativeinfo::qmlObject()
 
 void tst_qdeclarativeinfo::nestedQmlObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("nestedQmlObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("nestedQmlObject.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -110,7 +106,7 @@ void tst_qdeclarativeinfo::nestedQmlObject()
     QTest::ignoreMessage(QtWarningMsg, qPrintable(message));
     qmlInfo(nested) << "Outer Object";
 
-    message = TEST_FILE("NestedObject.qml").toString() + ":6:14: QML QtObject: Inner Object";
+    message = testFileUrl("NestedObject.qml").toString() + ":6:14: QML QtObject: Inner Object";
     QTest::ignoreMessage(QtWarningMsg, qPrintable(message));
     qmlInfo(nested2) << "Inner Object";
 }

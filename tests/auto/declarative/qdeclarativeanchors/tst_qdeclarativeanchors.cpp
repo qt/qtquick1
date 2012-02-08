@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QSignalSpy>
 #include <QtWidgets/QGraphicsWidget>
 #include <private/qgraphicsitem_p.h>
@@ -50,15 +51,10 @@
 #include <QtQuick1/private/qdeclarativeanchors_p_p.h>
 #include <QtQuick1/private/qdeclarativeitem_p.h>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
 Q_DECLARE_METATYPE(QDeclarativeAnchors::Anchor)
 Q_DECLARE_METATYPE(QDeclarativeAnchorLine::AnchorLine)
 
-class tst_qdeclarativeanchors : public QObject
+class tst_qdeclarativeanchors : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -132,7 +128,7 @@ QGraphicsObject *findObject(QGraphicsObject *parent, const QString &objectName)
 void tst_qdeclarativeanchors::basicAnchors()
 {
     QDeclarativeView *view = new QDeclarativeView;
-    view->setSource(QUrl::fromLocalFile(SRCDIR "/data/anchors.qml"));
+    view->setSource(testFile("anchors.qml"));
 
     qApp->processEvents();
 
@@ -199,7 +195,7 @@ void tst_qdeclarativeanchors::basicAnchors()
 void tst_qdeclarativeanchors::basicAnchorsQGraphicsWidget()
 {
     QDeclarativeView *view = new QDeclarativeView;
-    view->setSource(QUrl::fromLocalFile(SRCDIR "/data/anchorsqgraphicswidget.qml"));
+    view->setSource(testFileUrl("anchorsqgraphicswidget.qml"));
 
     qApp->processEvents();
 
@@ -284,7 +280,7 @@ void mirrorAnchors(QDeclarativeItem *item) {
 void tst_qdeclarativeanchors::basicAnchorsRTL()
 {
     QDeclarativeView *view = new QDeclarativeView;
-    view->setSource(QUrl::fromLocalFile(SRCDIR "/data/anchors.qml"));
+    view->setSource(testFileUrl("anchors.qml"));
 
     qApp->processEvents();
 
@@ -366,7 +362,7 @@ void tst_qdeclarativeanchors::basicAnchorsRTL()
 void tst_qdeclarativeanchors::loops()
 {
     {
-        QUrl source(QUrl::fromLocalFile(SRCDIR "/data/loop1.qml"));
+        QUrl source(testFileUrl("loop1.qml"));
 
         QString expect = source.toString() + ":6:5: QML Text: Possible anchor loop detected on horizontal anchor.";
         QTest::ignoreMessage(QtWarningMsg, expect.toLatin1());
@@ -381,7 +377,7 @@ void tst_qdeclarativeanchors::loops()
     }
 
     {
-        QUrl source(QUrl::fromLocalFile(SRCDIR "/data/loop2.qml"));
+        QUrl source(testFileUrl("loop2.qml"));
 
         QString expect = source.toString() + ":8:3: QML Image: Possible anchor loop detected on horizontal anchor.";
         QTest::ignoreMessage(QtWarningMsg, expect.toLatin1());
@@ -568,7 +564,7 @@ void tst_qdeclarativeanchors::nullItem_data()
 
 void tst_qdeclarativeanchors::crash1()
 {
-    QUrl source(QUrl::fromLocalFile(SRCDIR "/data/crash1.qml"));
+    QUrl source(testFileUrl("crash1.qml"));
 
     QString expect = source.toString() + ":4:5: QML Text: Possible anchor loop detected on fill.";
 
@@ -591,7 +587,7 @@ void tst_qdeclarativeanchors::crash1()
 
 void tst_qdeclarativeanchors::fill()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/fill.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("fill.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("filler"));
@@ -615,7 +611,7 @@ void tst_qdeclarativeanchors::fill()
 
 void tst_qdeclarativeanchors::fillRTL()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/fill.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("fill.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("filler"));
@@ -640,7 +636,7 @@ void tst_qdeclarativeanchors::fillRTL()
 }
 void tst_qdeclarativeanchors::centerIn()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/centerin.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("centerin.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("centered"));
@@ -660,7 +656,7 @@ void tst_qdeclarativeanchors::centerIn()
 
 void tst_qdeclarativeanchors::centerInRTL()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/centerin.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("centerin.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("centered"));
@@ -680,7 +676,7 @@ void tst_qdeclarativeanchors::centerInRTL()
 
 void tst_qdeclarativeanchors::hvCenter()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/hvCenter.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("hvCenter.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("centered"));
@@ -700,7 +696,7 @@ void tst_qdeclarativeanchors::hvCenter()
 
 void tst_qdeclarativeanchors::hvCenterRTL()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/hvCenter.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("hvCenter.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("centered"));
@@ -720,7 +716,7 @@ void tst_qdeclarativeanchors::hvCenterRTL()
 }
 void tst_qdeclarativeanchors::margins()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/margins.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("margins.qml"));
 
     qApp->processEvents();
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("filler"));
@@ -743,7 +739,7 @@ void tst_qdeclarativeanchors::margins()
 
 void tst_qdeclarativeanchors::marginsRTL()
 {
-    QDeclarativeView *view = new QDeclarativeView(QUrl::fromLocalFile(SRCDIR "/data/margins.qml"));
+    QDeclarativeView *view = new QDeclarativeView(testFileUrl("margins.qml"));
 
     QDeclarativeRectangle* rect = findItem<QDeclarativeRectangle>(view->rootObject(), QLatin1String("filler"));
     QDeclarativeItemPrivate *rectPrivate = QDeclarativeItemPrivate::get(rect);

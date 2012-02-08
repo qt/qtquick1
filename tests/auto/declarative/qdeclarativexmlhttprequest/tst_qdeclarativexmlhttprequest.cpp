@@ -40,6 +40,7 @@
 ****************************************************************************/
 
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QDeclarativeEngine>
 #include <QDeclarativeComponent>
 #include <QDebug>
@@ -48,12 +49,7 @@
 
 #define SERVER_PORT 14445
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
-class tst_qdeclarativexmlhttprequest : public QObject
+class tst_qdeclarativexmlhttprequest : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -123,15 +119,10 @@ private:
     QDeclarativeEngine engine;
 };
 
-inline QUrl TEST_FILE(const QString &filename)
-{
-    return QUrl::fromLocalFile(QLatin1String(SRCDIR) + QLatin1String("/data/") + filename);
-}
-
 // Test that the dom exception codes are correct
 void tst_qdeclarativexmlhttprequest::domExceptionCodes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("domExceptionCodes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("domExceptionCodes.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -173,10 +164,10 @@ void tst_qdeclarativexmlhttprequest::callbackException()
     QFETCH(QString, which);
     QFETCH(int, line);
     
-    QString expect = TEST_FILE("callbackException.qml").toString() + ":"+QString::number(line)+": Error: Exception from Callback";
+    QString expect = testFileUrl("callbackException.qml").toString() + ":"+QString::number(line)+": Error: Exception from Callback";
     QTest::ignoreMessage(QtWarningMsg, expect.toLatin1());
 
-    QDeclarativeComponent component(&engine, TEST_FILE("callbackException.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("callbackException.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "testdocument.html");
@@ -192,7 +183,7 @@ void tst_qdeclarativexmlhttprequest::callbackException()
 // ### WebKit does not do this, but it seems to fit the standard and QML better
 void tst_qdeclarativexmlhttprequest::staticStateValues()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("staticStateValues.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("staticStateValues.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -208,7 +199,7 @@ void tst_qdeclarativexmlhttprequest::staticStateValues()
 // Test that the state value properties on instances have the correct values.
 void tst_qdeclarativexmlhttprequest::instanceStateValues()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("instanceStateValues.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("instanceStateValues.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -224,7 +215,7 @@ void tst_qdeclarativexmlhttprequest::instanceStateValues()
 // Test calling constructor 
 void tst_qdeclarativexmlhttprequest::constructor()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("constructor.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("constructor.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -237,7 +228,7 @@ void tst_qdeclarativexmlhttprequest::constructor()
 // Test that all the properties are set correctly before any request is sent
 void tst_qdeclarativexmlhttprequest::defaultState()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("defaultState.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("defaultState.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -261,9 +252,9 @@ void tst_qdeclarativexmlhttprequest::open()
     if (remote) {
         server.reset(new TestHTTPServer(SERVER_PORT));
         QVERIFY(server->isValid());
-        QVERIFY(server->wait(TEST_FILE("open_network.expect"), 
-                             TEST_FILE("open_network.reply"), 
-                             TEST_FILE("testdocument.html")));
+        QVERIFY(server->wait(testFileUrl("open_network.expect"),
+                             testFileUrl("open_network.reply"),
+                             testFileUrl("testdocument.html")));
     }
 
     QDeclarativeComponent component(&engine, qmlFile);
@@ -290,18 +281,18 @@ void tst_qdeclarativexmlhttprequest::open_data()
     QTest::addColumn<QString>("url");
     QTest::addColumn<bool>("remote");
 
-    QTest::newRow("Relative url)") << TEST_FILE("open.qml") << "testdocument.html" << false;
-    QTest::newRow("Absolute url)") << TEST_FILE("open.qml") << TEST_FILE("testdocument.html").toString() << false;
-    QTest::newRow("Absolute network url)") << TEST_FILE("open.qml") << "http://127.0.0.1:14445/testdocument.html" << true;
+    QTest::newRow("Relative url)") << testFileUrl("open.qml") << "testdocument.html" << false;
+    QTest::newRow("Absolute url)") << testFileUrl("open.qml") << testFileUrl("testdocument.html").toString() << false;
+    QTest::newRow("Absolute network url)") << testFileUrl("open.qml") << "http://127.0.0.1:14445/testdocument.html" << true;
 
     // ### Check that the username/password were sent to the server
-    QTest::newRow("User/pass") << TEST_FILE("open_user.qml") << "http://127.0.0.1:14445/testdocument.html" << true;
+    QTest::newRow("User/pass") << testFileUrl("open_user.qml") << "http://127.0.0.1:14445/testdocument.html" << true;
 }
 
 // Test that calling XMLHttpRequest.open() with an invalid method raises an exception
 void tst_qdeclarativexmlhttprequest::open_invalid_method()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("open_invalid_method.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("open_invalid_method.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -313,7 +304,7 @@ void tst_qdeclarativexmlhttprequest::open_invalid_method()
 // Test that calling XMLHttpRequest.open() with sync raises an exception
 void tst_qdeclarativexmlhttprequest::open_sync()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("open_sync.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("open_sync.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -326,7 +317,7 @@ void tst_qdeclarativexmlhttprequest::open_sync()
 void tst_qdeclarativexmlhttprequest::open_arg_count()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("open_arg_count.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("open_arg_count.1.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -336,7 +327,7 @@ void tst_qdeclarativexmlhttprequest::open_arg_count()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("open_arg_count.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("open_arg_count.2.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -351,11 +342,11 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader()
 {
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("setRequestHeader.expect"), 
-                        TEST_FILE("setRequestHeader.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl("setRequestHeader.expect"),
+                        testFileUrl("setRequestHeader.reply"),
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("setRequestHeader.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("setRequestHeader.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -369,7 +360,7 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader()
 // Test setting headers before open() throws exception
 void tst_qdeclarativexmlhttprequest::setRequestHeader_unsent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("setRequestHeader_unsent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("setRequestHeader_unsent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -413,11 +404,11 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader_illegalName()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("open_network.expect"), 
-                        TEST_FILE("open_network.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl("open_network.expect"),
+                        testFileUrl("open_network.reply"),
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("setRequestHeader_illegalName.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("setRequestHeader_illegalName.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -441,11 +432,11 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader_sent()
 {
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("open_network.expect"), 
-                        TEST_FILE("open_network.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl("open_network.expect"),
+                        testFileUrl("open_network.reply"),
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("setRequestHeader_sent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("setRequestHeader_sent.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -461,7 +452,7 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader_sent()
 // Invalid arg count throws exception
 void tst_qdeclarativexmlhttprequest::setRequestHeader_args()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("setRequestHeader_args.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("setRequestHeader_args.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -473,7 +464,7 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader_args()
 // Test that calling send() in UNSENT state throws an exception
 void tst_qdeclarativexmlhttprequest::send_unsent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("send_unsent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("send_unsent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -485,7 +476,7 @@ void tst_qdeclarativexmlhttprequest::send_unsent()
 // Test attempting to resend a sent request throws an exception
 void tst_qdeclarativexmlhttprequest::send_alreadySent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("send_alreadySent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("send_alreadySent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -501,11 +492,11 @@ void tst_qdeclarativexmlhttprequest::send_ignoreData()
     {
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
-        QVERIFY(server.wait(TEST_FILE("send_ignoreData_GET.expect"),
-                            TEST_FILE("send_ignoreData.reply"),
-                            TEST_FILE("testdocument.html")));
+        QVERIFY(server.wait(testFileUrl("send_ignoreData_GET.expect"),
+                            testFileUrl("send_ignoreData.reply"),
+                            testFileUrl("testdocument.html")));
 
-        QDeclarativeComponent component(&engine, TEST_FILE("send_ignoreData.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("send_ignoreData.qml"));
         QObject *object = component.beginCreate(engine.rootContext());
         QVERIFY(object != 0);
         object->setProperty("reqType", "GET");
@@ -520,11 +511,11 @@ void tst_qdeclarativexmlhttprequest::send_ignoreData()
     {
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
-        QVERIFY(server.wait(TEST_FILE("send_ignoreData_HEAD.expect"),
-                            TEST_FILE("send_ignoreData.reply"),
+        QVERIFY(server.wait(testFileUrl("send_ignoreData_HEAD.expect"),
+                            testFileUrl("send_ignoreData.reply"),
                             QUrl()));
 
-        QDeclarativeComponent component(&engine, TEST_FILE("send_ignoreData.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("send_ignoreData.qml"));
         QObject *object = component.beginCreate(engine.rootContext());
         QVERIFY(object != 0);
         object->setProperty("reqType", "HEAD");
@@ -545,11 +536,11 @@ void tst_qdeclarativexmlhttprequest::send_withdata()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE(file_expected), 
-                        TEST_FILE("send_data.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl(file_expected),
+                        testFileUrl("send_data.reply"),
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE(file_qml));
+    QDeclarativeComponent component(&engine, testFileUrl(file_qml));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -577,7 +568,7 @@ void tst_qdeclarativexmlhttprequest::send_withdata_data()
 // Test abort() has no effect in unsent state
 void tst_qdeclarativexmlhttprequest::abort_unsent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("abort_unsent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("abort_unsent.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "testdocument.html");
@@ -598,7 +589,7 @@ void tst_qdeclarativexmlhttprequest::abort_unsent()
 // Test abort() cancels an open (but unsent) request
 void tst_qdeclarativexmlhttprequest::abort_opened()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("abort_opened.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("abort_opened.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "testdocument.html");
@@ -621,11 +612,11 @@ void tst_qdeclarativexmlhttprequest::abort()
 {
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("abort.expect"), 
-                        TEST_FILE("abort.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl("abort.expect"),
+                        testFileUrl("abort.reply"),
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("abort.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("abort.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("urlDummy", "http://127.0.0.1:14449/testdocument.html");
@@ -647,12 +638,12 @@ void tst_qdeclarativexmlhttprequest::getResponseHeader()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("getResponseHeader.expect"), 
-                        TEST_FILE("getResponseHeader.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl("getResponseHeader.expect"),
+                        testFileUrl("getResponseHeader.reply"),
+                        testFileUrl("testdocument.html")));
 
 
-    QDeclarativeComponent component(&engine, TEST_FILE("getResponseHeader.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getResponseHeader.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -683,7 +674,7 @@ void tst_qdeclarativexmlhttprequest::getResponseHeader()
 // Test getResponseHeader throws an exception in an invalid state
 void tst_qdeclarativexmlhttprequest::getResponseHeader_unsent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("getResponseHeader_unsent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getResponseHeader_unsent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -695,7 +686,7 @@ void tst_qdeclarativexmlhttprequest::getResponseHeader_unsent()
 // Test getResponseHeader throws an exception in an invalid state
 void tst_qdeclarativexmlhttprequest::getResponseHeader_sent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("getResponseHeader_sent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getResponseHeader_sent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -707,7 +698,7 @@ void tst_qdeclarativexmlhttprequest::getResponseHeader_sent()
 // Invalid arg count throws exception
 void tst_qdeclarativexmlhttprequest::getResponseHeader_args()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("getResponseHeader_args.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getResponseHeader_args.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -722,11 +713,11 @@ void tst_qdeclarativexmlhttprequest::getAllResponseHeaders()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("getResponseHeader.expect"), 
-                        TEST_FILE("getResponseHeader.reply"), 
-                        TEST_FILE("testdocument.html")));
+    QVERIFY(server.wait(testFileUrl("getResponseHeader.expect"),
+                        testFileUrl("getResponseHeader.reply"),
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("getAllResponseHeaders.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getAllResponseHeaders.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -751,7 +742,7 @@ void tst_qdeclarativexmlhttprequest::getAllResponseHeaders()
 // Test getAllResponseHeaders throws an exception in an invalid state
 void tst_qdeclarativexmlhttprequest::getAllResponseHeaders_unsent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("getAllResponseHeaders_unsent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getAllResponseHeaders_unsent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -763,7 +754,7 @@ void tst_qdeclarativexmlhttprequest::getAllResponseHeaders_unsent()
 // Test getAllResponseHeaders throws an exception in an invalid state
 void tst_qdeclarativexmlhttprequest::getAllResponseHeaders_sent()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("getAllResponseHeaders_sent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getAllResponseHeaders_sent.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -775,7 +766,7 @@ void tst_qdeclarativexmlhttprequest::getAllResponseHeaders_sent()
 // Invalid arg count throws exception
 void tst_qdeclarativexmlhttprequest::getAllResponseHeaders_args()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("getAllResponseHeaders_args.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("getAllResponseHeaders_args.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -791,11 +782,11 @@ void tst_qdeclarativexmlhttprequest::status()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("status.expect"), 
+    QVERIFY(server.wait(testFileUrl("status.expect"),
                         replyUrl,
-                        TEST_FILE("testdocument.html")));
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("status.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("status.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -820,8 +811,8 @@ void tst_qdeclarativexmlhttprequest::status_data()
     QTest::addColumn<QUrl>("replyUrl");
     QTest::addColumn<int>("status");
 
-    QTest::newRow("OK") << TEST_FILE("status.200.reply") << 200;
-    QTest::newRow("Not Found") << TEST_FILE("status.404.reply") << 404;
+    QTest::newRow("OK") << testFileUrl("status.200.reply") << 200;
+    QTest::newRow("Not Found") << testFileUrl("status.404.reply") << 404;
 }
 
 void tst_qdeclarativexmlhttprequest::statusText()
@@ -831,11 +822,11 @@ void tst_qdeclarativexmlhttprequest::statusText()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("status.expect"), 
+    QVERIFY(server.wait(testFileUrl("status.expect"),
                         replyUrl, 
-                        TEST_FILE("testdocument.html")));
+                        testFileUrl("testdocument.html")));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("statusText.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("statusText.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -860,8 +851,8 @@ void tst_qdeclarativexmlhttprequest::statusText_data()
     QTest::addColumn<QUrl>("replyUrl");
     QTest::addColumn<QString>("statusText");
 
-    QTest::newRow("OK") << TEST_FILE("status.200.reply") << "OK";
-    QTest::newRow("Not Found") << TEST_FILE("status.404.reply") << "Document not found";
+    QTest::newRow("OK") << testFileUrl("status.200.reply") << "OK";
+    QTest::newRow("Not Found") << testFileUrl("status.404.reply") << "Document not found";
 }
 
 void tst_qdeclarativexmlhttprequest::responseText()
@@ -872,11 +863,11 @@ void tst_qdeclarativexmlhttprequest::responseText()
 
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    QVERIFY(server.wait(TEST_FILE("status.expect"), 
+    QVERIFY(server.wait(testFileUrl("status.expect"),
                         replyUrl, 
                         bodyUrl));
 
-    QDeclarativeComponent component(&engine, TEST_FILE("responseText.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("responseText.qml"));
     QObject *object = component.beginCreate(engine.rootContext());
     QVERIFY(object != 0);
     object->setProperty("url", "http://127.0.0.1:14445/testdocument.html");
@@ -902,9 +893,9 @@ void tst_qdeclarativexmlhttprequest::responseText_data()
     QTest::addColumn<QUrl>("bodyUrl");
     QTest::addColumn<QString>("responseText");
 
-    QTest::newRow("OK") << TEST_FILE("status.200.reply") << TEST_FILE("testdocument.html") << "QML Rocks!\n";
-    QTest::newRow("empty body") << TEST_FILE("status.200.reply") << QUrl() << "";
-    QTest::newRow("Not Found") << TEST_FILE("status.404.reply") << TEST_FILE("testdocument.html") << "";
+    QTest::newRow("OK") << testFileUrl("status.200.reply") << testFileUrl("testdocument.html") << "QML Rocks!\n";
+    QTest::newRow("empty body") << testFileUrl("status.200.reply") << QUrl() << "";
+    QTest::newRow("Not Found") << testFileUrl("status.404.reply") << testFileUrl("testdocument.html") << "";
 }
 
 void tst_qdeclarativexmlhttprequest::nonUtf8()
@@ -913,7 +904,7 @@ void tst_qdeclarativexmlhttprequest::nonUtf8()
     QFETCH(QString, responseText);
     QFETCH(QString, xmlRootNodeValue);
 
-    QDeclarativeComponent component(&engine, TEST_FILE("utf16.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("utf16.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -952,7 +943,7 @@ void tst_qdeclarativexmlhttprequest::nonUtf8_data()
 // throws an exception
 void tst_qdeclarativexmlhttprequest::invalidMethodUsage()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("invalidMethodUsage.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("invalidMethodUsage.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -980,9 +971,9 @@ void tst_qdeclarativexmlhttprequest::redirects()
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
         server.addRedirect("redirect.html", "http://127.0.0.1:14445/redirecttarget.html");
-        server.serveDirectory(SRCDIR "/data");
+        server.serveDirectory(dataDirectory());
 
-        QDeclarativeComponent component(&engine, TEST_FILE("redirects.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("redirects.qml"));
         QObject *object = component.beginCreate(engine.rootContext());
         QVERIFY(object != 0);
         object->setProperty("url", "http://127.0.0.1:14445/redirect.html");
@@ -999,9 +990,9 @@ void tst_qdeclarativexmlhttprequest::redirects()
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
         server.addRedirect("redirect.html", "http://127.0.0.1:14445/redirectmissing.html");
-        server.serveDirectory(SRCDIR "/data");
+        server.serveDirectory(dataDirectory());
 
-        QDeclarativeComponent component(&engine, TEST_FILE("redirectError.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("redirectError.qml"));
         QObject *object = component.beginCreate(engine.rootContext());
         QVERIFY(object != 0);
         object->setProperty("url", "http://127.0.0.1:14445/redirect.html");
@@ -1018,9 +1009,9 @@ void tst_qdeclarativexmlhttprequest::redirects()
         TestHTTPServer server(SERVER_PORT);
         QVERIFY(server.isValid());
         server.addRedirect("redirect.html", "http://127.0.0.1:14445/redirect.html");
-        server.serveDirectory(SRCDIR "/data");
+        server.serveDirectory(dataDirectory());
 
-        QDeclarativeComponent component(&engine, TEST_FILE("redirectRecur.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("redirectRecur.qml"));
         QObject *object = component.beginCreate(engine.rootContext());
         QVERIFY(object != 0);
         object->setProperty("url", "http://127.0.0.1:14445/redirect.html");
@@ -1041,7 +1032,7 @@ void tst_qdeclarativexmlhttprequest::redirects()
 
 void tst_qdeclarativexmlhttprequest::responseXML_invalid()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("responseXML_invalid.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("responseXML_invalid.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1055,7 +1046,7 @@ void tst_qdeclarativexmlhttprequest::responseXML_invalid()
 // Test the Document DOM element
 void tst_qdeclarativexmlhttprequest::document()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("document.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("document.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1069,7 +1060,7 @@ void tst_qdeclarativexmlhttprequest::document()
 // Test the Element DOM element
 void tst_qdeclarativexmlhttprequest::element()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("element.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("element.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1083,7 +1074,7 @@ void tst_qdeclarativexmlhttprequest::element()
 // Test the Attr DOM element
 void tst_qdeclarativexmlhttprequest::attr()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("attr.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("attr.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1097,7 +1088,7 @@ void tst_qdeclarativexmlhttprequest::attr()
 // Test the Text DOM element
 void tst_qdeclarativexmlhttprequest::text()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("text.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("text.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1111,7 +1102,7 @@ void tst_qdeclarativexmlhttprequest::text()
 // Test the CDataSection DOM element
 void tst_qdeclarativexmlhttprequest::cdata()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("cdata.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("cdata.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 

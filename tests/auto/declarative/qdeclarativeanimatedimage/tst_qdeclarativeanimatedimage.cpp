@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtQuick1/qdeclarativeengine.h>
 #include <QtQuick1/qdeclarativecomponent.h>
 #include <QtQuick1/qdeclarativeview.h>
@@ -55,7 +56,7 @@
 #define SRCDIR "."
 #endif
 
-class tst_qdeclarativeanimatedimage : public QObject
+class tst_qdeclarativeanimatedimage : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -94,7 +95,7 @@ QPixmap tst_qdeclarativeanimatedimage::grabScene(QGraphicsScene *scene, int widt
 void tst_qdeclarativeanimatedimage::play()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/stickman.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("stickman.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
     QVERIFY(anim->isPlaying());
@@ -105,7 +106,7 @@ void tst_qdeclarativeanimatedimage::play()
 void tst_qdeclarativeanimatedimage::pause()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/stickmanpause.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("stickmanpause.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
     QVERIFY(anim->isPlaying());
@@ -117,7 +118,7 @@ void tst_qdeclarativeanimatedimage::pause()
 void tst_qdeclarativeanimatedimage::stopped()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/stickmanstopped.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("stickmanstopped.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
     QVERIFY(!anim->isPlaying());
@@ -129,7 +130,7 @@ void tst_qdeclarativeanimatedimage::stopped()
 void tst_qdeclarativeanimatedimage::setFrame()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/stickmanpause.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("stickmanpause.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
     QVERIFY(anim->isPlaying());
@@ -141,7 +142,7 @@ void tst_qdeclarativeanimatedimage::setFrame()
 void tst_qdeclarativeanimatedimage::frameCount()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/colors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("colors.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
     QVERIFY(anim->isPlaying());
@@ -155,7 +156,7 @@ void tst_qdeclarativeanimatedimage::mirror_running()
     // test where mirror is set to true after animation has started
 
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/hearts.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("hearts.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
 
@@ -234,8 +235,8 @@ void tst_qdeclarativeanimatedimage::mirror_notRunning_data()
 {
     QTest::addColumn<QUrl>("fileUrl");
 
-    QTest::newRow("paused") << QUrl::fromLocalFile(SRCDIR "/data/stickmanpause.qml");
-    QTest::newRow("stopped") << QUrl::fromLocalFile(SRCDIR "/data/stickmanstopped.qml");
+    QTest::newRow("paused") << testFileUrl("stickmanpause.qml");
+    QTest::newRow("stopped") << testFileUrl("stickmanstopped.qml");
 }
 
 void tst_qdeclarativeanimatedimage::remote()
@@ -245,7 +246,7 @@ void tst_qdeclarativeanimatedimage::remote()
 
     TestHTTPServer server(14449);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
     QDeclarativeEngine engine;
     QDeclarativeComponent component(&engine, QUrl("http://127.0.0.1:14449/" + fileName));
@@ -267,7 +268,7 @@ void tst_qdeclarativeanimatedimage::remote()
 void tst_qdeclarativeanimatedimage::sourceSize()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/stickmanscaled.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("stickmanscaled.qml"));
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);
     QCOMPARE(anim->width(),240.0);
@@ -280,7 +281,7 @@ void tst_qdeclarativeanimatedimage::sourceSize()
 void tst_qdeclarativeanimatedimage::sourceSizeReadOnly()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/stickmanerror1.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("stickmanerror1.qml"));
     QVERIFY(component.isError());
     QCOMPARE(component.errors().at(0).description(), QString("Invalid property assignment: \"sourceSize\" is a read-only property"));
 }
@@ -317,10 +318,10 @@ void tst_qdeclarativeanimatedimage::qtbug_16520()
 {
     TestHTTPServer server(14449);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/qtbug-16520.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtbug-16520.qml"));
     QTRY_VERIFY(component.isReady());
 
     QDeclarativeRectangle *root = qobject_cast<QDeclarativeRectangle *>(component.create());
@@ -339,12 +340,12 @@ void tst_qdeclarativeanimatedimage::progressAndStatusChanges()
 {
     TestHTTPServer server(14449);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
     QDeclarativeEngine engine;
     QString componentStr = "import QtQuick 1.0\nAnimatedImage { source: srcImage }";
     QDeclarativeContext *ctxt = engine.rootContext();
-    ctxt->setContextProperty("srcImage", QUrl::fromLocalFile(SRCDIR "/data/stickman.gif"));
+    ctxt->setContextProperty("srcImage", testFileUrl("stickman.gif"));
     QDeclarativeComponent component(&engine);
     component.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
     QDeclarativeImage *obj = qobject_cast<QDeclarativeImage*>(component.create());
@@ -357,7 +358,7 @@ void tst_qdeclarativeanimatedimage::progressAndStatusChanges()
     QSignalSpy statusSpy(obj, SIGNAL(statusChanged(QDeclarativeImageBase::Status)));
 
     // Loading local file
-    ctxt->setContextProperty("srcImage", QUrl::fromLocalFile(SRCDIR "/data/colors.gif"));
+    ctxt->setContextProperty("srcImage", testFileUrl("colors.gif"));
     QTRY_VERIFY(obj->status() == QDeclarativeImage::Ready);
     QTRY_VERIFY(obj->progress() == 1.0);
     QTRY_COMPARE(sourceSpy.count(), 1);

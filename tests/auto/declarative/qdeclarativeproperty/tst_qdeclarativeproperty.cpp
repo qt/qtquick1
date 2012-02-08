@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtQuick1/qdeclarativeengine.h>
 #include <QtQuick1/qdeclarativecomponent.h>
 #include <QtQuick1/qdeclarativeproperty.h>
@@ -48,17 +49,6 @@
 #include <QtCore/qfileinfo.h>
 #include <QtCore/qdir.h>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
-inline QUrl TEST_FILE(const QString &filename)
-{
-    QFileInfo fileInfo(__FILE__);
-    return QUrl::fromLocalFile(fileInfo.absoluteDir().filePath(QLatin1String("data/") + filename));
-}
-
 class MyQmlObject : public QObject
 {
     Q_OBJECT
@@ -66,7 +56,7 @@ public:
     MyQmlObject() {}
 };
 
-QML_DECLARE_TYPE(MyQmlObject);
+QML_DECLARE_TYPE(MyQmlObject)
 
 class MyAttached : public QObject
 {
@@ -99,10 +89,10 @@ private:
     QList<MyQmlObject*> m_children;
 };
 
-QML_DECLARE_TYPE(MyContainer);
+QML_DECLARE_TYPE(MyContainer)
 QML_DECLARE_TYPEINFO(MyContainer, QML_HAS_ATTACHED_PROPERTIES)
 
-class tst_qdeclarativeproperty : public QObject
+class tst_qdeclarativeproperty : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -1004,7 +994,7 @@ void tst_qdeclarativeproperty::read()
         QVERIFY(qvariant_cast<QObject *>(v) == o.qmlObject());
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("readSynthesizedObject.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("readSynthesizedObject.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -1019,7 +1009,7 @@ void tst_qdeclarativeproperty::read()
         QCOMPARE(qvariant_cast<QObject *>(v)->property("b").toInt(), 19);
     }
     {   // static
-        QDeclarativeComponent component(&engine, TEST_FILE("readSynthesizedObject.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("readSynthesizedObject.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -1374,7 +1364,7 @@ void tst_qdeclarativeproperty::crashOnValueProperty()
 // QTBUG-13719
 void tst_qdeclarativeproperty::aliasPropertyBindings()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasPropertyBindings.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasPropertyBindings.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -1483,6 +1473,7 @@ void tst_qdeclarativeproperty::copy()
 
 void tst_qdeclarativeproperty::initTestCase()
 {
+    QDeclarativeDataTest::initTestCase();
     qmlRegisterType<MyQmlObject>("Test",1,0,"MyQmlObject");
     qmlRegisterType<PropertyObject>("Test",1,0,"PropertyObject");
     qmlRegisterType<MyContainer>("Test",1,0,"MyContainer");

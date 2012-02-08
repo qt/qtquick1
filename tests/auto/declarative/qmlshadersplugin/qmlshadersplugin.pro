@@ -18,3 +18,5 @@ HEADERS += \
     ../../../../src/imports/shaders/shadereffect.h \
     ../../../../src/imports/shaders/shadereffectbuffer.h \
     ../../../../src/imports/shaders/scenegraph/qsggeometry.h
+
+include(../shared/qdeclarativedatatest.pri)

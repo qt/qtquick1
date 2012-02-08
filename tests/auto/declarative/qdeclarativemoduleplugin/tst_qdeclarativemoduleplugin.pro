@@ -8,10 +8,4 @@ HEADERS = ../shared/testhttpserver.h
 SOURCES = tst_qdeclarativemoduleplugin.cpp \
           ../shared/testhttpserver.cpp
 
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+include(../shared/qdeclarativedatatest.pri)

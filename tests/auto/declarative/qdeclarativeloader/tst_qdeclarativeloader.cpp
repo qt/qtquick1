@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtWidgets/QGraphicsWidget>
 #include <QtWidgets/QGraphicsScene>
 
@@ -50,17 +51,7 @@
 
 #define SERVER_PORT 14450
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
-inline QUrl TEST_FILE(const QString &filename)
-{
-    return QUrl::fromLocalFile(QLatin1String(SRCDIR) + QLatin1String("/data/") + filename);
-}
-
-class tst_QDeclarativeLoader : public QObject
+class tst_QDeclarativeLoader : public QDeclarativeDataTest
 
 {
     Q_OBJECT
@@ -128,7 +119,7 @@ void tst_QDeclarativeLoader::sourceOrComponent()
             "   onProgressChanged: onProgressChangedCount += 1\n"
             "   onLoaded: onLoadedCount += 1\n"
             "}")
-        , TEST_FILE(""));
+        , testFileUrl(""));
 
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
     QVERIFY(loader != 0);
@@ -161,11 +152,18 @@ void tst_QDeclarativeLoader::sourceOrComponent_data()
     QTest::addColumn<QUrl>("sourceUrl");
     QTest::addColumn<QString>("errorString");
 
-    QTest::newRow("source") << "source: 'Rect120x60.qml'\n" << QUrl::fromLocalFile(SRCDIR "/data/Rect120x60.qml") << "";
-    QTest::newRow("sourceComponent") << "Component { id: comp; Rectangle { width: 100; height: 50 } }\n sourceComponent: comp\n" << QUrl() << "";
+    QTest::newRow("source")
+        << "source: 'Rect120x60.qml'\n"
+        << testFileUrl("Rect120x60.qml") << QString();
+    QTest::newRow("sourceComponent")
+        << "Component { id: comp; Rectangle { width: 100; height: 50 } }\n sourceComponent: comp\n"
+        << QUrl() << QString();
 
-    QTest::newRow("invalid source") << "source: 'IDontExist.qml'\n" << QUrl::fromLocalFile(SRCDIR "/data/IDontExist.qml")
-            << QString(QUrl::fromLocalFile(SRCDIR "/data/IDontExist.qml").toString() + ": File not found");
+    QTest::newRow("invalid source")
+        << "source: 'IDontExist.qml'\n"
+        << testFileUrl("IDontExist.qml")
+        << (testFileUrl("IDontExist.qml").toString()
+            + QStringLiteral(": File not found"));
 }
 
 void tst_QDeclarativeLoader::clear()
@@ -178,7 +176,7 @@ void tst_QDeclarativeLoader::clear()
                     "  source: 'Rect120x60.qml'\n"
                     "  Timer { interval: 200; running: true; onTriggered: loader.source = '' }\n"
                     " }")
-                , TEST_FILE(""));
+                , testFileUrl(""));
         QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
         QVERIFY(loader != 0);
         QVERIFY(loader->item());
@@ -193,7 +191,7 @@ void tst_QDeclarativeLoader::clear()
         delete loader;
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("/SetSourceComponent.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("/SetSourceComponent.qml"));
         QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
         QVERIFY(item);
 
@@ -213,7 +211,7 @@ void tst_QDeclarativeLoader::clear()
         delete item;
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("/SetSourceComponent.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("/SetSourceComponent.qml"));
         QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
         QVERIFY(item);
 
@@ -244,7 +242,7 @@ void tst_QDeclarativeLoader::urlToComponent()
                 " source: \"Rect120x60.qml\"\n"
                 " Timer { interval: 100; running: true; onTriggered: loader.sourceComponent = myComp }\n"
                 "}" )
-            , TEST_FILE(""));
+            , testFileUrl(""));
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
     QTest::qWait(200);
     QTRY_VERIFY(loader != 0);
@@ -259,7 +257,7 @@ void tst_QDeclarativeLoader::urlToComponent()
 
 void tst_QDeclarativeLoader::componentToUrl()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/SetSourceComponent.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/SetSourceComponent.qml"));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 
@@ -269,7 +267,7 @@ void tst_QDeclarativeLoader::componentToUrl()
     QCOMPARE(loader->progress(), 1.0);
     QCOMPARE(static_cast<QGraphicsItem*>(loader)->children().count(), 1);
 
-    loader->setSource(TEST_FILE("/Rect120x60.qml"));
+    loader->setSource(testFileUrl("/Rect120x60.qml"));
     QVERIFY(loader->item());
     QCOMPARE(loader->progress(), 1.0);
     QCOMPARE(static_cast<QGraphicsItem*>(loader)->children().count(), 1);
@@ -281,7 +279,7 @@ void tst_QDeclarativeLoader::componentToUrl()
 
 void tst_QDeclarativeLoader::anchoredLoader()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/AnchoredLoader.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/AnchoredLoader.qml"));
     QDeclarativeItem *rootItem = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(rootItem != 0);
     QDeclarativeItem *loader = rootItem->findChild<QDeclarativeItem*>("loader");
@@ -302,7 +300,7 @@ void tst_QDeclarativeLoader::anchoredLoader()
 
 void tst_QDeclarativeLoader::sizeLoaderToItem()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/SizeToItem.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/SizeToItem.qml"));
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
     QVERIFY(loader != 0);
     QCOMPARE(loader->width(), 120.0);
@@ -343,7 +341,7 @@ void tst_QDeclarativeLoader::sizeLoaderToItem()
 
 void tst_QDeclarativeLoader::sizeItemToLoader()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/SizeToLoader.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/SizeToLoader.qml"));
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
     QVERIFY(loader != 0);
     QCOMPARE(loader->width(), 200.0);
@@ -373,7 +371,7 @@ void tst_QDeclarativeLoader::sizeItemToLoader()
 
 void tst_QDeclarativeLoader::noResize()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/NoResize.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/NoResize.qml"));
     QDeclarativeItem* item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item != 0);
     QCOMPARE(item->width(), 200.0);
@@ -384,7 +382,7 @@ void tst_QDeclarativeLoader::noResize()
 
 void tst_QDeclarativeLoader::sizeLoaderToGraphicsWidget()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/SizeLoaderToGraphicsWidget.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/SizeLoaderToGraphicsWidget.qml"));
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
     QGraphicsScene scene;
     scene.addItem(loader);
@@ -411,7 +409,7 @@ void tst_QDeclarativeLoader::sizeLoaderToGraphicsWidget()
 
 void tst_QDeclarativeLoader::sizeGraphicsWidgetToLoader()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/SizeGraphicsWidgetToLoader.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/SizeGraphicsWidgetToLoader.qml"));
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
     QGraphicsScene scene;
     scene.addItem(loader);
@@ -443,7 +441,7 @@ void tst_QDeclarativeLoader::sizeGraphicsWidgetToLoader()
 
 void tst_QDeclarativeLoader::noResizeGraphicsWidget()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("/NoResizeGraphicsWidget.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("/NoResizeGraphicsWidget.qml"));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QGraphicsScene scene;
     scene.addItem(item);
@@ -459,10 +457,11 @@ void tst_QDeclarativeLoader::networkRequestUrl()
 {
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
     QDeclarativeComponent component(&engine);
-    component.setData(QByteArray("import QtQuick 1.0\nLoader { property int signalCount : 0; source: \"http://127.0.0.1:14450/Rect120x60.qml\"; onLoaded: signalCount += 1 }"), QUrl::fromLocalFile(SRCDIR "/dummy.qml"));
+    component.setData(QByteArray("import QtQuick 1.0\nLoader { property int signalCount : 0; source: \"http://127.0.0.1:14450/Rect120x60.qml\"; onLoaded: signalCount += 1 }"),
+                      QUrl::fromLocalFile(directory() + QStringLiteral("/dummy.qml")));
     if (component.isError())
         qDebug() << component.errors();
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
@@ -492,7 +491,7 @@ void tst_QDeclarativeLoader::networkComponent()
                 "Item {\n"
                 " Component { id: comp; NW.SlowRect {} }\n"
                 " Loader { sourceComponent: comp } }")
-            , TEST_FILE(""));
+            , testFileUrl(""));
 
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
@@ -514,7 +513,7 @@ void tst_QDeclarativeLoader::failNetworkRequest()
 {
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
     QTest::ignoreMessage(QtWarningMsg, "http://127.0.0.1:14450/IDontExist.qml: File not found");
 
@@ -536,7 +535,7 @@ void tst_QDeclarativeLoader::failNetworkRequest()
 // QTBUG-9241
 void tst_QDeclarativeLoader::deleteComponentCrash()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("crash.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("crash.qml"));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 
@@ -549,15 +548,16 @@ void tst_QDeclarativeLoader::deleteComponentCrash()
     QCOMPARE(loader->progress(), 1.0);
     QCOMPARE(loader->status(), QDeclarativeLoader::Ready);
     QCOMPARE(static_cast<QGraphicsItem*>(loader)->children().count(), 1);
-    QVERIFY(loader->source() == QUrl::fromLocalFile(SRCDIR "/data/BlueRect.qml"));
+    QVERIFY(loader->source() == testFileUrl("BlueRect.qml"));
 
     delete item;
 }
 
 void tst_QDeclarativeLoader::nonItem()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("nonItem.qml"));
-    QString err = QUrl::fromLocalFile(SRCDIR).toString() + "/data/nonItem.qml:3:1: QML Loader: Loader does not support loading non-visual elements.";
+    const QUrl url = testFileUrl("nonItem.qml");
+    QDeclarativeComponent component(&engine, url);
+    QString err =url.toString() + QStringLiteral(":3:1: QML Loader: Loader does not support loading non-visual elements.");
 
     QTest::ignoreMessage(QtWarningMsg, err.toLatin1().constData());
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
@@ -569,11 +569,11 @@ void tst_QDeclarativeLoader::nonItem()
 
 void tst_QDeclarativeLoader::vmeErrors()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("vmeErrors.qml"));
-    QString err = QUrl::fromLocalFile(SRCDIR).toString() + "/data/VmeError.qml:6: Cannot assign object type QObject with no default method";
+    QDeclarativeComponent component(&engine, testFileUrl("vmeErrors.qml"));
+    QString err = dataDirectoryUrl().toString() + QStringLiteral("VmeError.qml:6: Cannot assign object type QObject with no default method");
     QTest::ignoreMessage(QtWarningMsg, err.toLatin1().constData());
     QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(component.create());
-    QVERIFY(loader);
+    QVERIFY2(loader, msgComponentError(component).constData());
     QVERIFY(loader->item() == 0);
 
     delete loader;
@@ -582,7 +582,7 @@ void tst_QDeclarativeLoader::vmeErrors()
 // QTBUG-13481
 void tst_QDeclarativeLoader::creationContext()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("creationContext.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("creationContext.qml"));
 
     QObject *o = component.create();
     QVERIFY(o != 0);
@@ -594,7 +594,7 @@ void tst_QDeclarativeLoader::creationContext()
 
 void tst_QDeclarativeLoader::QTBUG_16928()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("QTBUG_16928.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("QTBUG_16928.qml"));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 
@@ -606,7 +606,7 @@ void tst_QDeclarativeLoader::QTBUG_16928()
 
 void tst_QDeclarativeLoader::implicitSize()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("implicitSize.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("implicitSize.qml"));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 
@@ -621,7 +621,7 @@ void tst_QDeclarativeLoader::implicitSize()
 
 void tst_QDeclarativeLoader::QTBUG_17114()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("QTBUG_17114.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("QTBUG_17114.qml"));
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 

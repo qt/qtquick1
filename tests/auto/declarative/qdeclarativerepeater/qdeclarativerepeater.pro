@@ -7,12 +7,6 @@ macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativerepeater.cpp
 
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+include(../shared/qdeclarativedatatest.pri)
 
 CONFIG += parallel_test

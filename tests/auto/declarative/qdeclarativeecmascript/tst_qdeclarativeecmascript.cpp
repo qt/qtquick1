@@ -39,6 +39,7 @@
 **
 ****************************************************************************/
 #include <qtest.h>
+#include <qdeclarativedatatest.h>
 #include <QtQuick1/qdeclarativecomponent.h>
 #include <QtQuick1/qdeclarativeengine.h>
 #include <QtQuick1/qdeclarativeexpression.h>
@@ -54,29 +55,14 @@
 #include "testtypes.h"
 #include "testhttpserver.h"
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
 /*
 This test covers evaluation of ECMAScript expressions and bindings from within
 QML.  This does not include static QML language issues.
 
 Static QML language issues are covered in qmllanguage
 */
-inline QUrl TEST_FILE(const QString &filename)
-{
-    QFileInfo fileInfo(__FILE__);
-    return QUrl::fromLocalFile(fileInfo.absoluteDir().filePath("data/" + filename));
-}
 
-inline QUrl TEST_FILE(const char *filename)
-{
-    return TEST_FILE(QLatin1String(filename));
-}
-
-class tst_qdeclarativeecmascript : public QObject
+class tst_qdeclarativeecmascript : public QDeclarativeDataTest
 {
     Q_OBJECT
 public:
@@ -190,12 +176,16 @@ private:
     QDeclarativeEngine engine;
 };
 
-void tst_qdeclarativeecmascript::initTestCase() { registerTypes(); }
+void tst_qdeclarativeecmascript::initTestCase()
+{
+    QDeclarativeDataTest::initTestCase();
+    registerTypes();
+}
 
 void tst_qdeclarativeecmascript::assignBasicTypes()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignBasicTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignBasicTypes.qml"));
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
     QCOMPARE(object->flagProperty(), MyTypeObject::FlagVal1 | MyTypeObject::FlagVal3);
@@ -223,7 +213,7 @@ void tst_qdeclarativeecmascript::assignBasicTypes()
     delete object;
     }
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("assignBasicTypes.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("assignBasicTypes.2.qml"));
     MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
     QVERIFY(object != 0);
     QCOMPARE(object->flagProperty(), MyTypeObject::FlagVal1 | MyTypeObject::FlagVal3);
@@ -255,7 +245,7 @@ void tst_qdeclarativeecmascript::assignBasicTypes()
 void tst_qdeclarativeecmascript::idShortcutInvalidates()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("idShortcutInvalidates.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("idShortcutInvalidates.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QVERIFY(object->objectProperty() != 0);
@@ -264,7 +254,7 @@ void tst_qdeclarativeecmascript::idShortcutInvalidates()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("idShortcutInvalidates.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("idShortcutInvalidates.1.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QVERIFY(object->objectProperty() != 0);
@@ -276,13 +266,13 @@ void tst_qdeclarativeecmascript::idShortcutInvalidates()
 void tst_qdeclarativeecmascript::boolPropertiesEvaluateAsBool()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("boolPropertiesEvaluateAsBool.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("boolPropertiesEvaluateAsBool.1.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QCOMPARE(object->stringProperty(), QLatin1String("pass"));
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("boolPropertiesEvaluateAsBool.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("boolPropertiesEvaluateAsBool.2.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QCOMPARE(object->stringProperty(), QLatin1String("pass"));
@@ -292,7 +282,7 @@ void tst_qdeclarativeecmascript::boolPropertiesEvaluateAsBool()
 void tst_qdeclarativeecmascript::signalAssignment()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("signalAssignment.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("signalAssignment.1.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QCOMPARE(object->string(), QString());
@@ -301,7 +291,7 @@ void tst_qdeclarativeecmascript::signalAssignment()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("signalAssignment.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("signalAssignment.2.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QCOMPARE(object->string(), QString());
@@ -313,7 +303,7 @@ void tst_qdeclarativeecmascript::signalAssignment()
 void tst_qdeclarativeecmascript::methods()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("methods.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("methods.1.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QCOMPARE(object->methodCalled(), false);
@@ -324,7 +314,7 @@ void tst_qdeclarativeecmascript::methods()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("methods.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("methods.2.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
         QCOMPARE(object->methodCalled(), false);
@@ -335,14 +325,14 @@ void tst_qdeclarativeecmascript::methods()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("methods.3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("methods.3.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         QCOMPARE(object->property("test").toInt(), 19);
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("methods.4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("methods.4.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         QCOMPARE(object->property("test").toInt(), 19);
@@ -351,7 +341,7 @@ void tst_qdeclarativeecmascript::methods()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("methods.5.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("methods.5.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         QCOMPARE(object->property("test").toInt(), 9);
@@ -360,7 +350,7 @@ void tst_qdeclarativeecmascript::methods()
 
 void tst_qdeclarativeecmascript::bindingLoop()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("bindingLoop.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("bindingLoop.qml"));
     QString warning = component.url().toString() + ":9:9: QML MyQmlObject: Binding loop detected for property \"stringProperty\"";
     QTest::ignoreMessage(QtWarningMsg, warning.toLatin1().constData());
     QObject *object = component.create();
@@ -567,7 +557,7 @@ void tst_qdeclarativeecmascript::objectPropertiesTriggerReeval()
 
 void tst_qdeclarativeecmascript::deferredProperties()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("deferredProperties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("deferredProperties.qml"));
     MyDeferredObject *object = 
         qobject_cast<MyDeferredObject *>(component.create());
     QVERIFY(object != 0);
@@ -588,7 +578,7 @@ void tst_qdeclarativeecmascript::deferredProperties()
 // Check errors on deferred properties are correctly emitted
 void tst_qdeclarativeecmascript::deferredPropertiesErrors()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("deferredPropertiesErrors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("deferredPropertiesErrors.qml"));
     MyDeferredObject *object = 
         qobject_cast<MyDeferredObject *>(component.create());
     QVERIFY(object != 0);
@@ -606,7 +596,7 @@ void tst_qdeclarativeecmascript::deferredPropertiesErrors()
 
 void tst_qdeclarativeecmascript::extensionObjects()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("extensionObjects.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("extensionObjects.qml"));
     MyExtendedObject *object = 
         qobject_cast<MyExtendedObject *>(component.create());
     QVERIFY(object != 0);
@@ -630,7 +620,7 @@ void tst_qdeclarativeecmascript::extensionObjects()
 
 void tst_qdeclarativeecmascript::overrideExtensionProperties()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("extensionObjectsPropertyOverride.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("extensionObjectsPropertyOverride.qml"));
     OverrideDefaultPropertyObject *object =
         qobject_cast<OverrideDefaultPropertyObject *>(component.create());
     QVERIFY(object != 0);
@@ -641,7 +631,7 @@ void tst_qdeclarativeecmascript::overrideExtensionProperties()
 void tst_qdeclarativeecmascript::attachedProperties()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("attachedProperty.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("attachedProperty.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         QCOMPARE(object->property("a").toInt(), 19);
@@ -651,7 +641,7 @@ void tst_qdeclarativeecmascript::attachedProperties()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("attachedProperty.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("attachedProperty.2.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         QCOMPARE(object->property("a").toInt(), 26);
@@ -661,7 +651,7 @@ void tst_qdeclarativeecmascript::attachedProperties()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("writeAttachedProperty.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("writeAttachedProperty.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -679,7 +669,7 @@ void tst_qdeclarativeecmascript::enums()
 {
     // Existent enums
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("enums.1.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("enums.1.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -696,7 +686,7 @@ void tst_qdeclarativeecmascript::enums()
     }
     // Non-existent enums
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("enums.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("enums.2.qml"));
 
     QString warning1 = component.url().toString() + ":5: Unable to assign [undefined] to int a";
     QString warning2 = component.url().toString() + ":6: Unable to assign [undefined] to int b";
@@ -712,7 +702,7 @@ void tst_qdeclarativeecmascript::enums()
 
 void tst_qdeclarativeecmascript::valueTypeFunctions()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("valueTypeFunctions.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("valueTypeFunctions.qml"));
     MyTypeObject *obj = qobject_cast<MyTypeObject*>(component.create());
     QVERIFY(obj != 0);
     QCOMPARE(obj->rectProperty(), QRect(0,0,100,100));
@@ -727,7 +717,7 @@ void tst_qdeclarativeecmascript::constantsOverrideBindings()
 {
     // From ECMAScript
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("constantsOverrideBindings.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("constantsOverrideBindings.1.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
 
@@ -744,7 +734,7 @@ void tst_qdeclarativeecmascript::constantsOverrideBindings()
 
     // During construction
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("constantsOverrideBindings.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("constantsOverrideBindings.2.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
 
@@ -758,7 +748,7 @@ void tst_qdeclarativeecmascript::constantsOverrideBindings()
 #if 0
     // From C++
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("constantsOverrideBindings.3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("constantsOverrideBindings.3.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
 
@@ -776,7 +766,7 @@ void tst_qdeclarativeecmascript::constantsOverrideBindings()
 
     // Using an alias
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("constantsOverrideBindings.4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("constantsOverrideBindings.4.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
 
@@ -795,7 +785,7 @@ the original binding to be disabled.
 void tst_qdeclarativeecmascript::outerBindingOverridesInnerBinding()
 {
     QDeclarativeComponent component(&engine, 
-                           TEST_FILE("outerBindingOverridesInnerBinding.qml"));
+                           testFileUrl("outerBindingOverridesInnerBinding.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
 
@@ -821,7 +811,7 @@ Tests for a regression where this used to crash.
 */
 void tst_qdeclarativeecmascript::nonExistentAttachedObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("nonExistentAttachedObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("nonExistentAttachedObject.qml"));
 
     QString warning = component.url().toString() + ":4: Unable to assign [undefined] to QString stringProperty";
     QTest::ignoreMessage(QtWarningMsg, qPrintable(warning));
@@ -833,7 +823,7 @@ void tst_qdeclarativeecmascript::nonExistentAttachedObject()
 void tst_qdeclarativeecmascript::scope()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scope.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scope.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -850,7 +840,7 @@ void tst_qdeclarativeecmascript::scope()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scope.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scope.2.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -863,7 +853,7 @@ void tst_qdeclarativeecmascript::scope()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scope.3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scope.3.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
 
@@ -874,7 +864,7 @@ void tst_qdeclarativeecmascript::scope()
 
     // Signal argument scope
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scope.4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scope.4.qml"));
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
 
@@ -896,7 +886,7 @@ is essentially a test of QDeclarativeMetaType::copy()
 */
 void tst_qdeclarativeecmascript::signalParameterTypes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("signalParameterTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("signalParameterTypes.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
 
@@ -915,7 +905,7 @@ Test that two JS objects for the same QObject compare as equal.
 */
 void tst_qdeclarativeecmascript::objectsCompareAsEqual()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("objectsCompareAsEqual.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("objectsCompareAsEqual.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -933,7 +923,7 @@ Tests for a regression where the binding would not reevaluate.
 */
 void tst_qdeclarativeecmascript::aliasPropertyAndBinding()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasPropertyAndBinding.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasPropertyAndBinding.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -965,7 +955,7 @@ void tst_qdeclarativeecmascript::dynamicCreation()
     QFETCH(QString, method);
     QFETCH(QString, createdName);
 
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicCreation.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicCreation.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
 
@@ -980,7 +970,7 @@ void tst_qdeclarativeecmascript::dynamicCreation()
 */
 void tst_qdeclarativeecmascript::dynamicDestruction()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicDeletion.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicDeletion.qml"));
     QDeclarativeGuard<MyQmlObject> object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
     QDeclarativeGuard<QObject> createdQmlObject = 0;
@@ -1015,7 +1005,7 @@ void tst_qdeclarativeecmascript::dynamicDestruction()
 */
 void tst_qdeclarativeecmascript::objectToString()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("declarativeToString.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("declarativeToString.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
     QMetaObject::invokeMethod(object, "testToString");
@@ -1031,14 +1021,14 @@ This test is best run under valgrind to ensure no invalid memory access occur.
 void tst_qdeclarativeecmascript::selfDeletingBinding()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("selfDeletingBinding.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("selfDeletingBinding.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         object->setProperty("triggerDelete", true);
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("selfDeletingBinding.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("selfDeletingBinding.2.qml"));
         QObject *object = component.create();
         QVERIFY(object != 0);
         object->setProperty("triggerDelete", true);
@@ -1054,7 +1044,7 @@ and no synthesiszed properties).
 */
 void tst_qdeclarativeecmascript::extendedObjectPropertyLookup()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("extendedObjectPropertyLookup.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("extendedObjectPropertyLookup.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 }
@@ -1064,7 +1054,7 @@ Test file/lineNumbers for binding/Script errors.
 */
 void tst_qdeclarativeecmascript::scriptErrors()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("scriptErrors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("scriptErrors.qml"));
     QString url = component.url().toString();
 
     QString warning1 = url.left(url.length() - 3) + "js:2: Error: Invalid write to global property \"a\"";
@@ -1099,7 +1089,7 @@ Test file/lineNumbers for inline functions.
 */
 void tst_qdeclarativeecmascript::functionErrors()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("functionErrors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("functionErrors.qml"));
     QString url = component.url().toString();
 
     QString warning = url + ":5: Error: Invalid write to global property \"a\"";
@@ -1116,7 +1106,7 @@ Test various errors that can occur when assigning a property from script
 */
 void tst_qdeclarativeecmascript::propertyAssignmentErrors()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("propertyAssignmentErrors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("propertyAssignmentErrors.qml"));
 
     QString url = component.url().toString();
 
@@ -1138,7 +1128,7 @@ a signal script.
 */
 void tst_qdeclarativeecmascript::signalTriggeredBindings()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("signalTriggeredBindings.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("signalTriggeredBindings.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
 
@@ -1164,7 +1154,7 @@ Test that list properties can be iterated from ECMAScript
 */
 void tst_qdeclarativeecmascript::listProperties()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("listProperties.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("listProperties.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
 
@@ -1176,7 +1166,7 @@ void tst_qdeclarativeecmascript::listProperties()
 
 void tst_qdeclarativeecmascript::exceptionClearsOnReeval()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("exceptionClearsOnReeval.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("exceptionClearsOnReeval.qml"));
     QString url = component.url().toString();
 
     QString warning = url + ":4: TypeError: Result of expression 'objectProperty' [null] is not an object.";
@@ -1197,7 +1187,7 @@ void tst_qdeclarativeecmascript::exceptionClearsOnReeval()
 
 void tst_qdeclarativeecmascript::exceptionSlotProducesWarning()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("exceptionProducesWarning.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("exceptionProducesWarning.qml"));
     QString url = component.url().toString();
 
     QString warning = component.url().toString() + ":6: Error: JS exception";
@@ -1209,7 +1199,7 @@ void tst_qdeclarativeecmascript::exceptionSlotProducesWarning()
 
 void tst_qdeclarativeecmascript::exceptionBindingProducesWarning()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("exceptionProducesWarning2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("exceptionProducesWarning2.qml"));
     QString url = component.url().toString();
 
     QString warning = component.url().toString() + ":5: Error: JS exception";
@@ -1229,7 +1219,7 @@ static void transientErrorsMsgHandler(QtMsgType, const char *)
 void tst_qdeclarativeecmascript::transientErrors()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("transientErrors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("transientErrors.qml"));
 
     transientErrorsMsgCount = 0;
     QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
@@ -1244,7 +1234,7 @@ void tst_qdeclarativeecmascript::transientErrors()
 
     // One binding erroring multiple times, but then resolving
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("transientErrors.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("transientErrors.2.qml"));
 
     transientErrorsMsgCount = 0;
     QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
@@ -1261,7 +1251,7 @@ void tst_qdeclarativeecmascript::transientErrors()
 // Check that errors during shutdown are minimized
 void tst_qdeclarativeecmascript::shutdownErrors()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("shutdownErrors.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("shutdownErrors.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1276,7 +1266,7 @@ void tst_qdeclarativeecmascript::shutdownErrors()
 
 void tst_qdeclarativeecmascript::compositePropertyType()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("compositePropertyType.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("compositePropertyType.qml"));
     QTest::ignoreMessage(QtDebugMsg, "hello world");
     QObject *object = qobject_cast<QObject *>(component.create());
     delete object;
@@ -1285,7 +1275,7 @@ void tst_qdeclarativeecmascript::compositePropertyType()
 // QTBUG-5759
 void tst_qdeclarativeecmascript::jsObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("jsObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("jsObject.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1297,7 +1287,7 @@ void tst_qdeclarativeecmascript::jsObject()
 void tst_qdeclarativeecmascript::undefinedResetsProperty()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("undefinedResetsProperty.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("undefinedResetsProperty.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1314,7 +1304,7 @@ void tst_qdeclarativeecmascript::undefinedResetsProperty()
     delete object;
     }
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("undefinedResetsProperty.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("undefinedResetsProperty.2.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1331,7 +1321,7 @@ void tst_qdeclarativeecmascript::undefinedResetsProperty()
 // QTBUG-6781
 void tst_qdeclarativeecmascript::bug1()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("bug.1.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("bug.1.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -1362,7 +1352,7 @@ void tst_qdeclarativeecmascript::bug2()
 // Don't crash in createObject when the component has errors.
 void tst_qdeclarativeecmascript::dynamicCreationCrash()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("dynamicCreation.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("dynamicCreation.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
 
@@ -1375,7 +1365,7 @@ void tst_qdeclarativeecmascript::dynamicCreationCrash()
 //QTBUG-9367
 void tst_qdeclarativeecmascript::regExpBug()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("regExp.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("regExp.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
     QCOMPARE(object->regExp().pattern(), QLatin1String("[a-zA-z]"));
@@ -1843,7 +1833,7 @@ void tst_qdeclarativeecmascript::callQtInvokables()
 // QTBUG-13047 (check that you can pass registered object types as args)
 void tst_qdeclarativeecmascript::invokableObjectArg()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("invokableObjectArg.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("invokableObjectArg.qml"));
 
     QObject *o = component.create();
     QVERIFY(o);
@@ -1857,7 +1847,7 @@ void tst_qdeclarativeecmascript::invokableObjectArg()
 // QTBUG-13047 (check that you can return registered object types from methods)
 void tst_qdeclarativeecmascript::invokableObjectRet()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("invokableObjectRet.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("invokableObjectRet.qml"));
 
     QObject *o = component.create();
     QVERIFY(o);
@@ -1868,7 +1858,7 @@ void tst_qdeclarativeecmascript::invokableObjectRet()
 // QTBUG-5675
 void tst_qdeclarativeecmascript::listToVariant()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("listToVariant.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("listToVariant.qml"));
 
     MyQmlContainer container;
 
@@ -1893,11 +1883,11 @@ void tst_qdeclarativeecmascript::multiEngineObject()
 
     QDeclarativeEngine e1;
     e1.rootContext()->setContextProperty("thing", &obj);
-    QDeclarativeComponent c1(&e1, TEST_FILE("multiEngineObject.qml"));
+    QDeclarativeComponent c1(&e1, testFileUrl("multiEngineObject.qml"));
 
     QDeclarativeEngine e2;
     e2.rootContext()->setContextProperty("thing", &obj);
-    QDeclarativeComponent c2(&e2, TEST_FILE("multiEngineObject.qml"));
+    QDeclarativeComponent c2(&e2, testFileUrl("multiEngineObject.qml"));
 
     QObject *o1 = c1.create();
     QObject *o2 = c2.create();
@@ -1912,7 +1902,7 @@ void tst_qdeclarativeecmascript::multiEngineObject()
 // Test that references to QObjects are cleanup when the object is destroyed
 void tst_qdeclarativeecmascript::deletedObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("deletedObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("deletedObject.qml"));
 
     QObject *object = component.create();
 
@@ -1926,7 +1916,7 @@ void tst_qdeclarativeecmascript::deletedObject()
 
 void tst_qdeclarativeecmascript::attachedPropertyScope()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("attachedPropertyScope.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("attachedPropertyScope.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -1947,7 +1937,7 @@ void tst_qdeclarativeecmascript::attachedPropertyScope()
 void tst_qdeclarativeecmascript::scriptConnect()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptConnect.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptConnect.1.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -1960,7 +1950,7 @@ void tst_qdeclarativeecmascript::scriptConnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptConnect.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptConnect.2.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -1973,7 +1963,7 @@ void tst_qdeclarativeecmascript::scriptConnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptConnect.3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptConnect.3.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -1986,7 +1976,7 @@ void tst_qdeclarativeecmascript::scriptConnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptConnect.4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptConnect.4.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -1999,7 +1989,7 @@ void tst_qdeclarativeecmascript::scriptConnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptConnect.5.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptConnect.5.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -2012,7 +2002,7 @@ void tst_qdeclarativeecmascript::scriptConnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptConnect.6.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptConnect.6.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -2028,7 +2018,7 @@ void tst_qdeclarativeecmascript::scriptConnect()
 void tst_qdeclarativeecmascript::scriptDisconnect()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptDisconnect.1.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptDisconnect.1.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -2047,7 +2037,7 @@ void tst_qdeclarativeecmascript::scriptDisconnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptDisconnect.2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptDisconnect.2.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -2066,7 +2056,7 @@ void tst_qdeclarativeecmascript::scriptDisconnect()
     }
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptDisconnect.3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptDisconnect.3.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -2084,7 +2074,7 @@ void tst_qdeclarativeecmascript::scriptDisconnect()
         delete object;
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("scriptDisconnect.4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("scriptDisconnect.4.qml"));
 
         MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
         QVERIFY(object != 0);
@@ -2122,7 +2112,7 @@ void tst_qdeclarativeecmascript::ownership()
     context->setContextObject(&own);
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("ownership.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("ownership.qml"));
 
         QVERIFY(own.object != 0);
 
@@ -2139,7 +2129,7 @@ void tst_qdeclarativeecmascript::ownership()
     own.object = new QObject(&own);
 
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("ownership.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("ownership.qml"));
 
         QVERIFY(own.object != 0);
 
@@ -2258,7 +2248,7 @@ void tst_qdeclarativeecmascript::qlistqobjectMethods()
     QDeclarativeContext *context = new QDeclarativeContext(engine.rootContext());
     context->setContextObject(&obj);
 
-    QDeclarativeComponent component(&engine, TEST_FILE("qlistqobjectMethods.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qlistqobjectMethods.qml"));
 
     QObject *object = component.create(context);
 
@@ -2271,7 +2261,7 @@ void tst_qdeclarativeecmascript::qlistqobjectMethods()
 // QTBUG-9205
 void tst_qdeclarativeecmascript::strictlyEquals()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("strictlyEquals.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("strictlyEquals.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2290,7 +2280,7 @@ void tst_qdeclarativeecmascript::strictlyEquals()
 
 void tst_qdeclarativeecmascript::compiled()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("compiled.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("compiled.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2330,7 +2320,7 @@ void tst_qdeclarativeecmascript::compiled()
 // Test that numbers assigned in bindings as strings work consistently
 void tst_qdeclarativeecmascript::numberAssignment()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("numberAssignment.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("numberAssignment.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2356,7 +2346,7 @@ void tst_qdeclarativeecmascript::numberAssignment()
 
 void tst_qdeclarativeecmascript::propertySplicing()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("propertySplicing.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("propertySplicing.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2369,7 +2359,7 @@ void tst_qdeclarativeecmascript::propertySplicing()
 // QTBUG-16683
 void tst_qdeclarativeecmascript::signalWithUnknownTypes()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("signalWithUnknownTypes.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("signalWithUnknownTypes.qml"));
 
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
@@ -2390,7 +2380,7 @@ void tst_qdeclarativeecmascript::signalWithUnknownTypes()
 // Regressed with: df1788b4dbbb2826ae63f26bdf166342595343f4
 void tst_qdeclarativeecmascript::nullObjectBinding()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("nullObjectBinding.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("nullObjectBinding.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2404,7 +2394,7 @@ void tst_qdeclarativeecmascript::nullObjectBinding()
 void tst_qdeclarativeecmascript::deletedEngine()
 {
     QDeclarativeEngine *engine = new QDeclarativeEngine;
-    QDeclarativeComponent component(engine, TEST_FILE("deletedEngine.qml"));
+    QDeclarativeComponent component(engine, testFileUrl("deletedEngine.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2425,7 +2415,7 @@ void tst_qdeclarativeecmascript::deletedEngine()
 // Test the crashing part of QTBUG-9705
 void tst_qdeclarativeecmascript::libraryScriptAssert()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("libraryScriptAssert.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("libraryScriptAssert.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2435,7 +2425,7 @@ void tst_qdeclarativeecmascript::libraryScriptAssert()
 
 void tst_qdeclarativeecmascript::variantsAssignedUndefined()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("variantsAssignedUndefined.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("variantsAssignedUndefined.qml"));
 
     QObject *object = component.create();
     QVERIFY(object != 0);
@@ -2454,7 +2444,7 @@ void tst_qdeclarativeecmascript::variantsAssignedUndefined()
 
 void tst_qdeclarativeecmascript::qtbug_9792()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qtbug_9792.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtbug_9792.qml"));
 
     QDeclarativeContext *context = new QDeclarativeContext(engine.rootContext());
 
@@ -2481,7 +2471,7 @@ void tst_qdeclarativeecmascript::qtbug_9792()
 // Verifies that QDeclarativeGuard<>s used in the vmemetaobject are cleaned correctly
 void tst_qdeclarativeecmascript::qtcreatorbug_1289()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qtcreatorbug_1289.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtcreatorbug_1289.qml"));
 
     QObject *o = component.create();
     QVERIFY(o != 0);
@@ -2503,7 +2493,7 @@ void tst_qdeclarativeecmascript::qtcreatorbug_1289()
 void tst_qdeclarativeecmascript::noSpuriousWarningsAtShutdown()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("noSpuriousWarningsAtShutdown.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("noSpuriousWarningsAtShutdown.qml"));
 
     QObject *o = component.create();
 
@@ -2519,7 +2509,7 @@ void tst_qdeclarativeecmascript::noSpuriousWarningsAtShutdown()
 
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("noSpuriousWarningsAtShutdown.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("noSpuriousWarningsAtShutdown.2.qml"));
 
     QObject *o = component.create();
 
@@ -2537,7 +2527,7 @@ void tst_qdeclarativeecmascript::noSpuriousWarningsAtShutdown()
 void tst_qdeclarativeecmascript::canAssignNullToQObject()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("canAssignNullToQObject.1.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("canAssignNullToQObject.1.qml"));
 
     MyQmlObject *o = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(o != 0);
@@ -2552,7 +2542,7 @@ void tst_qdeclarativeecmascript::canAssignNullToQObject()
     }
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("canAssignNullToQObject.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("canAssignNullToQObject.2.qml"));
 
     MyQmlObject *o = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(o != 0);
@@ -2565,7 +2555,7 @@ void tst_qdeclarativeecmascript::canAssignNullToQObject()
 
 void tst_qdeclarativeecmascript::functionAssignment_fromBinding()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("functionAssignment.1.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("functionAssignment.1.qml"));
 
     QString url = component.url().toString();
     QString warning = url + ":4: Unable to assign a function to a property.";
@@ -2583,7 +2573,7 @@ void tst_qdeclarativeecmascript::functionAssignment_fromJS()
 {
     QFETCH(QString, triggerProperty);
 
-    QDeclarativeComponent component(&engine, TEST_FILE("functionAssignment.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("functionAssignment.2.qml"));
     QVERIFY2(component.errorString().isEmpty(), qPrintable(component.errorString()));
 
     MyQmlObject *o = qobject_cast<MyQmlObject *>(component.create());
@@ -2615,7 +2605,7 @@ void tst_qdeclarativeecmascript::functionAssignment_fromJS_data()
 
 void tst_qdeclarativeecmascript::functionAssignmentfromJS_invalid()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("functionAssignment.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("functionAssignment.2.qml"));
     QVERIFY2(component.errorString().isEmpty(), qPrintable(component.errorString()));
 
     MyQmlObject *o = qobject_cast<MyQmlObject *>(component.create());
@@ -2639,7 +2629,7 @@ void tst_qdeclarativeecmascript::functionAssignmentfromJS_invalid()
 
 void tst_qdeclarativeecmascript::eval()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("eval.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("eval.qml"));
 
     QObject *o = component.create();
     QVERIFY(o != 0);
@@ -2655,7 +2645,7 @@ void tst_qdeclarativeecmascript::eval()
 
 void tst_qdeclarativeecmascript::function()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("function.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("function.qml"));
 
     QObject *o = component.create();
     QVERIFY(o != 0);
@@ -2672,7 +2662,7 @@ void tst_qdeclarativeecmascript::include()
 {
     // Non-library relative include
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("include.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("include.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2688,7 +2678,7 @@ void tst_qdeclarativeecmascript::include()
 
     // Library relative include
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("include_shared.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("include_shared.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2704,7 +2694,7 @@ void tst_qdeclarativeecmascript::include()
 
     // Callback
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("include_callback.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("include_callback.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2720,7 +2710,7 @@ void tst_qdeclarativeecmascript::include()
 
     // Including file with ".pragma library"
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("include_pragma.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("include_pragma.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test1").toInt(), 100);
@@ -2732,9 +2722,9 @@ void tst_qdeclarativeecmascript::include()
     {
     TestHTTPServer server(8111);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
-    QDeclarativeComponent component(&engine, TEST_FILE("include_remote.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("include_remote.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2760,9 +2750,9 @@ void tst_qdeclarativeecmascript::include()
     {
     TestHTTPServer server(8111);
     QVERIFY(server.isValid());
-    server.serveDirectory(SRCDIR "/data");
+    server.serveDirectory(dataDirectory());
 
-    QDeclarativeComponent component(&engine, TEST_FILE("include_remote_missing.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("include_remote_missing.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2778,7 +2768,7 @@ void tst_qdeclarativeecmascript::include()
 
 void tst_qdeclarativeecmascript::qtbug_10696()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qtbug_10696.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtbug_10696.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     delete o;
@@ -2786,7 +2776,7 @@ void tst_qdeclarativeecmascript::qtbug_10696()
 
 void tst_qdeclarativeecmascript::qtbug_11606()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qtbug_11606.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtbug_11606.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test").toBool(), true);
@@ -2795,7 +2785,7 @@ void tst_qdeclarativeecmascript::qtbug_11606()
 
 void tst_qdeclarativeecmascript::qtbug_11600()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qtbug_11600.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtbug_11600.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test").toBool(), true);
@@ -2805,7 +2795,7 @@ void tst_qdeclarativeecmascript::qtbug_11600()
 // Reading and writing non-scriptable properties should fail
 void tst_qdeclarativeecmascript::nonscriptable()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("nonscriptable.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("nonscriptable.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("readOk").toBool(), true);
@@ -2816,7 +2806,7 @@ void tst_qdeclarativeecmascript::nonscriptable()
 // deleteLater() should not be callable from QML
 void tst_qdeclarativeecmascript::deleteLater()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("deleteLater.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("deleteLater.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test").toBool(), true);
@@ -2825,7 +2815,7 @@ void tst_qdeclarativeecmascript::deleteLater()
 
 void tst_qdeclarativeecmascript::in()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("in.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("in.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test1").toBool(), true);
@@ -2835,7 +2825,7 @@ void tst_qdeclarativeecmascript::in()
 
 void tst_qdeclarativeecmascript::sharedAttachedObject()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("sharedAttachedObject.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("sharedAttachedObject.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test1").toBool(), true);
@@ -2846,7 +2836,7 @@ void tst_qdeclarativeecmascript::sharedAttachedObject()
 // QTBUG-13999
 void tst_qdeclarativeecmascript::objectName()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("objectName.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("objectName.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2863,7 +2853,7 @@ void tst_qdeclarativeecmascript::objectName()
 
 void tst_qdeclarativeecmascript::writeRemovesBinding()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("writeRemovesBinding.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("writeRemovesBinding.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2875,7 +2865,7 @@ void tst_qdeclarativeecmascript::writeRemovesBinding()
 // Test bindings assigned to alias properties actually assign to the alias' target
 void tst_qdeclarativeecmascript::aliasBindingsAssignCorrectly()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasBindingsAssignCorrectly.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasBindingsAssignCorrectly.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2888,7 +2878,7 @@ void tst_qdeclarativeecmascript::aliasBindingsAssignCorrectly()
 void tst_qdeclarativeecmascript::aliasBindingsOverrideTarget()
 {
     { 
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasBindingsOverrideTarget.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasBindingsOverrideTarget.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2898,7 +2888,7 @@ void tst_qdeclarativeecmascript::aliasBindingsOverrideTarget()
     }
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasBindingsOverrideTarget.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasBindingsOverrideTarget.2.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2908,7 +2898,7 @@ void tst_qdeclarativeecmascript::aliasBindingsOverrideTarget()
     }
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasBindingsOverrideTarget.3.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasBindingsOverrideTarget.3.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2922,7 +2912,7 @@ void tst_qdeclarativeecmascript::aliasBindingsOverrideTarget()
 void tst_qdeclarativeecmascript::aliasWritesOverrideBindings()
 {
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasWritesOverrideBindings.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasWritesOverrideBindings.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2932,7 +2922,7 @@ void tst_qdeclarativeecmascript::aliasWritesOverrideBindings()
     }
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasWritesOverrideBindings.2.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasWritesOverrideBindings.2.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2942,7 +2932,7 @@ void tst_qdeclarativeecmascript::aliasWritesOverrideBindings()
     }
 
     {
-    QDeclarativeComponent component(&engine, TEST_FILE("aliasWritesOverrideBindings.3.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("aliasWritesOverrideBindings.3.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -2955,7 +2945,7 @@ void tst_qdeclarativeecmascript::aliasWritesOverrideBindings()
 void tst_qdeclarativeecmascript::revisionErrors()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevisionErrors.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevisionErrors.qml"));
         QString url = component.url().toString();
 
         QString warning1 = url + ":8: ReferenceError: Can't find variable: prop2";
@@ -2969,7 +2959,7 @@ void tst_qdeclarativeecmascript::revisionErrors()
         QVERIFY(object != 0);
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevisionErrors2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevisionErrors2.qml"));
         QString url = component.url().toString();
 
         // MyRevisionedSubclass 1.0 uses MyRevisionedClass revision 0
@@ -2990,7 +2980,7 @@ void tst_qdeclarativeecmascript::revisionErrors()
         QVERIFY(object != 0);
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevisionErrors3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevisionErrors3.qml"));
         QString url = component.url().toString();
 
         // MyRevisionedSubclass 1.1 uses MyRevisionedClass revision 1
@@ -3009,21 +2999,21 @@ void tst_qdeclarativeecmascript::revisionErrors()
 void tst_qdeclarativeecmascript::revision()
 {
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevision.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevision.qml"));
         QString url = component.url().toString();
 
         MyRevisionedClass *object = qobject_cast<MyRevisionedClass *>(component.create());
         QVERIFY(object != 0);
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevision2.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevision2.qml"));
         QString url = component.url().toString();
 
         MyRevisionedClass *object = qobject_cast<MyRevisionedClass *>(component.create());
         QVERIFY(object != 0);
     }
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevision3.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevision3.qml"));
         QString url = component.url().toString();
 
         MyRevisionedClass *object = qobject_cast<MyRevisionedClass *>(component.create());
@@ -3031,7 +3021,7 @@ void tst_qdeclarativeecmascript::revision()
     }
     // Test that non-root classes can resolve revisioned methods
     {
-        QDeclarativeComponent component(&engine, TEST_FILE("metaobjectRevision4.qml"));
+        QDeclarativeComponent component(&engine, testFileUrl("metaobjectRevision4.qml"));
 
         QObject *object = component.create();
         QVERIFY(object != 0);
@@ -3080,7 +3070,7 @@ void tst_qdeclarativeecmascript::pushCleanContext()
 
 void tst_qdeclarativeecmascript::realToInt()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("realToInt.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("realToInt.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject*>(component.create());
     QVERIFY(object != 0);
 
@@ -3092,7 +3082,7 @@ void tst_qdeclarativeecmascript::realToInt()
 
 void tst_qdeclarativeecmascript::qtbug_20648()
 {
-    QDeclarativeComponent component(&engine, TEST_FILE("qtbug_20648.qml"));
+    QDeclarativeComponent component(&engine, testFileUrl("qtbug_20648.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);
     QCOMPARE(o->property("test").toInt(), 100);
