@@ -1227,17 +1227,16 @@ void tst_qdeclarativetext::lineHeight()
     QCOMPARE(myText->height(), myText->lineCount() * 20.0);
 
     myText->setText("Lorem ipsum sit <b>amet</b>, consectetur adipiscing elit. Integer felis nisl, varius in pretium nec, venenatis non erat. Proin lobortis interdum dictum.");
+    myText->setTextFormat(QDeclarativeText::StyledText);
     myText->setLineHeightMode(QDeclarativeText::ProportionalHeight);
     myText->setLineHeight(1.0);
 
     qreal h2 = myText->height();
     myText->setLineHeight(2.0);
-    QEXPECT_FAIL("", "QTBUG-17325", Continue);
     QVERIFY(myText->height() == h2 * 2.0);
 
     myText->setLineHeightMode(QDeclarativeText::FixedHeight);
     myText->setLineHeight(10);
-    QEXPECT_FAIL("", "QTBUG-17325", Continue);
     QCOMPARE(myText->height(), myText->lineCount() * 10.0);
 
     delete canvas;
