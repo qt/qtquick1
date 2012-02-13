@@ -40,24 +40,24 @@
 ****************************************************************************/
 
 #include <qplatforminputcontext_qpa.h>
-#include <QtGui/QInputPanel>
+#include <QtGui/QInputMethod>
 
-#include <private/qinputpanel_p.h>
+#include <private/qinputmethod_p.h>
 
 class PlatformInputContext : public QPlatformInputContext
 {
 public:
     PlatformInputContext()
-        : m_visible(false), m_action(QInputPanel::Action(-1)), m_cursorPosition(0),
+        : m_visible(false), m_action(QInputMethod::Action(-1)), m_cursorPosition(0),
           m_invokeActionCallCount(0), m_showInputPanelCallCount(0), m_hideInputPanelCallCount(0),
           m_updateCallCount(0), m_direction(Qt::LeftToRight)
     {
-        QInputPanelPrivate::get(qApp->inputPanel())->testContext = this;
+        QInputMethodPrivate::get(qApp->inputMethod())->testContext = this;
     }
 
     ~PlatformInputContext()
     {
-        QInputPanelPrivate::get(qApp->inputPanel())->testContext = 0;
+        QInputMethodPrivate::get(qApp->inputMethod())->testContext = 0;
     }
 
     virtual void showInputPanel()
@@ -74,7 +74,7 @@ public:
     {
         return m_visible;
     }
-    virtual void invokeAction(QInputPanel::Action action, int cursorPosition)
+    virtual void invokeAction(QInputMethod::Action action, int cursorPosition)
     {
         m_invokeActionCallCount++;
         m_action = action;
@@ -114,7 +114,7 @@ public:
     }
 
     bool m_visible;
-    QInputPanel::Action m_action;
+    QInputMethod::Action m_action;
     int m_cursorPosition;
     int m_invokeActionCallCount;
     int m_showInputPanelCallCount;

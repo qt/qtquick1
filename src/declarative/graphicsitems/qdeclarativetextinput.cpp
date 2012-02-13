@@ -48,7 +48,7 @@
 #include <QValidator>
 #include <QTextCursor>
 #include <QApplication>
-#include <QtGui/QInputPanel>
+#include <QtGui/QInputMethod>
 #include <QFontMetrics>
 #include <QPainter>
 #include <QTextBoundaryFinder>
@@ -411,7 +411,7 @@ bool QDeclarativeTextInputPrivate::determineHorizontalAlignment()
         if (text.isEmpty())
             text = control->preeditAreaText();
         bool isRightToLeft = text.isEmpty()
-                ? qApp->inputPanel()->inputDirection() == Qt::RightToLeft
+                ? qApp->inputMethod()->inputDirection() == Qt::RightToLeft
                 : text.isRightToLeft();
         return setHAlign(isRightToLeft ? QDeclarativeTextInput::AlignRight : QDeclarativeTextInput::AlignLeft);
     }
@@ -1229,7 +1229,7 @@ bool QDeclarativeTextInputPrivate::sendMouseEventToInputContext(
         int mousePos = tmp_cursor - control->cursor();
         if (mousePos >= 0 && mousePos <= control->preeditAreaText().length()) {
             if (eventType == QEvent::MouseButtonRelease) {
-                qApp->inputPanel()->invokeAction(QInputPanel::Click, mousePos);
+                qApp->inputMethod()->invokeAction(QInputPanel::Click, mousePos);
             }
             return true;
         }

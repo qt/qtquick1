@@ -49,7 +49,7 @@
 #include <QDir>
 #include <QStyle>
 #include <private/qapplication_p.h>
-#include <private/qinputpanel_p.h>
+#include <private/qinputmethod_p.h>
 #include <private/qwidgetlinecontrol_p.h>
 #include "../shared/platforminputcontext.h"
 
@@ -84,7 +84,7 @@ void sendPreeditText(const QString &text, int cursor)
     attributes.append(QInputMethodEvent::Attribute(QInputMethodEvent::Cursor, cursor,
                                                    text.length(), QVariant()));
     QInputMethodEvent event(text, attributes);
-    QApplication::sendEvent(qApp->inputPanel()->inputItem(), &event);
+    QApplication::sendEvent(qApp->inputMethod()->inputItem(), &event);
 }
 
 
@@ -2632,7 +2632,7 @@ void tst_qdeclarativetextinput::inputContextMouseHandler()
     QApplication::processEvents();
 
     QEXPECT_FAIL("", "QTBUG-24035", Abort);
-    QCOMPARE(platformInputContext.m_action, QInputPanel::Click);
+    QCOMPARE(platformInputContext.m_action, QInputMethod::Click);
     QCOMPARE(platformInputContext.m_invokeActionCallCount, 1);
     QCOMPARE(platformInputContext.m_cursorPosition, 2);
 }
@@ -2661,7 +2661,7 @@ void tst_qdeclarativetextinput::inputMethodComposing()
 
     {
         QInputMethodEvent inputEvent(text.mid(3), QList<QInputMethodEvent::Attribute>());
-        QApplication::sendEvent(qApp->inputPanel()->inputItem(), &inputEvent);
+        QApplication::sendEvent(qApp->inputMethod()->inputItem(), &inputEvent);
     }
 
     QCOMPARE(input.isInputMethodComposing(), true);
@@ -2669,7 +2669,7 @@ void tst_qdeclarativetextinput::inputMethodComposing()
 
     {
         QInputMethodEvent inputEvent(text.mid(12), QList<QInputMethodEvent::Attribute>());
-        QApplication::sendEvent(qApp->inputPanel()->inputItem(), &inputEvent);
+        QApplication::sendEvent(qApp->inputMethod()->inputItem(), &inputEvent);
     }
 
     QCOMPARE(input.isInputMethodComposing(), true);
@@ -2677,7 +2677,7 @@ void tst_qdeclarativetextinput::inputMethodComposing()
 
     {
         QInputMethodEvent inputEvent;
-        QApplication::sendEvent(qApp->inputPanel()->inputItem(), &inputEvent);
+        QApplication::sendEvent(qApp->inputMethod()->inputItem(), &inputEvent);
     }
     QCOMPARE(input.isInputMethodComposing(), false);
     QCOMPARE(spy.count(), 2);

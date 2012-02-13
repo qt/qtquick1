@@ -56,7 +56,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
 #include <QPainter>
-#include <QtGui/QInputPanel>
+#include <QtGui/QInputMethod>
 
 #include <private/qwidgettextcontrol_p.h>
 
@@ -553,7 +553,7 @@ bool QDeclarativeTextEditPrivate::determineHorizontalAlignment()
                     ? control->textCursor().block().layout()->preeditAreaText()
                     : QString();
             alignToRight = preeditText.isEmpty()
-                    ? qApp->inputPanel()->inputDirection() == Qt::RightToLeft
+                    ? qApp->inputMethod()->inputDirection() == Qt::RightToLeft
                     : preeditText.isRightToLeft();
         } else {
             alignToRight = rightToLeftText;
@@ -1816,7 +1816,7 @@ void QDeclarativeTextEdit::openSoftwareInputPanel()
     if (qApp) {
         if (QGraphicsView * view = qobject_cast<QGraphicsView*>(qApp->focusWidget())) {
             if (view->scene() && view->scene() == scene()) {
-                qApp->inputPanel()->show();
+                qApp->inputMethod()->show();
             }
         }
     }
@@ -1865,7 +1865,7 @@ void QDeclarativeTextEdit::closeSoftwareInputPanel()
     if (qApp) {
         if (QGraphicsView * view = qobject_cast<QGraphicsView*>(qApp->focusWidget())) {
             if (view->scene() && view->scene() == scene()) {
-                qApp->inputPanel()->hide();
+                qApp->inputMethod()->hide();
             }
         }
     }

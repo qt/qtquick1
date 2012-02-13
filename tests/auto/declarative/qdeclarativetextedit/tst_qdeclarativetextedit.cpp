@@ -57,7 +57,7 @@
 #include <QClipboard>
 #include <QMimeData>
 #include <private/qapplication_p.h>
-#include <private/qinputpanel_p.h>
+#include <private/qinputmethod_p.h>
 #include <private/qwidgettextcontrol_p.h>
 #include "../shared/platforminputcontext.h"
 
@@ -90,7 +90,7 @@ void sendPreeditText(const QString &text, int cursor)
     attributes.append(QInputMethodEvent::Attribute(QInputMethodEvent::Cursor, cursor,
                                                    text.length(), QVariant()));
     QInputMethodEvent event(text, attributes);
-    QApplication::sendEvent(qApp->inputPanel()->inputItem(), &event);
+    QApplication::sendEvent(qApp->inputMethod()->inputItem(), &event);
 }
 
 
@@ -235,8 +235,8 @@ tst_qdeclarativetextedit::tst_qdeclarativetextedit()
 void tst_qdeclarativetextedit::cleanup()
 {
     // ensure not even skipped tests with custom input context leave it dangling
-    QInputPanelPrivate *inputPanelPrivate = QInputPanelPrivate::get(qApp->inputPanel());
-    inputPanelPrivate->testContext = 0;
+    QInputMethodPrivate *inputMethodPrivate = QInputMethodPrivate::get(qApp->inputMethod());
+    inputMethodPrivate->testContext = 0;
 }
 
 void tst_qdeclarativetextedit::text()
@@ -565,11 +565,11 @@ void tst_qdeclarativetextedit::hAlign_RightToLeft()
 
 #ifndef Q_OS_MAC    // QTBUG-18040
     // empty text with implicit alignment follows the system locale-based
-    // keyboard input direction from QInputPanel::inputDirection
+    // keyboard input direction from QInputMethod::inputDirection
     textEdit->setText("");
-    QCOMPARE(textEdit->hAlign(), qApp->inputPanel()->inputDirection() == Qt::LeftToRight ?
+    QCOMPARE(textEdit->hAlign(), qApp->inputMethod()->inputDirection() == Qt::LeftToRight ?
                                   QDeclarativeTextEdit::AlignLeft : QDeclarativeTextEdit::AlignRight);
-    if (qApp->inputPanel()->inputDirection() == Qt::LeftToRight)
+    if (qApp->inputMethod()->inputDirection() == Qt::LeftToRight)
         QVERIFY(textEdit->positionToRectangle(0).x() < canvas->width()/2);
     else
         QVERIFY(textEdit->positionToRectangle(0).x() > canvas->width()/2);
@@ -586,7 +586,7 @@ void tst_qdeclarativetextedit::hAlign_RightToLeft()
     QDeclarativeComponent textComponent(&engine);
     textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
     QDeclarativeTextEdit *textObject = qobject_cast<QDeclarativeTextEdit*>(textComponent.create());
-    QCOMPARE(textObject->hAlign(), qApp->inputPanel()->inputDirection() == Qt::LeftToRight ?
+    QCOMPARE(textObject->hAlign(), qApp->inputMethod()->inputDirection() == Qt::LeftToRight ?
                                   QDeclarativeTextEdit::AlignLeft : QDeclarativeTextEdit::AlignRight);
     delete textObject;
 #endif
@@ -2492,7 +2492,7 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
     sendPreeditText(preeditText, 0);
     ic.clear();
     QInputMethodEvent imEvent(preeditText, QList<QInputMethodEvent::Attribute>());
-    QApplication::sendEvent(qApp->inputPanel()->inputItem(), &imEvent);
+    QApplication::sendEvent(qApp->inputMethod()->inputItem(), &imEvent);
     currentRect = edit.inputMethodQuery(Qt::ImMicroFocus).toRect();
     QCOMPARE(currentRect, previousRect);
 #if defined(Q_WS_X11) || defined(Q_WS_QWS)
@@ -2536,7 +2536,7 @@ void tst_qdeclarativetextedit::inputContextMouseHandler()
     QApplication::processEvents();
 
     QEXPECT_FAIL("", "QTBUG-24035", Abort);
-    QCOMPARE(ic.m_action, QInputPanel::Click);
+    QCOMPARE(ic.m_action, QInputMethod::Click);
     QCOMPARE(ic.m_invokeActionCallCount, 1);
     QCOMPARE(ic.m_cursorPosition, 2);
 }
