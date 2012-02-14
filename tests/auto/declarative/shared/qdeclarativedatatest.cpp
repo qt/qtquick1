@@ -52,11 +52,13 @@ QDeclarativeDataTest *QDeclarativeDataTest::m_instance = 0;
 QDeclarativeDataTest::QDeclarativeDataTest() :
 #ifdef QT_TESTCASE_BUILDDIR
     m_dataDirectory(QTest::qFindTestData("data", QT_DECLARATIVETEST_DATADIR, 0, QT_TESTCASE_BUILDDIR)),
+    m_importsDirectory(QTest::qFindTestData("imports", QT_DECLARATIVETEST_IMPORTSDIR, 0, QT_TESTCASE_BUILDDIR)),
 #else
     m_dataDirectory(QTest::qFindTestData("data", QT_DECLARATIVETEST_DATADIR, 0)),
+    m_importsDirectory(QTest::qFindTestData("imports", QT_DECLARATIVETEST_IMPORTSDIR, 0)),
 #endif
-
-    m_dataDirectoryUrl(QUrl::fromLocalFile(m_dataDirectory + QLatin1Char('/')))
+    m_dataDirectoryUrl(QUrl::fromLocalFile(m_dataDirectory + QLatin1Char('/'))),
+    m_importsDirectoryUrl(QUrl::fromLocalFile(m_importsDirectory + QLatin1Char('/')))
 {
     m_instance = this;
 }

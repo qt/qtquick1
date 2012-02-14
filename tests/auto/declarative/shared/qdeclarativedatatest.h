@@ -69,6 +69,10 @@ public:
 
     inline QString dataDirectory() const { return m_dataDirectory; }
     inline QUrl dataDirectoryUrl() const { return m_dataDirectoryUrl; }
+
+    inline QString importsDirectory() const { return m_importsDirectory; }
+    inline QUrl importsDirectoryUrl() const { return m_importsDirectoryUrl; }
+
     inline QString directory() const  { return m_directory; }
 
     static inline QDeclarativeDataTest *instance() { return m_instance; }
@@ -83,7 +87,9 @@ private:
     static QDeclarativeDataTest *m_instance;
 
     const QString m_dataDirectory;
+    const QString m_importsDirectory;
     const QUrl m_dataDirectoryUrl;
+    const QUrl m_importsDirectoryUrl;
     QString m_directory;
 };
 

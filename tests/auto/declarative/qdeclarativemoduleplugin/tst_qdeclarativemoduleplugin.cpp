@@ -112,7 +112,7 @@ private slots:
 void tst_qdeclarativemoduleplugin::importsPlugin()
 {
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
     QTest::ignoreMessage(QtWarningMsg, "plugin created");
     QTest::ignoreMessage(QtWarningMsg, "import worked");
     QDeclarativeComponent component(&engine, testFileUrl("works.qml"));
@@ -128,7 +128,7 @@ void tst_qdeclarativemoduleplugin::importsPlugin()
 void tst_qdeclarativemoduleplugin::importsPlugin2()
 {
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
     QTest::ignoreMessage(QtWarningMsg, "plugin2 created");
     QTest::ignoreMessage(QtWarningMsg, "import2 worked");
     QDeclarativeComponent component(&engine, testFileUrl("works2.qml"));
@@ -144,7 +144,7 @@ void tst_qdeclarativemoduleplugin::importsPlugin2()
 void tst_qdeclarativemoduleplugin::importsPlugin21()
 {
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
     QTest::ignoreMessage(QtWarningMsg, "plugin2.1 created");
     QTest::ignoreMessage(QtWarningMsg, "import2.1 worked");
     QDeclarativeComponent component(&engine, testFileUrl("works21.qml"));
@@ -160,7 +160,7 @@ void tst_qdeclarativemoduleplugin::importsPlugin21()
 void tst_qdeclarativemoduleplugin::incorrectPluginCase()
 {
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
 
     QDeclarativeComponent component(&engine, testFileUrl("incorrectCase.qml"));
 
@@ -183,7 +183,7 @@ void tst_qdeclarativemoduleplugin::incorrectPluginCase()
 
 void tst_qdeclarativemoduleplugin::importPluginWithQmlFile()
 {
-    QString path = directory() + QDir::separator() + QLatin1String("imports");
+    QString path = importsDirectory();
 
     // QTBUG-16885: adding an import path with a lower-case "c:" causes assert failure
     // (this only happens if the plugin includes pure QML files)
@@ -208,7 +208,7 @@ void tst_qdeclarativemoduleplugin::remoteImportWithQuotedUrl()
 {
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
-    server.serveDirectory(directory() + QStringLiteral("/imports"));
+    server.serveDirectory(importsDirectory());
 
     QDeclarativeEngine engine;
     QDeclarativeComponent component(&engine);
@@ -232,7 +232,7 @@ void tst_qdeclarativemoduleplugin::remoteImportWithUnquotedUri()
     server.serveDirectory(directory() + QStringLiteral("/imports"));
 
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
     QDeclarativeComponent component(&engine);
     component.setData("import com.nokia.PureQmlModule 1.0 \nComponentA { width: 300; ComponentB{} }", QUrl());
 
@@ -252,7 +252,7 @@ void tst_qdeclarativemoduleplugin::remoteImportWithUnquotedUri()
 void tst_qdeclarativemoduleplugin::importsMixedQmlCppPlugin()
 {
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
 
     {
     QDeclarativeComponent component(&engine, testFileUrl("importsMixedQmlCppPlugin.qml"));
@@ -291,7 +291,7 @@ void tst_qdeclarativemoduleplugin::versionNotInstalled()
     QFETCH(QString, errorFile);
 
     QDeclarativeEngine engine;
-    engine.addImportPath(directory() + QDir::separator() + QLatin1String("imports"));
+    engine.addImportPath(importsDirectory());
 
     QDeclarativeComponent component(&engine, testFileUrl(file));
     VERIFY_ERRORS(errorFile.toLatin1().constData());
