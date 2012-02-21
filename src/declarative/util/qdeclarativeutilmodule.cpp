@@ -70,7 +70,7 @@
 #include "qdeclarativeview.h"
 #include "qdeclarativeinfo.h"
 #include "private/qdeclarativetypenotavailable_p.h"
-#ifndef QT_NO_XMLPATTERNS
+#ifdef QT_XMLPATTERNS_LIB
 #include "private/qdeclarativexmllistmodel_p.h"
 #endif
 
@@ -106,7 +106,7 @@ void QDeclarativeUtilModule::defineModule()
     qmlRegisterType<QDeclarativeTimer>("QtQuick",1,0,"Timer");
     qmlRegisterType<QDeclarativeTransition>("QtQuick",1,0,"Transition");
     qmlRegisterType<QDeclarativeVector3dAnimation>("QtQuick",1,0,"Vector3dAnimation");
-#ifdef QT_NO_XMLPATTERNS
+#ifndef QT_XMLPATTERNS_LIB
     qmlRegisterTypeNotAvailable("QtQuick",1,0,"XmlListModel",
         qApp->translate("QDeclarativeXmlListModel","Qt was built without support for xmlpatterns"));
     qmlRegisterTypeNotAvailable("QtQuick",1,0,"XmlRole",
@@ -155,7 +155,7 @@ void QDeclarativeUtilModule::defineModule()
     qmlRegisterType<QDeclarativeTimer>("Qt",4,7,"Timer");
     qmlRegisterType<QDeclarativeTransition>("Qt",4,7,"Transition");
     qmlRegisterType<QDeclarativeVector3dAnimation>("Qt",4,7,"Vector3dAnimation");
-#ifdef QT_NO_XMLPATTERNS
+#ifndef QT_XMLPATTERNS_LIB
     qmlRegisterTypeNotAvailable("Qt",4,7,"XmlListModel",
         qApp->translate("QDeclarativeXmlListModel","Qt was built without support for xmlpatterns"));
     qmlRegisterTypeNotAvailable("Qt",4,7,"XmlRole",

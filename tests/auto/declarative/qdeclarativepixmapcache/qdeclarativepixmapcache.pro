@@ -23,7 +23,3 @@ symbian: {
 # LIBS += -lgcov
 
 CONFIG += parallel_test
-
-
-# XXX: Remove when issues with QtConcurrent are resolved.
-DEFINES *= QT_NO_CONCURRENT

@@ -75,6 +75,9 @@ contains(QT_CONFIG, private_tests) {
            qdeclarativeworkerscript \
            qdeclarativexmllistmodel \
            qpacketprotocol
+
+    # This test requires the xmlpatterns module
+    !contains(QT_CONFIG,xmlpatterns): SUBDIRS -= qdeclarativexmllistmodel
 }
 
 contains(QT_CONFIG, opengl): SUBDIRS += qmlshadersplugin

@@ -3,7 +3,7 @@ load(qt_module)
 TARGET     = QtQuick1
 QPRO_PWD   = $$PWD
 
-QT         += core core-private gui gui-private widgets widgets-private script script-private network xmlpatterns
+QT         += core core-private gui gui-private widgets widgets-private script script-private network
 contains(QT_CONFIG, svg): QT += svg
 
 CONFIG += module
