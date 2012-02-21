@@ -1,10 +1,5 @@
-TEMPLATE = app
-TARGET = valuesource
-DEPENDPATH += .
-INCLUDEPATH += .
 QT += quick1
 
-# Input
 SOURCES += main.cpp \
            person.cpp \
            birthdayparty.cpp \
@@ -13,6 +8,7 @@ HEADERS += person.h \
            birthdayparty.h \
            happybirthdaysong.h
 RESOURCES += valuesource.qrc
+
 target.path = $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/referenceexamples/valuesource
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS valuesource.pro
 sources.path = $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/referenceexamples/valuesource

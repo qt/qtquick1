@@ -1,10 +1,5 @@
-TEMPLATE = app
-TARGET = properties
-DEPENDPATH += .
-INCLUDEPATH += .
 QT += quick1
 
-# Input
 SOURCES += main.cpp \
            person.cpp \
            birthdayparty.cpp 

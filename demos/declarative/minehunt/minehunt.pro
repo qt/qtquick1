@@ -1,4 +1,3 @@
-#TEMPLATE = app
 # Add more folders to ship with the application, here
 folder_01.source = qml/minehunt
 folder_01.target = qml
@@ -38,7 +37,6 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # Add dependency to Symbian components
 # CONFIG += qt-components
 
-# Input
 HEADERS += minehunt.h
 SOURCES += main.cpp minehunt.cpp
 RESOURCES = minehunt.qrc
