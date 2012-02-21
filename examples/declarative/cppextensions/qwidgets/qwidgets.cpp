@@ -84,6 +84,8 @@ private:
 class QWidgetsPlugin : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "qwidgets.json")
+
 public:
     void registerTypes(const char *uri)
     {
@@ -92,5 +94,3 @@ public:
 };
 
 #include "qwidgets.moc"
-
-Q_EXPORT_PLUGIN2(qmlqwidgetsplugin, QWidgetsPlugin);

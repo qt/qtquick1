@@ -193,7 +193,5 @@ void QTcpServerConnection::newConnection()
     }
 }
 
-Q_EXPORT_PLUGIN2(tcpserver, QTcpServerConnection)
-
 QT_END_NAMESPACE
 

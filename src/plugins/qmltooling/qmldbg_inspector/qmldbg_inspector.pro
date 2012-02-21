@@ -44,6 +44,8 @@ HEADERS += \
     editor/colorpickertool.h \
     abstracttool.h
 
+OTHER_FILES += qtquick1plugin.json
+
 target.path += $$[QT_INSTALL_PLUGINS]/qmltooling
 INSTALLS += target
 

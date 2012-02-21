@@ -47,6 +47,7 @@
 class qmlshaderspluginPlugin : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "shaders.json")
 
 public:
     void registerTypes(const char *uri);

@@ -55,6 +55,7 @@ class QtQuick1Plugin : public QObject, public QDeclarativeInspectorInterface
 {
     Q_OBJECT
     Q_DISABLE_COPY(QtQuick1Plugin)
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeInspectorInterface" FILE "qtquick1plugin.json")
     Q_INTERFACES(QDeclarativeInspectorInterface)
 
 public:

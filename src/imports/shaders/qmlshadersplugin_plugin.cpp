@@ -50,6 +50,3 @@ void qmlshaderspluginPlugin::registerTypes(const char *uri)
     qmlRegisterType<ShaderEffectItem>(uri, 1, 0, "ShaderEffectItem");
     qmlRegisterType<ShaderEffectSource>(uri, 1, 0, "ShaderEffectSource");
 }
-
-Q_EXPORT_PLUGIN2(qmlshadersplugin, qmlshaderspluginPlugin)
-

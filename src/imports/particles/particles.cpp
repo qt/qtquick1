@@ -49,6 +49,8 @@ QT_BEGIN_NAMESPACE
 class QParticlesQmlModule : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "particles.json")
+
 public:
     virtual void registerTypes(const char *uri)
     {
@@ -64,6 +66,3 @@ public:
 QT_END_NAMESPACE
 
 #include "particles.moc"
-
-Q_EXPORT_PLUGIN2(qmlparticlesplugin, QT_PREPEND_NAMESPACE(QParticlesQmlModule));
-

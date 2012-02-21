@@ -21,6 +21,8 @@ HEADERS += \
     scenegraph/qsggeometry.h \
     shadereffectbuffer.h
 
+OTHER_FILES += shaders.json
+
 DESTDIR = $$QT.quick1.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 

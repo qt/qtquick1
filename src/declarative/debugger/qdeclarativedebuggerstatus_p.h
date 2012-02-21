@@ -59,7 +59,10 @@ public:
 
     virtual void setSelectedState(bool);
 };
-Q_DECLARE_INTERFACE(QDeclarativeDebuggerStatus, "com.trolltech.qml.QDeclarativeDebuggerStatus")
+
+#define QDeclarativeDebuggerStatus_iid "org.qt-project.Qt.QDeclarativeDebuggerStatus"
+
+Q_DECLARE_INTERFACE(QDeclarativeDebuggerStatus, QDeclarativeDebuggerStatus_iid)
 
 QT_END_NAMESPACE
 

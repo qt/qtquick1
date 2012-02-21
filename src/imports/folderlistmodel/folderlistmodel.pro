@@ -7,6 +7,8 @@ QT += widgets quick1 script
 SOURCES += qdeclarativefolderlistmodel.cpp plugin.cpp
 HEADERS += qdeclarativefolderlistmodel.h
 
+OTHER_FILES += folderlistmodel.json
+
 DESTDIR = $$QT.quick1.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 

@@ -49,6 +49,8 @@ QT_BEGIN_NAMESPACE
 class GestureAreaQmlPlugin : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "gestures.json")
+
 public:
     virtual void registerTypes(const char *uri)
     {
@@ -69,5 +71,3 @@ public:
 QT_END_NAMESPACE
 
 #include "plugin.moc"
-
-Q_EXPORT_PLUGIN2(qmlgesturesplugin, QT_PREPEND_NAMESPACE(GestureAreaQmlPlugin));

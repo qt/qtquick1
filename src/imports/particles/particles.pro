@@ -11,6 +11,8 @@ SOURCES += \
 HEADERS += \
     qdeclarativeparticles_p.h
 
+OTHER_FILES += particles.json
+
 DESTDIR = $$QT.quick1.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 

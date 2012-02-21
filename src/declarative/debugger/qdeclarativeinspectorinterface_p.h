@@ -60,7 +60,9 @@ public:
     virtual void deactivate() = 0;
 };
 
-Q_DECLARE_INTERFACE(QDeclarativeInspectorInterface, "com.trolltech.Qt.QDeclarativeInspectorInterface/1.0")
+#define QDeclarativeInspectorInterface_iid "org.qt-project.Qt.QDeclarativeInspectorInterface"
+
+Q_DECLARE_INTERFACE(QDeclarativeInspectorInterface, QDeclarativeInspectorInterface_iid)
 
 QT_END_NAMESPACE
 

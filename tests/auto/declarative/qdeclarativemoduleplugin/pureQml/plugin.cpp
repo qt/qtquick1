@@ -59,6 +59,8 @@ public:
 class DummyPlugin : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "../empty.json")
+
 public:
     DummyPlugin()
     {
@@ -71,5 +73,3 @@ public:
 };
 
 #include "plugin.moc"
-
-Q_EXPORT_PLUGIN2(plugin, DummyPlugin);

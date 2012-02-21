@@ -59,7 +59,9 @@ struct Q_DECLARATIVE_EXPORT QDeclarativeExtensionInterface
     virtual void initializeEngine(QDeclarativeEngine *engine, const char *uri) = 0;
 };
 
-Q_DECLARE_INTERFACE(QDeclarativeExtensionInterface, "com.trolltech.Qt.QDeclarativeExtensionInterface/1.0")
+#define QDeclarativeExtensionInterface_iid "org.qt-project.Qt.QDeclarativeExtensionInterface"
+
+Q_DECLARE_INTERFACE(QDeclarativeExtensionInterface, QDeclarativeExtensionInterface_iid)
 
 QT_END_NAMESPACE
 

@@ -11,6 +11,8 @@ SOURCES += \
 HEADERS += \
     qtcpserverconnection.h
 
+OTHER_FILES += qtcpserverconnection.json
+
 target.path += $$[QT_INSTALL_PLUGINS]/qmltooling
 INSTALLS += target
 

@@ -90,6 +90,7 @@ public:
 class ImageProviderExtensionPlugin : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "imageprovider.json")
 public:
     void registerTypes(const char *uri)
     {
@@ -104,7 +105,10 @@ public:
 
 };
 
+
+#define QDeclarativeExtensionInterface_iid "org.qt-project.Qt.QDeclarativeExtensionInterface"
+
+
 #include "imageprovider.moc"
 
-Q_EXPORT_PLUGIN(ImageProviderExtensionPlugin);
 
