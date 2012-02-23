@@ -128,7 +128,7 @@ QGraphicsObject *findObject(QGraphicsObject *parent, const QString &objectName)
 void tst_qdeclarativeanchors::basicAnchors()
 {
     QDeclarativeView *view = new QDeclarativeView;
-    view->setSource(testFile("anchors.qml"));
+    view->setSource(testFileUrl("anchors.qml"));
 
     qApp->processEvents();
 
