@@ -188,7 +188,7 @@ void tst_qdeclarativemoduleplugin::importPluginWithQmlFile()
     // QTBUG-16885: adding an import path with a lower-case "c:" causes assert failure
     // (this only happens if the plugin includes pure QML files)
     #ifdef Q_OS_WIN
-        QVERIFY(path.at(0).isUpper() && path.at(1) == QLatin1Char(':'));
+    if (path.size() > 1 && path.at(0).isUpper() && path.at(1) == QLatin1Char(':'))
         path = path.at(0).toLower() + path.mid(1);
     #endif
 
