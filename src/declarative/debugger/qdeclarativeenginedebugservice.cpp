@@ -226,7 +226,7 @@ void QDeclarativeEngineDebugService::buildObjectDump(QDataStream &message,
                 prop.value = expr->expression();
                 QObject *scope = expr->scopeObject();
                 if (scope) {
-                    QString sig = QLatin1String(scope->metaObject()->method(signal->index()).signature());
+                    QString sig = QString::fromLatin1(scope->metaObject()->method(signal->index()).methodSignature());
                     int lparen = sig.indexOf(QLatin1Char('('));
                     if (lparen >= 0) {
                         QString methodName = sig.mid(0, lparen);

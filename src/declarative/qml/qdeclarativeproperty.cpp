@@ -299,7 +299,7 @@ void QDeclarativePropertyPrivate::initProperty(QObject *obj, const QString &name
         signalName[0] = signalName.at(0).toLower();
 
         QMetaMethod method = findSignalByName(currentObject->metaObject(), signalName.toLatin1().constData());
-        if (method.signature()) {
+        if (method.isValid()) {
             object = currentObject;
             core.load(method);
             return;
@@ -1401,7 +1401,7 @@ bool QDeclarativeProperty::connectNotifySignal(QObject *dest, const char *slot) 
 
     QMetaProperty prop = d->object->metaObject()->property(d->core.coreIndex);
     if (prop.hasNotifySignal()) {
-        QByteArray signal(QByteArray("2") + prop.notifySignal().signature());
+        QByteArray signal(QByteArray("2") + prop.notifySignal().methodSignature());
         return QObject::connect(d->object, signal.constData(), dest, slot);
     } else  {
         return false;
@@ -1541,7 +1541,7 @@ QMetaMethod QDeclarativePropertyPrivate::findSignalByName(const QMetaObject *mo,
     int methods = mo->methodCount();
     for (int ii = methods - 1; ii >= 2; --ii) { // >= 2 to block the destroyed signal
         QMetaMethod method = mo->method(ii);
-        QByteArray methodName = method.signature();
+        QByteArray methodName = method.methodSignature();
         int idx = methodName.indexOf('(');
         methodName = methodName.left(idx);
 

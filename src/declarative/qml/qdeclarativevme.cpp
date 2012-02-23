@@ -690,11 +690,14 @@ QObject *QDeclarativeVME::run(QDeclarativeVMEObjectStack &stack,
                 if (prop.type() & QDeclarativeProperty::SignalProperty) {
 
                     QMetaMethod method = QDeclarativeMetaType::defaultMethod(assign);
-                    if (method.signature() == 0)
+                    if (!method.isValid())
                         VME_EXCEPTION(QCoreApplication::translate("QDeclarativeVME","Cannot assign object type %1 with no default method").arg(QString::fromLatin1(assign->metaObject()->className())));
 
-                    if (!QMetaObject::checkConnectArgs(prop.method().signature(), method.signature()))
-                        VME_EXCEPTION(QCoreApplication::translate("QDeclarativeVME","Cannot connect mismatched signal/slot %1 %vs. %2").arg(QString::fromLatin1(method.signature())).arg(QString::fromLatin1(prop.method().signature())));
+                    if (!QMetaObject::checkConnectArgs(prop.method(), method)) {
+                        VME_EXCEPTION(QCoreApplication::translate("QDeclarativeVME","Cannot connect mismatched signal/slot %1 %vs. %2")
+                                      .arg(QString::fromLatin1(method.methodSignature()))
+                                      .arg(QString::fromLatin1(prop.method().methodSignature())));
+                    }
 
                     QDeclarativePropertyPrivate::connect(target, prop.index(), assign, method.methodIndex());
 

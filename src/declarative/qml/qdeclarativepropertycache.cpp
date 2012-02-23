@@ -196,7 +196,7 @@ QDeclarativePropertyCache::Data QDeclarativePropertyCache::create(const QMetaObj
         QMetaMethod m = metaObject->method(ii);
         if (m.access() == QMetaMethod::Private)
             continue;
-        QString methodName = QString::fromUtf8(m.signature());
+        QString methodName = QString::fromUtf8(m.methodSignature());
 
         int parenIdx = methodName.indexOf(QLatin1Char('('));
         Q_ASSERT(parenIdx != -1);
@@ -258,7 +258,7 @@ void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaOb
         QMetaMethod m = metaObject->method(ii);
         if (m.access() == QMetaMethod::Private) 
             continue;
-        QString methodName = QString::fromUtf8(m.signature());
+        QString methodName = QString::fromUtf8(m.methodSignature());
 
         int parenIdx = methodName.indexOf(QLatin1Char('('));
         Q_ASSERT(parenIdx != -1);
@@ -392,7 +392,7 @@ QString QDeclarativePropertyCache::Data::name(const QMetaObject *metaObject)
     if (flags & IsFunction) {
         QMetaMethod m = metaObject->method(coreIndex);
 
-        QString name = QString::fromUtf8(m.signature());
+        QString name = QString::fromUtf8(m.methodSignature());
         int parenIdx = name.indexOf(QLatin1Char('('));
         if (parenIdx != -1)
             name = name.left(parenIdx);

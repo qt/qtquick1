@@ -605,7 +605,7 @@ QScriptValue QDeclarativeObjectMethodScriptClass::connect(QScriptContext *contex
         return engine->undefinedValue();
 
     QByteArray signal("2");
-    signal.append(data->object->metaObject()->method(data->data.coreIndex).signature());
+    signal.append(data->object->metaObject()->method(data->data.coreIndex).methodSignature());
 
     if (context->argumentCount() == 1) {
         qScriptConnect(data->object, signal.constData(), QScriptValue(), context->argument(0));
@@ -630,7 +630,7 @@ QScriptValue QDeclarativeObjectMethodScriptClass::disconnect(QScriptContext *con
         return engine->undefinedValue();
 
     QByteArray signal("2");
-    signal.append(data->object->metaObject()->method(data->data.coreIndex).signature());
+    signal.append(data->object->metaObject()->method(data->data.coreIndex).methodSignature());
 
     if (context->argumentCount() == 1) {
         qScriptDisconnect(data->object, signal.constData(), QScriptValue(), context->argument(0));
@@ -1067,7 +1067,7 @@ QDeclarativeObjectMethodScriptClass::callOverloaded(MethodData *method, QScriptC
         QString error = QLatin1String("Unable to determine callable overload.  Candidates are:");
         QDeclarativePropertyCache::Data *candidate = &method->data;
         while (candidate) {
-            error += QLatin1String("\n    ") + QString::fromUtf8(method->object->metaObject()->method(candidate->coreIndex).signature());
+            error += QLatin1String("\n    ") + QString::fromUtf8(method->object->metaObject()->method(candidate->coreIndex).methodSignature());
             candidate = relatedMethod(method->object, candidate, dummy);
         }
         return Value(ctxt, ctxt->throwError(error));
@@ -1193,7 +1193,7 @@ static inline int QMetaObject_methods(const QMetaObject *metaObject)
 
 static QByteArray QMetaMethod_name(const QMetaMethod &m)
 {
-    QByteArray sig = m.signature();
+    QByteArray sig = m.methodSignature();
     int paren = sig.indexOf('(');
     if (paren == -1)
         return sig;
