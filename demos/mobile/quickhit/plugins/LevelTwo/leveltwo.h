@@ -51,6 +51,7 @@
 class LevelTwo : public LevelPluginInterface
 {
     Q_OBJECT
+    Q_PLUGIN_METADATA(IID "Forum.Nokia.com.QuickHit.LevelPluginInterface/1.0" FILE "leveltwo.json")
 
     // This macro tells Qt which interfaces the class implements.
     // This is used when implementing plugins.

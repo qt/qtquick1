@@ -115,7 +115,3 @@ QVariant LevelOne::graphSize(QVariant pathToGraph)
     ret.setValue(imageSize);
     return ret;
 }
-
-// This Qt macro exports the plugin class LevelOne with the name levelplugins.
-// There should be exactly one occurrence of this LevelOne macro in a Qt plugin's source code.
-Q_EXPORT_PLUGIN2(levelplugins, LevelOne);

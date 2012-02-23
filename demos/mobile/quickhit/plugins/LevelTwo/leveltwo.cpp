@@ -117,7 +117,3 @@ QVariant LevelTwo::graphSize(QVariant pathToGraph)
     ret.setValue(imageSize);
     return ret;
 }
-
-// This Qt macro exports the plugin class LevelTwo with the name levelplugins.
-// There should be exactly one occurrence of this LevelTwo macro in a Qt plugin's source code.
-Q_EXPORT_PLUGIN2(levelplugins, LevelTwo);

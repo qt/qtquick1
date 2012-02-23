@@ -1,4 +1,4 @@
-QT       += core gui quick1 opengl
+QT       += core gui quick1 opengl widgets
 
 VERSION = 1.1.1
 
@@ -27,34 +27,6 @@ RESOURCES += resources.qrc
 
 # QtMultimedia from Qt
 QT += multimedia
-
-symbian {
-    # in Symbian 1 we do not have OpenGL available
-    contains(SYMBIAN_VERSION, 9.4) {
-        DEFINES += QT_NO_OPENGL
-        QT -= opengl
-        warning("No OpenGL support")
-    }
-
-    CONFIG += mobility
-    MOBILITY = systeminfo
-    TARGET = QuickHit
-    TARGET.UID3 = 0xe7ced714
-
-    TARGET.CAPABILITY = NetworkServices \
-        Location \
-        ReadUserData \
-        WriteUserData \
-        LocalServices \
-        UserEnvironment
-
-    LIBS += -lcone -leikcore -lavkon -lhwrmvibraclient
-
-    ICON = icon.svg
-
-    TARGET.EPOCSTACKSIZE = 0x14000
-    TARGET.EPOCHEAPSIZE = 0x100000 0x2000000
-}
 
 maemo5 {
     CONFIG += mobility

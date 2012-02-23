@@ -80,8 +80,8 @@ public:
 
 // This Qt macro associates the given Identifier "Forum.Nokia.com.QuickHit.LevelPluginInterface/1.0"
 // to the interface class called LevelPluginInterface. The Identifier must be unique.
-Q_DECLARE_INTERFACE(LevelPluginInterface,
-    "Forum.Nokia.com.QuickHit.LevelPluginInterface/1.0");
 
+#define LevelPluginInterface_iid "Forum.Nokia.com.QuickHit.LevelPluginInterface/1.0"
+Q_DECLARE_INTERFACE(LevelPluginInterface, LevelPluginInterface_iid)
 
 #endif // LEVELPLUGININTERFACE_H

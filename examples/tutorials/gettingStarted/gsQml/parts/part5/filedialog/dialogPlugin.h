@@ -46,7 +46,8 @@
 class DialogPlugin : public QDeclarativeExtensionPlugin
 {
     Q_OBJECT
-    
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QDeclarativeExtensionInterface" FILE "filedialog.json")
+
     public:
         //registerTypes is inherited from QDeclarativeExtensionPlugin
         void registerTypes(const char *uri);
