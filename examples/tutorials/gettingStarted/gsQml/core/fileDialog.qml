@@ -92,7 +92,7 @@ Rectangle {
             Rectangle {
                 id:file
                 color: "transparent"
-                width: GridView.view.cellWidth; height: GridView.view.cellHeight
+                width: file.GridView.view.cellWidth; height: file.GridView.view.cellHeight
 
                 Text {
                     id:fileName
@@ -100,8 +100,8 @@ Rectangle {
                     anchors.centerIn: parent
                     text: name
                     color: "#BDCACD"
-                    font.weight: GridView.view.currentIndex == index ?  Font.DemiBold : Font.Normal
-                    font.pointSize: GridView.view.currentIndex == index ?  12 : 10
+                    font.weight: file.GridView.view.currentIndex == index ?  Font.DemiBold : Font.Normal
+                    font.pointSize: file.GridView.view.currentIndex == index ?  12 : 10
                     elide: Text.ElideMiddle
                     horizontalAlignment: Text.AlignHCenter
                 }
@@ -111,8 +111,8 @@ Rectangle {
                     anchors.centerIn: parent
                     radius: 10
                     smooth: true
-                    scale: GridView.view.currentIndex == index ?  1 : 0.5
-                    opacity: GridView.view.currentIndex == index ?  1 : 0
+                    scale: file.GridView.view.currentIndex == index ?  1 : 0.5
+                    opacity: file.GridView.view.currentIndex == index ?  1 : 0
                     Text {
                         id: overlay
                         width: parent.width
@@ -140,7 +140,7 @@ Rectangle {
                     hoverEnabled: true
 
                     onClicked: {
-                        GridView.view.currentIndex = index
+                        file.GridView.view.currentIndex = index
                         selectedFile = directory.files[index].name
                         selectChanged()
                     }
