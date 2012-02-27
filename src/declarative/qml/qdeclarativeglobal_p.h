@@ -64,12 +64,6 @@ QT_MODULE(Declarative)
         return status == Yes; \
     }
 
-#ifdef Q_OS_SYMBIAN
-#define Q_DECLARATIVE_PRIVATE_EXPORT Q_AUTOTEST_EXPORT
-#else
-#define Q_DECLARATIVE_PRIVATE_EXPORT Q_DECLARATIVE_EXPORT
-#endif
-
 struct QDeclarativeGraphics_DerivedObject : public QObject
 {
     void setParent_noEvent(QObject *parent) {

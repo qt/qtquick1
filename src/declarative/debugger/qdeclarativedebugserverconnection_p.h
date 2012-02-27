@@ -42,7 +42,8 @@
 #ifndef QDECLARATIVEDEBUGSERVERCONNECTION_H
 #define QDECLARATIVEDEBUGSERVERCONNECTION_H
 
-#include <private/qdeclarativeglobal_p.h>
+#include <private/qtquick1global_p.h>
+#include <QtCore/qobject.h>
 
 //
 //  W A R N I N G
@@ -62,7 +63,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativeDebugServer;
-class Q_DECLARATIVE_EXPORT QDeclarativeDebugServerConnection
+class Q_QUICK1_EXPORT QDeclarativeDebugServerConnection
 {
 public:
     QDeclarativeDebugServerConnection() {}

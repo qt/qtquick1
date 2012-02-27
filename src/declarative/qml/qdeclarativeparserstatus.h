@@ -42,6 +42,7 @@
 #ifndef QDECLARATIVEPARSERSTATUS_H
 #define QDECLARATIVEPARSERSTATUS_H
 
+#include <QtQuick1/qtquick1global.h>
 #include <QtCore/qobject.h>
 
 QT_BEGIN_HEADER
@@ -50,7 +51,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class Q_DECLARATIVE_EXPORT QDeclarativeParserStatus
+class Q_QUICK1_EXPORT QDeclarativeParserStatus
 {
 public:
     QDeclarativeParserStatus();

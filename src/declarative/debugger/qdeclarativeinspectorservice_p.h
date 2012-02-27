@@ -56,7 +56,7 @@ QT_MODULE(Declarative)
 class QDeclarativeView;
 class QDeclarativeInspectorInterface;
 
-class Q_DECLARATIVE_EXPORT QDeclarativeInspectorService : public QDeclarativeDebugService
+class Q_QUICK1_EXPORT QDeclarativeInspectorService : public QDeclarativeDebugService
 {
     Q_OBJECT
 

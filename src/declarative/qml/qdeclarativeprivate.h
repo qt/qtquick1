@@ -53,7 +53,7 @@
 // We mean it.
 //
 
-#include <QtCore/qglobal.h>
+#include <QtQuick1/qtquick1global.h>
 #include <QtCore/qvariant.h>
 
 QT_BEGIN_HEADER
@@ -77,7 +77,7 @@ public:
 class QDeclarativeCustomParser;
 namespace QDeclarativePrivate
 {
-    void Q_DECLARATIVE_EXPORT qdeclarativeelement_destructor(QObject *);
+    void Q_QUICK1_EXPORT qdeclarativeelement_destructor(QObject *);
     template<typename T>
     class QDeclarativeElement : public T
     {
@@ -239,7 +239,7 @@ namespace QDeclarativePrivate
         AutoParentRegistration = 2
     };
 
-    int Q_DECLARATIVE_EXPORT qmlregister(RegistrationType, void *);
+    int Q_QUICK1_EXPORT qmlregister(RegistrationType, void *);
 }
 
 QT_END_NAMESPACE

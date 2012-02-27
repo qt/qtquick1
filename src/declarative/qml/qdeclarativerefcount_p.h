@@ -53,7 +53,7 @@
 // We mean it.
 //
 
-#include <QtCore/qglobal.h>
+#include <QtQuick1/qtquick1global.h>
 
 QT_BEGIN_HEADER
 
@@ -61,7 +61,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class Q_DECLARATIVE_EXPORT QDeclarativeRefCount
+class Q_QUICK1_EXPORT QDeclarativeRefCount
 {
 public:
     QDeclarativeRefCount();

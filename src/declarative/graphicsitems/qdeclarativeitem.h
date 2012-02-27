@@ -64,7 +64,7 @@ class QDeclarativeTransition;
 class QDeclarativeKeyEvent;
 class QDeclarativeAnchors;
 class QDeclarativeItemPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeItem : public QGraphicsObject, public QDeclarativeParserStatus
+class Q_QUICK1_EXPORT QDeclarativeItem : public QGraphicsObject, public QDeclarativeParserStatus
 {
     Q_OBJECT
     Q_INTERFACES(QDeclarativeParserStatus)
@@ -216,7 +216,7 @@ T qobject_cast(QGraphicsItem *item)
 }
 
 #ifndef QT_NO_DEBUG_STREAM
-QDebug Q_DECLARATIVE_EXPORT operator<<(QDebug debug, QDeclarativeItem *item);
+QDebug Q_QUICK1_EXPORT operator<<(QDebug debug, QDeclarativeItem *item);
 #endif
 
 QT_END_NAMESPACE

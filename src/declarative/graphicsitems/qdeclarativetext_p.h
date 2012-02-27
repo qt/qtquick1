@@ -45,7 +45,7 @@
 #include <QtGui/qtextoption.h>
 #include "qdeclarativeimplicitsizeitem_p.h"
 
-#include <private/qdeclarativeglobal_p.h>
+#include <private/qtquick1global_p.h>
 
 QT_BEGIN_HEADER
 
@@ -53,7 +53,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 class QDeclarativeTextPrivate;
-class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeText : public QDeclarativeImplicitSizeItem
+class Q_QUICK1_PRIVATE_EXPORT QDeclarativeText : public QDeclarativeImplicitSizeItem
 {
     Q_OBJECT
     Q_ENUMS(HAlignment)

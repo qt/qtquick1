@@ -42,6 +42,7 @@
 #ifndef QDECLARATIVEIMAGEPROVIDER_H
 #define QDECLARATIVEIMAGEPROVIDER_H
 
+#include <QtQuick1/qtquick1global.h>
 #include <QtGui/qimage.h>
 #include <QtGui/qpixmap.h>
 
@@ -53,7 +54,7 @@ QT_MODULE(Declarative)
 
 class QDeclarativeImageProviderPrivate;
 
-class Q_DECLARATIVE_EXPORT QDeclarativeImageProvider
+class Q_QUICK1_EXPORT QDeclarativeImageProvider
 {
 public:
     enum ImageType {

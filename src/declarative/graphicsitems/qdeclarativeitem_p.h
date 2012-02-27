@@ -114,7 +114,7 @@ private:
     qreal m_height;
 };
 
-class Q_DECLARATIVE_EXPORT QDeclarativeItemPrivate : public QGraphicsItemPrivate
+class Q_QUICK1_EXPORT QDeclarativeItemPrivate : public QGraphicsItemPrivate
 {
     Q_DECLARE_PUBLIC(QDeclarativeItem)
 

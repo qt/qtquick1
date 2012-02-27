@@ -44,7 +44,7 @@
 
 #include <QtCore/qobject.h>
 
-#include <private/qdeclarativeglobal_p.h>
+#include <private/qtquick1global_p.h>
 
 QT_BEGIN_HEADER
 
@@ -53,7 +53,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativeDebugServicePrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeDebugService : public QObject
+class Q_QUICK1_EXPORT QDeclarativeDebugService : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(QDeclarativeDebugService)

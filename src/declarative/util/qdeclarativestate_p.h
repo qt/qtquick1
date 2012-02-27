@@ -46,7 +46,7 @@
 #include <qdeclarativeproperty.h>
 #include <QtCore/qobject.h>
 #include <QtCore/qsharedpointer.h>
-#include <private/qdeclarativeglobal_p.h>
+#include <private/qtquick1global_p.h>
 
 QT_BEGIN_HEADER
 
@@ -58,7 +58,7 @@ class QDeclarativeActionEvent;
 class QDeclarativeAbstractBinding;
 class QDeclarativeBinding;
 class QDeclarativeExpression;
-class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeAction
+class Q_QUICK1_PRIVATE_EXPORT QDeclarativeAction
 {
 public:
     QDeclarativeAction();
@@ -115,7 +115,7 @@ public:
 class QDeclarativeStateGroup;
 class QDeclarativeState;
 class QDeclarativeStateOperationPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeStateOperation : public QObject
+class Q_QUICK1_EXPORT QDeclarativeStateOperation : public QObject
 {
     Q_OBJECT
 public:
@@ -140,7 +140,7 @@ typedef QDeclarativeStateOperation::ActionList QDeclarativeStateActions;
 
 class QDeclarativeTransition;
 class QDeclarativeStatePrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeState : public QObject
+class Q_QUICK1_EXPORT QDeclarativeState : public QObject
 {
     Q_OBJECT
 

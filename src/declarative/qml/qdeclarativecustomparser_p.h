@@ -70,7 +70,7 @@ QT_MODULE(Declarative)
 class QDeclarativeCompiler;
 
 class QDeclarativeCustomParserPropertyPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeCustomParserProperty
+class Q_QUICK1_EXPORT QDeclarativeCustomParserProperty
 {
 public:
     QDeclarativeCustomParserProperty();
@@ -93,7 +93,7 @@ private:
 };
 
 class QDeclarativeCustomParserNodePrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeCustomParserNode
+class Q_QUICK1_EXPORT QDeclarativeCustomParserNode
 {
 public:
     QDeclarativeCustomParserNode();
@@ -111,7 +111,7 @@ private:
     QDeclarativeCustomParserNodePrivate *d;
 };
 
-class Q_DECLARATIVE_EXPORT QDeclarativeCustomParser
+class Q_QUICK1_EXPORT QDeclarativeCustomParser
 {
 public:
     enum Flag {

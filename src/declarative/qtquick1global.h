@@ -3,7 +3,7 @@
 ** Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/
 **
-** This file is part of the QtQuick1 module of the Qt Toolkit.
+** This file is part of the QtQml module of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:LGPL$
 ** GNU Lesser General Public License Usage
@@ -39,60 +39,35 @@
 **
 ****************************************************************************/
 
-#ifndef QDECLARATIVEBEHAVIOR_H
-#define QDECLARATIVEBEHAVIOR_H
+#ifndef QTQUICK1GLOBAL_H
+#define QTQUICK1GLOBAL_H
 
-#include "private/qdeclarativestate_p.h"
+#include <QtCore/qglobal.h>
 
-#include <qdeclarativepropertyvaluesource.h>
-#include <qdeclarativepropertyvalueinterceptor.h>
-#include <qdeclarative.h>
-#include <QtCore/QAbstractAnimation>
+// This definition is in the process of being removed from qtbase - once it
+// has been expunged, this will no longer be necssary:
+#if defined(Q_QUICK1_EXPORT)
+#  undef Q_QUICK1_EXPORT
+#endif
 
-QT_BEGIN_HEADER
+#if defined(Q_OS_WIN)
+#  if defined(QT_MAKEDLL) /* create a Qt DLL library */
+#    if defined(QT_BUILD_QUICK1_LIB)
+#      define Q_QUICK1_EXPORT Q_DECL_EXPORT
+#    else
+#      define Q_QUICK1_EXPORT Q_DECL_IMPORT
+#    endif
+#  elif defined(QT_DLL) /* use a Qt DLL library */
+#    define Q_QUICK1_EXPORT Q_DECL_IMPORT
+#  endif
+#endif
 
-QT_BEGIN_NAMESPACE
+#if !defined(Q_QUICK1_EXPORT)
+#  if defined(QT_SHARED)
+#    define Q_QUICK1_EXPORT Q_DECL_EXPORT
+#  else
+#    define Q_QUICK1_EXPORT
+#  endif
+#endif
 
-QT_MODULE(Declarative)
-
-class QDeclarativeAbstractAnimation;
-class QDeclarativeBehaviorPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeBehavior : public QObject, public QDeclarativePropertyValueInterceptor
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(QDeclarativeBehavior)
-
-    Q_INTERFACES(QDeclarativePropertyValueInterceptor)
-    Q_CLASSINFO("DefaultProperty", "animation")
-    Q_PROPERTY(QDeclarativeAbstractAnimation *animation READ animation WRITE setAnimation)
-    Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
-    Q_CLASSINFO("DeferredPropertyNames", "animation")
-
-public:
-    QDeclarativeBehavior(QObject *parent=0);
-    ~QDeclarativeBehavior();
-
-    virtual void setTarget(const QDeclarativeProperty &);
-    virtual void write(const QVariant &value);
-
-    QDeclarativeAbstractAnimation *animation();
-    void setAnimation(QDeclarativeAbstractAnimation *);
-
-    bool enabled() const;
-    void setEnabled(bool enabled);
-
-Q_SIGNALS:
-    void enabledChanged();
-
-private Q_SLOTS:
-    void componentFinalized();
-    void qtAnimationStateChanged(QAbstractAnimation::State,QAbstractAnimation::State);
-};
-
-QT_END_NAMESPACE
-
-QML_DECLARE_TYPE(QDeclarativeBehavior)
-
-QT_END_HEADER
-
-#endif // QDECLARATIVEBEHAVIOR_H
+#endif // QTQUICK1GLOBAL_H

@@ -54,7 +54,7 @@ QT_MODULE(Declarative)
 
 class QDeclarativeEngine;
 
-class Q_DECLARATIVE_EXPORT QDeclarativeExtensionPlugin : public QObject, public QDeclarativeExtensionInterface
+class Q_QUICK1_EXPORT QDeclarativeExtensionPlugin : public QObject, public QDeclarativeExtensionInterface
 {
     Q_OBJECT
     Q_INTERFACES(QDeclarativeExtensionInterface)

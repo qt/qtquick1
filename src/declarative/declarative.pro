@@ -12,7 +12,7 @@ MODULE_PRI = ../../modules/qt_quick1.pri
 MODULE=quick1
 load(qt_module_config)
 
-DEFINES   += QT_BUILD_DECLARATIVE_LIB QT_NO_URL_CAST_FROM_STRING
+DEFINES   += QT_BUILD_QUICK1_LIB QT_NO_URL_CAST_FROM_STRING
 
 win32-msvc*|win32-icc:QMAKE_LFLAGS += /BASE:0x66000000
 solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
@@ -29,6 +29,10 @@ include(qml/qml.pri)
 include(util/util.pri)
 include(graphicsitems/graphicsitems.pri)
 include(debugger/debugger.pri)
+
+HEADERS += \
+    qtquick1global.h \
+    qtquick1global_p.h
 
 linux-g++-maemo:DEFINES += QDECLARATIVEVIEW_NOBACKGROUND
 

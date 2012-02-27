@@ -57,7 +57,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeScaleGrid : public QObject
+class Q_QUICK1_PRIVATE_EXPORT QDeclarativeScaleGrid : public QObject
 {
     Q_OBJECT
     Q_ENUMS(TileRule)
@@ -95,7 +95,7 @@ private:
     int _bottom;
 };
 
-class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeGridScaledImage
+class Q_QUICK1_PRIVATE_EXPORT QDeclarativeGridScaledImage
 {
 public:
     QDeclarativeGridScaledImage();

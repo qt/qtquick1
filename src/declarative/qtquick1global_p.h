@@ -3,7 +3,7 @@
 ** Copyright (C) 2012 Nokia Corporation and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/
 **
-** This file is part of the QtQuick1 module of the Qt Toolkit.
+** This file is part of the QtQml module of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:LGPL$
 ** GNU Lesser General Public License Usage
@@ -39,60 +39,22 @@
 **
 ****************************************************************************/
 
-#ifndef QDECLARATIVEBEHAVIOR_H
-#define QDECLARATIVEBEHAVIOR_H
+#ifndef QTQUICK1GLOBAL_P_H
+#define QTQUICK1GLOBAL_P_H
 
-#include "private/qdeclarativestate_p.h"
+//
+//  W A R N I N G
+//  -------------
+//
+// This file is not part of the Qt API.  It exists purely as an
+// implementation detail.  This header file may change from version to
+// version without notice, or even be removed.
+//
+// We mean it.
+//
 
-#include <qdeclarativepropertyvaluesource.h>
-#include <qdeclarativepropertyvalueinterceptor.h>
-#include <qdeclarative.h>
-#include <QtCore/QAbstractAnimation>
+#include "qtquick1global.h"
 
-QT_BEGIN_HEADER
+#define Q_QUICK1_PRIVATE_EXPORT Q_QUICK1_EXPORT
 
-QT_BEGIN_NAMESPACE
-
-QT_MODULE(Declarative)
-
-class QDeclarativeAbstractAnimation;
-class QDeclarativeBehaviorPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeBehavior : public QObject, public QDeclarativePropertyValueInterceptor
-{
-    Q_OBJECT
-    Q_DECLARE_PRIVATE(QDeclarativeBehavior)
-
-    Q_INTERFACES(QDeclarativePropertyValueInterceptor)
-    Q_CLASSINFO("DefaultProperty", "animation")
-    Q_PROPERTY(QDeclarativeAbstractAnimation *animation READ animation WRITE setAnimation)
-    Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
-    Q_CLASSINFO("DeferredPropertyNames", "animation")
-
-public:
-    QDeclarativeBehavior(QObject *parent=0);
-    ~QDeclarativeBehavior();
-
-    virtual void setTarget(const QDeclarativeProperty &);
-    virtual void write(const QVariant &value);
-
-    QDeclarativeAbstractAnimation *animation();
-    void setAnimation(QDeclarativeAbstractAnimation *);
-
-    bool enabled() const;
-    void setEnabled(bool enabled);
-
-Q_SIGNALS:
-    void enabledChanged();
-
-private Q_SLOTS:
-    void componentFinalized();
-    void qtAnimationStateChanged(QAbstractAnimation::State,QAbstractAnimation::State);
-};
-
-QT_END_NAMESPACE
-
-QML_DECLARE_TYPE(QDeclarativeBehavior)
-
-QT_END_HEADER
-
-#endif // QDECLARATIVEBEHAVIOR_H
+#endif // QTQUICK1GLOBAL_P_H

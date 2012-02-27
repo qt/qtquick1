@@ -392,11 +392,11 @@ int qmlRegisterCustomType(const char *uri, int versionMajor, int versionMinor,
 
 class QDeclarativeContext;
 class QDeclarativeEngine;
-Q_DECLARATIVE_EXPORT void qmlExecuteDeferred(QObject *);
-Q_DECLARATIVE_EXPORT QDeclarativeContext *qmlContext(const QObject *);
-Q_DECLARATIVE_EXPORT QDeclarativeEngine *qmlEngine(const QObject *);
-Q_DECLARATIVE_EXPORT QObject *qmlAttachedPropertiesObjectById(int, const QObject *, bool create = true);
-Q_DECLARATIVE_EXPORT QObject *qmlAttachedPropertiesObject(int *, const QObject *, const QMetaObject *, bool create);
+Q_QUICK1_EXPORT void qmlExecuteDeferred(QObject *);
+Q_QUICK1_EXPORT QDeclarativeContext *qmlContext(const QObject *);
+Q_QUICK1_EXPORT QDeclarativeEngine *qmlEngine(const QObject *);
+Q_QUICK1_EXPORT QObject *qmlAttachedPropertiesObjectById(int, const QObject *, bool create = true);
+Q_QUICK1_EXPORT QObject *qmlAttachedPropertiesObject(int *, const QObject *, const QMetaObject *, bool create);
 
 template<typename T>
 QObject *qmlAttachedPropertiesObject(const QObject *obj, bool create = true)

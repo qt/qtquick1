@@ -42,6 +42,7 @@
 #ifndef QDECLARATIVEPROPERTYMAP_H
 #define QDECLARATIVEPROPERTYMAP_H
 
+#include <QtQuick1/qtquick1global.h>
 #include <QtCore/QObject>
 #include <QtCore/QHash>
 #include <QtCore/QStringList>
@@ -54,7 +55,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativePropertyMapPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativePropertyMap : public QObject
+class Q_QUICK1_EXPORT QDeclarativePropertyMap : public QObject
 {
     Q_OBJECT
 public:

@@ -42,6 +42,7 @@
 #ifndef QDECLARATIVESCRIPTSTRING_H
 #define QDECLARATIVESCRIPTSTRING_H
 
+#include <QtQuick1/qtquick1global.h>
 #include <QtCore/qstring.h>
 #include <QtCore/qshareddata.h>
 #include <QtCore/qmetatype.h>
@@ -55,7 +56,7 @@ QT_MODULE(Declarative)
 class QObject;
 class QDeclarativeContext;
 class QDeclarativeScriptStringPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeScriptString 
+class Q_QUICK1_EXPORT QDeclarativeScriptString
 {
 public:
     QDeclarativeScriptString();

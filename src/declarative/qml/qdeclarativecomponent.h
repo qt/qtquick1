@@ -60,7 +60,7 @@ class QByteArray;
 class QDeclarativeComponentPrivate;
 class QDeclarativeEngine;
 class QDeclarativeComponentAttached;
-class Q_DECLARATIVE_EXPORT QDeclarativeComponent : public QObject
+class Q_QUICK1_EXPORT QDeclarativeComponent : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(QDeclarativeComponent)

@@ -42,6 +42,7 @@
 #ifndef QDECLARATIVEPROPERTY_H
 #define QDECLARATIVEPROPERTY_H
 
+#include <QtQuick1/qtquick1global.h>
 #include <QtCore/qmetaobject.h>
 
 QT_BEGIN_HEADER
@@ -56,7 +57,7 @@ class QDeclarativeContext;
 class QDeclarativeEngine;
 
 class QDeclarativePropertyPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeProperty
+class Q_QUICK1_EXPORT QDeclarativeProperty
 {
 public:
     enum PropertyTypeCategory {

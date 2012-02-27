@@ -53,10 +53,8 @@
 // We mean it.
 //
 
-#include <QtCore/qglobal.h>
+#include <private/qtquick1global_p.h>
 #include <QtCore/qvariant.h>
-
-#include <private/qdeclarativeglobal_p.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -71,19 +69,19 @@ class QVector3D;
 // XXX - Bauhaus currently uses these methods which is why they're exported
 namespace QDeclarativeStringConverters
 {
-    QVariant Q_DECLARATIVE_PRIVATE_EXPORT variantFromString(const QString &);
-    QVariant Q_DECLARATIVE_PRIVATE_EXPORT variantFromString(const QString &, int preferredType, bool *ok = 0);
+    QVariant Q_QUICK1_PRIVATE_EXPORT variantFromString(const QString &);
+    QVariant Q_QUICK1_PRIVATE_EXPORT variantFromString(const QString &, int preferredType, bool *ok = 0);
 
-    QColor Q_DECLARATIVE_PRIVATE_EXPORT colorFromString(const QString &, bool *ok = 0);
+    QColor Q_QUICK1_PRIVATE_EXPORT colorFromString(const QString &, bool *ok = 0);
 #ifndef QT_NO_DATESTRING
-    QDate Q_DECLARATIVE_PRIVATE_EXPORT dateFromString(const QString &, bool *ok = 0); 
-    QTime Q_DECLARATIVE_PRIVATE_EXPORT timeFromString(const QString &, bool *ok = 0);
-    QDateTime Q_DECLARATIVE_PRIVATE_EXPORT dateTimeFromString(const QString &, bool *ok = 0);
+    QDate Q_QUICK1_PRIVATE_EXPORT dateFromString(const QString &, bool *ok = 0);
+    QTime Q_QUICK1_PRIVATE_EXPORT timeFromString(const QString &, bool *ok = 0);
+    QDateTime Q_QUICK1_PRIVATE_EXPORT dateTimeFromString(const QString &, bool *ok = 0);
 #endif
-    QPointF Q_DECLARATIVE_PRIVATE_EXPORT pointFFromString(const QString &, bool *ok = 0);
-    QSizeF Q_DECLARATIVE_PRIVATE_EXPORT sizeFFromString(const QString &, bool *ok = 0);
-    QRectF Q_DECLARATIVE_PRIVATE_EXPORT rectFFromString(const QString &, bool *ok = 0);
-    QVector3D Q_DECLARATIVE_PRIVATE_EXPORT vector3DFromString(const QString &, bool *ok = 0);
+    QPointF Q_QUICK1_PRIVATE_EXPORT pointFFromString(const QString &, bool *ok = 0);
+    QSizeF Q_QUICK1_PRIVATE_EXPORT sizeFFromString(const QString &, bool *ok = 0);
+    QRectF Q_QUICK1_PRIVATE_EXPORT rectFFromString(const QString &, bool *ok = 0);
+    QVector3D Q_QUICK1_PRIVATE_EXPORT vector3DFromString(const QString &, bool *ok = 0);
 }
 
 QT_END_NAMESPACE

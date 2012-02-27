@@ -61,7 +61,7 @@ class QDeclarativeContext;
 class QDeclarativeError;
 
 class QDeclarativeViewPrivate;
-class Q_DECLARATIVE_EXPORT QDeclarativeView : public QGraphicsView
+class Q_QUICK1_EXPORT QDeclarativeView : public QGraphicsView
 {
     Q_OBJECT
     Q_PROPERTY(ResizeMode resizeMode READ resizeMode WRITE setResizeMode)

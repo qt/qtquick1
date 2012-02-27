@@ -60,7 +60,7 @@ class QDeclarativeContext;
 class QDeclarativeExpressionPrivate;
 class QDeclarativeContextData;
 class QScriptValue;
-class Q_DECLARATIVE_EXPORT QDeclarativeExpression : public QObject
+class Q_QUICK1_EXPORT QDeclarativeExpression : public QObject
 {
     Q_OBJECT
 public:

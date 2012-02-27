@@ -67,7 +67,7 @@ class QScriptContext;
 class QDeclarativeImageProvider;
 class QNetworkAccessManager;
 class QDeclarativeNetworkAccessManagerFactory;
-class Q_DECLARATIVE_EXPORT QDeclarativeEngine : public QObject
+class Q_QUICK1_EXPORT QDeclarativeEngine : public QObject
 {
     Q_PROPERTY(QString offlineStoragePath READ offlineStoragePath WRITE setOfflineStoragePath)
     Q_OBJECT
