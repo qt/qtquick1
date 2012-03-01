@@ -54,8 +54,8 @@ Image {
 Network transparency is supported throughout QML, for example:
 
 \list
-\o Fonts - the \c source property of FontLoader is a URL
-\o WebViews - the \c url property of WebView (obviously!)
+\li Fonts - the \c source property of FontLoader is a URL
+\li WebViews - the \c url property of WebView (obviously!)
 \endlist
 
 Even QML types themselves can be on the network - if the \l {QML Viewer} is used to load
@@ -148,10 +148,10 @@ The \c import statement is only network transparent if it has an "as" clause.
 
 More specifically:
 \list
-\o \c{import "dir"} only works on local file systems
-\o \c{import libraryUri} only works on local file systems
-\o \c{import "dir" as D} works network transparently
-\o \c{import libraryUrl as U} works network transparently
+\li \c{import "dir"} only works on local file systems
+\li \c{import libraryUri} only works on local file systems
+\li \c{import "dir" as D} works network transparently
+\li \c{import libraryUrl as U} works network transparently
 \endlist
 
 

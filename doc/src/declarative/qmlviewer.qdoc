@@ -171,9 +171,9 @@ information about the application's runtime environment through the following pr
 \table
 \row
 
-\o \c runtime.isActiveWindow
+\li \c runtime.isActiveWindow
 
-\o This property indicates whether the QML Viewer window is the current active
+\li This property indicates whether the QML Viewer window is the current active
 window on the system. It is useful for "pausing" an application, particularly
 animations, when the QML Viewer loses focus or moves to the background.
 
@@ -197,19 +197,19 @@ through the \c active property of the \l {QML:Qt::application}{Qt.application} o
 
 \row
 
-\o \c runtime.orientation
+\li \c runtime.orientation
 
-\o This property indicates the current orientation of the QML Viewer. On the
+\li This property indicates the current orientation of the QML Viewer. On the
 N900 platform and most S60 5.0-based or newer Symbian devices, this property
 automatically updates to reflect the device's actual orientation; on other platforms,
 this indicates the orientation currently selected in the QML Viewer's
 \e {Settings -> Properties} menu. The \c orientation value can be one of the following:
 
 \list
-\o \c Orientation.Portrait
-\o \c Orientation.Landscape
-\o \c Orientation.PortraitInverted (Portrait orientation, upside-down)
-\o \c Orientation.LandscapeInverted (Landscape orientation, upside-down)
+\li \c Orientation.Portrait
+\li \c Orientation.Landscape
+\li \c Orientation.PortraitInverted (Portrait orientation, upside-down)
+\li \c Orientation.LandscapeInverted (Landscape orientation, upside-down)
 \endlist
 
 When the viewer's orientation changes, the appearance of the loaded QML document

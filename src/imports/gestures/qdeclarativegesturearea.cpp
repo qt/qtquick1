@@ -113,23 +113,23 @@ public:
     properties of the gesture.
 
     \table
-    \header \o Signal \o Type \o Property \o Description
-    \row \o onTap \o point \o position \o the position of the tap
-    \row \o onTapAndHold \o point \o position \o the position of the tap
-    \row \o onPan \o real \o acceleration \o the acceleration of the pan
-    \row \o onPan \o point \o delta \o the offset from the previous input position to the current input
-    \row \o onPan \o point \o offset \o the total offset from the first input position to the current input position
-    \row \o onPan \o point \o lastOffset \o the previous value of offset
-    \row \o onPinch \o point \o centerPoint \o the midpoint between the two input points
-    \row \o onPinch \o point \o lastCenterPoint \o the previous value of centerPoint
-    \row \o onPinch \o point \o startCenterPoint \o the first value of centerPoint
-    \row \o onPinch \o real \o rotationAngle \o the angle covered by the gesture motion
-    \row \o onPinch \o real \o lastRotationAngle \o the previous value of rotationAngle
-    \row \o onPinch \o real \o totalRotationAngle \o the complete angle covered by the gesture
-    \row \o onPinch \o real \o scaleFactor \o the change in distance between the two input points
-    \row \o onPinch \o real \o lastScaleFactor \o the previous value of scaleFactor
-    \row \o onPinch \o real \o totalScaleFactor \o the complete scale factor of the gesture
-    \row \o onSwipe \o real \o swipeAngle \o the angle of the swipe
+    \header \li Signal \li Type \li Property \li Description
+    \row \li onTap \li point \li position \li the position of the tap
+    \row \li onTapAndHold \li point \li position \li the position of the tap
+    \row \li onPan \li real \li acceleration \li the acceleration of the pan
+    \row \li onPan \li point \li delta \li the offset from the previous input position to the current input
+    \row \li onPan \li point \li offset \li the total offset from the first input position to the current input position
+    \row \li onPan \li point \li lastOffset \li the previous value of offset
+    \row \li onPinch \li point \li centerPoint \li the midpoint between the two input points
+    \row \li onPinch \li point \li lastCenterPoint \li the previous value of centerPoint
+    \row \li onPinch \li point \li startCenterPoint \li the first value of centerPoint
+    \row \li onPinch \li real \li rotationAngle \li the angle covered by the gesture motion
+    \row \li onPinch \li real \li lastRotationAngle \li the previous value of rotationAngle
+    \row \li onPinch \li real \li totalRotationAngle \li the complete angle covered by the gesture
+    \row \li onPinch \li real \li scaleFactor \li the change in distance between the two input points
+    \row \li onPinch \li real \li lastScaleFactor \li the previous value of scaleFactor
+    \row \li onPinch \li real \li totalScaleFactor \li the complete scale factor of the gesture
+    \row \li onSwipe \li real \li swipeAngle \li the angle of the swipe
     \endtable
 
     Custom gestures, handled by onGesture, will have custom properties.

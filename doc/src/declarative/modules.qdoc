@@ -42,10 +42,10 @@ explicitly using the \c import statement to import them as modules. For
 example, an \c import statement is required to use:
 
 \list
-\o A component defined in another QML file that is not in the same directory
-\o A component defined in a QML file located on a remote server
-\o A \l{QDeclarativeExtensionPlugin}{QML extension plugin} library (unless the plugin is installed in the same directory)
-\o A JavaScript file (note this must be imported using \l {#namespaces}{named imports})
+\li A component defined in another QML file that is not in the same directory
+\li A component defined in a QML file located on a remote server
+\li A \l{QDeclarativeExtensionPlugin}{QML extension plugin} library (unless the plugin is installed in the same directory)
+\li A JavaScript file (note this must be imported using \l {#namespaces}{named imports})
 \endlist
 
 An \c import statement includes the module name, and possibly a version number.
@@ -76,11 +76,11 @@ directory using a relative or absolute path, like this:
 
 \table
 \row
-\o Directory structure
-\o Contents of application.qml
+\li Directory structure
+\li Contents of application.qml
 
 \row
-\o
+\li
 \code
 MyQMLProject
     |- MyComponents
@@ -91,7 +91,7 @@ MyQMLProject
         |- application.qml
 \endcode
 
-\o
+\li
 \qml
 import "../MyComponents"
 
@@ -181,9 +181,9 @@ locations to be searched by the QML engine for a matching module. By default, th
 contains:
 
 \list
-\o The directory of the current file
-\o The location specified by QLibraryInfo::ImportsPath
-\o Paths specified by the \c QML_IMPORT_PATH environment variable
+\li The directory of the current file
+\li The location specified by QLibraryInfo::ImportsPath
+\li Paths specified by the \c QML_IMPORT_PATH environment variable
 \endlist
 
 Additional import paths can be added through QDeclarativeEngine::addImportPath() or the
@@ -313,9 +313,9 @@ plugin <Name> [<Path>]
 typeinfo <File>
 \endcode
 
-\bold {# <Comment>} lines are used for comments. They are ignored by the QML engine.
+\b {# <Comment>} lines are used for comments. They are ignored by the QML engine.
 
-\bold {<TypeName> [<InitialVersion>] <File>} lines are used to add QML files as types.
+\b {<TypeName> [<InitialVersion>] <File>} lines are used to add QML files as types.
 <TypeName> is the type being made available, the optional <InitialVersion> is a version
 number, and <File> is the (relative) file name of the QML file defining the type.
 
@@ -323,7 +323,7 @@ Installed files do not need to import the module of which they are a part, as th
 to the other QML files in the module as relative (local) files, but
 if the module is imported from a remote location, those files must nevertheless be listed in
 the \c qmldir file. Types which you do not wish to export to users of your module
-may be marked with the \c internal keyword: \bold {internal <TypeName> <File>}.
+may be marked with the \c internal keyword: \b {internal <TypeName> <File>}.
 
 The same type can be provided by different files in different versions, in which
 case later versions (e.g. 1.2) must precede earlier versions (e.g. 1.0),
@@ -342,7 +342,7 @@ of installed software, since a versioned import \e only imports types for that v
 leaving other identifiers available, even if the actual installed version might otherwise
 provide those identifiers.
 
-\bold {plugin <Name> [<Path>]} lines are used to add \l{QDeclarativeExtensionPlugin}{QML C++ plugins} to the module. <Name> is the name of the library.  It is usually not the same as the file name
+\b {plugin <Name> [<Path>]} lines are used to add \l{QDeclarativeExtensionPlugin}{QML C++ plugins} to the module. <Name> is the name of the library.  It is usually not the same as the file name
 of the plugin binary, which is platform dependent; e.g. the library \c MyAppTypes would produce
 \c libMyAppTypes.so on Linux and \c MyAppTypes.dll on Windows.
 
@@ -351,7 +351,7 @@ plugin file, or a relative path from the directory containing the \c qmldir file
 containing the plugin file. By default the engine searches for the plugin library in the directory that contains the \c qmldir
 file. The plugin search path can be queried with QDeclarativeEngine::pluginPathList() and modified using QDeclarativeEngine::addPluginPath(). When running the \l {QML Viewer}, use the \c -P option to add paths to the plugin search path.
 
-\bold {typeinfo <File>} lines add \l{Writing a qmltypes file}{type description files} to
+\b {typeinfo <File>} lines add \l{Writing a qmltypes file}{type description files} to
 the module that can be read by QML tools such as Qt Creator to get information about the
 types defined by the module's plugins. <File> is the (relative) file name of a .qmltypes
 file.
@@ -396,9 +396,9 @@ to \c /tmp/imports/My/Module/qmldir to register it.
 
 While the qmldump tool covers most cases, it does not work if:
 \list
-\o The plugin uses a \l{QDeclarativeCustomParser}. The component that uses
+\li The plugin uses a \l{QDeclarativeCustomParser}. The component that uses
    the custom parser will not get its members documented.
-\o The plugin can not be loaded. In particular if you cross-compiled
+\li The plugin can not be loaded. In particular if you cross-compiled
    the plugin for a different architecture, qmldump will not be able to
    load it.
 \endlist

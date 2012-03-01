@@ -202,18 +202,18 @@ void QDeclarativeViewPrivate::itemGeometryChanged(QDeclarativeItem *resizeItem, 
     QDeclarativeView provides:
 
     \list
-    \o Management of QDeclarativeComponent loading and object creation
-    \o Initialization of QGraphicsView for optimal performance with QML using these settings:
+    \li Management of QDeclarativeComponent loading and object creation
+    \li Initialization of QGraphicsView for optimal performance with QML using these settings:
         \list
-        \o QGraphicsView::setOptimizationFlags(QGraphicsView::DontSavePainterState)
-        \o QGraphicsView::setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate)
-        \o QGraphicsScene::setItemIndexMethod(QGraphicsScene::NoIndex)
+        \li QGraphicsView::setOptimizationFlags(QGraphicsView::DontSavePainterState)
+        \li QGraphicsView::setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate)
+        \li QGraphicsScene::setItemIndexMethod(QGraphicsScene::NoIndex)
         \endlist
-    \o Initialization of QGraphicsView for QML key handling using these settings:
+    \li Initialization of QGraphicsView for QML key handling using these settings:
         \list
-        \o QGraphicsView::viewport()->setFocusPolicy(Qt::NoFocus)
-        \o QGraphicsView::setFocusPolicy(Qt::StrongFocus)
-        \o QGraphicsScene::setStickyFocus(true)
+        \li QGraphicsView::viewport()->setFocusPolicy(Qt::NoFocus)
+        \li QGraphicsView::setFocusPolicy(Qt::StrongFocus)
+        \li QGraphicsScene::setStickyFocus(true)
         \endlist
     \endlist
 

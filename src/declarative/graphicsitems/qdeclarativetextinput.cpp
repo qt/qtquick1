@@ -133,11 +133,11 @@ void QDeclarativeTextInput::setText(const QString &s)
 
     The weight can be one of:
     \list
-    \o Font.Light
-    \o Font.Normal - the default
-    \o Font.DemiBold
-    \o Font.Bold
-    \o Font.Black
+    \li Font.Light
+    \li Font.Normal - the default
+    \li Font.DemiBold
+    \li Font.Bold
+    \li Font.Black
     \endlist
 
     \qml
@@ -203,11 +203,11 @@ void QDeclarativeTextInput::setText(const QString &s)
     Sets the capitalization for the text.
 
     \list
-    \o Font.MixedCase - This is the normal text rendering option where no capitalization change is applied.
-    \o Font.AllUppercase - This alters the text to be rendered in all uppercase type.
-    \o Font.AllLowercase	 - This alters the text to be rendered in all lowercase type.
-    \o Font.SmallCaps -	This alters the text to be rendered in small-caps type.
-    \o Font.Capitalize - This alters the text to be rendered with the first character of each word as an uppercase character.
+    \li Font.MixedCase - This is the normal text rendering option where no capitalization change is applied.
+    \li Font.AllUppercase - This alters the text to be rendered in all uppercase type.
+    \li Font.AllLowercase - This alters the text to be rendered in all lowercase type.
+    \li Font.SmallCaps - This alters the text to be rendered in small-caps type.
+    \li Font.Capitalize - This alters the text to be rendered with the first character of each word as an uppercase character.
     \endlist
 
     \qml
@@ -737,8 +737,8 @@ void QDeclarativeTextInput::setAutoScroll(bool b)
     The possible values for this property are:
     
     \list
-    \o DoubleValidator.StandardNotation 
-    \o DoubleValidator.ScientificNotation (default)
+    \li DoubleValidator.StandardNotation
+    \li DoubleValidator.ScientificNotation (default)
     \endlist
 
     If this property is set to DoubleValidator.ScientificNotation, the written number may have an exponent part (e.g. 1.5E-2).
@@ -877,10 +877,10 @@ void QDeclarativeTextInputPrivate::updateInputMethodHints()
 
     Specifies how the text should be displayed in the TextInput.
     \list
-    \o TextInput.Normal - Displays the text as it is. (Default)
-    \o TextInput.Password - Displays asterixes instead of characters.
-    \o TextInput.NoEcho - Displays nothing.
-    \o TextInput.PasswordEchoOnEdit - Displays characters as they are entered
+    \li TextInput.Normal - Displays the text as it is. (Default)
+    \li TextInput.Password - Displays asterixes instead of characters.
+    \li TextInput.NoEcho - Displays nothing.
+    \li TextInput.PasswordEchoOnEdit - Displays characters as they are entered
     while editing, otherwise displays asterisks.
     \endlist
 */
@@ -1030,8 +1030,8 @@ int QDeclarativeTextInput::positionAt(int x) const
     The cursor position type specifies how the cursor position should be resolved.
 
     \list
-    \o TextInput.CursorBetweenCharacters - Returns the position between characters that is nearest x.
-    \o TextInput.CursorOnCharacter - Returns the position before the character that is nearest x.
+    \li TextInput.CursorBetweenCharacters - Returns the position between characters that is nearest x.
+    \li TextInput.CursorOnCharacter - Returns the position before the character that is nearest x.
     \endlist
 */
 int QDeclarativeTextInput::positionAt(int x, CursorPosition position) const
@@ -1579,8 +1579,8 @@ void QDeclarativeTextInput::setSelectByMouse(bool on)
     Specifies how text should be selected using a mouse.
 
     \list
-    \o TextInput.SelectCharacters - The selection is updated with individual characters. (Default)
-    \o TextInput.SelectWords - The selection is updated with whole words.
+    \li TextInput.SelectCharacters - The selection is updated with individual characters. (Default)
+    \li TextInput.SelectWords - The selection is updated with whole words.
     \endlist
 
     This property only applies when \l selectByMouse is true.
@@ -1636,9 +1636,9 @@ void QDeclarativeTextInput::moveCursorSelection(int position)
     basis.  If not specified the selection mode will default to TextInput.SelectCharacters.
 
     \list
-    \o TextEdit.SelectCharacters - Sets either the selectionStart or selectionEnd (whichever was at
+    \li TextEdit.SelectCharacters - Sets either the selectionStart or selectionEnd (whichever was at
     the previous cursor position) to the specified position.
-    \o TextEdit.SelectWords - Sets the selectionStart and selectionEnd to include all
+    \li TextEdit.SelectWords - Sets the selectionStart and selectionEnd to include all
     words between the specified postion and the previous cursor position.  Words partially in the
     range are included.
     \endlist

@@ -48,11 +48,11 @@ different language areas.
 
 Added the following properties:
 \list
-\o \l {Text::}{lineHeight}
-\o \l {Text::}{lineHeightMode}
-\o \l {Text::}{lineCount}
-\o \l {Text::}{maximumLineCount}
-\o \l {Text::}{truncated}
+\li \l {Text::}{lineHeight}
+\li \l {Text::}{lineHeightMode}
+\li \l {Text::}{lineCount}
+\li \l {Text::}{maximumLineCount}
+\li \l {Text::}{truncated}
 \endlist
 
 horizontalAlignment now accepts Text.AlignJustify alignment mode.
@@ -61,103 +61,103 @@ horizontalAlignment now accepts Text.AlignJustify alignment mode.
 
 Added the following properties, methods and signal handlers:
 \list
-\o \l {TextEdit::}{canPaste}
-\o \l {TextEdit::}{lineCount}
-\o \l {TextEdit::}{inputMethodComposing}
-\o \l {TextEdit::}{mouseSelectionMode}
-\o \l {TextEdit::}{deselect()}
-\o \l {TextEdit::}{isRightToLeft()}
-\o \l {TextEdit::}{moveCursorSelection()} to enable selection by word
-\o \l {TextEdit::}{onLinkActivated}
+\li \l {TextEdit::}{canPaste}
+\li \l {TextEdit::}{lineCount}
+\li \l {TextEdit::}{inputMethodComposing}
+\li \l {TextEdit::}{mouseSelectionMode}
+\li \l {TextEdit::}{deselect()}
+\li \l {TextEdit::}{isRightToLeft()}
+\li \l {TextEdit::}{moveCursorSelection()} to enable selection by word
+\li \l {TextEdit::}{onLinkActivated}
 \endlist
 
 \section2 TextInput
 
 Added the following properties and methods:
 \list
-\o \l {TextInput::}{canPaste}
-\o \l {TextInput::}{inputMethodComposing}
-\o \l {TextInput::}{mouseSelectionMode}
-\o \l {TextInput::}{deselect()}
-\o \l {TextInput::}{isRightToLeft()}
-\o \l {TextInput::}{moveCursorSelection()} to enable selection by word
+\li \l {TextInput::}{canPaste}
+\li \l {TextInput::}{inputMethodComposing}
+\li \l {TextInput::}{mouseSelectionMode}
+\li \l {TextInput::}{deselect()}
+\li \l {TextInput::}{isRightToLeft()}
+\li \l {TextInput::}{moveCursorSelection()} to enable selection by word
 \endlist
 
 \section2 Image, BorderImage and AnimatedImage
 
 Added the following properties:
 \list
-\o \l{Image::}{cache}
-\o \l{Image::}{mirror}
+\li \l{Image::}{cache}
+\li \l{Image::}{mirror}
 \endlist
 
 \section2 Item
 
 Added the following properties:
 \list
-\o \l{Item::}{implicitWidth} and \l{Item::}{implicitHeight}
+\li \l{Item::}{implicitWidth} and \l{Item::}{implicitHeight}
 \endlist
 
 \section2 Flickable
 
 Added the following methods:
 \list
-\o \l{Flickable::}{resizeContent()}
-\o \l{Flickable::}{returnToBounds()}
+\li \l{Flickable::}{resizeContent()}
+\li \l{Flickable::}{returnToBounds()}
 \endlist
 
 \section2 MouseArea
 
 Added the following property:
 \list
-\o \l{MouseArea::}{preventStealing}
+\li \l{MouseArea::}{preventStealing}
 \endlist
 
 \section2 ListView and GridView
 
 Added the following properties and methods:
 \list
-\o \l{ListView::}{layoutDirection}
-\o \l{ListView::}{positionViewAtBeginning()}
-\o \l{ListView::}{positionViewAtEnd()}
+\li \l{ListView::}{layoutDirection}
+\li \l{ListView::}{positionViewAtBeginning()}
+\li \l{ListView::}{positionViewAtEnd()}
 \endlist
 
 \section2 Flow, Grid and Row
 
 Added the following property:
 \list
-\o \l{Flow::}{layoutDirection}
+\li \l{Flow::}{layoutDirection}
 \endlist
 
 \section2 Repeater
 
 Added the following methods and signal handlers:
 \list
-\o \l{Repeater::}{onItemAdded}
-\o \l{Repeater::}{onItemRemoved}
-\o \l{Repeater::}{itemAt()}
+\li \l{Repeater::}{onItemAdded}
+\li \l{Repeater::}{onItemRemoved}
+\li \l{Repeater::}{itemAt()}
 \endlist
 
 \section2 Component
 
 \list
-\o The \l{Component::}{createObject()} method now accepts a map of initial
+\li The \l{Component::}{createObject()} method now accepts a map of initial
 property values for the created object.
 \endlist
 
 \section2 Qt
 
 \list
-\o Added the \l {QML:Qt::application}{Qt.application} object to hold generic
+\li Added the \l {QML:Qt::application}{Qt.application} object to hold generic
 global application properties.
 \endlist
 
 \section2 Other changes
 
 \list
-\o Functions can be \l{Property Binding#Property Binding}{assigned to properties from JavaScript}
+\li Functions can be \l{Property Binding#Property Binding}{assigned to properties from JavaScript}
 to create property bindings.
-\o QtQuick now supports Right to Left layout in positioners, views, anchors and text elements.
+\li QtQuick now supports Right to Left layout in positioners, views, anchors and text elements.
 \endlist
 
 

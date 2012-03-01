@@ -668,9 +668,9 @@ void QDeclarativeWorkerScript::setSource(const QUrl &source)
     types:
 
     \list
-    \o boolean, number, string
-    \o JavaScript objects and arrays
-    \o ListModel objects (any other type of QObject* is not allowed)
+    \li boolean, number, string
+    \li JavaScript objects and arrays
+    \li ListModel objects (any other type of QObject* is not allowed)
     \endlist
 
     All objects and arrays are copied to the \c message. With the exception

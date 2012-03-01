@@ -41,10 +41,10 @@ A set of standard views are provided in the basic set of Qt Quick
 graphical elements:
 
 \list
-\o \l{ListView} arranges items in a horizontal or vertical list
-\o \l{GridView} arranges items in a grid within the available space
-\o \l{PathView} arranges items on a path
-\o \l{WebView}{WebView} - available from the \l {QtWebKit QML Module}.
+\li \l{ListView} arranges items in a horizontal or vertical list
+\li \l{GridView} arranges items in a grid within the available space
+\li \l{PathView} arranges items on a path
+\li \l{WebView}{WebView} - available from the \l {QtWebKit QML Module}.
 \endlist
 Unlike other views, \l WebView is not a fully-featured view item, and needs
 to be combined with a \l Flickable item to create a view that performs like

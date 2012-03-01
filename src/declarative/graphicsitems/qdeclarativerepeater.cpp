@@ -164,10 +164,10 @@ QDeclarativeRepeater::~QDeclarativeRepeater()
     This property can be set to any of the supported \l {qmlmodels}{data models}:
 
     \list
-    \o A number that indicates the number of delegates to be created by the repeater
-    \o A model (e.g. a ListModel item, or a QAbstractItemModel subclass)
-    \o A string list
-    \o An object list
+    \li A number that indicates the number of delegates to be created by the repeater
+    \li A model (e.g. a ListModel item, or a QAbstractItemModel subclass)
+    \li A string list
+    \li An object list
     \endlist
 
     The type of model affects the properties that are exposed to the \l delegate.
@@ -241,8 +241,8 @@ void QDeclarativeRepeater::setModel(const QVariant &model)
 
     \table
     \row
-    \o \snippet doc/src/snippets/declarative/repeaters/repeater.qml index
-    \o \image repeater-index.png
+    \li \snippet doc/src/snippets/declarative/repeaters/repeater.qml index
+    \li \image repeater-index.png
     \endtable
 
     If the \l model is a \l{QStringList-based model}{string list} or
@@ -252,8 +252,8 @@ void QDeclarativeRepeater::setModel(const QVariant &model)
 
     \table
     \row
-    \o \snippet doc/src/snippets/declarative/repeaters/repeater.qml modeldata
-    \o \image repeater-modeldata.png
+    \li \snippet doc/src/snippets/declarative/repeaters/repeater.qml modeldata
+    \li \image repeater-modeldata.png
     \endtable
 
     If the \l model is a model object (such as a \l ListModel) the delegate

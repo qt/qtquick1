@@ -129,8 +129,8 @@ information on the \e id property.)
 
 Commenting in QML is similar to JavaScript.
 \list
-\o Single line comments start with // and finish at the end of the line.
-\o Multiline comments start with /* and finish with *\/
+\li Single line comments start with // and finish at the end of the line.
+\li Multiline comments start with /* and finish with *\/
 \endlist
 
 \snippet doc/src/snippets/declarative/comments.qml 0

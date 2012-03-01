@@ -60,43 +60,43 @@ can be used to produce sophisticated interfaces and applications:
 \table
 \row
 
-\o
+\li
 \l{demos/declarative/calculator}{Calculator}
 \image qml-calculator-example-small.png
 
-\o
+\li
 \l{demos/declarative/flickr}{Flickr Mobile}
 \image qml-flickr-demo-small.png
 
-\o
+\li
 \l{demos/declarative/minehunt}{Minehunt}
 \image qml-minehunt-demo-small.png
 
 \row
 
-\o
+\li
 \l{demos/declarative/photoviewer}{Photo Viewer}
 \image qml-photoviewer-demo-small.png
 
-\o
+\li
 \l{demos/declarative/rssnews}{RSS News Reader}
 \image qml-rssnews-demo-small.png
 
-\o
+\li
 \l{demos/declarative/samegame}{Same Game}
 \image qml-samegame-demo-small.png
 
 \row
 
-\o
+\li
 \l{demos/declarative/snake}{Snake}
 \image qml-snake-demo-small.png
 
-\o
+\li
 \l{demos/declarative/twitter}{Twitter}
 \image qml-twitter-demo-small.png
 
-\o
+\li
 \l{demos/declarative/webbrowser}{Web Browser}
 \image qml-webbrowser-demo-small.png
 
@@ -116,127 +116,127 @@ The examples can be found in Qt's \c examples/declarative directory.
 
 \section2 Animation
 \list
-\o \l{declarative/animation/basics/color-animation}{Color Animation}
-\o \l{declarative/animation/behaviors/behavior-example}{Behaviors}
-\o \l{declarative/animation/easing}{Easing}
-\o \l{declarative/animation/basics/property-animation}{Property Animation}
-\o \l{declarative/animation/states}{States}
-\o \l{declarative/animation/behaviors/wigglytext}{Wiggly Text}
+\li \l{declarative/animation/basics/color-animation}{Color Animation}
+\li \l{declarative/animation/behaviors/behavior-example}{Behaviors}
+\li \l{declarative/animation/easing}{Easing}
+\li \l{declarative/animation/basics/property-animation}{Property Animation}
+\li \l{declarative/animation/states}{States}
+\li \l{declarative/animation/behaviors/wigglytext}{Wiggly Text}
 \endlist
 
 \section2 Image Elements
 \list
-\o \l{declarative/imageelements/borderimage}{BorderImage}
-\o \l{declarative/imageelements/image}{Image}
+\li \l{declarative/imageelements/borderimage}{BorderImage}
+\li \l{declarative/imageelements/image}{Image}
 \endlist
 
 \section2 Text
 \list
-\o \l{declarative/text/fonts}{Fonts}
-\o \l{declarative/text/textselection}{Text Selection}
+\li \l{declarative/text/fonts}{Fonts}
+\li \l{declarative/text/textselection}{Text Selection}
 \endlist
 
 \section2 Positioners
 \list
-\o \l{declarative/positioners}{Example}
+\li \l{declarative/positioners}{Example}
 \endlist
 
 \section2 Key Interaction
 \list
-\o \l{declarative/keyinteraction/focus}{Focus}
+\li \l{declarative/keyinteraction/focus}{Focus}
 \endlist
 
 \section2 Touch Interaction
 \list
-\o \l{declarative/touchinteraction/mousearea}{MouseArea}
+\li \l{declarative/touchinteraction/mousearea}{MouseArea}
 \endlist
 
 \section2 UI Components
 \list
-\o \l{declarative/ui-components/dialcontrol}{Dial control}
-\o \l{declarative/ui-components/flipable}{Flipable}
-\o \l{declarative/ui-components/progressbar}{Progress bar}
-\o \l{declarative/ui-components/scrollbar}{Scroll bar}
-\o \l{declarative/ui-components/searchbox}{Search box}
-\o \l{declarative/ui-components/slideswitch}{Slide switch}
-\o \l{declarative/ui-components/spinner}{Spinner}
-\o \l{declarative/ui-components/tabwidget}{Tab widget}
+\li \l{declarative/ui-components/dialcontrol}{Dial control}
+\li \l{declarative/ui-components/flipable}{Flipable}
+\li \l{declarative/ui-components/progressbar}{Progress bar}
+\li \l{declarative/ui-components/scrollbar}{Scroll bar}
+\li \l{declarative/ui-components/searchbox}{Search box}
+\li \l{declarative/ui-components/slideswitch}{Slide switch}
+\li \l{declarative/ui-components/spinner}{Spinner}
+\li \l{declarative/ui-components/tabwidget}{Tab widget}
 \endlist
 
 \section2 Toys
 \list
-\o \l{declarative/toys/clocks}{Clocks}
-\o \l{declarative/toys/corkboards}{Corkboards}
-\o \l{declarative/toys/dynamicscene}{Dynamic Scene}
-\o \l{declarative/toys/tic-tac-toe}{Tic Tac Toe}
-\o \l{declarative/toys/tvtennis}{TV Tennis}
+\li \l{declarative/toys/clocks}{Clocks}
+\li \l{declarative/toys/corkboards}{Corkboards}
+\li \l{declarative/toys/dynamicscene}{Dynamic Scene}
+\li \l{declarative/toys/tic-tac-toe}{Tic Tac Toe}
+\li \l{declarative/toys/tvtennis}{TV Tennis}
 \endlist
 
 \section2 Models and Views
 \list
-\o \l{declarative/modelviews/gridview}{GridView}
-\o \l{Models and Views: ListView Examples}{ListView}
-\o \l{declarative/modelviews/pathview}{PathView}
-\o \l{declarative/modelviews/package}{Package}
-\o \l{declarative/modelviews/parallax}{Parallax}
-\o \l{declarative/modelviews/visualitemmodel}{VisualItemModel}
+\li \l{declarative/modelviews/gridview}{GridView}
+\li \l{Models and Views: ListView Examples}{ListView}
+\li \l{declarative/modelviews/pathview}{PathView}
+\li \l{declarative/modelviews/package}{Package}
+\li \l{declarative/modelviews/parallax}{Parallax}
+\li \l{declarative/modelviews/visualitemmodel}{VisualItemModel}
 
-\o \l{declarative/modelviews/stringlistmodel}{String ListModel}
-\o \l{declarative/modelviews/objectlistmodel}{Object ListModel}
-\o \l{declarative/modelviews/abstractitemmodel}{AbstractItemModel}
+\li \l{declarative/modelviews/stringlistmodel}{String ListModel}
+\li \l{declarative/modelviews/objectlistmodel}{Object ListModel}
+\li \l{declarative/modelviews/abstractitemmodel}{AbstractItemModel}
 
-\o \l{Models and Views: WebView Examples}{WebView}
+\li \l{Models and Views: WebView Examples}{WebView}
 \endlist
 
 \section2 XML
 \list
-\o \l{declarative/xml/xmlhttprequest}{XmlHttpRequest}
+\li \l{declarative/xml/xmlhttprequest}{XmlHttpRequest}
 \endlist
 
 \section2 Internationalization (i18n)
 \list
-\o \l{declarative/i18n}{Example}
+\li \l{declarative/i18n}{Example}
 \endlist
 
 \section2 Right-to-left User Interfaces
 \list
-\o \l{declarative/righttoleft/layoutmirroring}{Layout mirroring}
-\o \l{declarative/righttoleft/layoutdirection}{Layout direction}
-\o \l{declarative/righttoleft/textalignment}{Text alignment}
+\li \l{declarative/righttoleft/layoutmirroring}{Layout mirroring}
+\li \l{declarative/righttoleft/layoutdirection}{Layout direction}
+\li \l{declarative/righttoleft/textalignment}{Text alignment}
 \endlist
 
 \section2 Threading
 \list
-\o \l{declarative/threading/threadedlistmodel}{Threaded ListModel}
-\o \l{declarative/threading/workerscript}{WorkerScript}
+\li \l{declarative/threading/threadedlistmodel}{Threaded ListModel}
+\li \l{declarative/threading/workerscript}{WorkerScript}
 \endlist
 
 \section2 Screen Orientation
 \list
-\o \l{declarative/screenorientation}{Example}
+\li \l{declarative/screenorientation}{Example}
 \endlist
 
 \section2 SQL Local Storage
 \list
-\o \l{declarative/sqllocalstorage}{Example}
+\li \l{declarative/sqllocalstorage}{Example}
 \endlist
 
 \section2 C++ Extensions
 \list
-\o \l{declarative-cppextensions-reference.html}{Reference examples}
-\o \l{declarative/cppextensions/plugins}{Plugins}
-\o \l{declarative-cppextensions-qgraphicslayouts.html}{QGraphicsLayouts}
-\o \l{declarative/cppextensions/qwidgets}{QWidgets}
-\o \l{declarative/cppextensions/imageprovider}{Image provider}
-\o \l{declarative/cppextensions/networkaccessmanagerfactory}{Network access manager factory}
+\li \l{declarative-cppextensions-reference.html}{Reference examples}
+\li \l{declarative/cppextensions/plugins}{Plugins}
+\li \l{declarative-cppextensions-qgraphicslayouts.html}{QGraphicsLayouts}
+\li \l{declarative/cppextensions/qwidgets}{QWidgets}
+\li \l{declarative/cppextensions/imageprovider}{Image provider}
+\li \l{declarative/cppextensions/networkaccessmanagerfactory}{Network access manager factory}
 \endlist
 
 
 \section1 Labs
 
 \list
-\o \l{src/imports/folderlistmodel}{Folder List Model} - a C++ model plugin
-\o \l{declarative/shadereffects}{Shader Effects}
+\li \l{src/imports/folderlistmodel}{Folder List Model} - a C++ model plugin
+\li \l{declarative/shadereffects}{Shader Effects}
 \endlist
 
 */

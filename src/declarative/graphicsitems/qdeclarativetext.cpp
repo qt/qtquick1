@@ -777,11 +777,11 @@ QDeclarativeText::~QDeclarativeText()
 
     The weight can be one of:
     \list
-    \o Font.Light
-    \o Font.Normal - the default
-    \o Font.DemiBold
-    \o Font.Bold
-    \o Font.Black
+    \li Font.Light
+    \li Font.Normal - the default
+    \li Font.DemiBold
+    \li Font.Bold
+    \li Font.Black
     \endlist
 
     \qml
@@ -847,11 +847,11 @@ QDeclarativeText::~QDeclarativeText()
     Sets the capitalization for the text.
 
     \list
-    \o Font.MixedCase - This is the normal text rendering option where no capitalization change is applied.
-    \o Font.AllUppercase - This alters the text to be rendered in all uppercase type.
-    \o Font.AllLowercase	 - This alters the text to be rendered in all lowercase type.
-    \o Font.SmallCaps -	This alters the text to be rendered in small-caps type.
-    \o Font.Capitalize - This alters the text to be rendered with the first character of each word as an uppercase character.
+    \li Font.MixedCase - This is the normal text rendering option where no capitalization change is applied.
+    \li Font.AllUppercase - This alters the text to be rendered in all uppercase type.
+    \li Font.AllLowercase - This alters the text to be rendered in all lowercase type.
+    \li Font.SmallCaps - This alters the text to be rendered in small-caps type.
+    \li Font.Capitalize - This alters the text to be rendered with the first character of each word as an uppercase character.
     \endlist
 
     \qml
@@ -967,10 +967,10 @@ void QDeclarativeText::setColor(const QColor &color)
 
     Supported text styles are:
     \list
-    \o Text.Normal - the default
-    \o Text.Outline
-    \o Text.Raised
-    \o Text.Sunken
+    \li Text.Normal - the default
+    \li Text.Outline
+    \li Text.Raised
+    \li Text.Sunken
     \endlist
 
     \qml
@@ -1163,10 +1163,10 @@ void QDeclarativeText::setVAlign(VAlignment align)
     wrap if an explicit width has been set.  wrapMode can be one of:
 
     \list
-    \o Text.NoWrap (default) - no wrapping will be performed. If the text contains insufficient newlines, then \l paintedWidth will exceed a set width.
-    \o Text.WordWrap - wrapping is done on word boundaries only. If a word is too long, \l paintedWidth will exceed a set width.
-    \o Text.WrapAnywhere - wrapping is done at any point on a line, even if it occurs in the middle of a word.
-    \o Text.Wrap - if possible, wrapping occurs at a word boundary; otherwise it will occur at the appropriate point on the line, even in the middle of a word.
+    \li Text.NoWrap (default) - no wrapping will be performed. If the text contains insufficient newlines, then \l paintedWidth will exceed a set width.
+    \li Text.WordWrap - wrapping is done on word boundaries only. If a word is too long, \l paintedWidth will exceed a set width.
+    \li Text.WrapAnywhere - wrapping is done at any point on a line, even if it occurs in the middle of a word.
+    \li Text.Wrap - if possible, wrapping occurs at a word boundary; otherwise it will occur at the appropriate point on the line, even in the middle of a word.
     \endlist
 */
 QDeclarativeText::WrapMode QDeclarativeText::wrapMode() const
@@ -1269,10 +1269,10 @@ void QDeclarativeText::resetMaximumLineCount()
     Supported text formats are:
     
     \list
-    \o Text.AutoText (default)
-    \o Text.PlainText
-    \o Text.RichText
-    \o Text.StyledText
+    \li Text.AutoText (default)
+    \li Text.PlainText
+    \li Text.RichText
+    \li Text.StyledText
     \endlist
 
     If the text format is \c Text.AutoText the text element
@@ -1294,7 +1294,7 @@ void QDeclarativeText::resetMaximumLineCount()
 
     \table
     \row
-    \o
+    \li
     \qml
 Column {
     Text {
@@ -1313,7 +1313,7 @@ Column {
     }
 }
     \endqml
-    \o \image declarative-textformat.png
+    \li \image declarative-textformat.png
     \endtable
 */
 QDeclarativeText::TextFormat QDeclarativeText::textFormat() const
@@ -1351,10 +1351,10 @@ void QDeclarativeText::setTextFormat(TextFormat format)
 
     Eliding can be:
     \list
-    \o Text.ElideNone  - the default
-    \o Text.ElideLeft
-    \o Text.ElideMiddle
-    \o Text.ElideRight
+    \li Text.ElideNone  - the default
+    \li Text.ElideLeft
+    \li Text.ElideMiddle
+    \li Text.ElideRight
     \endlist
 
     If this property is set to Text.ElideRight, it can be used with multiline
@@ -1489,9 +1489,9 @@ void QDeclarativeText::setLineHeight(qreal lineHeight)
     The possible values are:
 
     \list
-    \o Text.ProportionalHeight (default) - this sets the spacing proportional to the
+    \li Text.ProportionalHeight (default) - this sets the spacing proportional to the
        line (as a multiplier). For example, set to 2 for double spacing.
-    \o Text.FixedHeight - this sets the line height to a fixed line height (in pixels).
+    \li Text.FixedHeight - this sets the line height to a fixed line height (in pixels).
     \endlist
 */
 QDeclarativeText::LineHeightMode QDeclarativeText::lineHeightMode() const

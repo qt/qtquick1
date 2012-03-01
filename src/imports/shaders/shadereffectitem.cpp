@@ -76,7 +76,7 @@ static const char qt_emptyAttributeName[] = "";
     \brief The ShaderEffectItem object alters the output of given item with OpenGL shaders.
     \inherits Item
 
-    ShaderEffectItem is available in the \bold{Qt.labs.shaders 1.0} module.
+    ShaderEffectItem is available in the \b{Qt.labs.shaders 1.0} module.
     \e {Elements in the Qt.labs module are not guaranteed to remain compatible
     in future versions.}
 
@@ -99,15 +99,15 @@ static const char qt_emptyAttributeName[] = "";
     A standard set of vertex attributes are provided for the shaders:
 
     \list
-    \o qt_Vertex - The primary position of the vertex.
-    \o qt_MultiTexCoord0 - The texture co-ordinate at each vertex for texture unit 0.
+    \li qt_Vertex - The primary position of the vertex.
+    \li qt_MultiTexCoord0 - The texture co-ordinate at each vertex for texture unit 0.
     \endlist
 
     Additionally following uniforms are available for shaders:
 
     \list
-    \o qt_Opacity - Effective opacity of the item.
-    \o qt_ModelViewProjectionMatrix - current 4x4 transformation matrix of the item.
+    \li qt_Opacity - Effective opacity of the item.
+    \li qt_ModelViewProjectionMatrix - current 4x4 transformation matrix of the item.
     \endlist
 
     Furthermore, it is possible to utilize automatic QML propertybinding into vertex- and fragment shader
@@ -115,38 +115,38 @@ static const char qt_emptyAttributeName[] = "";
 
     \table
     \header
-        \o QML property
-        \o GLSL uniform
+        \li QML property
+        \li GLSL uniform
     \row
-        \o property double foo: 1.0
-        \o uniform highp float foo
+        \li property double foo: 1.0
+        \li uniform highp float foo
     \row
-        \o property real foo: 1.0
-        \o uniform highp float foo
+        \li property real foo: 1.0
+        \li uniform highp float foo
     \row
-        \o property bool foo: true
-        \o uniform bool foo
+        \li property bool foo: true
+        \li uniform bool foo
     \row
-        \o property int foo: 1
-        \o uniform int foo
+        \li property int foo: 1
+        \li uniform int foo
     \row
-        \o property variant foo: Qt.point(1,1)
-        \o uniform highp vec2 foo
+        \li property variant foo: Qt.point(1,1)
+        \li uniform highp vec2 foo
     \row
-        \o property variant foo: Qt.size(1, 1)
-        \o uniform highp vec2 foo
+        \li property variant foo: Qt.size(1, 1)
+        \li uniform highp vec2 foo
     \row
-        \o property variant foo: Qt.rect(1, 1, 2, 2)
-        \o uniform highp vec4 foo
+        \li property variant foo: Qt.rect(1, 1, 2, 2)
+        \li uniform highp vec4 foo
     \row
-        \o property color foo: "#00000000"
-        \o uniform lowp vec4 foo
+        \li property color foo: "#00000000"
+        \li uniform lowp vec4 foo
     \row
-        \o property variant foo: Qt.vector3d(1.0, 2.0, 0.0)
-        \o uniform highp vec3 foo
+        \li property variant foo: Qt.vector3d(1.0, 2.0, 0.0)
+        \li uniform highp vec3 foo
     \row
-        \o property variant foo: ShaderEffectSource { SourceItem: bar }
-        \o uniform lowp sampler2D foo
+        \li property variant foo: ShaderEffectSource { SourceItem: bar }
+        \li uniform lowp sampler2D foo
     \endtable
     \note
     The uniform precision definitions in the above table are not strict, it is possible to choose the uniform

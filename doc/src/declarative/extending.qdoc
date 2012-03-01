@@ -90,11 +90,11 @@ properties of the types listed in the \l{QML Basic Types}
 document, which includes the following:
 
 \list
-\o bool, unsigned int, int, float, double, qreal
-\o QString, QUrl, QColor
-\o QDate, QTime, QDateTime
-\o QPoint, QPointF, QSize, QSizeF, QRect, QRectF
-\o QVariant
+\li bool, unsigned int, int, float, double, qreal
+\li QString, QUrl, QColor
+\li QDate, QTime, QDateTime
+\li QPoint, QPointF, QSize, QSizeF, QRect, QRectF
+\li QVariant
 \endlist
 
 When a property of a supported type is added to a C++ class, in a QML
@@ -432,13 +432,13 @@ It is an element's responsibility to ensure that it does not access or return
 pointers to invalid objects.  QML makes the following guarentees:
 
 \list
-\o An object assigned to a QObject (or QObject-derived) pointer property will be
+\li An object assigned to a QObject (or QObject-derived) pointer property will be
 valid at the time of assignment.
 
 Following assignment, it is the responsibility of the class to subsequently guard
 this pointer, either through a class specific method or the generic QPointer class.
 
-\o An object assigned to a QVariant will be valid at the time of assignment.
+\li An object assigned to a QVariant will be valid at the time of assignment.
 
 When assigning an object to a QVariant property, QML will always use a QMetaType::QObjectStar
 typed QVariant.  It is the responsibility of the class to guard the pointer.  A
@@ -446,7 +446,7 @@ general rule when writing a class that uses QVariant properties is to check the
 type of the QVariant when it is set and if the type is not handled by your class,
 reset it to an invalid variant.
 
-\o An object assigned to a QObject (or QObject-derived) list property will be
+\li An object assigned to a QObject (or QObject-derived) list property will be
 valid at the time of assignment.
 
 Following assignment, it is the responsibility of the class to subsequently guard

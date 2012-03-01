@@ -158,10 +158,10 @@ which in turn can call \c factorial() in \c factorial.js, as it has included
 
 \table
 \row
-\o {1,2} \snippet doc/src/snippets/declarative/integrating-javascript/includejs/app.qml 0
-\o \snippet doc/src/snippets/declarative/integrating-javascript/includejs/script.js 0
+\li {1,2} \snippet doc/src/snippets/declarative/integrating-javascript/includejs/app.qml 0
+\li \snippet doc/src/snippets/declarative/integrating-javascript/includejs/script.js 0
 \row
-\o \snippet doc/src/snippets/declarative/integrating-javascript/includejs/factorial.js 0
+\li \snippet doc/src/snippets/declarative/integrating-javascript/includejs/factorial.js 0
 \endtable
 
 Notice that calling \l {QML:Qt::include()}{Qt.include()} imports all functions from
@@ -218,8 +218,8 @@ in \c script.js:
 
 \table
 \row
-\o \snippet doc/src/snippets/declarative/integrating-javascript/connectjs.qml 0
-\o \snippet doc/src/snippets/declarative/integrating-javascript/script.js 0
+\li \snippet doc/src/snippets/declarative/integrating-javascript/connectjs.qml 0
+\li \snippet doc/src/snippets/declarative/integrating-javascript/script.js 0
 \endtable
 
 The \c jsFunction() will now be called whenever MouseArea's \c clicked signal is emitted.
@@ -233,7 +233,7 @@ See \l{QML Signal and Handler Event System#Connecting Signals to Methods and Sig
 QML executes standard JavaScript code, with the following restrictions:
 
 \list
-\o JavaScript code cannot modify the global object.
+\li JavaScript code cannot modify the global object.
 
 In QML, the global object is constant - existing properties cannot be modified or
 deleted, and no new properties may be created.
@@ -266,7 +266,7 @@ Any attempt to modify the global object - either implicitly or explicitly - will
 cause an exception.  If uncaught, this will result in an warning being printed,
 that includes the file and line number of the offending code.
 
-\o Global code is run in a reduced scope
+\li Global code is run in a reduced scope
 
 During startup, if a QML file includes an external JavaScript file with "global"
 code, it is executed in a scope that contains only the external file itself and
@@ -291,7 +291,7 @@ This restriction exists as the QML environment is not yet fully established.
 To run code after the environment setup has completed, refer to
 \l {Running JavaScript at Startup}.
 
-\o The value of \c this is currently undefined in QML in the majority of contexts
+\li The value of \c this is currently undefined in QML in the majority of contexts
 
 The \c this keyword is supported when binding properties from JavaScript. 
 In all other situations, the value of

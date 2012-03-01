@@ -102,14 +102,14 @@ The QDeclarativeDataLoader invokes callbacks on the QDeclarativeDataBlob as data
 This enum describes the status of the data blob.
 
 \list
-\o Null The blob has not yet been loaded by a QDeclarativeDataLoader
-\o Loading The blob is loading network data.  The QDeclarativeDataBlob::setData() callback has not yet been
+\li Null The blob has not yet been loaded by a QDeclarativeDataLoader
+\li Loading The blob is loading network data.  The QDeclarativeDataBlob::setData() callback has not yet been
 invoked or has not yet returned.
-\o WaitingForDependencies The blob is waiting for dependencies to be done before continueing.  This status
+\li WaitingForDependencies The blob is waiting for dependencies to be done before continueing.  This status
 only occurs after the QDeclarativeDataBlob::setData() callback has been made, and when the blob has outstanding
 dependencies.
-\o Complete The blob's data has been loaded and all dependencies are done.
-\o Error An error has been set on this blob.
+\li Complete The blob's data has been loaded and all dependencies are done.
+\li Error An error has been set on this blob.
 \endlist
 */
 
@@ -119,9 +119,9 @@ dependencies.
 This enum describes the type of the data blob.
 
 \list
-\o QmlFile This is a QDeclarativeTypeData
-\o JavaScriptFile This is a QDeclarativeScriptData
-\o QmldirFile This is a QDeclarativeQmldirData
+\li QmlFile This is a QDeclarativeTypeData
+\li JavaScriptFile This is a QDeclarativeScriptData
+\li QmldirFile This is a QDeclarativeQmldirData
 \endlist
 */
 
@@ -486,9 +486,9 @@ To complete processing, the QDeclarativeDataBlob::done() callback is invoked.  d
 one of these three preconditions are met.
 
 \list 1
-\o The QDeclarativeDataBlob has no dependencies.
-\o The QDeclarativeDataBlob has an error set.
-\o All the QDeclarativeDataBlob's dependencies are themselves "done()".
+\li The QDeclarativeDataBlob has no dependencies.
+\li The QDeclarativeDataBlob has an error set.
+\li All the QDeclarativeDataBlob's dependencies are themselves "done()".
 \endlist
 
 Thus QDeclarativeDataBlob::done() will always eventually be called, even if the blob has an error set.

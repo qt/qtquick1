@@ -39,11 +39,11 @@ an application with a UI defined in QML also uses Qt for all the non-UI logic.
 QML provides direct access to the following concepts from Qt:
 
 \list
- \o QAction - the \l {QML Basic Types}{action} type
- \o QObject signals and slots - available as functions to call in JavaScript
- \o QObject properties - available as variables in JavaScript
- \o QWidget - QDeclarativeView is a QML-displaying widget
- \o Qt models - used directly in data binding (QAbstractItemModel)
+ \li QAction - the \l {QML Basic Types}{action} type
+ \li QObject signals and slots - available as functions to call in JavaScript
+ \li QObject properties - available as variables in JavaScript
+ \li QWidget - QDeclarativeView is a QML-displaying widget
+ \li Qt models - used directly in data binding (QAbstractItemModel)
 \endlist
 
 Qt knowledge is \e required for \l {Extending QML Functionalities using C++},
@@ -57,9 +57,9 @@ haven't traditionally been used to define the look and feel of view delegates, Q
 There are three structurally different types of QWidget:
 
 \list
- \o Simple widgets that are not used as parents (QLabel, QCheckBox, QToolButton, etc.)
- \o Parent widgets that are normally used as parents to other widgets (QGroupBox, QStackedWidget, QTabWidget, etc.)
- \o Compound widgets that are internally composed of child widgets (QComboBox, QSpinBox, QFileDialog, QTabWidget, etc.)
+ \li Simple widgets that are not used as parents (QLabel, QCheckBox, QToolButton, etc.)
+ \li Parent widgets that are normally used as parents to other widgets (QGroupBox, QStackedWidget, QTabWidget, etc.)
+ \li Compound widgets that are internally composed of child widgets (QComboBox, QSpinBox, QFileDialog, QTabWidget, etc.)
 \endlist
 
 QML Items also serve these purposes. Each is considered separately below.
@@ -120,9 +120,9 @@ this where it is needed).
 This difference has rather far-reaching consequences, for example:
 
 \list
-    \o A shadow or highlight around a widget could be a child of that widget.
-    \o Particle effects can flow outside the object where they originate.
-    \o Transitioning animations can "hide" items by visibly moving them beyond the screen bounds.
+    \li A shadow or highlight around a widget could be a child of that widget.
+    \li Particle effects can flow outside the object where they originate.
+    \li Transitioning animations can "hide" items by visibly moving them beyond the screen bounds.
 \endlist
 
 

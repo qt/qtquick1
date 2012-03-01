@@ -223,14 +223,14 @@ QAbstractItemModel::setRoleNames(). The default role names set by Qt are:
 
 \table
 \header
-\o Qt Role
-\o QML Role Name
+\li Qt Role
+\li QML Role Name
 \row
-\o Qt::DisplayRole
-\o display
+\li Qt::DisplayRole
+\li display
 \row
-\o Qt::DecorationRole
-\o decoration
+\li Qt::DecorationRole
+\li decoration
 \endtable
 
 Here is an application with a QAbstractListModel subclass named \c AnimalModel
@@ -268,10 +268,10 @@ the VisualDataModel element provides several properties and functions for use
 with models of type QAbstractItemModel:
 
 \list
-\o \e hasModelChildren role property to determine whether a node has child nodes.
-\o \l VisualDataModel::rootIndex allows the root node to be specifed
-\o \l VisualDataModel::modelIndex() returns a QModelIndex which can be assigned to VisualDataModel::rootIndex
-\o \l VisualDataModel::parentModelIndex() returns a QModelIndex which can be assigned to VisualDataModel::rootIndex
+\li \e hasModelChildren role property to determine whether a node has child nodes.
+\li \l VisualDataModel::rootIndex allows the root node to be specifed
+\li \l VisualDataModel::modelIndex() returns a QModelIndex which can be assigned to VisualDataModel::rootIndex
+\li \l VisualDataModel::parentModelIndex() returns a QModelIndex which can be assigned to VisualDataModel::rootIndex
 \endlist
 
 
@@ -286,7 +286,7 @@ created directly as elements within QML:
 \table
 \row
 
-\o
+\li
 \code
 class MyModelPlugin : public QDeclarativeExtensionPlugin
 {
@@ -301,7 +301,7 @@ public:
 Q_EXPORT_PLUGIN2(mymodelplugin, MyModelPlugin);
 \endcode
 
-\o
+\li
 \qml
 MyModel {
     id: myModel
@@ -449,9 +449,9 @@ A set of standard views are provided in the basic set of Qt Quick
 graphical elements:
 
 \list
-\o \l{#ListView}{ListView} arranges items in a horizontal or vertical list
-\o \l{#GridView}{GridView} arranges items in a grid within the available space
-\o \l{#PathView}{PathView} arranges items on a path
+\li \l{#ListView}{ListView} arranges items in a horizontal or vertical list
+\li \l{#GridView}{GridView} arranges items in a grid within the available space
+\li \l{#PathView}{PathView} arranges items on a path
 \endlist
 
 Unlike these items, \l WebView is not a fully-featured view item, and needs

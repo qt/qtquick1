@@ -150,10 +150,10 @@ void QDeclarativeLoaderPrivate::initResize()
     accordingly to become visible.
 
     \list
-    \o If an explicit size is not specified for the Loader, the Loader
+    \li If an explicit size is not specified for the Loader, the Loader
     is automatically resized to the size of the loaded item once the
     component is loaded.
-    \o If the size of the Loader is specified explicitly by setting
+    \li If the size of the Loader is specified explicitly by setting
     the width, height or by anchoring, the loaded item will be resized
     to the size of the Loader.
     \endlist
@@ -164,14 +164,14 @@ void QDeclarativeLoaderPrivate::initResize()
 
     \table
     \row
-    \o sizeloader.qml
-    \o sizeitem.qml
+    \li sizeloader.qml
+    \li sizeitem.qml
     \row
-    \o \snippet doc/src/snippets/declarative/loader/sizeloader.qml 0
-    \o \snippet doc/src/snippets/declarative/loader/sizeitem.qml 0
+    \li \snippet doc/src/snippets/declarative/loader/sizeloader.qml 0
+    \li \snippet doc/src/snippets/declarative/loader/sizeitem.qml 0
     \row
-    \o The red rectangle will be sized to the size of the root item.
-    \o The red rectangle will be 50x50, centered in the root item.
+    \li The red rectangle will be sized to the size of the root item.
+    \li The red rectangle will be 50x50, centered in the root item.
     \endtable
 
 
@@ -184,11 +184,11 @@ void QDeclarativeLoaderPrivate::initResize()
 
     \table
     \row 
-    \o application.qml
-    \o MyItem.qml
+    \li application.qml
+    \li MyItem.qml
     \row
-    \o \snippet doc/src/snippets/declarative/loader/connections.qml 0
-    \o \snippet doc/src/snippets/declarative/loader/MyItem.qml 0
+    \li \snippet doc/src/snippets/declarative/loader/connections.qml 0
+    \li \snippet doc/src/snippets/declarative/loader/MyItem.qml 0
     \endtable
 
     Alternatively, since \c MyItem.qml is loaded within the scope of the
@@ -211,11 +211,11 @@ void QDeclarativeLoaderPrivate::initResize()
 
     \table
     \row 
-    \o application.qml
-    \o KeyReader.qml
+    \li application.qml
+    \li KeyReader.qml
     \row
-    \o \snippet doc/src/snippets/declarative/loader/focus.qml 0
-    \o \snippet doc/src/snippets/declarative/loader/KeyReader.qml 0
+    \li \snippet doc/src/snippets/declarative/loader/focus.qml 0
+    \li \snippet doc/src/snippets/declarative/loader/KeyReader.qml 0
     \endtable
 
     Once \c KeyReader.qml is loaded, it accepts key events and sets 
@@ -429,22 +429,22 @@ void QDeclarativeLoaderPrivate::_q_sourceLoaded()
 
     This property holds the status of QML loading.  It can be one of:
     \list
-    \o Loader.Null - no QML source has been set
-    \o Loader.Ready - the QML source has been loaded
-    \o Loader.Loading - the QML source is currently being loaded
-    \o Loader.Error - an error occurred while loading the QML source
+    \li Loader.Null - no QML source has been set
+    \li Loader.Ready - the QML source has been loaded
+    \li Loader.Loading - the QML source is currently being loaded
+    \li Loader.Error - an error occurred while loading the QML source
     \endlist
 
     Use this status to provide an update or respond to the status change in some way.
     For example, you could:
 
     \list
-    \o Trigger a state change:
+    \li Trigger a state change:
     \qml
         State { name: 'loaded'; when: loader.status == Loader.Ready }
     \endqml
 
-    \o Implement an \c onStatusChanged signal handler:
+    \li Implement an \c onStatusChanged signal handler:
     \qml
         Loader {
             id: loader
@@ -452,7 +452,7 @@ void QDeclarativeLoaderPrivate::_q_sourceLoaded()
         }
     \endqml
 
-    \o Bind to the status value:
+    \li Bind to the status value:
     \qml
         Text { text: loader.status == Loader.Ready ? 'Loaded' : 'Not loaded' }
     \endqml

@@ -330,7 +330,7 @@ void QDeclarativeContext::setContextProperty(const QString &name, const QVariant
 /*!
     Set the \a value of the \a name property on this context.
 
-    QDeclarativeContext does \bold not take ownership of \a value.
+    QDeclarativeContext does \b not take ownership of \a value.
 */
 void QDeclarativeContext::setContextProperty(const QString &name, QObject *value)
 {

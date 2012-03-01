@@ -73,12 +73,12 @@ Each instance is created with a different value for its \c text property:
 
 \table
 \row
-\o Button.qml
-\o application.qml
+\li Button.qml
+\li application.qml
 
 \row
-\o \snippet doc/src/snippets/declarative/qml-documents/qmldocuments.qml document
-\o
+\li \snippet doc/src/snippets/declarative/qml-documents/qmldocuments.qml document
+\li
 \qml
 import QtQuick 1.0
 
@@ -97,7 +97,7 @@ Column {
 \endtable
 
 Any snippet of QML code can become a component, just by placing it in the file "<Name>.qml"
-where <Name> is the new element name, and begins with an \bold uppercase letter.  Note that
+where <Name> is the new element name, and begins with an \b uppercase letter.  Note that
 the case of all characters in the <Name> are significant on some filesystems, notably
 UNIX filesystems.  It is recommended that the case of the filename matches the case of
 the component name in QML exactly, regardless of the platform the QML will be deployed to.
@@ -133,9 +133,9 @@ These final two examples are behaviorally identical to the original document.
 
 \table
 \row
-\o
+\li
 \snippet doc/src/snippets/declarative/qml-documents/inline-component.qml document
-\o
+\li
 \snippet doc/src/snippets/declarative/qml-documents/inline-text-component.qml document
 \endtable
 

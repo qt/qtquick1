@@ -36,12 +36,12 @@ The code for this example can be found in the \c $QTDIR/examples/declarative/ui-
 The elements that compose the switch are:
 
 \list
-\o a \c on property (the interface to interact with the switch),
-\o two images (the background image and the knob),
-\o two mouse regions for user interation (on the background image and on the knob),
-\o two states (a \e on state and a \e off state),
-\o two functions or slots to react to the user interation (\c toggle() and \c dorelease()),
-\o and a transition that describe how to go from one state to the other.
+\li a \c on property (the interface to interact with the switch),
+\li two images (the background image and the knob),
+\li two mouse regions for user interation (on the background image and on the knob),
+\li two states (a \e on state and a \e off state),
+\li two functions or slots to react to the user interation (\c toggle() and \c dorelease()),
+\li and a transition that describe how to go from one state to the other.
 \endlist
 
 \section1 Switch.qml
@@ -92,8 +92,8 @@ in the \c dorelease() function that is called in the \c onReleased property.
 
 We define the two states of the switch:
 \list
-\o In the \e on state the knob is on the right (\c x position is 78) and the \c on property is \c true.
-\o In the \e off state the knob is on the left (\c x position is 1) and the \c on property is \c false.
+\li In the \e on state the knob is on the right (\c x position is 78) and the \c on property is \c true.
+\li In the \e off state the knob is on the left (\c x position is 1) and the \c on property is \c false.
 \endlist
 
 For more information on states see \l{qmlstates}{QML States}.

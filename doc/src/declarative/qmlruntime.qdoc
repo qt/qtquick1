@@ -49,8 +49,8 @@ the application. This is done by writing a Qt C++ application that loads the
 QDeclarativeEngine by either:
 
 \list
-\o Loading the QML file through a QDeclarativeView instance, or
-\o Creating a QDeclarativeEngine instance and loading QML files with QDeclarativeComponent
+\li Loading the QML file through a QDeclarativeView instance, or
+\li Creating a QDeclarativeEngine instance and loading QML files with QDeclarativeComponent
 \endlist
 
 

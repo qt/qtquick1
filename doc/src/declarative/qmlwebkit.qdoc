@@ -34,7 +34,7 @@ Qt WebKit QML
 
 \section1 WebKit QML Elements
 \list
-\o \l WebView
+\li \l WebView
 \endlist
 
 \section1 QtWebKit Module

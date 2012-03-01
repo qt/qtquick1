@@ -320,10 +320,10 @@ QDeclarativeComponent::~QDeclarativeComponent()
     \qmlproperty enumeration Component::status
     This property holds the status of component loading.  It can be one of:
     \list
-    \o Component.Null - no data is available for the component
-    \o Component.Ready - the component has been loaded, and can be used to create instances.
-    \o Component.Loading - the component is currently being loaded
-    \o Component.Error - an error occurred while loading the component.
+    \li Component.Null - no data is available for the component
+    \li Component.Ready - the component has been loaded, and can be used to create instances.
+    \li Component.Loading - the component is currently being loaded
+    \li Component.Error - an error occurred while loading the component.
                Calling errorString() will provide a human-readable description of any errors.
     \endlist
  */
@@ -780,9 +780,9 @@ QObject *QDeclarativeComponent::create(QDeclarativeContext *context)
 
     When QDeclarativeComponent constructs an instance, it occurs in three steps:
     \list 1
-    \i The object hierarchy is created, and constant values are assigned.
-    \i Property bindings are evaluated for the the first time.
-    \i If applicable, QDeclarativeParserStatus::componentComplete() is called on objects.
+    \li The object hierarchy is created, and constant values are assigned.
+    \li Property bindings are evaluated for the the first time.
+    \li If applicable, QDeclarativeParserStatus::componentComplete() is called on objects.
     \endlist 
     QDeclarativeComponent::beginCreate() differs from QDeclarativeComponent::create() in that it
     only performs step 1.  QDeclarativeComponent::completeCreate() must be called to 

@@ -48,8 +48,8 @@ data from over a network.
 The XMLHttpRequest API implements the same \l {http://www.w3.org/TR/XMLHttpRequest/}{W3C standard}
 as many popular web browsers with following exceptions:
 \list
-\i QML's XMLHttpRequest does not enforce the same origin policy.
-\i QML's XMLHttpRequest does not support \e synchronous requests.
+\li QML's XMLHttpRequest does not enforce the same origin policy.
+\li QML's XMLHttpRequest does not support \e synchronous requests.
 \endlist
 
 Additionally, the \c responseXML XML DOM tree currently supported by QML is a reduced subset
@@ -58,58 +58,58 @@ browser.  The following objects and properties are supported by the QML implemen
 
 \table
 \header
-\o \bold {Node}
-\o \bold {Document}
-\o \bold {Element}
-\o \bold {Attr}
-\o \bold {CharacterData}
-\o \bold {Text}
+\li \b {Node}
+\li \b {Document}
+\li \b {Element}
+\li \b {Attr}
+\li \b {CharacterData}
+\li \b {Text}
 
 \row
-\o 
+\li
 \list
-\o nodeName
-\o nodeValue
-\o nodeType
-\o parentNode
-\o childNodes
-\o firstChild
-\o lastChild
-\o previousSibling
-\o nextSibling
-\o attributes
+\li nodeName
+\li nodeValue
+\li nodeType
+\li parentNode
+\li childNodes
+\li firstChild
+\li lastChild
+\li previousSibling
+\li nextSibling
+\li attributes
 \endlist
 
-\o 
+\li
 \list
-\o xmlVersion
-\o xmlEncoding
-\o xmlStandalone
-\o documentElement
+\li xmlVersion
+\li xmlEncoding
+\li xmlStandalone
+\li documentElement
 \endlist
 
-\o
+\li
 \list 
-\o tagName
+\li tagName
 \endlist
 
-\o
+\li
 \list
-\o name
-\o value
-\o ownerElement
+\li name
+\li value
+\li ownerElement
 \endlist
 
-\o
+\li
 \list 
-\o data
-\o length
+\li data
+\li length
 \endlist
 
-\o
+\li
 \list
-\o isElementContentWhitespace
-\o wholeText
+\li isElementContentWhitespace
+\li wholeText
 \endlist
 
 \endtable
@@ -150,12 +150,12 @@ May throw exception with code property SQLException.DATABASE_ERR, or SQLExceptio
 When a database is first created, an INI file is also created specifying its characteristics:
 
 \table
-\header \o \bold {Key} \o \bold {Value}
-\row \o Name \o The name of the database passed to \c openDatabase()
-\row \o Version \o The version of the database passed to \c openDatabase()
-\row \o Description \o The description of the database passed to \c openDatabase()
-\row \o EstimatedSize \o The estimated size (in bytes) of the database passed to \c openDatabase()
-\row \o Driver \o Currently "QSQLITE"
+\header \li \b {Key} \li \b {Value}
+\row \li Name \li The name of the database passed to \c openDatabase()
+\row \li Version \li The version of the database passed to \c openDatabase()
+\row \li Description \li The description of the database passed to \c openDatabase()
+\row \li EstimatedSize \li The estimated size (in bytes) of the database passed to \c openDatabase()
+\row \li Driver \li Currently "QSQLITE"
 \endtable
 
 This data can be used by application tools.
@@ -190,11 +190,11 @@ This method executes a SQL \e statement, binding the list of \e values to SQL po
 It returns a results object, with the following properties:
 
 \table
-\header \o \bold {Type} \o \bold {Property} \o \bold {Value} \o \bold {Applicability}
-\row \o int \o rows.length \o The number of rows in the result \o SELECT
-\row \o var \o rows.item(i) \o Function that returns row \e i of the result \o SELECT
-\row \o int \o rowsAffected \o The number of rows affected by a modification \o UPDATE, DELETE
-\row \o string \o insertId \o The id of the row inserted \o INSERT
+\header \li \b {Type} \li \b {Property} \li \b {Value} \li \b {Applicability}
+\row \li int \li rows.length \li The number of rows in the result \li SELECT
+\row \li var \li rows.item(i) \li Function that returns row \e i of the result \li SELECT
+\row \li int \li rowsAffected \li The number of rows affected by a modification \li UPDATE, DELETE
+\row \li string \li insertId \li The id of the row inserted \li INSERT
 \endtable
 
 May throw exception with code property SQLException.DATABASE_ERR, SQLException.SYNTAX_ERR, or SQLException.UNKNOWN_ERR.

@@ -46,13 +46,13 @@ and to address some of the cases unique to fluid user interfaces, the QML items 
 
 When the user presses or releases a key, the following occurs:
 \list 1
-\o Qt receives the key action and generates a key event.
-\o If the Qt widget containing the \l QDeclarativeView has focus, the key event
+\li Qt receives the key action and generates a key event.
+\li If the Qt widget containing the \l QDeclarativeView has focus, the key event
 is delivered to it. Otherwise, regular Qt key handling continues.
-\o The key event is delivered by the scene to the QML \l Item with
+\li The key event is delivered by the scene to the QML \l Item with
 \e {active focus}. If no Item has active focus, the key event is
 \l {QEvent::ignore()}{ignored} and regular Qt key handling continues.
-\o If the QML Item with active focus accepts the key event, propagation
+\li If the QML Item with active focus accepts the key event, propagation
 stops. Otherwise the event is "bubbled up", by recursively passing it to each
 Item's parent until either the event is accepted, or the root Item is reached.
 
@@ -63,7 +63,7 @@ item and thus subsequently be ignored.
 \snippet doc/src/snippets/declarative/focus/rectangle.qml simple key event
 \snippet doc/src/snippets/declarative/focus/rectangle.qml simple key event end
 
-\o If the root \l Item is reached, the key event is \l {QEvent::ignore()}{ignored} and regular Qt key handling continues.
+\li If the root \l Item is reached, the key event is \l {QEvent::ignore()}{ignored} and regular Qt key handling continues.
 
 \endlist
 
@@ -137,11 +137,11 @@ visual result shown.
 
 Conceptually \e {focus scopes} are quite simple.
 \list
-\o Within each focus scope one element may have \c {Item::focus} set to
+\li Within each focus scope one element may have \c {Item::focus} set to
 \c true. If more than one \l Item has the \c focus property set, the
 last element to set the \c focus will have the focus and the others are unset,
 similar to when there are no focus scopes.
-\o When a focus scope receives active focus, the contained element with
+\li When a focus scope receives active focus, the contained element with
 \c focus set (if any) also gets the active focus. If this element is
 also a \l FocusScope, the proxying behavior continues. Both the
 focus scope and the sub-focused item will have \c activeFocus property set.

@@ -616,7 +616,7 @@ void QDeclarativeParticlesPrivate::updateOpacity(QDeclarativeParticle &p, int ag
     \brief The Particles object generates and moves particles.
     \inherits Item
 
-    Particles are available in the \bold{Qt.labs.particles 1.0} module.
+    Particles are available in the \b{Qt.labs.particles 1.0} module.
     \e {Elements in the Qt.labs module are not guaranteed to remain compatible
     in future versions.}
 

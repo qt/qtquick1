@@ -324,12 +324,12 @@
     A font type has the properties of a QFont. The properties are:
 
     \list
-    \o \c string font.family
-    \o \c bool font.bold
-    \o \c bool font.italic
-    \o \c bool font.underline
-    \o \c real font.pointSize
-    \o \c int font.pixelSize
+    \li \c string font.family
+    \li \c bool font.bold
+    \li \c bool font.italic
+    \li \c bool font.underline
+    \li \c real font.pointSize
+    \li \c int font.pixelSize
     \endlist
 
     Example:
@@ -350,9 +350,9 @@
     are:
 
     \list
-    \o \c slot action.trigger - invoke the action
-    \o \c bool action.enabled - true if the action is enabled
-    \o \c string action.text - the text associated with the action
+    \li \c slot action.trigger - invoke the action
+    \li \c bool action.enabled - true if the action is enabled
+    \li \c string action.text - the text associated with the action
     \endlist
 
     Actions are used like this:
@@ -442,8 +442,8 @@
     The \c variant type can also hold:
 
     \list
-    \o An array of \l {QML Basic Types}{basic type} values
-    \o A map of key-value pairs with \l {QML Basic Types}{basic-type} values
+    \li An array of \l {QML Basic Types}{basic type} values
+    \li A map of key-value pairs with \l {QML Basic Types}{basic-type} values
     \endlist
 
     For example, below is an \c items array and an \c attributes map. Their

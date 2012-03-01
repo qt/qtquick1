@@ -2039,13 +2039,13 @@ void QDeclarativeListView::setHighlightFollowsCurrentItem(bool autoHighlight)
     Valid values for \c highlightRangeMode are:
 
     \list
-    \o ListView.ApplyRange - the view attempts to maintain the highlight within the range.
+    \li ListView.ApplyRange - the view attempts to maintain the highlight within the range.
        However, the highlight can move outside of the range at the ends of the list or due
        to mouse interaction.
-    \o ListView.StrictlyEnforceRange - the highlight never moves outside of the range.
+    \li ListView.StrictlyEnforceRange - the highlight never moves outside of the range.
        The current item changes if a keyboard or mouse action would cause the highlight to move
        outside of the range.
-    \o ListView.NoHighlightRange - this is the default value.
+    \li ListView.NoHighlightRange - this is the default value.
     \endlist
 */
 qreal QDeclarativeListView::preferredHighlightBegin() const
@@ -2148,17 +2148,17 @@ void QDeclarativeListView::setSpacing(qreal spacing)
     Possible values:
 
     \list
-    \o ListView.Horizontal - Items are laid out horizontally
-    \o ListView.Vertical (default) - Items are laid out vertically
+    \li ListView.Horizontal - Items are laid out horizontally
+    \li ListView.Vertical (default) - Items are laid out vertically
     \endlist
 
     \table
     \row
-    \o Horizontal orientation:
+    \li Horizontal orientation:
     \image ListViewHorizontal.png
 
     \row
-    \o Vertical orientation:
+    \li Vertical orientation:
     \image listview-highlight.png
     \endtable
 */
@@ -2194,8 +2194,8 @@ void QDeclarativeListView::setOrientation(QDeclarativeListView::Orientation orie
   Possible values:
 
   \list
-  \o Qt.LeftToRight (default) - Items will be laid out from left to right.
-  \o Qt.RightToLeft - Items will be laid out from right to let.
+  \li Qt.LeftToRight (default) - Items will be laid out from left to right.
+  \li Qt.RightToLeft - Items will be laid out from right to let.
   \endlist
 
   When using the attached property \l {LayoutMirroring::enabled} for locale layouts,
@@ -2312,9 +2312,9 @@ void QDeclarativeListView::setCacheBuffer(int b)
     \c section.property. This value can be one of:
 
     \list
-    \o ViewSection.FullString (default) - sections are created based on the 
+    \li ViewSection.FullString (default) - sections are created based on the
     \c section.property value.
-    \o ViewSection.FirstCharacter - sections are created based on the first
+    \li ViewSection.FirstCharacter - sections are created based on the first
     character of the \c section.property value (for example, 'A', 'B', 'C' 
     sections, etc. for an address book)
     \endlist
@@ -2459,10 +2459,10 @@ void QDeclarativeListView::setHighlightResizeDuration(int duration)
     The possible values are:
 
     \list
-    \o ListView.NoSnap (default) - the view stops anywhere within the visible area.
-    \o ListView.SnapToItem - the view settles with an item aligned with the start of
+    \li ListView.NoSnap (default) - the view stops anywhere within the visible area.
+    \li ListView.SnapToItem - the view settles with an item aligned with the start of
     the view.
-    \o ListView.SnapOneItem - the view settles no more than one item away from the first
+    \li ListView.SnapOneItem - the view settles no more than one item away from the first
     visible item at the time the mouse button is released.  This mode is particularly
     useful for moving one page at a time.
     \endlist
@@ -2879,7 +2879,7 @@ void QDeclarativeListView::geometryChanged(const QRectF &newGeometry,
     if keyNavigationWraps is true and it is currently at the end.
     This method has no effect if the \l count is zero.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 void QDeclarativeListView::incrementCurrentIndex()
 {
@@ -2899,7 +2899,7 @@ void QDeclarativeListView::incrementCurrentIndex()
     if keyNavigationWraps is true and it is currently at the beginning.
     This method has no effect if the \l count is zero.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 void QDeclarativeListView::decrementCurrentIndex()
 {
@@ -3001,12 +3001,12 @@ void QDeclarativeListViewPrivate::positionViewAtIndex(int index, int mode)
     \a mode:
 
     \list
-    \o ListView.Beginning - position item at the top (or left for horizontal orientation) of the view.
-    \o ListView.Center - position item in the center of the view.
-    \o ListView.End - position item at bottom (or right for horizontal orientation) of the view.
-    \o ListView.Visible - if any part of the item is visible then take no action, otherwise
+    \li ListView.Beginning - position item at the top (or left for horizontal orientation) of the view.
+    \li ListView.Center - position item in the center of the view.
+    \li ListView.End - position item at bottom (or right for horizontal orientation) of the view.
+    \li ListView.Visible - if any part of the item is visible then take no action, otherwise
     bring the item into view.
-    \o ListView.Contain - ensure the entire item is visible.  If the item is larger than
+    \li ListView.Contain - ensure the entire item is visible.  If the item is larger than
     the view the item is positioned at the top (or left for horizontal orientation) of the view.
     \endlist
 
@@ -3019,7 +3019,7 @@ void QDeclarativeListViewPrivate::positionViewAtIndex(int index, int mode)
     the actual start of the view can vary based on the size of the delegates.
     The correct way to bring an item into view is with \c positionViewAtIndex.
 
-    \bold Note: methods should only be called after the Component has completed.  To position
+    \b Note: methods should only be called after the Component has completed.  To position
     the view at startup, this method should be called by Component.onCompleted.  For
     example, to position the view at the end:
 
@@ -3047,7 +3047,7 @@ void QDeclarativeListView::positionViewAtIndex(int index, int mode)
     of the list does not cause all other items to be repositioned, and because
     the actual start of the view can vary based on the size of the delegates.
 
-    \bold Note: methods should only be called after the Component has completed.  To position
+    \b Note: methods should only be called after the Component has completed.  To position
     the view at startup, this method should be called by Component.onCompleted.  For
     example, to position the view at the end on startup:
 
@@ -3081,7 +3081,7 @@ void QDeclarativeListView::positionViewAtEnd()
     If the item is outside the visible area, -1 is returned, regardless of
     whether an item will exist at that point when scrolled into view.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 int QDeclarativeListView::indexAt(qreal x, qreal y) const
 {

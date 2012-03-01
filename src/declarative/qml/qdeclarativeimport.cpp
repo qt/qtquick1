@@ -221,9 +221,9 @@ void QDeclarativeImports::populateCache(QDeclarativeTypeNameCache *cache, QDecla
 
   The given (namespace qualified) \a type is resolved to either
   \list
-  \o a QDeclarativeImportedNamespace stored at \a ns_return,
-  \o a QDeclarativeType stored at \a type_return, or
-  \o a component located at \a url_return.
+  \li a QDeclarativeImportedNamespace stored at \a ns_return,
+  \li a QDeclarativeType stored at \a type_return, or
+  \li a component located at \a url_return.
   \endlist
 
   If any return pointer is 0, the corresponding search is not done.
@@ -866,13 +866,13 @@ QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const 
   Returns the result of the merge of \a baseName with \a dir and the platform suffix.
 
   \table
-  \header \i Platform \i Valid suffixes
-  \row \i Windows     \i \c .dll
-  \row \i Unix/Linux  \i \c .so
-  \row \i AIX  \i \c .a
-  \row \i HP-UX       \i \c .sl, \c .so (HP-UXi)
-  \row \i Mac OS X    \i \c .dylib, \c .bundle, \c .so
-  \row \i Symbian     \i \c .dll
+  \header \li Platform \li Valid suffixes
+  \row \li Windows     \li \c .dll
+  \row \li Unix/Linux  \li \c .so
+  \row \li AIX  \li \c .a
+  \row \li HP-UX       \li \c .sl, \c .so (HP-UXi)
+  \row \li Mac OS X    \li \c .dylib, \c .bundle, \c .so
+  \row \li Symbian     \li \c .dll
   \endtable
 
   Version number on unix are ignored.

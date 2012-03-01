@@ -144,11 +144,11 @@ bool QDeclarativePath::isClosed() const
 
     A path can contain the following path objects:
     \list
-        \i \l PathLine - a straight line to a given position.
-        \i \l PathQuad - a quadratic Bezier curve to a given position with a control point.
-        \i \l PathCubic - a cubic Bezier curve to a given position with two control points.
-        \i \l PathAttribute - an attribute at a given position in the path.
-        \i \l PathPercent - a way to spread out items along various segments of the path.
+        \li \l PathLine - a straight line to a given position.
+        \li \l PathQuad - a quadratic Bezier curve to a given position with a control point.
+        \li \l PathCubic - a cubic Bezier curve to a given position with two control points.
+        \li \l PathAttribute - an attribute at a given position in the path.
+        \li \l PathPercent - a way to spread out items along various segments of the path.
     \endlist
 
     \snippet doc/src/snippets/declarative/pathview/pathattributes.qml 2
@@ -512,8 +512,8 @@ void QDeclarativeCurve::setY(qreal y)
 
     \table
     \row
-    \o \image declarative-pathattribute.png
-    \o
+    \li \image declarative-pathattribute.png
+    \li
     \snippet doc/src/snippets/declarative/pathview/pathattributes.qml 0
     (see the PathView documentation for the specification of ContactModel.qml
      used for ContactModel above.)
@@ -649,8 +649,8 @@ void QDeclarativePathLine::addToPath(QPainterPath &path)
     The following QML produces the path shown below:
     \table
     \row
-    \o \image declarative-pathquad.png
-    \o
+    \li \image declarative-pathquad.png
+    \li
     \qml
     Path {
         startX: 0; startY: 0
@@ -727,8 +727,8 @@ void QDeclarativePathQuad::addToPath(QPainterPath &path)
     The following QML produces the path shown below:
     \table
     \row
-    \o \image declarative-pathcubic.png
-    \o
+    \li \image declarative-pathcubic.png
+    \li
     \qml
     Path {
         startX: 20; startY: 0
@@ -841,8 +841,8 @@ void QDeclarativePathCubic::addToPath(QPainterPath &path)
     PathLine section of the path.
     \table
     \row
-    \o \image declarative-nopercent.png
-    \o
+    \li \image declarative-nopercent.png
+    \li
     \qml
     PathView {
         // ...
@@ -855,8 +855,8 @@ void QDeclarativePathCubic::addToPath(QPainterPath &path)
     }
     \endqml
     \row
-    \o \image declarative-percent.png
-    \o
+    \li \image declarative-percent.png
+    \li
     \qml
     PathView {
         // ...

@@ -77,9 +77,9 @@ QT_BEGIN_NAMESPACE
     The following concrete Transform types are available:
 
     \list
-    \o \l Rotation
-    \o \l Scale
-    \o \l Translate
+    \li \l Rotation
+    \li \l Scale
+    \li \l Translate
     \endlist
 
     The Transform elements let you create and control advanced transformations that can be configured
@@ -583,10 +583,10 @@ void QDeclarativeKeyNavigationAttached::setBacktab(QDeclarativeItem *i)
     or after the attached item's own key handling.
 
     \list
-    \o KeyNavigation.BeforeItem - process the key events before normal
+    \li KeyNavigation.BeforeItem - process the key events before normal
     item key processing.  If the event is used for key navigation, it will be accepted and will not
     be passed on to the item.
-    \o KeyNavigation.AfterItem (default) - process the key events after normal item key
+    \li KeyNavigation.AfterItem (default) - process the key events after normal item key
     handling.  If the item accepts the key event it will not be
     handled by the KeyNavigation attached property handler.
     \endlist
@@ -947,21 +947,21 @@ void QDeclarativeItemPrivate::setLayoutMirror(bool mirror)
     If \l priority is Keys.BeforeItem (default) the order of key event processing is:
 
     \list 1
-    \o Items specified in \c forwardTo
-    \o specific key handlers, e.g. onReturnPressed
-    \o onKeyPress, onKeyRelease handlers
-    \o Item specific key handling, e.g. TextInput key handling
-    \o parent item
+    \li Items specified in \c forwardTo
+    \li specific key handlers, e.g. onReturnPressed
+    \li onKeyPress, onKeyRelease handlers
+    \li Item specific key handling, e.g. TextInput key handling
+    \li parent item
     \endlist
 
     If priority is Keys.AfterItem the order of key event processing is:
 
     \list 1
-    \o Item specific key handling, e.g. TextInput key handling
-    \o Items specified in \c forwardTo
-    \o specific key handlers, e.g. onReturnPressed
-    \o onKeyPress, onKeyRelease handlers
-    \o parent item
+    \li Item specific key handling, e.g. TextInput key handling
+    \li Items specified in \c forwardTo
+    \li specific key handlers, e.g. onReturnPressed
+    \li onKeyPress, onKeyRelease handlers
+    \li parent item
     \endlist
 
     If the event is accepted during any of the above steps, key
@@ -984,10 +984,10 @@ void QDeclarativeItemPrivate::setLayoutMirror(bool mirror)
     or after the attached item's own key handling.
 
     \list
-    \o Keys.BeforeItem (default) - process the key events before normal
+    \li Keys.BeforeItem (default) - process the key events before normal
     item key processing.  If the event is accepted it will not
     be passed on to the item.
-    \o Keys.AfterItem - process the key events after normal item key
+    \li Keys.AfterItem - process the key events after normal item key
     handling.  If the item accepts the key event it will not be
     handled by the Keys attached property handler.
     \endlist
@@ -2033,8 +2033,8 @@ void QDeclarativeItem::setClip(bool c)
 
   \table
   \row
-  \o \image declarative-item_stacking1.png
-  \o Same \c z - later children above earlier children:
+  \li \image declarative-item_stacking1.png
+  \li Same \c z - later children above earlier children:
   \qml
   Item {
       Rectangle {
@@ -2048,8 +2048,8 @@ void QDeclarativeItem::setClip(bool c)
   }
   \endqml
   \row
-  \o \image declarative-item_stacking2.png
-  \o Higher \c z on top:
+  \li \image declarative-item_stacking2.png
+  \li Higher \c z on top:
   \qml
   Item {
       Rectangle {
@@ -2064,8 +2064,8 @@ void QDeclarativeItem::setClip(bool c)
   }
   \endqml
   \row
-  \o \image declarative-item_stacking3.png
-  \o Same \c z - children above parents:
+  \li \image declarative-item_stacking3.png
+  \li Same \c z - children above parents:
   \qml
   Item {
       Rectangle {
@@ -2079,8 +2079,8 @@ void QDeclarativeItem::setClip(bool c)
   }
   \endqml
   \row
-  \o \image declarative-item_stacking4.png
-  \o Lower \c z below:
+  \li \image declarative-item_stacking4.png
+  \li Lower \c z below:
   \qml
   Item {
       Rectangle {
@@ -2349,8 +2349,8 @@ QDeclarativeAnchorLine QDeclarativeItemPrivate::baseline() const
 
   \table
   \row
-  \o \image declarative-anchors_example.png
-  \o Text anchored to Image, horizontally centered and vertically below, with a margin.
+  \li \image declarative-anchors_example.png
+  \li Text anchored to Image, horizontally centered and vertically below, with a margin.
   \qml
   Item {
       Image {
@@ -2367,8 +2367,8 @@ QDeclarativeAnchorLine QDeclarativeItemPrivate::baseline() const
   }
   \endqml
   \row
-  \o \image declarative-anchors_example2.png
-  \o
+  \li \image declarative-anchors_example2.png
+  \li
   Left of Text anchored to right of Image, with a margin. The y
   property of both defaults to 0.
 
@@ -2448,8 +2448,8 @@ void QDeclarativeItem::setBaselineOffset(qreal offset)
 
   \table
   \row
-  \o \image declarative-rotation.png
-  \o
+  \li \image declarative-rotation.png
+  \li
   \qml
   Rectangle {
       color: "blue"
@@ -2482,8 +2482,8 @@ void QDeclarativeItem::setBaselineOffset(qreal offset)
 
   \table
   \row
-  \o \image declarative-scale.png
-  \o
+  \li \image declarative-scale.png
+  \li
   \qml
   Rectangle {
       color: "blue"
@@ -2519,8 +2519,8 @@ void QDeclarativeItem::setBaselineOffset(qreal offset)
 
   \table
   \row
-  \o \image declarative-item_opacity1.png
-  \o
+  \li \image declarative-item_opacity1.png
+  \li
   \qml
     Item {
         Rectangle {
@@ -2534,8 +2534,8 @@ void QDeclarativeItem::setBaselineOffset(qreal offset)
     }
   \endqml
   \row
-  \o \image declarative-item_opacity2.png
-  \o
+  \li \image declarative-item_opacity2.png
+  \li
   \qml
     Item {
         Rectangle {
@@ -3509,7 +3509,7 @@ qreal QDeclarativeItem::implicitHeight() const
     }
     \endqml
 
-    \bold Note: using implicitWidth of Text or TextEdit and setting the width explicitly
+    \b Note: using implicitWidth of Text or TextEdit and setting the width explicitly
     incurs a performance penalty as the text must be laid out twice.
 */
 

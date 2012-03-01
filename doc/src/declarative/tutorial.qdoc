@@ -44,9 +44,9 @@ The tutorial's source code is located in the $QTDIR/examples/declarative/tutoria
 Tutorial chapters:
 
 \list 1
-\o \l {QML Tutorial 1 - Basic Types}{Basic Types}
-\o \l {QML Tutorial 2 - QML Components}{QML Components}
-\o \l {QML Tutorial 3 - States and Transitions}{States and Transitions}
+\li \l {QML Tutorial 1 - Basic Types}{Basic Types}
+\li \l {QML Tutorial 2 - QML Components}{QML Components}
+\li \l {QML Tutorial 3 - States and Transitions}{States and Transitions}
 \endlist
 
 */

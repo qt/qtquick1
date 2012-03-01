@@ -156,11 +156,11 @@ QString QDeclarativeTextEdit::text() const
 
     The weight can be one of:
     \list
-    \o Font.Light
-    \o Font.Normal - the default
-    \o Font.DemiBold
-    \o Font.Bold
-    \o Font.Black
+    \li Font.Light
+    \li Font.Normal - the default
+    \li Font.DemiBold
+    \li Font.Bold
+    \li Font.Black
     \endlist
 
     \qml
@@ -227,11 +227,11 @@ QString QDeclarativeTextEdit::text() const
     Sets the capitalization for the text.
 
     \list
-    \o Font.MixedCase - This is the normal text rendering option where no capitalization change is applied.
-    \o Font.AllUppercase - This alters the text to be rendered in all uppercase type.
-    \o Font.AllLowercase	 - This alters the text to be rendered in all lowercase type.
-    \o Font.SmallCaps -	This alters the text to be rendered in small-caps type.
-    \o Font.Capitalize - This alters the text to be rendered with the first character of each word as an uppercase character.
+    \li Font.MixedCase - This is the normal text rendering option where no capitalization change is applied.
+    \li Font.AllUppercase - This alters the text to be rendered in all uppercase type.
+    \li Font.AllLowercase - This alters the text to be rendered in all lowercase type.
+    \li Font.SmallCaps - This alters the text to be rendered in small-caps type.
+    \li Font.Capitalize - This alters the text to be rendered with the first character of each word as an uppercase character.
     \endlist
 
     \qml
@@ -271,9 +271,9 @@ void QDeclarativeTextEdit::setText(const QString &text)
     The way the text property should be displayed.
 
     \list
-    \o TextEdit.AutoText
-    \o TextEdit.PlainText
-    \o TextEdit.RichText
+    \li TextEdit.AutoText
+    \li TextEdit.PlainText
+    \li TextEdit.RichText
     \endlist
 
     The default is TextEdit.AutoText.  If the text format is TextEdit.AutoText the text edit
@@ -282,7 +282,7 @@ void QDeclarativeTextEdit::setText(const QString &text)
 
     \table
     \row
-    \o
+    \li
     \qml
 Column {
     TextEdit {
@@ -301,7 +301,7 @@ Column {
     }
 }
     \endqml
-    \o \image declarative-textformat.png
+    \li \image declarative-textformat.png
     \endtable
 */
 QDeclarativeTextEdit::TextFormat QDeclarativeTextEdit::textFormat() const
@@ -467,17 +467,17 @@ void QDeclarativeTextEdit::setSelectedTextColor(const QColor &color)
 
     Valid values for \c horizontalAlignment are:
     \list
-    \o TextEdit.AlignLeft (default)
-    \o TextEdit.AlignRight 
-    \o TextEdit.AlignHCenter
-    \o TextEdit.AlignJustify
+    \li TextEdit.AlignLeft (default)
+    \li TextEdit.AlignRight
+    \li TextEdit.AlignHCenter
+    \li TextEdit.AlignJustify
     \endlist
     
     Valid values for \c verticalAlignment are:
     \list
-    \o TextEdit.AlignTop (default)
-    \o TextEdit.AlignBottom
-    \o TextEdit.AlignVCenter
+    \li TextEdit.AlignTop (default)
+    \li TextEdit.AlignBottom
+    \li TextEdit.AlignVCenter
     \endlist
 
     When using the attached property \l {LayoutMirroring::enabled} to mirror application
@@ -599,10 +599,10 @@ void QDeclarativeTextEdit::setVAlign(QDeclarativeTextEdit::VAlignment alignment)
     The text will only wrap if an explicit width has been set.
 
     \list
-    \o TextEdit.NoWrap - no wrapping will be performed. If the text contains insufficient newlines, then implicitWidth will exceed a set width.
-    \o TextEdit.WordWrap - wrapping is done on word boundaries only. If a word is too long, implicitWidth will exceed a set width.
-    \o TextEdit.WrapAnywhere - wrapping is done at any point on a line, even if it occurs in the middle of a word.
-    \o TextEdit.Wrap - if possible, wrapping occurs at a word boundary; otherwise it will occur at the appropriate point on the line, even in the middle of a word.
+    \li TextEdit.NoWrap - no wrapping will be performed. If the text contains insufficient newlines, then implicitWidth will exceed a set width.
+    \li TextEdit.WordWrap - wrapping is done on word boundaries only. If a word is too long, implicitWidth will exceed a set width.
+    \li TextEdit.WrapAnywhere - wrapping is done at any point on a line, even if it occurs in the middle of a word.
+    \li TextEdit.Wrap - if possible, wrapping occurs at a word boundary; otherwise it will occur at the appropriate point on the line, even in the middle of a word.
     \endlist
 
     The default is TextEdit.NoWrap. If you set a width, consider using TextEdit.Wrap.
@@ -734,9 +734,9 @@ void QDeclarativeTextEdit::moveCursorSelection(int pos)
     basis.  If not specified the selection mode will default to TextEdit.SelectCharacters.
 
     \list
-    \o TextEdit.SelectCharacters - Sets either the selectionStart or selectionEnd (whichever was at
+    \li TextEdit.SelectCharacters - Sets either the selectionStart or selectionEnd (whichever was at
     the previous cursor position) to the specified position.
-    \o TextEdit.SelectWords - Sets the selectionStart and selectionEnd to include all
+    \li TextEdit.SelectWords - Sets the selectionStart and selectionEnd to include all
     words between the specified postion and the previous cursor position.  Words partially in the
     range are included.
     \endlist
@@ -1090,8 +1090,8 @@ void QDeclarativeTextEdit::setSelectByMouse(bool on)
     Specifies how text should be selected using a mouse.
 
     \list
-    \o TextEdit.SelectCharacters - The selection is updated with individual characters. (Default)
-    \o TextEdit.SelectWords - The selection is updated with whole words.
+    \li TextEdit.SelectCharacters - The selection is updated with individual characters. (Default)
+    \li TextEdit.SelectWords - The selection is updated with whole words.
     \endlist
 
     This property only applies when \l selectByMouse is true.

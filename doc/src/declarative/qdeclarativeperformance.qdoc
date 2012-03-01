@@ -96,11 +96,11 @@ Delegates must be created quickly as the view is flicked.  There are two importa
 aspects to maintaining a smooth view:
 
 \list
-\o Small delegates - keep the amount of QML to a minimum.  Have just enough
+\li Small delegates - keep the amount of QML to a minimum.  Have just enough
 QML in the delegate to display the necessary information.  Any additional functionality
 that is only needed when the delegate is clicked, for example, should be created by
 a Loader as needed.
-\o Fast data access - ensure the data model is as fast as possible.
+\li Fast data access - ensure the data model is as fast as possible.
 \endlist
 
 \section1 Image resources over composition
@@ -127,8 +127,8 @@ QGLWidget as the viewport of your QDeclarativeView.
 
 You may need to try various options to find what works the best for your application.
 For embedded X11-based devices one recommended combination is to use the raster graphics
-system with a QGLWidget for the viewport. While this doesn't guarantee the \bold fastest
-performance for all use-cases, it typically has \bold{consistently good} performance for
+system with a QGLWidget for the viewport. While this doesn't guarantee the \b fastest
+performance for all use-cases, it typically has \b{consistently good} performance for
 all use-cases. In contrast, only using the raster paint engine may result in very good
 performance for parts of your application and very poor performance elsewhere.
 

@@ -1746,13 +1746,13 @@ void QDeclarativeGridView::setHighlightMoveDuration(int duration)
     Valid values for \c highlightRangeMode are:
 
     \list
-    \o GridView.ApplyRange - the view attempts to maintain the highlight within the range.
+    \li GridView.ApplyRange - the view attempts to maintain the highlight within the range.
        However, the highlight can move outside of the range at the ends of the view or due
        to mouse interaction.
-    \o GridView.StrictlyEnforceRange - the highlight never moves outside of the range.
+    \li GridView.StrictlyEnforceRange - the highlight never moves outside of the range.
        The current item changes if a keyboard or mouse action would cause the highlight to move
        outside of the range.
-    \o GridView.NoHighlightRange - this is the default value.
+    \li GridView.NoHighlightRange - this is the default value.
     \endlist
 */
 qreal QDeclarativeGridView::preferredHighlightBegin() const
@@ -1832,9 +1832,9 @@ void QDeclarativeGridView::setHighlightRangeMode(HighlightRangeMode mode)
     Possible values:
 
   \list
-  \o Qt.LeftToRight (default) - Items will be laid out starting in the top, left corner. The flow is
+  \li Qt.LeftToRight (default) - Items will be laid out starting in the top, left corner. The flow is
   dependent on the \l GridView::flow property.
-  \o Qt.RightToLeft - Items will be laid out starting in the top, right corner. The flow is dependent
+  \li Qt.RightToLeft - Items will be laid out starting in the top, right corner. The flow is dependent
   on the \l GridView::flow property.
   \endlist
 
@@ -1878,8 +1878,8 @@ Qt::LayoutDirection QDeclarativeGridView::effectiveLayoutDirection() const
     Possible values:
 
     \list
-    \o GridView.LeftToRight (default) - Items are laid out from left to right, and the view scrolls vertically
-    \o GridView.TopToBottom - Items are laid out from top to bottom, and the view scrolls horizontally
+    \li GridView.LeftToRight (default) - Items are laid out from left to right, and the view scrolls vertically
+    \li GridView.TopToBottom - Items are laid out from top to bottom, and the view scrolls horizontally
     \endlist
 */
 QDeclarativeGridView::Flow QDeclarativeGridView::flow() const
@@ -2016,10 +2016,10 @@ void QDeclarativeGridView::setCellHeight(int cellHeight)
     The possible values are:
 
     \list
-    \o GridView.NoSnap (default) - the view stops anywhere within the visible area.
-    \o GridView.SnapToRow - the view settles with a row (or column for \c GridView.TopToBottom flow)
+    \li GridView.NoSnap (default) - the view stops anywhere within the visible area.
+    \li GridView.SnapToRow - the view settles with a row (or column for \c GridView.TopToBottom flow)
     aligned with the start of the view.
-    \o GridView.SnapOneRow - the view will settle no more than one row (or column for \c GridView.TopToBottom flow)
+    \li GridView.SnapOneRow - the view will settle no more than one row (or column for \c GridView.TopToBottom flow)
     away from the first visible row at the time the mouse button is released.
     This mode is particularly useful for moving one page at a time.
     \endlist
@@ -2361,7 +2361,7 @@ void QDeclarativeGridView::keyPressEvent(QKeyEvent *event)
     The current index will wrap if keyNavigationWraps is true and it
     is currently at the end. This method has no effect if the \l count is zero.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 void QDeclarativeGridView::moveCurrentIndexUp()
 {
@@ -2389,7 +2389,7 @@ void QDeclarativeGridView::moveCurrentIndexUp()
     The current index will wrap if keyNavigationWraps is true and it
     is currently at the end. This method has no effect if the \l count is zero.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 void QDeclarativeGridView::moveCurrentIndexDown()
 {
@@ -2417,7 +2417,7 @@ void QDeclarativeGridView::moveCurrentIndexDown()
     The current index will wrap if keyNavigationWraps is true and it
     is currently at the end. This method has no effect if the \l count is zero.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 void QDeclarativeGridView::moveCurrentIndexLeft()
 {
@@ -2460,7 +2460,7 @@ void QDeclarativeGridView::moveCurrentIndexLeft()
     The current index will wrap if keyNavigationWraps is true and it
     is currently at the end. This method has no effect if the \l count is zero.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 void QDeclarativeGridView::moveCurrentIndexRight()
 {
@@ -2588,12 +2588,12 @@ void QDeclarativeGridViewPrivate::positionViewAtIndex(int index, int mode)
     \a mode:
 
     \list
-    \o GridView.Beginning - position item at the top (or left for \c GridView.TopToBottom flow) of the view.
-    \o GridView.Center - position item in the center of the view.
-    \o GridView.End - position item at bottom (or right for horizontal orientation) of the view.
-    \o GridView.Visible - if any part of the item is visible then take no action, otherwise
+    \li GridView.Beginning - position item at the top (or left for \c GridView.TopToBottom flow) of the view.
+    \li GridView.Center - position item in the center of the view.
+    \li GridView.End - position item at bottom (or right for horizontal orientation) of the view.
+    \li GridView.Visible - if any part of the item is visible then take no action, otherwise
     bring the item into view.
-    \o GridView.Contain - ensure the entire item is visible.  If the item is larger than
+    \li GridView.Contain - ensure the entire item is visible.  If the item is larger than
     the view the item is positioned at the top (or left for \c GridView.TopToBottom flow) of the view.
     \endlist
 
@@ -2605,7 +2605,7 @@ void QDeclarativeGridViewPrivate::positionViewAtIndex(int index, int mode)
     of the view does not cause all other items to be repositioned.
     The correct way to bring an item into view is with \c positionViewAtIndex.
 
-    \bold Note: methods should only be called after the Component has completed.  To position
+    \b Note: methods should only be called after the Component has completed.  To position
     the view at startup, this method should be called by Component.onCompleted.  For
     example, to position the view at the end:
 
@@ -2633,7 +2633,7 @@ void QDeclarativeGridView::positionViewAtIndex(int index, int mode)
     of the list does not cause all other items to be repositioned, and because
     the actual start of the view can vary based on the size of the delegates.
 
-    \bold Note: methods should only be called after the Component has completed.  To position
+    \b Note: methods should only be called after the Component has completed.  To position
     the view at startup, this method should be called by Component.onCompleted.  For
     example, to position the view at the end on startup:
 
@@ -2667,7 +2667,7 @@ void QDeclarativeGridView::positionViewAtEnd()
     If the item is outside the visible area, -1 is returned, regardless of
     whether an item will exist at that point when scrolled into view.
 
-    \bold Note: methods should only be called after the Component has completed.
+    \b Note: methods should only be called after the Component has completed.
 */
 int QDeclarativeGridView::indexAt(qreal x, qreal y) const
 {
