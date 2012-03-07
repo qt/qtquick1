@@ -96,11 +96,7 @@ void QDeclarativePropertyCache::Data::load(const QMetaMethod &m)
     flags |= Data::IsFunction;
     if (m.methodType() == QMetaMethod::Signal)
         flags |= Data::IsSignal;
-    propType = QVariant::Invalid;
-
-    const char *returnType = m.typeName();
-    if (returnType) 
-        propType = QMetaType::type(returnType);
+    propType = m.returnType();
 
     QList<QByteArray> params = m.parameterTypes();
     if (!params.isEmpty())
