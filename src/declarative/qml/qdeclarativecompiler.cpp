@@ -438,7 +438,10 @@ void QDeclarativeCompiler::genLiteralAssignment(const QMetaProperty &prop,
         case QVariant::DateTime:
             {
             QDateTime dateTime = QDeclarativeStringConverters::dateTimeFromString(string);
-            int data[] = { dateTime.date().toJulianDay(),
+#ifdef Q_CC_GNU
+# warning "QDateTime range has extended in Qt 5, please fix me"
+#endif
+            int data[] = { int(dateTime.date().toJulianDay()),
                            dateTime.time().hour(),
                            dateTime.time().minute(),
                            dateTime.time().second(),
