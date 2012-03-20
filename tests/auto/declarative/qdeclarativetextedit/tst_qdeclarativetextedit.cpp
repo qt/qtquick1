@@ -2513,8 +2513,7 @@ void tst_qdeclarativetextedit::inputContextMouseHandler()
     edit.setPos(0, 0);
     edit.setWidth(200);
     edit.setText(text.mid(0, 12));
-    edit.setPos(0, 0);
-    edit.setCursorPosition(12);
+    edit.setCursorPosition(0);
     edit.setFocus(true);
     scene.addItem(&edit);
     view.show();
@@ -2535,7 +2534,6 @@ void tst_qdeclarativetextedit::inputContextMouseHandler()
     QTest::mouseRelease(view.viewport(), Qt::RightButton, Qt::ControlModifier, position2);
     QApplication::processEvents();
 
-    QEXPECT_FAIL("", "QTBUG-24035", Abort);
     QCOMPARE(ic.m_action, QInputMethod::Click);
     QCOMPARE(ic.m_invokeActionCallCount, 1);
     QCOMPARE(ic.m_cursorPosition, 2);
