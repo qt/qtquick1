@@ -2733,7 +2733,7 @@ void tst_qdeclarativetextinput::deselect()
     textInput->deselect();
 
     QCOMPARE(selectionStartSpy.count(), 2);
-    QCOMPARE(selectionEndSpy.count(), 1);
+    QCOMPARE(selectionEndSpy.count(), 0);
     QCOMPARE(selectedTextSpy.count(), 2);
     QCOMPARE(textInput->selectionStart(), textInput->cursorPosition());
     QCOMPARE(textInput->selectionEnd(), textInput->cursorPosition());
@@ -2743,7 +2743,7 @@ void tst_qdeclarativetextinput::deselect()
     textInput->select(5, 6);
 
     QCOMPARE(selectionStartSpy.count(), 3);
-    QCOMPARE(selectionEndSpy.count(), 1);
+    QCOMPARE(selectionEndSpy.count(), 0);
     QCOMPARE(selectedTextSpy.count(), 3);
     QCOMPARE(textInput->selectionStart(), 5);
     QCOMPARE(textInput->selectionEnd(), 6);
@@ -2755,8 +2755,8 @@ void tst_qdeclarativetextinput::deselect()
     QApplication::sendEvent(canvas, &leftArrowPress);
     QApplication::sendEvent(canvas, &leftArrowRelese);
 
-    QCOMPARE(selectionStartSpy.count(), 4);
-    QCOMPARE(selectionEndSpy.count(), 2);
+    QCOMPARE(selectionStartSpy.count(), 3);
+    QCOMPARE(selectionEndSpy.count(), 1);
     QCOMPARE(selectedTextSpy.count(), 4);
     QCOMPARE(textInput->selectionStart(), textInput->cursorPosition());
     QCOMPARE(textInput->selectionEnd(), textInput->cursorPosition());
@@ -2765,8 +2765,8 @@ void tst_qdeclarativetextinput::deselect()
 
     textInput->select(5, 6);
 
-    QCOMPARE(selectionStartSpy.count(), 4);
-    QCOMPARE(selectionEndSpy.count(), 3);
+    QCOMPARE(selectionStartSpy.count(), 3);
+    QCOMPARE(selectionEndSpy.count(), 2);
     QCOMPARE(selectedTextSpy.count(), 5);
     QCOMPARE(textInput->selectionStart(), 5);
     QCOMPARE(textInput->selectionEnd(), 6);
@@ -2778,9 +2778,8 @@ void tst_qdeclarativetextinput::deselect()
     QInputMethodEvent event(QLatin1String(""), attributes);
     QApplication::sendEvent(canvas, &event);
 
-    QCOMPARE(selectionStartSpy.count(), 5);
-    QCOMPARE(selectionEndSpy.count(), 4);
-    QEXPECT_FAIL("", "QTBUG-24036", Continue);
+    QCOMPARE(selectionStartSpy.count(), 4);
+    QCOMPARE(selectionEndSpy.count(), 3);
     QCOMPARE(selectedTextSpy.count(), 6);
     QCOMPARE(textInput->selectionStart(), textInput->cursorPosition());
     QCOMPARE(textInput->selectionEnd(), textInput->cursorPosition());
@@ -2789,9 +2788,8 @@ void tst_qdeclarativetextinput::deselect()
 
     textInput->setCursorPosition(1);
 
-    QCOMPARE(selectionStartSpy.count(), 6);
-    QCOMPARE(selectionEndSpy.count(), 5);
-    QEXPECT_FAIL("", "QTBUG-24036", Continue);
+    QCOMPARE(selectionStartSpy.count(), 5);
+    QCOMPARE(selectionEndSpy.count(), 4);
     QCOMPARE(selectedTextSpy.count(), 6);
 
     QKeyEvent leftArrowShiftPress(QEvent::KeyPress, Qt::Key_Left, Qt::ShiftModifier);
@@ -2799,9 +2797,8 @@ void tst_qdeclarativetextinput::deselect()
     QApplication::sendEvent(canvas, &leftArrowShiftPress);
     QApplication::sendEvent(canvas, &leftArrowShiftRelese);
 
-    QCOMPARE(selectionStartSpy.count(), 7);
-    QCOMPARE(selectionEndSpy.count(), 5);
-    QEXPECT_FAIL("", "QTBUG-24036", Continue);
+    QCOMPARE(selectionStartSpy.count(), 6);
+    QCOMPARE(selectionEndSpy.count(), 4);
     QCOMPARE(selectedTextSpy.count(), 7);
     QCOMPARE(textInput->selectionStart(), 0);
     QCOMPARE(textInput->selectionEnd(), 1);
@@ -2810,9 +2807,8 @@ void tst_qdeclarativetextinput::deselect()
 
     QApplication::sendEvent(canvas, &event);
 
-    QEXPECT_FAIL("", "QTBUG-24036", Abort);
-    QCOMPARE(selectionStartSpy.count(), 8);
-    QCOMPARE(selectionEndSpy.count(), 6);
+    QCOMPARE(selectionStartSpy.count(), 6);
+    QCOMPARE(selectionEndSpy.count(), 5);
     QCOMPARE(selectedTextSpy.count(), 8);
     QCOMPARE(textInput->selectionStart(), textInput->cursorPosition());
     QCOMPARE(textInput->selectionEnd(), textInput->cursorPosition());

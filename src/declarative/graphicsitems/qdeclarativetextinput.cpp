@@ -1920,16 +1920,15 @@ void QDeclarativeTextInput::selectionChanged()
     updateRect();//TODO: Only update rect in selection
     emit selectedTextChanged();
 
-    if(d->lastSelectionStart != d->control->selectionStart()){
-        d->lastSelectionStart = d->control->selectionStart();
-        if(d->lastSelectionStart == -1)
-            d->lastSelectionStart = d->control->cursor();
+    int newSelectionStart = d->control->hasSelectedText() ? d->control->selectionStart() : d->control->cursor();
+    int newSelectionEnd = d->control->hasSelectedText() ? d->control->selectionEnd() : d->control->cursor();
+
+    if (d->lastSelectionStart != newSelectionStart) {
+        d->lastSelectionStart = newSelectionStart;
         emit selectionStartChanged();
     }
-    if(d->lastSelectionEnd != d->control->selectionEnd()){
-        d->lastSelectionEnd = d->control->selectionEnd();
-        if(d->lastSelectionEnd == -1)
-            d->lastSelectionEnd = d->control->cursor();
+    if (d->lastSelectionEnd != newSelectionEnd) {
+        d->lastSelectionEnd = newSelectionEnd;
         emit selectionEndChanged();
     }
 }
