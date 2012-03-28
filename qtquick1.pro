@@ -1,5 +1,4 @@
 TEMPLATE = subdirs
-CONFIG += ordered
 
 module_qtquick1_src.subdir = src
 module_qtquick1_src.target = module-qtquick1-src
