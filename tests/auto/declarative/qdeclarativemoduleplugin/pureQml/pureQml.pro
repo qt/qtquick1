@@ -17,7 +17,7 @@ copyComponentA.input = COMPONENTA_IN_FILE
 copyComponentA.output = $$COMPONENTA_OUT_FILE
 !contains(TEMPLATE_PREFIX, vc):copyComponentA.variable_out = PRE_TARGETDEPS
 win32 {
-    copyComponentA.commands = ( $$QMAKE_CHK_DIR_EXISTS $$COMPONENTA_OUT_DIR $(MKDIR) $$COMPONENTA_OUT_DIR ) && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+    copyComponentA.commands = ($$QMAKE_CHK_DIR_EXISTS $$COMPONENTA_OUT_DIR $(MKDIR) $$COMPONENTA_OUT_DIR) && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 } else {
     copyComponentA.commands = $(MKDIR) $$COMPONENTA_OUT_DIR && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 }
@@ -37,7 +37,7 @@ copyComponentB.input = COMPONENTB_IN_FILE
 copyComponentB.output = $$COMPONENTB_OUT_FILE
 !contains(TEMPLATE_PREFIX, vc):copyComponentB.variable_out = PRE_TARGETDEPS
 win32 {
-    copyComponentB.commands = ( $$QMAKE_CHK_DIR_EXISTS $$COMPONENTB_OUT_DIR $(MKDIR) $$COMPONENTB_OUT_DIR ) && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+    copyComponentB.commands = ($$QMAKE_CHK_DIR_EXISTS $$COMPONENTB_OUT_DIR $(MKDIR) $$COMPONENTB_OUT_DIR) && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 } else {
     copyComponentB.commands = $(MKDIR) $$COMPONENTB_OUT_DIR && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 }
