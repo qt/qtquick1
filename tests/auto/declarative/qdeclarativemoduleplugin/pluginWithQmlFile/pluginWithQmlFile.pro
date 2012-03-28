@@ -17,7 +17,7 @@ copyMyQmlFile.input = QML_IN_FILE
 copyMyQmlFile.output = $$QML_OUT_FILE
 !contains(TEMPLATE_PREFIX, vc):copyMyQmlFile.variable_out = PRE_TARGETDEPS
 win32 {
-    copyMyQmlFile.commands = ( $$QMAKE_CHK_DIR_EXISTS $$QML_OUT_DIR $(MKDIR) $$QML_OUT_DIR ) && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
+    copyMyQmlFile.commands = ($$QMAKE_CHK_DIR_EXISTS $$QML_OUT_DIR $(MKDIR) $$QML_OUT_DIR) && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 } else {
     copyMyQmlFile.commands = $(MKDIR) $$QML_OUT_DIR && $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 }
