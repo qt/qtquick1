@@ -1419,7 +1419,7 @@ void tst_qdeclarativetextinput::masks()
     QVERIFY(textinputObject != 0);
     QTRY_VERIFY(textinputObject->hasActiveFocus() == true);
     QVERIFY(textinputObject->text().length() == 0);
-    QCOMPARE(textinputObject->inputMask(), QString("HHHHhhhh; "));
+    QCOMPARE(textinputObject->inputMask(), QString("HHHHhhhh"));
     for(int i=0; i<10; i++){
         QCOMPARE(qMin(i,8), textinputObject->text().length());
         QCOMPARE(i>=4, textinputObject->hasAcceptableInput());
