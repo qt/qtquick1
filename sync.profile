@@ -11,9 +11,6 @@
     "network" => "#include <QtNetwork/QtNetwork>\n",
     "testlib" => "#include <QtTest/QtTest>\n",
 );
-%modulepris = (
-    "QtQuick1" => "$basedir/modules/qt_quick1.pri",
-);
 # Module dependencies.
 # Every module that is required to build this module should have one entry.
 # Each of the module version specifiers can take one of the following values:

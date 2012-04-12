@@ -3,13 +3,15 @@ load(qt_module)
 TARGET     = QtQuick1
 QPRO_PWD   = $$PWD
 
-QT         += core core-private gui gui-private widgets widgets-private script script-private network
-
 CONFIG += module
-MODULE_PRI = ../../modules/qt_quick1.pri
+QT         = core-private gui-private widgets-private script-private
 
 MODULE=quick1
+MODULE_IMPORT_SUFFIX = /QtQuick1
 load(qt_module_config)
+
+# private dependencies
+QT += xmlpatterns
 
 DEFINES   += QT_BUILD_QUICK1_LIB QT_NO_URL_CAST_FROM_STRING
 
