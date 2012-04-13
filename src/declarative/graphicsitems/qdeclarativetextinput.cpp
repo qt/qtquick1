@@ -1229,7 +1229,7 @@ bool QDeclarativeTextInputPrivate::sendMouseEventToInputContext(
         int mousePos = tmp_cursor - control->cursor();
         if (mousePos >= 0 && mousePos <= control->preeditAreaText().length()) {
             if (eventType == QEvent::MouseButtonRelease) {
-                qApp->inputMethod()->invokeAction(QInputPanel::Click, mousePos);
+                qApp->inputMethod()->invokeAction(QInputMethod::Click, mousePos);
             }
             return true;
         }
@@ -1757,7 +1757,7 @@ void QDeclarativeTextInput::openSoftwareInputPanel()
     if (qApp) {
         if (QGraphicsView * view = qobject_cast<QGraphicsView*>(qApp->focusWidget())) {
             if (view->scene() && view->scene() == scene()) {
-                qApp->inputPanel()->show();
+                qApp->inputMethod()->show();
             }
         }
     }
@@ -1806,7 +1806,7 @@ void QDeclarativeTextInput::closeSoftwareInputPanel()
     if (qApp) {
         if (QGraphicsView * view = qobject_cast<QGraphicsView*>(qApp->focusWidget())) {
             if (view->scene() && view->scene() == scene()) {
-                qApp->inputPanel()->hide();
+                qApp->inputMethod()->hide();
             }
         }
     }
