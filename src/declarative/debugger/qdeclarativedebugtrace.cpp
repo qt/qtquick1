@@ -149,7 +149,7 @@ void QDeclarativeDebugTrace::rangeDataImpl(RangeType range, const QUrl &rData)
     if (status() != Enabled || !m_enabled)
         return;
 
-    QDeclarativeDebugData rd = {m_timer.elapsed(), (int)RangeData, (int)range, rData.toString(QUrl::FormattingOption(0x100)), -1};
+    QDeclarativeDebugData rd = {m_timer.elapsed(), (int)RangeData, (int)range, rData.toString(QUrl::UrlFormattingOption(0x100)), -1};
     processMessage(rd);
 }
 
@@ -167,7 +167,7 @@ void QDeclarativeDebugTrace::rangeLocationImpl(RangeType range, const QUrl &file
     if (status() != Enabled || !m_enabled)
         return;
 
-    QDeclarativeDebugData rd = {m_timer.elapsed(), (int)RangeLocation, (int)range, fileName.toString(QUrl::FormattingOption(0x100)), line};
+    QDeclarativeDebugData rd = {m_timer.elapsed(), (int)RangeLocation, (int)range, fileName.toString(QUrl::UrlFormattingOption(0x100)), line};
     processMessage(rd);
 }
 

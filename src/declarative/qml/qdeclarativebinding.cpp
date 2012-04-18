@@ -400,7 +400,6 @@ void QDeclarativeBinding::update(QDeclarativePropertyPrivate::WriteFlags flags)
 
                 QUrl url = QUrl(d->url);
                 int line = d->line;
-                if (url.isEmpty()) url = QUrl(QLatin1String("<Unknown File>"));
 
                 d->error.setUrl(url);
                 d->error.setLine(line);
@@ -413,7 +412,6 @@ void QDeclarativeBinding::update(QDeclarativePropertyPrivate::WriteFlags flags)
 
                 QUrl url = QUrl(d->url);
                 int line = d->line;
-                if (url.isEmpty()) url = QUrl(QLatin1String("<Unknown File>"));
 
                 d->error.setUrl(url);
                 d->error.setLine(line);
@@ -428,7 +426,6 @@ void QDeclarativeBinding::update(QDeclarativePropertyPrivate::WriteFlags flags)
 
                 QUrl url = QUrl(d->url);
                 int line = d->line;
-                if (url.isEmpty()) url = QUrl(QLatin1String("<Unknown File>"));
 
                 const char *valueType = 0;
                 if (value.userType() == QVariant::Invalid) valueType = "null";

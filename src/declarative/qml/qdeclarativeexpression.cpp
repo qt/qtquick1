@@ -392,13 +392,10 @@ void QDeclarativeExpressionPrivate::exceptionToError(QScriptEngine *scriptEngine
         QScriptValue exception = scriptEngine->uncaughtException();
         QLatin1String fileNameProp("fileName");
 
-        if (!exception.property(fileNameProp).toString().isEmpty()){
+        if (!exception.property(fileNameProp).toString().isEmpty())
             fileName = exception.property(fileNameProp).toString();
-        } else {
-            fileName = QLatin1String("<Unknown File>");
-        }
 
-        error.setUrl(QUrl(fileName));
+        error.setUrl(!fileName.isEmpty() ? QUrl(fileName) : QUrl());
         error.setLine(lineNumber);
         error.setColumn(-1);
         error.setDescription(exception.toString());
