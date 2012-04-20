@@ -11,3 +11,4 @@ SOURCES += tst_qdeclarativedebug.cpp \
 
 CONFIG += parallel_test declarative_debug
 
+CONFIG+=insignificant_test # QTQAINFRA-428
