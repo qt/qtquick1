@@ -762,6 +762,10 @@ void MetaCallArgument::initAsType(int callType, QDeclarativeEngine *e)
     } else if (callType == qMetaTypeId<QList<QObject *> >()) {
         type = callType;
         qlistPtr = new (&allocData) QList<QObject *>();
+    } else if (callType == QMetaType::Void) {
+        // In Qt4 QMetaType::Void and QMetaType::UnknownType were both equals to 0 so QtQuick1
+        // doesn't always recognize the difference
+        return;
     } else {
         type = -1;
         qvariantPtr = new (&allocData) QVariant(callType, (void *)0);
