@@ -54,6 +54,8 @@
 #include <QtCore/qstringbuilder.h>
 #include <QtCore/qdebug.h>
 
+#include <stdlib.h>
+
 QT_BEGIN_NAMESPACE
 
 class QDeclarativeBoundSignalParameters : public QObject
@@ -271,7 +273,7 @@ QDeclarativeBoundSignalParameters::QDeclarativeBoundSignalParameters(const QMeta
 QDeclarativeBoundSignalParameters::~QDeclarativeBoundSignalParameters()
 {
     delete [] types;
-    qFree(myMetaObject);
+    ::free(myMetaObject);
 }
 
 void QDeclarativeBoundSignalParameters::setValues(void **v)

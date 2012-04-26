@@ -46,6 +46,8 @@
 #include <private/qpainter_p.h>
 #include <private/qpaintengineex_p.h>
 
+#include <string.h>
+
 QT_BEGIN_NAMESPACE
 
 class QDeclarativeTextLayoutPrivate
@@ -138,13 +140,13 @@ class DrawTextItemRecorder: public QPaintEngine
             m_inertText->chars.resize(m_inertText->chars.size() + ti.num_chars);
 
             glyph_t *glyphsDestination = m_inertText->glyphs.data() + glyphOffset;
-            qMemCopy(glyphsDestination, glyphs.constData(), sizeof(glyph_t) * size);
+            memcpy(glyphsDestination, glyphs.constData(), sizeof(glyph_t) * size);
 
             QFixedPoint *positionsDestination = m_inertText->positions.data() + positionOffset;
-            qMemCopy(positionsDestination, positions.constData(), sizeof(QFixedPoint) * size);
+            memcpy(positionsDestination, positions.constData(), sizeof(QFixedPoint) * size);
 
             QChar *charsDestination = m_inertText->chars.data() + charOffset;
-            qMemCopy(charsDestination, ti.chars, sizeof(QChar) * ti.num_chars);
+            memcpy(charsDestination, ti.chars, sizeof(QChar) * ti.num_chars);
 
         }
 

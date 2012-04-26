@@ -94,6 +94,7 @@
 #include <QtCore/qcoreapplication.h>
 #include <QtCore/qdir.h>
 #include <QtCore/qmutex.h>
+#include <QtCore/qstandardpaths.h>
 #include <QtGui/qcolor.h>
 #include <QtGui/qvector3d.h>
 #include <QtCore/qcryptographichash.h>
@@ -390,7 +391,10 @@ QDeclarativeScriptEngine::QDeclarativeScriptEngine(QDeclarativeEnginePrivate *pr
     globalObject().setProperty(QLatin1String("Qt"), qtObject);
 
 #ifndef QT_NO_DESKTOPSERVICES
-    offlineStoragePath = QDesktopServices::storageLocation(QDesktopServices::DataLocation).replace(QLatin1Char('/'), QDir::separator())
+    const QStringList dataLocations = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    Q_ASSERT(!dataLocations.isEmpty());
+    QString dataLocation = dataLocations.first();
+    offlineStoragePath = dataLocation.replace(QLatin1Char('/'), QDir::separator())
         + QDir::separator() + QLatin1String("QML")
         + QDir::separator() + QLatin1String("OfflineStorage");
 #endif
