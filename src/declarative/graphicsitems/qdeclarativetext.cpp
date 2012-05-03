@@ -1117,7 +1117,8 @@ bool QDeclarativeTextPrivate::determineHorizontalAlignment()
 {
     Q_Q(QDeclarativeText);
     if (hAlignImplicit && q->isComponentComplete()) {
-        bool alignToRight = text.isEmpty() ? QApplication::keyboardInputDirection() == Qt::RightToLeft : rightToLeftText;
+        Qt::LayoutDirection direction = qApp->inputMethod()->inputDirection();
+        bool alignToRight = text.isEmpty() ? direction == Qt::RightToLeft : rightToLeftText;
         return setHAlign(alignToRight ? QDeclarativeText::AlignRight : QDeclarativeText::AlignLeft);
     }
     return false;
