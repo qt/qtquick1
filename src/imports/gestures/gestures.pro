@@ -9,7 +9,7 @@ HEADERS += qdeclarativegesturearea_p.h
 
 OTHER_FILES += gestures.json
 
-DESTDIR = $$QT.quick1.imports/imports/$$TARGETPATH
+DESTDIR = $$QT.quick1.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 
 qmldir.files += $$PWD/qmldir
