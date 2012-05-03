@@ -267,7 +267,7 @@ public:
         hz->setValidator(new QDoubleValidator(hz));
 #endif
         for (int i=0; ffmpegprofiles[i].name; ++i) {
-            profile->addItem(QString::fromAscii(ffmpegprofiles[i].name));
+            profile->addItem(QString::fromLatin1(ffmpegprofiles[i].name));
         }
     }
 
@@ -275,9 +275,9 @@ public:
     {
         int i;
         for (i=0; ffmpegprofiles[i].args[0]; ++i) {
-            if (QString::fromAscii(ffmpegprofiles[i].args) == a) {
+            if (QString::fromLatin1(ffmpegprofiles[i].args) == a) {
                 profile->setCurrentIndex(i);
-                args->setText(QString::fromAscii(ffmpegprofiles[i].args));
+                args->setText(QString::fromLatin1(ffmpegprofiles[i].args));
                 return;
             }
         }
@@ -1228,7 +1228,7 @@ void QDeclarativeViewer::senseImageMagick()
     QProcess proc;
     proc.start(QLatin1String("convert"), QStringList() << QLatin1String("-h"));
     proc.waitForFinished(2000);
-    QString help = QString::fromAscii(proc.readAllStandardOutput());
+    QString help = QString::fromLatin1(proc.readAllStandardOutput());
     convertAvailable = help.contains(QLatin1String("ImageMagick"));
 }
 
@@ -1237,7 +1237,7 @@ void QDeclarativeViewer::senseFfmpeg()
     QProcess proc;
     proc.start(QLatin1String("ffmpeg"), QStringList() << QLatin1String("-h"));
     proc.waitForFinished(2000);
-    QString ffmpegHelp = QString::fromAscii(proc.readAllStandardOutput());
+    QString ffmpegHelp = QString::fromLatin1(proc.readAllStandardOutput());
     ffmpegAvailable = ffmpegHelp.contains(QLatin1String("-s "));
     ffmpegHelp = tr("Video recording uses ffmpeg:") + QLatin1String("\n\n") + ffmpegHelp;
 
@@ -1280,10 +1280,10 @@ void QDeclarativeViewer::setRecording(bool on)
             args << QLatin1String("-r") << QString::number(record_rate);
             args << QLatin1String("-f") << QLatin1String("rawvideo");
             args << QLatin1String("-pix_fmt") << (frame_fmt == QLatin1String(".gif") ? QLatin1String("rgb24") : QLatin1String("rgb32"));
-            args << QLatin1String("-s") << QString::fromAscii("%1x%2").arg(canvas->width()).arg(canvas->height());
+            args << QLatin1String("-s") << QString::fromLatin1("%1x%2").arg(canvas->width()).arg(canvas->height());
             args << QLatin1String("-i") << QLatin1String("-");
             if (record_outsize.isValid()) {
-                args << QLatin1String("-s") << QString::fromAscii("%1x%2").arg(record_outsize.width()).arg(record_outsize.height());
+                args << QLatin1String("-s") << QString::fromLatin1("%1x%2").arg(record_outsize.width()).arg(record_outsize.height());
                 args << QLatin1String("-aspect") << QString::number(double(canvas->width())/canvas->height());
             }
             args += record_args;

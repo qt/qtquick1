@@ -527,7 +527,7 @@ int main(int argc, char ** argv)
     //### default to using raster graphics backend for now
     bool gsSpecified = false;
     for (int i = 0; i < argc; ++i) {
-        QString arg = QString::fromAscii(argv[i]);
+        QString arg = QString::fromLatin1(argv[i]);
         if (arg == QLatin1String("-graphicssystem")) {
             gsSpecified = true;
             break;
