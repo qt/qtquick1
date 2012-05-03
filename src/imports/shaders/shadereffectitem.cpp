@@ -733,12 +733,12 @@ void ShaderEffectItem::setSource(const QVariant &var, int index)
     source.item = 0;
     if (var.isNull()) {
         return;
-    } else if (!qVariantCanConvert<QObject *>(var)) {
+    } else if (!var.canConvert<QObject *>()) {
         qWarning("Could not assign source of type '%s' to property '%s'.", var.typeName(), source.name.constData());
         return;
     }
 
-    QObject *obj = qVariantValue<QObject *>(var);
+    QObject *obj = var.value<QObject *>();
 
     source.source = qobject_cast<ShaderEffectSource *>(obj);
     source.item = qobject_cast<QDeclarativeItem *>(obj);

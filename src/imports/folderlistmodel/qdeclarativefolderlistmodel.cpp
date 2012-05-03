@@ -155,11 +155,6 @@ public:
 QDeclarativeFolderListModel::QDeclarativeFolderListModel(QObject *parent)
     : QAbstractListModel(parent)
 {
-    QHash<int, QByteArray> roles;
-    roles[FileNameRole] = "fileName";
-    roles[FilePathRole] = "filePath";
-    setRoleNames(roles);
-
     d = new QDeclarativeFolderListModelPrivate;
     d->model.setFilter(QDir::AllDirs | QDir::Files | QDir::Drives | QDir::NoDotAndDotDot);
     connect(&d->model, SIGNAL(rowsInserted(const QModelIndex&,int,int))
@@ -188,6 +183,14 @@ QVariant QDeclarativeFolderListModel::data(const QModelIndex &index, int role) c
             rv = QUrl::fromLocalFile(d->model.data(modelIndex, QDirModel::FilePathRole).toString());
     }
     return rv;
+}
+
+QHash<int, QByteArray> QDeclarativeFolderListModel::roleNames() const
+{
+    QHash<int, QByteArray> roles;
+    roles[FileNameRole] = "fileName";
+    roles[FilePathRole] = "filePath";
+    return roles;
 }
 
 /*!
