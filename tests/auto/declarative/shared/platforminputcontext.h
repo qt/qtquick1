@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-#include <qplatforminputcontext_qpa.h>
+#include <qpa/qplatforminputcontext.h>
 #include <QtGui/QInputMethod>
 
 #include <private/qinputmethod_p.h>
