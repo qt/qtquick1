@@ -560,11 +560,6 @@ void QDeclarativeData::parentChanged(QAbstractDeclarativeData *d, QObject *o, QO
     Q_UNUSED(p)
 }
 
-void QDeclarativeData::objectNameChanged(QAbstractDeclarativeData *d, QObject *o)
-{
-    static_cast<QDeclarativeData *>(d)->objectNameChanged(o);
-}
-
 void QDeclarativeEnginePrivate::init()
 {
     Q_Q(QDeclarativeEngine);
@@ -1172,11 +1167,6 @@ void QDeclarativeData::destroyed(QObject *object)
 
     if (ownMemory)
         delete this;
-}
-
-void QDeclarativeData::objectNameChanged(QObject *)
-{
-    if (extendedData) objectNameNotifier()->notify();
 }
 
 bool QDeclarativeData::hasBindingBit(int bit) const
