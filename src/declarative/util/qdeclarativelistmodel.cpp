@@ -332,7 +332,7 @@ int QDeclarativeListModel::count() const
 
     Deletes all content from the model.
 
-    \sa append() remove()
+    \sa append(), remove()
 */
 void QDeclarativeListModel::clear()
 {
@@ -417,7 +417,7 @@ void QDeclarativeListModel::remove(int index)
     The \a index must be to an existing item in the list, or one past
     the end of the list (equivalent to append).
 
-    \sa set() append()
+    \sa set(), append()
 */
 void QDeclarativeListModel::insert(int index, const QScriptValue& valuemap)
 {
@@ -492,7 +492,7 @@ void QDeclarativeListModel::move(int from, int to, int n)
         fruitModel.append({"cost": 5.95, "name":"Pizza"})
     \endcode
 
-    \sa set() remove()
+    \sa set(), remove()
 */
 void QDeclarativeListModel::append(const QScriptValue& valuemap)
 {

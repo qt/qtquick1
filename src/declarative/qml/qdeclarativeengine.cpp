@@ -624,7 +624,7 @@ QDeclarativeWorkerScriptEngine *QDeclarativeEnginePrivate::getWorkerScriptEngine
   In this case, the Text item will be created in the engine's
   \l {QDeclarativeEngine::rootContext()}{root context}.
 
-  \sa QDeclarativeComponent QDeclarativeContext
+  \sa QDeclarativeComponent, QDeclarativeContext
 */
 
 /*!
@@ -2140,7 +2140,7 @@ void QDeclarativeEngine::addImportPath(const QString& path)
   paths specified in the \c QML_IMPORT_PATH environment variable,
   and the builtin \c ImportsPath from QLibraryInfo.
 
-  \sa addImportPath() setImportPathList()
+  \sa addImportPath(), setImportPathList()
 */
 QStringList QDeclarativeEngine::importPathList() const
 {
@@ -2156,7 +2156,7 @@ QStringList QDeclarativeEngine::importPathList() const
   paths specified in the \c QML_IMPORT_PATH environment variable,
   and the builtin \c ImportsPath from QLibraryInfo.
 
-  \sa importPathList() addImportPath()
+  \sa importPathList(), addImportPath()
   */
 void QDeclarativeEngine::setImportPathList(const QStringList &paths)
 {
@@ -2190,7 +2190,7 @@ void QDeclarativeEngine::addPluginPath(const QString& path)
   By default, the list contains only \c .,  i.e. the engine searches
   in the directory of the \c qmldir file itself.
 
-  \sa addPluginPath() setPluginPathList()
+  \sa addPluginPath(), setPluginPathList()
 */
 QStringList QDeclarativeEngine::pluginPathList() const
 {
@@ -2206,7 +2206,7 @@ QStringList QDeclarativeEngine::pluginPathList() const
   By default, the list contains only \c .,  i.e. the engine searches
   in the directory of the \c qmldir file itself.
 
-  \sa pluginPathList() addPluginPath()
+  \sa pluginPathList(), addPluginPath()
   */
 void QDeclarativeEngine::setPluginPathList(const QStringList &paths)
 {

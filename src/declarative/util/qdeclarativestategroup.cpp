@@ -118,7 +118,7 @@ public:
    }
    \endqml
 
-   \sa {qmlstate}{States} {QML Animation and Transitions}{Transitions}, {QtDeclarative}
+   \sa {qmlstate}{States}, {QML Animation and Transitions}{Transitions}, {QtDeclarative}
 */
 
 QDeclarativeStateGroup::QDeclarativeStateGroup(QObject *parent)
