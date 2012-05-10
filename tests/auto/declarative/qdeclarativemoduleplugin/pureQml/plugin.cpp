@@ -67,7 +67,7 @@ public:
         qWarning("plugin created");
     }
 
-    void registerTypes(const char *uri)
+    void registerTypes(const char * /* uri */)
     {
     }
 };

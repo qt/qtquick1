@@ -141,7 +141,7 @@ int main(int argc, char *argv[])
     char **_argv = new char*[_argc];
     for (int i = 0; i < argc; ++i)
         _argv[i] = argv[i];
-    _argv[_argc - 1] = "-qmljsdebugger=port:13770";
+    _argv[_argc - 1] = const_cast<char *>("-qmljsdebugger=port:13770");
 
     QApplication app(_argc, _argv);
     tst_QDeclarativeDebugClient tc;
