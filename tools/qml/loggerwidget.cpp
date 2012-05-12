@@ -104,6 +104,11 @@ LoggerWidget::LoggerWidget(QWidget *parent) :
 
 void LoggerWidget::append(const QString &msg)
 {
+    if (!isVisible()) {
+        // appending the message for real can take a couple of milliseconds, so if we don't have to...
+        m_queuedMessages.append(msg);
+        return;
+    }
     m_plainTextEdit->appendPlainText(msg);
 
     if (!isVisible() && (defaultVisibility() == AutoShowWarnings))
@@ -174,6 +179,9 @@ void LoggerWidget::warningsPreferenceChanged(QAction *action)
 
 void LoggerWidget::showEvent(QShowEvent *event)
 {
+    foreach (const QString &msg, m_queuedMessages)
+        m_plainTextEdit->appendPlainText(msg);
+    m_queuedMessages.clear();
     QWidget::showEvent(event);
     emit opened();
 }

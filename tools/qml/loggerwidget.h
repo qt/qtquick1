@@ -92,6 +92,7 @@ private:
     enum ConfigOrigin { CommandLineOrigin, SettingsOrigin };
     ConfigOrigin m_visibilityOrigin;
     Visibility m_visibility;
+    QStringList m_queuedMessages;
 };
 
 QT_END_NAMESPACE
