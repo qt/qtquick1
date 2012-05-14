@@ -2,7 +2,7 @@ import QtQuick 1.1
 Rectangle {
     id: whiteRect
     property variant center
-    property real scale
+    property real scale: 1.0
     width: 240; height: 320
     color: "white"
     Rectangle {

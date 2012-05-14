@@ -376,7 +376,7 @@ void tst_QDeclarativePinchArea::flickable()
     QTest::touchEvent(vp, device).move(0, p1, canvas).move(1, p2, canvas);
 
     // PinchArea has stolen the gesture.
-    QVERIFY(!root->isMoving());
+    QTRY_VERIFY(!root->isMoving());
     QVERIFY(root->property("scale").toReal() > 1.0);
 
     QTest::mouseRelease(vp, Qt::LeftButton, 0, canvas->mapFromScene(p1));
