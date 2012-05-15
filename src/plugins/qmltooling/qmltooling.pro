@@ -2,4 +2,4 @@ TEMPLATE = subdirs
 
 SUBDIRS = qmldbg_inspector
 
-!contains(QT_CONFIG, declarative): SUBDIRS +=  qmldbg_tcp
+!contains(QT_CONFIG, qml): SUBDIRS +=  qmldbg_tcp
