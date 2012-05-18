@@ -10,6 +10,9 @@ module_qtquick1_tools.depends = module_qtquick1_src
 module_qtquick1_demos.subdir = demos
 module_qtquick1_demos.target = module-qtquick1-demos
 module_qtquick1_demos.depends = module_qtquick1_src
+!contains(QT_BUILD_PARTS,examples) {
+    module_qtquick1_demos.CONFIG = no_default_target no_default_install
+}
 
 module_qtquick1_examples.subdir = examples
 module_qtquick1_examples.target = module-qtquick1-examples
