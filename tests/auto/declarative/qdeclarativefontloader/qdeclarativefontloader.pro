@@ -8,4 +8,3 @@ macx:CONFIG -= app_bundle
 HEADERS += ../shared/testhttpserver.h
 SOURCES += tst_qdeclarativefontloader.cpp ../shared/testhttpserver.cpp
 include(../shared/qdeclarativedatatest.pri)
-CONFIG += parallel_test

@@ -15,6 +15,4 @@ SOURCES += ../shared/testhttpserver.cpp
 
 include(../shared/qdeclarativedatatest.pri)
 
-CONFIG += parallel_test
-
 CONFIG+=insignificant_test # QTQAINFRA-428
