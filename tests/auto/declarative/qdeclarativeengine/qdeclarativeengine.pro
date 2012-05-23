@@ -11,5 +11,3 @@ SOURCES += tst_qdeclarativeengine.cpp
     DEFINES += SRCDIR=\\\"$$PWD\\\"
 }
 
-CONFIG += parallel_test
-

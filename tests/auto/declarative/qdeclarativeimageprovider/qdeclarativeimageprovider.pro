@@ -14,6 +14,3 @@ SOURCES += tst_qdeclarativeimageprovider.cpp
 !symbian: {
     DEFINES += SRCDIR=\\\"$$PWD\\\"
 }
-
-CONFIG += parallel_test
-
