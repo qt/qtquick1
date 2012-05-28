@@ -227,7 +227,9 @@ QML_DECLARE_TYPE(QGraphicsTransform)
 QML_DECLARE_TYPE(QGraphicsScale)
 QML_DECLARE_TYPE(QGraphicsRotation)
 QML_DECLARE_TYPE(QGraphicsWidget)
+#ifndef QT_NO_ACTION
 QML_DECLARE_TYPE(QAction)
+#endif
 
 QT_END_HEADER
 

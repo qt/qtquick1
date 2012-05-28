@@ -93,12 +93,16 @@ public:
     void setRubberbandSelectionMode(bool value);
 
 private slots:
+#ifndef QT_NO_CONTEXTMENU
     void contextMenuElementSelected();
     void contextMenuElementHovered(QAction *action);
+#endif
     void repaintBoundingRects();
 
 private:
+#ifndef QT_NO_CONTEXTMENU
     void createContextMenu(const QList<QGraphicsItem*> &itemList, QPoint globalPos);
+#endif
     LiveSingleSelectionManipulator::SelectionType getSelectionType(Qt::KeyboardModifiers modifiers);
     bool alreadySelected(const QList<QGraphicsItem*> &itemList) const;
 
@@ -113,7 +117,9 @@ private:
 
     QList<QWeakPointer<QGraphicsObject> > m_selectedItemList;
 
+#ifndef QT_NO_CONTEXTMENU
     QList<QGraphicsItem*> m_contextMenuItemList;
+#endif
 };
 
 } // namespace QtQuick1

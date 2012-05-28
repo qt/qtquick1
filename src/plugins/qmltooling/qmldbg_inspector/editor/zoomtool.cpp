@@ -61,21 +61,23 @@ ZoomTool::ZoomTool(QDeclarativeViewInspector *view) :
     m_smoothZoomMultiplier(0.05f),
     m_currentScale(1.0f)
 {
+#ifndef QT_NO_ACTION
     m_zoomTo100Action = new QAction(tr("Zoom to &100%"), this);
     m_zoomInAction = new QAction(tr("Zoom In"), this);
     m_zoomOutAction = new QAction(tr("Zoom Out"), this);
     m_zoomInAction->setShortcut(QKeySequence(Qt::Key_Plus));
     m_zoomOutAction->setShortcut(QKeySequence(Qt::Key_Minus));
-
+#endif
 
     LiveLayerItem *layerItem = QDeclarativeViewInspectorPrivate::get(view)->manipulatorLayer;
     QGraphicsObject *layerObject = reinterpret_cast<QGraphicsObject *>(layerItem);
     m_rubberbandManipulator = new LiveRubberBandSelectionManipulator(layerObject, view);
 
-
+#ifndef QT_NO_ACTION
     connect(m_zoomTo100Action, SIGNAL(triggered()), SLOT(zoomTo100()));
     connect(m_zoomInAction, SIGNAL(triggered()), SLOT(zoomIn()));
     connect(m_zoomOutAction, SIGNAL(triggered()), SLOT(zoomOut()));
+#endif
 }
 
 ZoomTool::~ZoomTool()
@@ -90,12 +92,14 @@ void ZoomTool::mousePressEvent(QMouseEvent *event)
     QPointF scenePos = view()->mapToScene(event->pos());
 
     if (event->buttons() & Qt::RightButton) {
+#ifndef QT_NO_MENU
         QMenu contextMenu;
         contextMenu.addAction(m_zoomTo100Action);
         contextMenu.addSeparator();
         contextMenu.addAction(m_zoomInAction);
         contextMenu.addAction(m_zoomOutAction);
         contextMenu.exec(event->globalPos());
+#endif
     } else if (event->buttons() & Qt::LeftButton) {
         m_dragBeginPos = scenePos;
         m_dragStarted = false;

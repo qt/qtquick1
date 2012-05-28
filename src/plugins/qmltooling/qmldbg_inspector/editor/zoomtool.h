@@ -94,9 +94,11 @@ private:
     bool m_dragStarted;
     QPoint m_mousePos; // in view coords
     QPointF m_dragBeginPos;
+#ifndef QT_NO_ACTION
     QAction *m_zoomTo100Action;
     QAction *m_zoomInAction;
     QAction *m_zoomOutAction;
+#endif
     LiveRubberBandSelectionManipulator *m_rubberbandManipulator;
 
     qreal m_smoothZoomMultiplier;

@@ -128,11 +128,14 @@ void LiveSelectionTool::mousePressEvent(QMouseEvent *event)
             m_singleSelectionManipulator.begin(event->pos());
             m_singleSelectionManipulator.select(selectionType, m_selectOnlyContentItems);
         }
+#ifndef QT_NO_CONTEXTMENU
     } else if (event->buttons() & Qt::RightButton) {
         createContextMenu(itemList, event->globalPos());
+#endif
     }
 }
 
+#ifndef QT_NO_CONTEXTMENU
 void LiveSelectionTool::createContextMenu(const QList<QGraphicsItem*> &itemList, QPoint globalPos)
 {
     QMenu contextMenu;
@@ -199,6 +202,8 @@ void LiveSelectionTool::contextMenuElementHovered(QAction *action)
         QDeclarativeViewInspectorPrivate::get(inspector())->highlight(item);
     }
 }
+
+#endif // QT_NO_CONTEXTMENU
 
 void LiveSelectionTool::mouseMoveEvent(QMouseEvent *event)
 {
