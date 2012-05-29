@@ -1077,7 +1077,7 @@ void QDeclarativeTextInput::keyPressEvent(QKeyEvent* ev)
         int cursorPosition = d->control->cursor();
         if (cursorPosition == 0)
             ignore = ev->key() == (d->control->layoutDirection() == Qt::LeftToRight ? Qt::Key_Left : Qt::Key_Right);
-        if (cursorPosition == d->control->text().length())
+        if (!ignore && cursorPosition == d->control->text().length())
             ignore = ev->key() == (d->control->layoutDirection() == Qt::LeftToRight ? Qt::Key_Right : Qt::Key_Left);
     }
     if (ignore) {
