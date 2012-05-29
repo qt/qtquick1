@@ -1,4 +1,5 @@
 CONFIG += testcase
+testcase.timeout = 1200 # this is a slow test
 TARGET = tst_qdeclarativexmlhttprequest
 
 QT += testlib

@@ -1,4 +1,5 @@
 CONFIG += testcase
+testcase.timeout = 600 # this test is slow
 TARGET = tst_qmlvisual
 
 QT += testlib
