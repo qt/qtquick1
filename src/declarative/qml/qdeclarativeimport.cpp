@@ -719,7 +719,6 @@ QDeclarativeImportDatabase::QDeclarativeImportDatabase(QDeclarativeEngine *e)
 
     // Search order is applicationDirPath(), $QML_IMPORT_PATH, QLibraryInfo::ImportsPath
 
-#ifndef QT_NO_SETTINGS
     QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath) + QString::fromLatin1("/QtQuick1");
 
 #if defined(Q_OS_SYMBIAN)
@@ -753,8 +752,6 @@ QDeclarativeImportDatabase::QDeclarativeImportDatabase(QDeclarativeEngine *e)
 #else
     addImportPath(installImportsPath);
 #endif
-
-#endif // QT_NO_SETTINGS
 
     // env import paths
     QByteArray envImportPath = qgetenv("QML_IMPORT_PATH");
