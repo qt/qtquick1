@@ -971,7 +971,7 @@ public:
     const QByteArray & rawResponseBody() const;
     bool receivedXml() const;
 private slots:
-    void downloadProgress(qint64);
+    void readyRead();
     void error(QNetworkReply::NetworkError);
     void finished();
 
@@ -1164,8 +1164,8 @@ void QDeclarativeXMLHttpRequest::requestFromUrl(const QUrl &url)
     else if(m_method == QLatin1String("PUT"))
         m_network = networkAccessManager()->put(request, m_data);
 
-    QObject::connect(m_network, SIGNAL(downloadProgress(qint64,qint64)), 
-                     this, SLOT(downloadProgress(qint64)));
+    QObject::connect(m_network, SIGNAL(readyRead()),
+                     this, SLOT(readyRead()));
     QObject::connect(m_network, SIGNAL(error(QNetworkReply::NetworkError)),
                      this, SLOT(error(QNetworkReply::NetworkError)));
     QObject::connect(m_network, SIGNAL(finished()),
@@ -1206,9 +1206,8 @@ QScriptValue QDeclarativeXMLHttpRequest::abort(QScriptValue *me)
     return QScriptValue();
 }
 
-void QDeclarativeXMLHttpRequest::downloadProgress(qint64 bytes)
+void QDeclarativeXMLHttpRequest::readyRead()
 {
-    Q_UNUSED(bytes)
     m_status = 
         m_network->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     m_statusText =
