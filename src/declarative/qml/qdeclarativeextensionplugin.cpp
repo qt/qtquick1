@@ -58,7 +58,7 @@ QT_BEGIN_NAMESPACE
     
     \list
     \li Subclass QDeclarativeExtensionPlugin, implement registerTypes() method
-    to register types using qmlRegisterType(), and export the class using the Q_EXPORT_PLUGIN2() macro
+    to register types using qmlRegisterType(), and export the class using the Q_PLUGIN_METADATA() macro
     \li Write an appropriate project file for the plugin
     \li Create a \l{Writing a qmldir file}{qmldir file} to describe the plugin
     \endlist
@@ -139,7 +139,7 @@ QT_BEGIN_NAMESPACE
     Constructs a QML extension plugin with the given \a parent.
 
     Note that this constructor is invoked automatically by the
-    Q_EXPORT_PLUGIN2() macro, so there is no need for calling it
+    plugin loader, so there is no need for calling it
     explicitly.
 */
 QDeclarativeExtensionPlugin::QDeclarativeExtensionPlugin(QObject *parent)

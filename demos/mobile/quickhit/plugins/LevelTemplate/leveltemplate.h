@@ -56,6 +56,10 @@ class LevelTemplate : public LevelPluginInterface
 {
     Q_OBJECT
 
+    // This Qt macro exports the plugin.
+    // There should be exactly one occurrence of this macro in a Qt plugin's source code.
+    Q_PLUGIN_METADATA(IID "Forum.Nokia.com.QuickHit.LevelPluginInterface/1.0")
+
     // This macro tells Qt which interfaces the class implements.
     // This is used when implementing plugins.
     Q_INTERFACES(LevelPluginInterface)

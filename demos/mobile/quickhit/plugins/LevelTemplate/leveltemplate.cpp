@@ -118,9 +118,6 @@ QVariant LevelTemplate::graphSize(QVariant pathToGraph)
     return ret;
 }
 
-// This Qt macro exports the plugin class level with the name levelplugins.
-// There should be exactly one occurrence of this macro in a Qt plugin's source code.
-Q_EXPORT_PLUGIN2(levelplugins, LevelTemplate);
 
 
 
