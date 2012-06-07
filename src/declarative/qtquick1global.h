@@ -50,24 +50,14 @@
 #  undef Q_QUICK1_EXPORT
 #endif
 
-#if defined(Q_OS_WIN)
-#  if defined(QT_MAKEDLL) /* create a Qt DLL library */
-#    if defined(QT_BUILD_QUICK1_LIB)
-#      define Q_QUICK1_EXPORT Q_DECL_EXPORT
-#    else
-#      define Q_QUICK1_EXPORT Q_DECL_IMPORT
-#    endif
-#  elif defined(QT_DLL) /* use a Qt DLL library */
-#    define Q_QUICK1_EXPORT Q_DECL_IMPORT
-#  endif
-#endif
-
-#if !defined(Q_QUICK1_EXPORT)
-#  if defined(QT_SHARED)
+#ifndef QT_STATIC
+#  if defined(QT_BUILD_QUICK1_LIB)
 #    define Q_QUICK1_EXPORT Q_DECL_EXPORT
 #  else
-#    define Q_QUICK1_EXPORT
+#    define Q_QUICK1_EXPORT Q_DECL_IMPORT
 #  endif
+#else
+#  define Q_QUICK1_EXPORT
 #endif
 
 #endif // QTQUICK1GLOBAL_H
