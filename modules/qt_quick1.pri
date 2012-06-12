@@ -10,7 +10,7 @@ QT.quick1.private_includes = $$QT_MODULE_INCLUDE_BASE/QtQuick1/$$QT.quick1.VERSI
 QT.quick1.sources = $$QT_MODULE_BASE/src/declarative
 QT.quick1.libs = $$QT_MODULE_LIB_BASE
 QT.quick1.plugins = $$QT_MODULE_PLUGIN_BASE
-QT.quick1.imports = $$QT_MODULE_IMPORT_BASE
+QT.quick1.imports = $$QT_MODULE_IMPORT_BASE/QtQuick1
 QT.quick1.depends = gui network script xmlpatterns
 QT.quick1.DEFINES = QT_QTQUICK1_LIB
 

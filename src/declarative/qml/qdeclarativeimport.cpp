@@ -720,7 +720,7 @@ QDeclarativeImportDatabase::QDeclarativeImportDatabase(QDeclarativeEngine *e)
     // Search order is applicationDirPath(), $QML_IMPORT_PATH, QLibraryInfo::ImportsPath
 
 #ifndef QT_NO_SETTINGS
-    QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath);
+    QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath) + QString::fromLatin1("/QtQuick1");
 
 #if defined(Q_OS_SYMBIAN)
     // Append imports path for all available drives in Symbian

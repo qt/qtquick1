@@ -1,5 +1,5 @@
 TARGET  = qmlfolderlistmodelplugin
-TARGETPATH = Qt/labs/folderlistmodel
+TARGETPATH = QtQuick1/Qt/labs/folderlistmodel
 include(../qimportbase.pri)
 
 QT += widgets quick1 script

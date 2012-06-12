@@ -1,5 +1,5 @@
 TARGET  = qmlgesturesplugin
-TARGETPATH = Qt/labs/gestures
+TARGETPATH = QtQuick1/Qt/labs/gestures
 include(../qimportbase.pri)
 
 QT += quick1 quick1-private widgets widgets-private gui gui-private core-private script-private

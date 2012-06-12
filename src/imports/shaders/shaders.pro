@@ -1,5 +1,5 @@
 TARGET = qmlshadersplugin
-TARGETPATH = Qt/labs/shaders
+TARGETPATH = QtQuick1/Qt/labs/shaders
 include(../qimportbase.pri)
 
 QT += quick1 widgets opengl

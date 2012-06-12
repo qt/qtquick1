@@ -1,5 +1,5 @@
 TARGET  = qmlparticlesplugin
-TARGETPATH = Qt/labs/particles
+TARGETPATH = QtQuick1/Qt/labs/particles
 include(../qimportbase.pri)
 
 QT += quick1 quick1-private core-private gui-private widgets-private
