@@ -558,10 +558,11 @@ void QDeclarativeEngineDebugService::setBinding(int objectId,
     if (object && context) {
         QDeclarativeProperty property(object, propertyName, context);
         if (property.isValid()) {
+            typedef QPointer<QDeclarativeState> DeclarativeStatePointer;
 
             bool inBaseState = true;
 
-            foreach(QWeakPointer<QDeclarativeState> statePointer, m_allStates) {
+            foreach (const DeclarativeStatePointer &statePointer, m_allStates) {
                 if (QDeclarativeState *state = statePointer.data()) {
                     // here we assume that the revert list on itself defines the base state
                     if (state->isStateActive() && state->containsPropertyInRevertList(object, propertyName)) {

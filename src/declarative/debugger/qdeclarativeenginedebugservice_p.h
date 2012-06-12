@@ -57,7 +57,7 @@
 
 #include <QtCore/qurl.h>
 #include <QtCore/qvariant.h>
-#include <QWeakPointer>
+#include <QtCore/qpointer.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -121,7 +121,7 @@ private:
 
     QList<QDeclarativeEngine *> m_engines;
     QDeclarativeWatcher *m_watch;
-    QList<QWeakPointer<QDeclarativeState> > m_allStates;
+    QList<QPointer<QDeclarativeState> > m_allStates;
 };
 Q_QUICK1_PRIVATE_EXPORT QDataStream &operator<<(QDataStream &, const QDeclarativeEngineDebugService::QDeclarativeObjectData &);
 Q_QUICK1_PRIVATE_EXPORT QDataStream &operator>>(QDataStream &, QDeclarativeEngineDebugService::QDeclarativeObjectData &);

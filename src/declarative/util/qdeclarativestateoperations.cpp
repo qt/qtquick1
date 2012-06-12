@@ -401,7 +401,7 @@ QDeclarativeStateOperation::ActionList QDeclarativeParentChange::actions()
             newBinding->setTarget(QDeclarativeProperty(d->target, QLatin1String("x"), ctxt));
             QDeclarativeAction xa;
             xa.property = newBinding->property();
-            xa.toBinding = newBinding;
+            xa.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
             xa.fromValue = xa.property.read();
             xa.deletableToBinding = true;
             actions << xa;
@@ -417,7 +417,7 @@ QDeclarativeStateOperation::ActionList QDeclarativeParentChange::actions()
             newBinding->setTarget(QDeclarativeProperty(d->target, QLatin1String("y"), ctxt));
             QDeclarativeAction ya;
             ya.property = newBinding->property();
-            ya.toBinding = newBinding;
+            ya.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
             ya.fromValue = ya.property.read();
             ya.deletableToBinding = true;
             actions << ya;
@@ -433,7 +433,7 @@ QDeclarativeStateOperation::ActionList QDeclarativeParentChange::actions()
             newBinding->setTarget(QDeclarativeProperty(d->target, QLatin1String("scale"), ctxt));
             QDeclarativeAction sa;
             sa.property = newBinding->property();
-            sa.toBinding = newBinding;
+            sa.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
             sa.fromValue = sa.property.read();
             sa.deletableToBinding = true;
             actions << sa;
@@ -449,7 +449,7 @@ QDeclarativeStateOperation::ActionList QDeclarativeParentChange::actions()
             newBinding->setTarget(QDeclarativeProperty(d->target, QLatin1String("rotation"), ctxt));
             QDeclarativeAction ra;
             ra.property = newBinding->property();
-            ra.toBinding = newBinding;
+            ra.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
             ra.fromValue = ra.property.read();
             ra.deletableToBinding = true;
             actions << ra;
@@ -465,7 +465,7 @@ QDeclarativeStateOperation::ActionList QDeclarativeParentChange::actions()
             newBinding->setTarget(QDeclarativeProperty(d->target, QLatin1String("width"), ctxt));
             QDeclarativeAction wa;
             wa.property = newBinding->property();
-            wa.toBinding = newBinding;
+            wa.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
             wa.fromValue = wa.property.read();
             wa.deletableToBinding = true;
             actions << wa;
@@ -481,7 +481,7 @@ QDeclarativeStateOperation::ActionList QDeclarativeParentChange::actions()
             newBinding->setTarget(QDeclarativeProperty(d->target, QLatin1String("height"), ctxt));
             QDeclarativeAction ha;
             ha.property = newBinding->property();
-            ha.toBinding = newBinding;
+            ha.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
             ha.fromValue = ha.property.read();
             ha.deletableToBinding = true;
             actions << ha;

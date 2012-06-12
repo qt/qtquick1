@@ -485,7 +485,7 @@ QDeclarativePropertyChanges::ActionList QDeclarativePropertyChanges::actions()
                     newBinding->setSourceLocation(e->sourceFile(), e->lineNumber());
                 }
                 newBinding->setTarget(prop);
-                a.toBinding = newBinding;
+                a.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
                 a.deletableToBinding = true;
             }
 
@@ -684,7 +684,7 @@ void QDeclarativePropertyChanges::changeExpression(const QString &name, const QS
             } else {
                 QDeclarativeBinding *newBinding = new QDeclarativeBinding(newExpression->expression(), object(), qmlContext(this));
                 newBinding->setTarget(d->property(name));
-                action.toBinding = newBinding;
+                action.toBinding = QDeclarativeAbstractBinding::getPointer(newBinding);
                 action.deletableToBinding = true;
 
                 state()->addEntryToRevertList(action);
