@@ -19,13 +19,7 @@ SOURCES += $$PWD/qmlruntime.cpp \
 RESOURCES = $$PWD/browser/browser.qrc \
             $$PWD/startup/startup.qrc
 
-maemo5 {
-    QT += dbus
-    HEADERS += $$PWD/texteditautoresizer_maemo5.h
-    SOURCES += $$PWD/deviceorientation_maemo5.cpp
-    FORMS = $$PWD/recopts_maemo5.ui \
-            $$PWD/proxysettings_maemo5.ui
-} else:linux-g++-maemo {
+linux-g++-maemo {
     QT += dbus
     SOURCES += $$PWD/deviceorientation_harmattan.cpp
     FORMS = $$PWD/recopts.ui \

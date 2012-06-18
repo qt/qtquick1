@@ -27,9 +27,6 @@ wince* {
         QT += webkit
     }
 }
-maemo5 {
-    QT += maemo5
-}
 
 mac {
     QMAKE_INFO_PLIST=Info_mac.plist

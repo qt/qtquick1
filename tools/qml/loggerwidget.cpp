@@ -47,11 +47,6 @@
 #include <QPlainTextEdit>
 #include <QLabel>
 #include <QVBoxLayout>
-#ifdef Q_WS_MAEMO_5
-#  include <QScrollArea>
-#  include <QVBoxLayout>
-#  include "texteditautoresizer_maemo5.h"
-#endif
 
 #include "loggerwidget.h"
 
@@ -65,17 +60,7 @@ LoggerWidget::LoggerWidget(QWidget *parent) :
     setWindowTitle(tr("Warnings"));
 
     m_plainTextEdit = new QPlainTextEdit();
-
-#ifdef Q_WS_MAEMO_5
-    new TextEditAutoResizer(m_plainTextEdit);
-    setAttribute(Qt::WA_Maemo5StackedWindow);
-    QScrollArea *area = new QScrollArea();
-    area->setWidget(m_plainTextEdit);
-    area->setWidgetResizable(true);
-    setCentralWidget(area);
-#else
     setCentralWidget(m_plainTextEdit);
-#endif
 
     m_noWarningsLabel = new QLabel(m_plainTextEdit);
     m_noWarningsLabel->setText(tr("(No warnings)"));

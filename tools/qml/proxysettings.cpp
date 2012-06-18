@@ -52,10 +52,6 @@ ProxySettings::ProxySettings (QWidget * parent)
 {
     setupUi (this);
 
-#if !defined Q_WS_MAEMO_5
-    // the onscreen keyboard can't cope with masks
-    proxyServerEdit->setInputMask(QLatin1String("000.000.000.000;_"));
-#endif
     QIntValidator *validator = new QIntValidator (0, 9999, this);
     proxyPortEdit->setValidator(validator);
 
