@@ -154,7 +154,7 @@ void usage()
     qWarning("  -I <directory> ........................... prepend to the module import search path,");
     qWarning("                                             display path if <directory> is empty");
     qWarning("  -P <directory> ........................... prepend to the plugin search path");
-#if defined(Q_WS_MAC)
+#if defined(Q_OS_MAC)
     qWarning("  -no-opengl ............................... don't use a QGLWidget for the viewport");
     qWarning("  -opengl .................................. use a QGLWidget for the viewport (default)");
 #else
@@ -217,7 +217,7 @@ struct ViewerOptions
         useNativeFileBrowser = false;
 #endif
 
-#if defined(Q_WS_MAC)
+#if defined(Q_OS_MAC)
         useGL = true;
 #endif
     }
@@ -522,21 +522,6 @@ QDeclarativeViewer *openFile(const QString &fileName)
 int main(int argc, char ** argv)
 {
     systemMsgOutput = qInstallMsgHandler(myMessageOutput);
-
-#if defined (Q_WS_X11) || defined (Q_WS_MAC)
-    //### default to using raster graphics backend for now
-    bool gsSpecified = false;
-    for (int i = 0; i < argc; ++i) {
-        QString arg = QString::fromLatin1(argv[i]);
-        if (arg == QLatin1String("-graphicssystem")) {
-            gsSpecified = true;
-            break;
-        }
-    }
-
-    if (!gsSpecified)
-        QApplication::setGraphicsSystem(QLatin1String("raster"));
-#endif
 
     Application app(argc, argv);
     app.setApplicationName(QLatin1String("QtQmlViewer"));
