@@ -49,9 +49,7 @@
 #include <QCryptographicHash>
 #include <private/qabstractanimation_p.h>
 #include <QGraphicsObject>
-#ifndef Q_OS_SYMBIAN
 #include <private/qdeclarativeitem_p.h>
-#endif
 
 QT_BEGIN_NAMESPACE
 
@@ -269,9 +267,7 @@ void QDeclarativeTester::save()
 
 void QDeclarativeTester::updateCurrentTime(int msec)
 {
-#ifndef Q_OS_SYMBIAN
     QDeclarativeItemPrivate::setConsistentTime(msec);
-#endif
     if (!testscript && msec > 16 && options & QDeclarativeViewer::Snapshot)
         return;
 

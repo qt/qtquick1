@@ -743,10 +743,8 @@ void QDeclarativeViewer::createMenu()
     connect(slowAction, SIGNAL(triggered(bool)), this, SLOT(setSlowMode(bool)));
 
     showWarningsWindow = new QAction(tr("Show Warnings"), this);
-#if !defined(Q_OS_SYMBIAN)
     showWarningsWindow->setCheckable((true));
     showWarningsWindow->setChecked(loggerWindow->isVisible());
-#endif
     connect(showWarningsWindow, SIGNAL(triggered(bool)), this, SLOT(showWarnings(bool)));
 
     QAction *proxyAction = new QAction(tr("HTTP &Proxy..."), this);
@@ -764,30 +762,22 @@ void QDeclarativeViewer::createMenu()
     orientation->setExclusive(true);
     connect(orientation, SIGNAL(triggered(QAction*)), this, SLOT(changeOrientation(QAction*)));
 
-#if defined(Q_OS_SYMBIAN)
-    QAction *autoOrientationAction = new QAction(tr("Auto-orientation"), this);
-    autoOrientationAction->setCheckable(true);
-#endif
     QAction *portraitAction = new QAction(tr("Portrait"), this);
     portraitAction->setCheckable(true);
     QAction *landscapeAction = new QAction(tr("Landscape"), this);
     landscapeAction->setCheckable(true);
-#if !defined(Q_OS_SYMBIAN)
     QAction *portraitInvAction = new QAction(tr("Portrait (inverted)"), this);
     portraitInvAction->setCheckable(true);
     QAction *landscapeInvAction = new QAction(tr("Landscape (inverted)"), this);
     landscapeInvAction->setCheckable(true);
-#endif
 
     QAction *aboutAction = new QAction(tr("&About Qt..."), this);
     aboutAction->setMenuRole(QAction::AboutQtRole);
     connect(aboutAction, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
-#if !defined(Q_OS_SYMBIAN)
     QAction *closeAction = new QAction(tr("&Close"), this);
     closeAction->setShortcuts(QKeySequence::Close);
     connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
-#endif
 
     QAction *quitAction = new QAction(tr("&Quit"), this);
     quitAction->setMenuRole(QAction::QuitRole);
@@ -823,7 +813,6 @@ void QDeclarativeViewer::createMenu()
     fileMenu->addAction(openAction);
     fileMenu->addAction(openUrlAction);
     fileMenu->addAction(reloadAction);
-#if !defined(Q_OS_SYMBIAN)
     fileMenu->addSeparator();
     fileMenu->addAction(closeAction);
     fileMenu->addAction(quitAction);
@@ -831,7 +820,6 @@ void QDeclarativeViewer::createMenu()
     QMenu *recordMenu = menu->addMenu(tr("&Recording"));
     recordMenu->addAction(snapshotAction);
     recordMenu->addAction(recordAction);
-#endif // ! Q_OS_SYMBIAN
 
     QMenu *debugMenu = menu->addMenu(tr("&Debugging"));
     debugMenu->addAction(slowAction);
@@ -839,25 +827,16 @@ void QDeclarativeViewer::createMenu()
 
     QMenu *settingsMenu = menu->addMenu(tr("&Settings"));
     settingsMenu->addAction(proxyAction);
-#if defined(Q_OS_SYMBIAN)
-    settingsMenu->addAction(fullscreenAction);
-#else
     settingsMenu->addAction(recordOptions);
     settingsMenu->addMenu(loggerWindow->preferencesMenu());
-#endif // !Q_OS_SYMBIAN
     settingsMenu->addAction(rotateAction);
 
     QMenu *propertiesMenu = settingsMenu->addMenu(tr("Properties"));
 
-#if defined(Q_OS_SYMBIAN)
-    orientation->addAction(autoOrientationAction);
-#endif
     orientation->addAction(portraitAction);
     orientation->addAction(landscapeAction);
-#if !defined(Q_OS_SYMBIAN)
     orientation->addAction(portraitInvAction);
     orientation->addAction(landscapeInvAction);
-#endif
     propertiesMenu->addActions(orientation->actions());
 
     QMenu *helpMenu = menu->addMenu(tr("&Help"));
@@ -919,11 +898,7 @@ void QDeclarativeViewer::toggleFullScreen()
 
 void QDeclarativeViewer::showWarnings(bool show)
 {
-#if defined(Q_OS_SYMBIAN)
-    loggerWindow->showMaximized();
-#else
     loggerWindow->setVisible(show);
-#endif
 }
 
 void QDeclarativeViewer::warningsWidgetOpened()
@@ -1117,12 +1092,7 @@ bool QDeclarativeViewer::open(const QString& file_or_url)
     canvas->engine()->clearComponentCache();
     QDeclarativeContext *ctxt = canvas->rootContext();
     ctxt->setContextProperty(QLatin1String("qmlViewer"), this);
-#ifdef Q_OS_SYMBIAN
-    ctxt->setContextProperty(QLatin1String("qmlViewerFolder"), QLatin1String("E:\\")); // Documents on your S60 phone
-#else
     ctxt->setContextProperty(QLatin1String("qmlViewerFolder"), QDir::currentPath());
-#endif
-
     ctxt->setContextProperty(QLatin1String("runtime"), Runtime::instance());
 
     QString fileName = url.toLocalFile();

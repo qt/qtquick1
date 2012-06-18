@@ -76,13 +76,6 @@ void exitApp(int i)
 QWeakPointer<LoggerWidget> logger;
 static QAtomicInt recursiveLock(0);
 
-#if defined (Q_OS_SYMBIAN)
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#endif
-
 void myMessageOutput(QtMsgType type, const char *msg)
 {
     QString strMsg = QString::fromLatin1(msg);
@@ -98,19 +91,6 @@ void myMessageOutput(QtMsgType type, const char *msg)
             warnings += QLatin1Char('\n');
         }
     }
-#if defined (Q_OS_SYMBIAN)
-    static int fd = -1;
-    if (fd == -1)
-        fd = ::open("E:\\qml.log", O_WRONLY | O_CREAT);
-
-    ::write(fd, msg, strlen(msg));
-    ::write(fd, "\n", 1);
-    ::fsync(fd);
-    switch (type) {
-    case QtFatalMsg:
-        abort();
-    }
-#endif
 
     if (systemMsgOutput) {
         systemMsgOutput(type, msg);
@@ -212,11 +192,6 @@ struct ViewerOptions
           warningsConfig(DefaultWarnings),
           sizeToView(true)
     {
-#if defined(Q_OS_SYMBIAN)
-        maximized = true;
-        useNativeFileBrowser = false;
-#endif
-
 #if defined(Q_OS_MAC)
         useGL = true;
 #endif
