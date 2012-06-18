@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xE53E8FDC
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/modelviews/gridview-example
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/modelviews/gridview-example
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xE31D80B6
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/ui-components/flipable
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/ui-components/flipable
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xE2C00C58
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/imageelements/shadows
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/imageelements/shadows
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

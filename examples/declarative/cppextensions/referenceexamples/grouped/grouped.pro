@@ -7,7 +7,7 @@ HEADERS += person.h \
            birthdayparty.h
 RESOURCES += grouped.qrc
 
-target.path = $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/referenceexamples/grouped
+target.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/referenceexamples/grouped
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS grouped.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/referenceexamples/grouped
+sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/referenceexamples/grouped
 INSTALLS += target sources

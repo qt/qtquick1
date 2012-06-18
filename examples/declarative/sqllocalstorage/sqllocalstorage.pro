@@ -34,7 +34,7 @@ symbian:TARGET.CAPABILITY += NetworkServices
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/sqllocalstorage
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/sqllocalstorage
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)

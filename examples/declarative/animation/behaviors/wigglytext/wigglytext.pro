@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xEB6022A4
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/animation/wigglytext/wigglytext
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/animation/wigglytext/wigglytext
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

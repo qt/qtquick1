@@ -28,5 +28,5 @@ sources.files = \
    cppextensions \
    xml
 
-sources.path = $$[QT_INSTALL_EXAMPLES]/declarative
+sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1
 INSTALLS += sources

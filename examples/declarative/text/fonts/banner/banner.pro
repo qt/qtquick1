@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xEBAA8CBE
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/text/fonts/banner
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/text/fonts/banner
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

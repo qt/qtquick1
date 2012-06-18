@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xE6D726D3
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/positioners
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/positioners
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
