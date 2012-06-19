@@ -54,6 +54,7 @@
 //
 
 #include <QtScript/qscriptengineagent.h>
+#include <QtCore/qdatastream.h>
 #include <QtCore/qset.h>
 
 QT_BEGIN_NAMESPACE

@@ -50,6 +50,7 @@ QT_BEGIN_HEADER
 QT_BEGIN_NAMESPACE
 
 class QObject;
+class QMetaObject;
 class QDeclarativeNotifierEndpoint;
 class QDeclarativeFastProperties
 {

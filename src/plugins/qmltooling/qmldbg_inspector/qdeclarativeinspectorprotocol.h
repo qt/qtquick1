@@ -42,6 +42,7 @@
 #ifndef QDECLARATIVEINSPECTORPROTOCOL_H
 #define QDECLARATIVEINSPECTORPROTOCOL_H
 
+#include <QtCore/QDataStream>
 #include <QtCore/QDebug>
 #include <QtCore/QMetaType>
 #include <QtCore/QMetaEnum>

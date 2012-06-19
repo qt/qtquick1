@@ -46,6 +46,7 @@
 #include <qdeclarativeenginedebugservice_p.h>
 
 #include <private/qobject_p.h>
+#include <qdatastream.h>
 
 QT_BEGIN_NAMESPACE
 
