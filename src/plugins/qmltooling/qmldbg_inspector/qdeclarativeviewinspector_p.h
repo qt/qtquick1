@@ -46,7 +46,7 @@
 
 #include <QtCore/QScopedPointer>
 #include <QtQuick1/QDeclarativeView>
-#include <QtCore/QWeakPointer>
+#include <QtCore/QPointer>
 #include <QtCore/QPointF>
 
 #include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
@@ -71,9 +71,9 @@ public:
 
     QDeclarativeView *view;
     QDeclarativeViewInspector *q;
-    QWeakPointer<QWidget> viewport;
+    QPointer<QWidget> viewport;
 
-    QList<QWeakPointer<QGraphicsObject> > currentSelection;
+    QList<QPointer<QGraphicsObject> > currentSelection;
 
     LiveSelectionTool *selectionTool;
     ZoomTool *zoomTool;

@@ -45,7 +45,7 @@
 #include "livelayeritem.h"
 
 #include <QtCore/QObject>
-#include <QtCore/QWeakPointer>
+#include <QtCore/QPointer>
 
 QT_FORWARD_DECLARE_CLASS(QGraphicsItem)
 QT_FORWARD_DECLARE_CLASS(QPainter)
@@ -95,7 +95,7 @@ public:
     explicit BoundingBox(QGraphicsObject *itemToHighlight, QGraphicsItem *parentItem,
                          QObject *parent = 0);
     ~BoundingBox();
-    QWeakPointer<QGraphicsObject> highlightedObject;
+    QPointer<QGraphicsObject> highlightedObject;
     QGraphicsPolygonItem *highlightPolygon;
     QGraphicsPolygonItem *highlightPolygonEdge;
 

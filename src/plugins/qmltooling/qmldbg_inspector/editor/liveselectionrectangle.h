@@ -42,7 +42,7 @@
 #ifndef LIVESELECTIONRECTANGLE_H
 #define LIVESELECTIONRECTANGLE_H
 
-#include <QtCore/QWeakPointer>
+#include <QtCore/QPointer>
 
 QT_FORWARD_DECLARE_CLASS(QGraphicsObject)
 QT_FORWARD_DECLARE_CLASS(QGraphicsRectItem)
@@ -70,7 +70,7 @@ public:
 
 private:
     QGraphicsRectItem *m_controlShape;
-    QWeakPointer<QGraphicsObject> m_layerItem;
+    QPointer<QGraphicsObject> m_layerItem;
 };
 
 } // namespace QtQuick1

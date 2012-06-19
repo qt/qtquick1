@@ -90,11 +90,11 @@ void LiveSelectionIndicator::clear()
 
 }
 
-void LiveSelectionIndicator::setItems(const QList<QWeakPointer<QGraphicsObject> > &itemList)
+void LiveSelectionIndicator::setItems(const QList<QPointer<QGraphicsObject> > &itemList)
 {
     clear();
 
-    foreach (const QWeakPointer<QGraphicsObject> &object, itemList) {
+    foreach (const QPointer<QGraphicsObject> &object, itemList) {
         if (object.isNull())
             continue;
 

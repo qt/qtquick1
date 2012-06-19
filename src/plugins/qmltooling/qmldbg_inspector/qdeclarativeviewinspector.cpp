@@ -235,7 +235,7 @@ void QDeclarativeViewInspectorPrivate::_q_removeFromSelection(QObject *obj)
 
 void QDeclarativeViewInspectorPrivate::setSelectedItemsForTools(const QList<QGraphicsItem *> &items)
 {
-    foreach (const QWeakPointer<QGraphicsObject> &obj, currentSelection) {
+    foreach (const QPointer<QGraphicsObject> &obj, currentSelection) {
         if (QGraphicsItem *item = obj.data()) {
             if (!items.contains(item)) {
                 QObject::disconnect(obj.data(), SIGNAL(destroyed(QObject*)),
@@ -260,11 +260,11 @@ void QDeclarativeViewInspectorPrivate::setSelectedItemsForTools(const QList<QGra
 
 void QDeclarativeViewInspectorPrivate::setSelectedItems(const QList<QGraphicsItem *> &items)
 {
-    QList<QWeakPointer<QGraphicsObject> > oldList = currentSelection;
+    QList<QPointer<QGraphicsObject> > oldList = currentSelection;
     setSelectedItemsForTools(items);
     if (oldList != currentSelection) {
         QList<QObject*> objectList;
-        foreach (const QWeakPointer<QGraphicsObject> &graphicsObject, currentSelection) {
+        foreach (const QPointer<QGraphicsObject> &graphicsObject, currentSelection) {
             if (graphicsObject)
                 objectList << graphicsObject.data();
         }
@@ -276,7 +276,7 @@ void QDeclarativeViewInspectorPrivate::setSelectedItems(const QList<QGraphicsIte
 QList<QGraphicsItem *> QDeclarativeViewInspectorPrivate::selectedItems() const
 {
     QList<QGraphicsItem *> selection;
-    foreach (const QWeakPointer<QGraphicsObject> &selectedObject, currentSelection) {
+    foreach (const QPointer<QGraphicsObject> &selectedObject, currentSelection) {
         if (selectedObject.data())
             selection << selectedObject.data();
     }

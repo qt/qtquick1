@@ -378,7 +378,7 @@ void LiveSelectionTool::clear()
 
 void LiveSelectionTool::selectedItemsChanged(const QList<QGraphicsItem*> &itemList)
 {
-    foreach (const QWeakPointer<QGraphicsObject> &obj, m_selectedItemList) {
+    foreach (const QPointer<QGraphicsObject> &obj, m_selectedItemList) {
         if (!obj.isNull()) {
             disconnect(obj.data(), SIGNAL(xChanged()), this, SLOT(repaintBoundingRects()));
             disconnect(obj.data(), SIGNAL(yChanged()), this, SLOT(repaintBoundingRects()));

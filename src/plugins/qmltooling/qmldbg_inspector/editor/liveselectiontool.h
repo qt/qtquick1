@@ -115,7 +115,7 @@ private:
     QTime m_mousePressTimer;
     bool m_selectOnlyContentItems;
 
-    QList<QWeakPointer<QGraphicsObject> > m_selectedItemList;
+    QList<QPointer<QGraphicsObject> > m_selectedItemList;
 
 #ifndef QT_NO_CONTEXTMENU
     QList<QGraphicsItem*> m_contextMenuItemList;

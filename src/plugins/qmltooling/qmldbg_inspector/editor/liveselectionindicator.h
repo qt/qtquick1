@@ -42,7 +42,7 @@
 #ifndef LIVESELECTIONINDICATOR_H
 #define LIVESELECTIONINDICATOR_H
 
-#include <QtCore/QWeakPointer>
+#include <QtCore/QPointer>
 #include <QtCore/QHash>
 
 QT_BEGIN_NAMESPACE
@@ -68,11 +68,11 @@ public:
 
     void clear();
 
-    void setItems(const QList<QWeakPointer<QGraphicsObject> > &itemList);
+    void setItems(const QList<QPointer<QGraphicsObject> > &itemList);
 
 private:
     QHash<QGraphicsItem*, QGraphicsRectItem *> m_indicatorShapeHash;
-    QWeakPointer<QGraphicsObject> m_layerItem;
+    QPointer<QGraphicsObject> m_layerItem;
     QDeclarativeViewInspector *m_view;
 };
 
