@@ -60,6 +60,7 @@ Rectangle {
                 Text { text: 'Type: ' + type }
                 Text { text: 'Age: ' + age }
             }
+            MouseArea { anchors.fill: parent; onClicked: listView.currentIndex = index }
             // indent the item if it is the current item
             states: State {
                 name: "Current"
