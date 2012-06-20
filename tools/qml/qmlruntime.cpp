@@ -108,9 +108,12 @@ public:
     DragAndDropView(QDeclarativeViewer *parent = 0)
     : QDeclarativeView(parent)
     {
+#ifndef QT_NO_DRAGANDDROP
         setAcceptDrops(true);
+#endif
     }
 
+#ifndef QT_NO_DRAGANDDROP
     void dragEnterEvent(QDragEnterEvent *event)
     {
         const QMimeData *mimeData = event->mimeData();
@@ -142,6 +145,7 @@ public:
             }
         }
     }
+#endif // QT_NO_DRAGANDDROP
 };
 
 class Runtime : public QObject
