@@ -47,7 +47,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockLandscape);
-    viewer.setMainQmlFile(QLatin1String("qml/Delegate/view.qml"));
+    viewer.setMainQmlFile(QLatin1String("qml/package/view.qml"));
     viewer.showExpanded();
 
     return app.exec();
