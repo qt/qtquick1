@@ -39,18 +39,21 @@
 **
 ****************************************************************************/
 
+#include <QDir>
+#include <QTranslator>
+#include <QDebug>
+#include <QAtomicInt>
+#include <QLibraryInfo>
+#include <QProcess>
+
+#include <QWidget>
+#include <QApplication>
+#include <QMessageBox>
+
 #include "qdeclarative.h"
 #include "qmlruntime.h"
 #include "qdeclarativeengine.h"
 #include "loggerwidget.h"
-#include <QWidget>
-#include <QDir>
-#include <QApplication>
-#include <QTranslator>
-#include <QDebug>
-#include <QMessageBox>
-#include <QAtomicInt>
-#include <QLibraryInfo>
 #include "qdeclarativetester.h"
 
 QT_USE_NAMESPACE
@@ -494,6 +497,44 @@ QDeclarativeViewer *openFile(const QString &fileName)
     return viewer;
 }
 
+static bool checkVersion(const QString &fileName)
+{
+    QFile f(fileName);
+    if (!f.open(QFile::ReadOnly | QFile::Text)) {
+        qWarning("qmlviewer: failed to check version of file '%s', could not open...",
+                 qPrintable(fileName));
+        return false;
+    }
+
+    QRegExp quick2(QString::fromLatin1("^\\s*import +QtQuick +2\\.\\w*"));
+
+    QTextStream stream(&f);
+    bool codeFound= false;
+    while (!codeFound) {
+        QString line = stream.readLine();
+        if (line.contains(QLatin1Char('{'))) {
+            codeFound = true;
+        } else {
+            QString import;
+            if (quick2.indexIn(line) >= 0)
+                import = quick2.cap(0).trimmed();
+
+            if (!import.isNull()) {
+                // make an effort to try run it with qmlviewer automatically
+                QProcess::startDetached(QString::fromLatin1("qmlscene"), QCoreApplication::arguments());
+                qWarning("qmlviewer: '%s' is not supported by qmlviewer.\n"
+                         "Use qmlscene to load file '%s'.",
+                         qPrintable(import),
+                         qPrintable(fileName));
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+
 int main(int argc, char ** argv)
 {
     systemMsgOutput = qInstallMsgHandler(myMessageOutput);
@@ -547,6 +588,7 @@ int main(int argc, char ** argv)
     }
 
     globalViewer = createViewer();
+    int filesRunning = 0;
 
     if (fileNames.isEmpty()) {
         // show the initial viewer delayed.
@@ -554,13 +596,23 @@ int main(int argc, char ** argv)
         // are FileOpen events coming through the event queue
         QTimer::singleShot(1, &app, SLOT(showInitialViewer()));
     } else {
-        foreach (const QString &fileName, fileNames)
+        foreach (const QString &fileName, fileNames) {
+            if (!checkVersion(fileName))
+                continue;
+
             openFile(fileName);
+            filesRunning++;
+        }
     }
 
-    QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+    if (filesRunning != 0) {
+        QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
 
-    return app.exec();
+        return app.exec();
+    } else {
+        return 0;
+    }
+
 }
 
 #include "main.moc"
