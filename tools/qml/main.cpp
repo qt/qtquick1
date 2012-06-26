@@ -45,6 +45,7 @@
 #include <QAtomicInt>
 #include <QLibraryInfo>
 #include <QProcess>
+#include <QPointer>
 
 #include <QWidget>
 #include <QApplication>
@@ -76,7 +77,7 @@ void exitApp(int i)
     exit(i);
 }
 
-QWeakPointer<LoggerWidget> logger;
+QPointer<LoggerWidget> logger;
 static QAtomicInt recursiveLock(0);
 
 void myMessageOutput(QtMsgType type, const char *msg)
