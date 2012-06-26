@@ -4,7 +4,6 @@ TARGET     = QtQuick1
 QPRO_PWD   = $$PWD
 
 QT         += core core-private gui gui-private widgets widgets-private script script-private network
-contains(QT_CONFIG, svg): QT += svg
 
 CONFIG += module
 MODULE_PRI = ../../modules/qt_quick1.pri
