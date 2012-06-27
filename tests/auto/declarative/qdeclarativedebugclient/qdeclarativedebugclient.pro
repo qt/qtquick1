@@ -10,5 +10,3 @@ SOURCES += tst_qdeclarativedebugclient.cpp \
            ../shared/debugutil.cpp
 
 CONFIG += declarative_debug
-
-CONFIG+=insignificant_test # QTQAINFRA-428

@@ -12,5 +12,3 @@ include(../shared/qdeclarativedatatest.pri)
 # LIBS += -lgcov
 
 CONFIG += parallel_test
-
-CONFIG+=insignificant_test # QTQAINFRA-428

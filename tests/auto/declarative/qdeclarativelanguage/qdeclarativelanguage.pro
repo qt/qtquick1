@@ -14,5 +14,3 @@ HEADERS += ../shared/testhttpserver.h
 SOURCES += ../shared/testhttpserver.cpp
 
 include(../shared/qdeclarativedatatest.pri)
-
-CONFIG+=insignificant_test # QTQAINFRA-428
