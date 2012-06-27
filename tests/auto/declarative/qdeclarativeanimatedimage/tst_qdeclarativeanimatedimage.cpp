@@ -191,7 +191,6 @@ void tst_qdeclarativeanimatedimage::mirror_running()
     QPixmap frame1_expected = frame1.transformed(transform);
 
     QCOMPARE(frame0_flipped, frame0_expected);
-    QEXPECT_FAIL("", "QTBUG-19538", Continue);
     QCOMPARE(frame1_flipped, frame1_expected);
 }
 
