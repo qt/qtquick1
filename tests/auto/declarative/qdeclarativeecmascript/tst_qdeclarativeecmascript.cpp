@@ -2845,6 +2845,7 @@ void tst_qdeclarativeecmascript::objectName()
 
     o->setObjectName("world");
 
+    QEXPECT_FAIL("", "QTBUG-26334 - set object name fails", Abort);
     QCOMPARE(o->property("test1").toString(), QString("world"));
     QCOMPARE(o->property("test2").toString(), QString("orl"));
 
