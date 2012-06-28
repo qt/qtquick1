@@ -66,34 +66,37 @@ public:
 
     static QStringList findQmlFiles(const QDir &d);
 private slots:
+    void initTestCase();
     void visual_data();
     void visual();
 
 private:
-    QString qmlruntime;
+    const QString qmlruntime;
 };
 
 
-tst_qmlvisual::tst_qmlvisual()
+tst_qmlvisual::tst_qmlvisual() :
+    qmlruntime(viewer())
 {
-    qmlruntime = viewer();
 }
 
 QString tst_qmlvisual::viewer()
 {
-    QString binaries = QLibraryInfo::location(QLibraryInfo::BinariesPath);
+    QDir binaryFolder = QLibraryInfo::location(QLibraryInfo::BinariesPath);
 
-    QString qmlruntime;
-
-#if defined(Q_WS_MAC)
-    qmlruntime = QDir(binaries).absoluteFilePath("QMLViewer.app/Contents/MacOS/QMLViewer");
-#elif defined(Q_WS_WIN) || defined(Q_WS_S60)
-    qmlruntime = QDir(binaries).absoluteFilePath("qmlviewer.exe");
+#if defined(Q_OS_MAC)
+    return binaryFolder.absoluteFilePath(QStringLiteral("QMLViewer.app/Contents/MacOS/QMLViewer"));
+#elif defined(Q_OS_WIN)
+    return binaryFolder.absoluteFilePath(QStringLiteral("qmlviewer.exe"));
 #else
-    qmlruntime = QDir(binaries).absoluteFilePath("qmlviewer");
+    return binaryFolder.absoluteFilePath(QStringLiteral("qmlviewer"));
 #endif
+}
 
-    return qmlruntime;
+void tst_qmlvisual::initTestCase()
+{
+    QVERIFY2(QFileInfo(qmlruntime).isExecutable(),
+             qPrintable(QString::fromLatin1("'%1' does not exist or is not executable").arg(qmlruntime)));
 }
 
 void tst_qmlvisual::visual_data()
@@ -104,17 +107,11 @@ void tst_qmlvisual::visual_data()
     QStringList files;
     files << findQmlFiles(QDir(QT_TEST_SOURCE_DIR));
     if (qgetenv("QMLVISUAL_ALL") != "1") {
-#if defined(Q_WS_MAC)
+#if defined(Q_OS_MAC)
         //Text on Mac varies per version. Only check the text on 10.6
         if(QSysInfo::MacintoshVersion != QSysInfo::MV_10_6)
             foreach(const QString &str, files.filter(QRegExp(".*text.*")))
                 files.removeAll(str);
-#endif
-#if defined(Q_WS_QWS)
-        //We don't want QWS test results to mire down the CI system
-        files.clear();
-        //Needs at least one test data or it fails anyways
-        files << QT_TEST_SOURCE_DIR "/selftest_noimages/selftest_noimages.qml";
 #endif
     }
 
@@ -127,31 +124,43 @@ void tst_qmlvisual::visual_data()
     }
 }
 
+static inline QByteArray msgQmlViewerFail(const QString &runTime,
+                                          const QStringList &arguments,
+                                          const QByteArray &output,
+                                          const QString &why)
+{
+    const QString result =
+        QString::fromLatin1("The command '%1 %2' failed: %3\nOutput:\n%4")
+            .arg(QDir::toNativeSeparators(runTime),
+                 arguments.join(QLatin1String(" ")),
+                 why,
+                 QString::fromLocal8Bit(output));
+    return result.toLocal8Bit();
+}
+
 void tst_qmlvisual::visual()
 {
     QFETCH(QString, file);
     QFETCH(QString, testdata);
 
     QStringList arguments;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     arguments << "-no-opengl";
 #endif
     arguments << "-script" << testdata
               << "-scriptopts" << "play,testimages,testerror,testskip,exitoncomplete,exitonfailure"
               << file;
-#ifdef Q_WS_QWS
-    arguments << "-qws";
-#endif
 
     QProcess p;
     p.start(qmlruntime, arguments);
+    QVERIFY2(p.waitForStarted(),
+             qPrintable(QString::fromLatin1("Cannot start '%1': %2").
+                        arg(qmlruntime, p.errorString())));
     bool finished = p.waitForFinished();
     QByteArray output = p.readAllStandardOutput() + p.readAllStandardError();
-    QVERIFY2(finished, output.data());
-    if (p.exitCode() != 0)
-        qDebug() << output;
-    QCOMPARE(p.exitStatus(), QProcess::NormalExit);
-    QCOMPARE(p.exitCode(), 0);
+    QVERIFY2(finished, msgQmlViewerFail(qmlruntime, arguments, output, QStringLiteral("timeout")).constData());
+    QVERIFY2(p.exitStatus() == QProcess::NormalExit, msgQmlViewerFail(qmlruntime, arguments, output, QStringLiteral("A crash occurred")).constData());
+    QVERIFY2(p.exitCode() == 0, msgQmlViewerFail(qmlruntime, arguments, output, QString::fromLatin1("Exit code %1").arg(p.exitCode())).constData());
 }
 
 QString tst_qmlvisual::toTestScript(const QString &file, Mode mode)
@@ -166,16 +175,12 @@ QString tst_qmlvisual::toTestScript(const QString &file, Mode mode)
         return QString();
 
     const char* platformsuffix=0; // platforms with different fonts
-#if defined(Q_WS_MACX)
+#if defined(Q_OS_MACX)
     platformsuffix = "-MAC";
-#elif defined(Q_WS_X11)
-    platformsuffix = "-X11";
-#elif defined(Q_WS_WIN32)
+#elif defined(Q_OS_WIN)
     platformsuffix = "-WIN";
-#elif defined(Q_WS_QWS)
-    platformsuffix = "-QWS";
-#elif defined(Q_WS_S60)
-    platformsuffix = "-S60";
+#else
+    platformsuffix = "-X11";
 #endif
 
     QString testdata = file.left(index + 1) + 
@@ -243,7 +248,7 @@ void action(Mode mode, const QString &file)
     QString testdata = tst_qmlvisual::toTestScript(file,mode);
 
     QStringList arguments;
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     arguments << "-no-opengl";
 #endif
     switch (mode) {
@@ -290,7 +295,12 @@ void action(Mode mode, const QString &file)
     if (!arguments.isEmpty()) {
         QProcess p;
         p.setProcessChannelMode(QProcess::ForwardedChannels);
-        p.start(tst_qmlvisual::viewer(), arguments);
+        const QString qmlRunTime = tst_qmlvisual::viewer();
+        p.start(qmlRunTime, arguments);
+        QVERIFY2(p.waitForStarted(),
+                 qPrintable(QString::fromLatin1("Cannot start '%1': %2").
+                            arg(qmlRunTime, p.errorString())));
+
         p.waitForFinished();
     }
 }
