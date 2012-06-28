@@ -1,4 +1,4 @@
-TARGET = qmldbg_tcp
+TARGET = qmldbg_tcp_qtquick1
 QT       += quick1 quick1-private network
 
 load(qt_plugin)
