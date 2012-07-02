@@ -457,7 +457,7 @@ void tst_qdeclarativetext::alignments()
     canvas->show();
     QApplication::setActiveWindow(canvas);
     QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QTRY_COMPARE_WITH_TIMEOUT(QApplication::activeWindow(), static_cast<QWidget *>(canvas), 10000);
 
     QObject *ob = canvas->rootObject();
     QVERIFY(ob != 0);
