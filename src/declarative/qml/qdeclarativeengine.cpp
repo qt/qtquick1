@@ -1102,7 +1102,6 @@ public:
     ~QDeclarativeDataExtended();
 
     QHash<int, QObject *> attachedProperties;
-    QDeclarativeNotifier objectNameNotifier;
 };
 
 QDeclarativeDataExtended::QDeclarativeDataExtended()
@@ -1111,12 +1110,6 @@ QDeclarativeDataExtended::QDeclarativeDataExtended()
 
 QDeclarativeDataExtended::~QDeclarativeDataExtended()
 {
-}
-
-QDeclarativeNotifier *QDeclarativeData::objectNameNotifier() const
-{
-    if (!extendedData) extendedData = new QDeclarativeDataExtended;
-    return &extendedData->objectNameNotifier;
 }
 
 QHash<int, QObject *> *QDeclarativeData::attachedProperties() const

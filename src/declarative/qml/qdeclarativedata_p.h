@@ -148,7 +148,6 @@ public:
     }
 
     bool hasExtendedData() const { return extendedData != 0; }
-    QDeclarativeNotifier *objectNameNotifier() const;
     QHash<int, QObject *> *attachedProperties() const;
 
 private:

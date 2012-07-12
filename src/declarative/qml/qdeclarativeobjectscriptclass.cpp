@@ -253,13 +253,8 @@ QDeclarativeObjectScriptClass::property(QObject *obj, const Identifier &name)
         }
     } else {
         if (enginePriv->captureProperties && !(lastData->flags & QDeclarativePropertyCache::Data::IsConstant)) {
-            if (lastData->coreIndex == 0) {
-                enginePriv->capturedProperties <<
-                    QDeclarativeEnginePrivate::CapturedProperty(QDeclarativeData::get(obj, true)->objectNameNotifier());
-            } else {
-                enginePriv->capturedProperties <<
-                    QDeclarativeEnginePrivate::CapturedProperty(obj, lastData->coreIndex, lastData->notifyIndex);
-            }
+            enginePriv->capturedProperties <<
+                QDeclarativeEnginePrivate::CapturedProperty(obj, lastData->coreIndex, lastData->notifyIndex);
         }
 
         if (QDeclarativeValueTypeFactory::isValueType((uint)lastData->propType)) {
