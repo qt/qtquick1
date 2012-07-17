@@ -41,7 +41,6 @@
 #include <qtest.h>
 #include <QLibraryInfo>
 #include <QDir>
-#include <QProcess>
 #include <QDebug>
 #include "qmlruntime.h"
 #include <QDeclarativeView>
@@ -64,7 +63,6 @@ private slots:
 
     void namingConvention();
 private:
-    QString qmlruntime;
     QStringList excludedDirs;
 
     void namingConvention(const QDir &);
@@ -73,17 +71,6 @@ private:
 
 tst_examples::tst_examples()
 {
-    QString binaries = QLibraryInfo::location(QLibraryInfo::BinariesPath);
-
-#if defined(Q_WS_MAC)
-    qmlruntime = QDir(binaries).absoluteFilePath("qml.app/Contents/MacOS/qml");
-#elif defined(Q_WS_WIN)
-    qmlruntime = QDir(binaries).absoluteFilePath("qml.exe");
-#else
-    qmlruntime = QDir(binaries).absoluteFilePath("qml");
-#endif
-
-
     // Add directories you want excluded here
     excludedDirs << "doc/src/snippets/declarative/visualdatamodel_rootindex";
     excludedDirs << "doc/src/snippets/declarative/qtbinding";
