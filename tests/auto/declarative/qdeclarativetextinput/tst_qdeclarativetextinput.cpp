@@ -958,8 +958,8 @@ void tst_qdeclarativetextinput::mouseSelection()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextInput *textInputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
@@ -1006,8 +1006,8 @@ void tst_qdeclarativetextinput::deferEnableSelectByMouse()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextInput *textInputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
@@ -1046,8 +1046,8 @@ void tst_qdeclarativetextinput::deferDisableSelectByMouse()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextInput *textInputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
@@ -1077,8 +1077,8 @@ void tst_qdeclarativetextinput::dragMouseSelection()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextInput *textInputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
@@ -1136,8 +1136,8 @@ void tst_qdeclarativetextinput::mouseSelectionMode()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextInput *textInputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
@@ -1182,8 +1182,8 @@ void tst_qdeclarativetextinput::horizontalAlignment()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
     QObject *ob = canvas->rootObject();
     QVERIFY(ob != 0);
     ob->setProperty("horizontalAlignment",hAlign);
@@ -1277,8 +1277,8 @@ void tst_qdeclarativetextinput::horizontalAlignment_RightToLeft()
     QVERIFY(-textInputPrivate->hscroll < canvas->width()/2);
 
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     // If there is no committed text, the preedit text should determine the alignment.
     textInput->setText(QString());
@@ -1325,7 +1325,7 @@ void tst_qdeclarativetextinput::positionAt()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextInput *textinputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
     QVERIFY(textinputObject != 0);
@@ -1383,7 +1383,7 @@ void tst_qdeclarativetextinput::maxLength()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextInput *textinputObject = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
     QVERIFY(textinputObject != 0);
@@ -1531,7 +1531,7 @@ void tst_qdeclarativetextinput::inputMethods()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     // test input method hints
     QVERIFY(canvas->rootObject() != 0);
@@ -1844,8 +1844,8 @@ void tst_qdeclarativetextinput::cursorVisible()
     QGraphicsView view(&scene);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QDeclarativeTextInput input;
     QSignalSpy spy(&input, SIGNAL(cursorVisibleChanged(bool)));
@@ -1983,8 +1983,8 @@ void tst_qdeclarativetextinput::echoMode()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
 
@@ -2094,8 +2094,8 @@ void tst_qdeclarativetextinput::passwordEchoDelay()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
 
@@ -2175,8 +2175,8 @@ void tst_qdeclarativetextinput::openInputPanelOnClick()
     view.show();
     qApp->setAutoSipEnabled(true);
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QDeclarativeItemPrivate* pri = QDeclarativeItemPrivate::get(&input);
     QDeclarativeTextInputPrivate *inputPrivate = static_cast<QDeclarativeTextInputPrivate*>(pri);
@@ -2228,8 +2228,8 @@ void tst_qdeclarativetextinput::openInputPanelOnFocus()
     view.show();
     qApp->setAutoSipEnabled(true);
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QDeclarativeItemPrivate* pri = QDeclarativeItemPrivate::get(&input);
     QDeclarativeTextInputPrivate *inputPrivate = static_cast<QDeclarativeTextInputPrivate*>(pri);
@@ -2366,7 +2366,7 @@ void tst_qdeclarativetextinput::setHAlignClearCache()
     scene.addItem(&input);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
+    QVERIFY(QTest::qWaitForWindowActive(&view));
     QTRY_VERIFY(input.nbPaint >= 1);
     int paintEvents = input.nbPaint;
     input.setHAlign(QDeclarativeTextInput::AlignRight);
@@ -2387,7 +2387,7 @@ void tst_qdeclarativetextinput::focusOutClearSelection()
     scene.addItem(&input);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
+    QVERIFY(QTest::qWaitForWindowActive(&view));
     input.select(2,5);
     //The selection should work
     QTRY_COMPARE(input.selectedText(), QLatin1String("llo"));
@@ -2466,8 +2466,8 @@ void tst_qdeclarativetextinput::preeditAutoScroll()
     scene.addItem(&input);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QSignalSpy cursorRectangleSpy(&input, SIGNAL(cursorRectangleChanged()));
     int cursorRectangleChanges = 0;
@@ -2570,8 +2570,8 @@ void tst_qdeclarativetextinput::preeditMicroFocus()
     scene.addItem(&input);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QRect currentRect;
     QRect previousRect = input.inputMethodQuery(Qt::ImMicroFocus).toRect();
@@ -2628,8 +2628,8 @@ void tst_qdeclarativetextinput::inputContextMouseHandler()
     scene.addItem(&input);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QFontMetricsF fm(input.font());
     const qreal y = fm.height() / 2;
@@ -2663,8 +2663,8 @@ void tst_qdeclarativetextinput::inputMethodComposing()
     scene.addItem(&input);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QSignalSpy spy(&input, SIGNAL(inputMethodComposingChanged()));
 
@@ -2701,7 +2701,7 @@ void tst_qdeclarativetextinput::cursorRectangleSize()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextInput *textInput = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
     QVERIFY(textInput != 0);
@@ -2721,7 +2721,7 @@ void tst_qdeclarativetextinput::deselect()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextInput *textInput = qobject_cast<QDeclarativeTextInput *>(canvas->rootObject());
     QVERIFY(textInput != 0);

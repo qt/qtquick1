@@ -410,8 +410,8 @@ void tst_qdeclarativetextedit::alignments()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QObject *ob = canvas->rootObject();
     QVERIFY(ob != 0);
@@ -554,8 +554,8 @@ void tst_qdeclarativetextedit::hAlign_RightToLeft()
     QVERIFY(textEdit->positionToRectangle(0).x() < canvas->width()/2);
 
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     textEdit->setText(QString());
     { QInputMethodEvent ev(rtlText, QList<QInputMethodEvent::Attribute>()); QApplication::sendEvent(canvas, &ev); }
@@ -964,8 +964,8 @@ void tst_qdeclarativetextedit::keySelection()
     QDeclarativeView *canvas = createView(SRCDIR "/data/navigation.qml");
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
     canvas->setFocus();
 
     QVERIFY(canvas->rootObject() != 0);
@@ -1379,8 +1379,8 @@ void tst_qdeclarativetextedit::mouseSelection()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
@@ -1411,8 +1411,8 @@ void tst_qdeclarativetextedit::multilineMouseSelection()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
@@ -1457,8 +1457,8 @@ void tst_qdeclarativetextedit::deferEnableSelectByMouse()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
@@ -1497,8 +1497,8 @@ void tst_qdeclarativetextedit::deferDisableSelectByMouse()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
@@ -1528,8 +1528,8 @@ void tst_qdeclarativetextedit::dragMouseSelection()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
@@ -1589,8 +1589,8 @@ void tst_qdeclarativetextedit::mouseSelectionMode()
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QVERIFY(canvas->rootObject() != 0);
     QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
@@ -1645,7 +1645,7 @@ void tst_qdeclarativetextedit::positionAt()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextEdit *texteditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
     QVERIFY(texteditObject != 0);
@@ -1800,8 +1800,8 @@ void tst_qdeclarativetextedit::cursorVisible()
     QGraphicsView view(&scene);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
     view.setFocus();
 
     QDeclarativeTextEdit edit;
@@ -2108,8 +2108,8 @@ void tst_qdeclarativetextedit::textInput()
     scene.addItem(&edit);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
     edit.setFocus(true);
     QVERIFY(edit.hasActiveFocus() == true);
 
@@ -2138,8 +2138,8 @@ void tst_qdeclarativetextedit::openInputPanelOnClick()
     view.show();
     qApp->setAutoSipEnabled(true);
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QDeclarativeItemPrivate* pri = QDeclarativeItemPrivate::get(&edit);
     QDeclarativeTextEditPrivate *editPrivate = static_cast<QDeclarativeTextEditPrivate*>(pri);
@@ -2186,8 +2186,8 @@ void tst_qdeclarativetextedit::openInputPanelOnFocus()
     view.show();
     qApp->setAutoSipEnabled(true);
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QDeclarativeItemPrivate* pri = QDeclarativeItemPrivate::get(&edit);
     QDeclarativeTextEditPrivate *editPrivate = static_cast<QDeclarativeTextEditPrivate*>(pri);
@@ -2383,8 +2383,8 @@ void tst_qdeclarativetextedit::implicitSizePreedit()
     scene.addItem(textObject);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QInputMethodEvent event(text, QList<QInputMethodEvent::Attribute>());
     QCoreApplication::sendEvent(&view, &event);
@@ -2461,8 +2461,8 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
     scene.addItem(&edit);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QSignalSpy cursorRectangleSpy(&edit, SIGNAL(cursorRectangleChanged()));
 
@@ -2528,8 +2528,8 @@ void tst_qdeclarativetextedit::inputContextMouseHandler()
     scene.addItem(&edit);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
     view.setFocus();
 
     QFontMetricsF fm(edit.font());
@@ -2564,8 +2564,8 @@ void tst_qdeclarativetextedit::inputMethodComposing()
     scene.addItem(&edit);
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
 
     QSignalSpy spy(&edit, SIGNAL(inputMethodComposingChanged()));
 
@@ -2600,7 +2600,7 @@ void tst_qdeclarativetextedit::cursorRectangleSize()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextEdit *textEdit = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
     QVERIFY(textEdit != 0);
@@ -2620,7 +2620,7 @@ void tst_qdeclarativetextedit::deselect()
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
 
     QDeclarativeTextEdit *textEdit = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
     QVERIFY(textEdit != 0);

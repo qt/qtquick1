@@ -957,8 +957,8 @@ void tst_QDeclarativeItem::mouseFocus()
     canvas->show();
     QVERIFY(canvas->rootObject());
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QDeclarativeItem *item = findItem<QDeclarativeItem>(canvas->rootObject(), "declarativeItem");
     QVERIFY(item);

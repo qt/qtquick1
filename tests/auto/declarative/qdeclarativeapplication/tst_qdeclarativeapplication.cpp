@@ -82,8 +82,8 @@ void tst_qdeclarativeapplication::active()
     // active
     view.show();
     QApplication::setActiveWindow(&view);
-    QTest::qWaitForWindowShown(&view);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
+    QVERIFY(QTest::qWaitForWindowActive(&view));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
     QCOMPARE(item->property("active").toBool(), QApplication::activeWindow() != 0);
 
     // not active again

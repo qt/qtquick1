@@ -113,8 +113,8 @@ void tst_QDeclarativeViewer::runtimeContextProperty()
     viewer->show();
     QApplication::setActiveWindow(viewer);
     //viewer->requestActivateWindow();
-    QTest::qWaitForWindowShown(viewer);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
+    QVERIFY(QTest::qWaitForWindowActive(viewer));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
     //QTRY_VERIFY(viewer == qGuiApp->focusWindow());
 
     QVERIFY(runtimeObject->property("isActiveWindow").toBool());
@@ -178,8 +178,8 @@ void tst_QDeclarativeViewer::loading()
     viewer->show();
 
     QApplication::setActiveWindow(viewer);
-    QTest::qWaitForWindowShown(viewer);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
+    QVERIFY(QTest::qWaitForWindowActive(viewer));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
 
     TEST_INITIAL_SIZES(viewer);
 
@@ -259,8 +259,8 @@ void tst_QDeclarativeViewer::fileBrowser()
     QVERIFY(numberOfWarnings == 0);
 
     QApplication::setActiveWindow(viewer);
-    QTest::qWaitForWindowShown(viewer);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
+    QVERIFY(QTest::qWaitForWindowActive(viewer));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
 
     // Browser.qml successfully loaded
     QDeclarativeItem* browserItem = qobject_cast<QDeclarativeItem*>(viewer->view()->rootObject());
@@ -298,8 +298,8 @@ void tst_QDeclarativeViewer::resizing()
     viewer->show();
 
     QApplication::setActiveWindow(viewer);
-    QTest::qWaitForWindowShown(viewer);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
+    QVERIFY(QTest::qWaitForWindowActive(viewer));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(viewer));
 
     TEST_INITIAL_SIZES(viewer);
 

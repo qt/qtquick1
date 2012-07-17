@@ -207,7 +207,7 @@ void tst_examples::examples()
     QCOMPARE(viewer.view()->status(), QDeclarativeView::Ready);
     viewer.show();
 
-    QTest::qWaitForWindowShown(&viewer);
+    QVERIFY(QTest::qWaitForWindowActive(&viewer));
 }
 
 QTEST_MAIN(tst_examples)

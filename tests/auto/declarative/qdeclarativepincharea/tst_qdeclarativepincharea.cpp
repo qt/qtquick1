@@ -208,7 +208,7 @@ void tst_QDeclarativePinchArea::scale()
     canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/pinchproperties.qml"));
     canvas->show();
     canvas->setFocus();
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowExposed(canvas));
     QVERIFY(canvas->rootObject() != 0);
     qApp->processEvents();
 
@@ -263,7 +263,7 @@ void tst_QDeclarativePinchArea::pan()
     canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/pinchproperties.qml"));
     canvas->show();
     canvas->setFocus();
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowExposed(canvas));
     QVERIFY(canvas->rootObject() != 0);
     qApp->processEvents();
 
@@ -320,7 +320,7 @@ void tst_QDeclarativePinchArea::flickable()
     canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/flickresize.qml"));
     canvas->show();
     canvas->setFocus();
-    QTest::qWaitForWindowShown(canvas);
+    QVERIFY(QTest::qWaitForWindowExposed(canvas));
     QVERIFY(canvas->rootObject() != 0);
     qApp->processEvents();
 

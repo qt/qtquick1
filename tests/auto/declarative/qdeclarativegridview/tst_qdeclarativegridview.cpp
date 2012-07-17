@@ -716,10 +716,7 @@ void tst_QDeclarativeGridView::currentIndex()
     // Test keys
     canvas->show();
     qApp->setActiveWindow(canvas);
-#ifdef Q_WS_X11
-    // to be safe and avoid failing setFocus with window managers
-    qt_x11_wait_for_window_manager(canvas);
-#endif
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
     QTRY_VERIFY(canvas->hasFocus());
     QTRY_VERIFY(canvas->scene()->hasFocus());
     qApp->processEvents();
@@ -733,10 +730,7 @@ void tst_QDeclarativeGridView::currentIndex()
     gridview->setFlow(QDeclarativeGridView::TopToBottom);
 
     qApp->setActiveWindow(canvas);
-#ifdef Q_WS_X11
-    // to be safe and avoid failing setFocus with window managers
-    qt_x11_wait_for_window_manager(canvas);
-#endif
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
     QTRY_VERIFY(canvas->hasFocus());
     QTRY_VERIFY(canvas->scene()->hasFocus());
     qApp->processEvents();
@@ -783,10 +777,7 @@ void tst_QDeclarativeGridView::currentIndex()
     gridview->setLayoutDirection(Qt::RightToLeft);
 
     qApp->setActiveWindow(canvas);
-#ifdef Q_WS_X11
-    // to be safe and avoid failing setFocus with window managers
-    qt_x11_wait_for_window_manager(canvas);
-#endif
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
     QTRY_VERIFY(canvas->hasFocus());
     QTRY_VERIFY(canvas->scene()->hasFocus());
     qApp->processEvents();

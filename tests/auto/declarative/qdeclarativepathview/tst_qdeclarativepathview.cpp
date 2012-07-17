@@ -908,8 +908,8 @@ void tst_QDeclarativePathView::mouseDrag()
     canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/dragpath.qml"));
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QDeclarativePathView *pathview = qobject_cast<QDeclarativePathView*>(canvas->rootObject());
     QVERIFY(pathview != 0);
@@ -968,8 +968,8 @@ void tst_QDeclarativePathView::changePreferredHighlight()
     canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/dragpath.qml"));
     canvas->show();
     QApplication::setActiveWindow(canvas);
-    QTest::qWaitForWindowShown(canvas);
-    QTRY_COMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
+    QVERIFY(QTest::qWaitForWindowActive(canvas));
+    QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(canvas));
 
     QDeclarativePathView *pathview = qobject_cast<QDeclarativePathView*>(canvas->rootObject());
     QVERIFY(pathview != 0);
