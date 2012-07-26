@@ -2477,7 +2477,7 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
     sendPreeditText(preeditText, 0);
     currentRect = edit.inputMethodQuery(Qt::ImMicroFocus).toRect();
     QCOMPARE(currentRect, previousRect);
-#if defined(Q_WS_X11) || defined(Q_WS_QWS)
+#if defined(Q_WS_X11)
     QCOMPARE(ic.updateCallCount, 0); // The cursor position hasn't changed.
 #endif
     QCOMPARE(cursorRectangleSpy.count(), 0);
@@ -2489,7 +2489,7 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
         sendPreeditText(preeditText, i);
         currentRect = edit.inputMethodQuery(Qt::ImMicroFocus).toRect();
         QVERIFY(previousRect.left() < currentRect.left());
-#if defined(Q_WS_X11) || defined(Q_WS_QWS)
+#if defined(Q_WS_X11)
         QVERIFY(ic.updateCallCount > 0);
 #endif
         QVERIFY(cursorRectangleSpy.count() > 0);
@@ -2505,7 +2505,7 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
     QApplication::sendEvent(qApp->inputMethod()->inputItem(), &imEvent);
     currentRect = edit.inputMethodQuery(Qt::ImMicroFocus).toRect();
     QCOMPARE(currentRect, previousRect);
-#if defined(Q_WS_X11) || defined(Q_WS_QWS)
+#if defined(Q_WS_X11)
     QVERIFY(ic.updateCallCount > 0);
 #endif
     QVERIFY(cursorRectangleSpy.count() > 0);

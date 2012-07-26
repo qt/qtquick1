@@ -2582,7 +2582,7 @@ void tst_qdeclarativetextinput::preeditMicroFocus()
     sendPreeditText(preeditText, 0);
     currentRect = input.inputMethodQuery(Qt::ImMicroFocus).toRect();
     QCOMPARE(currentRect, previousRect);
-#if defined(Q_WS_X11) || defined(Q_WS_QWS) || defined(Q_OS_SYMBIAN)
+#if defined(Q_WS_X11)
     QVERIFY(ic.updateCallCount > 0);
 #endif
 
@@ -2593,7 +2593,7 @@ void tst_qdeclarativetextinput::preeditMicroFocus()
         sendPreeditText(preeditText, i);
         currentRect = input.inputMethodQuery(Qt::ImMicroFocus).toRect();
         QVERIFY(previousRect.left() < currentRect.left());
-#if defined(Q_WS_X11) || defined(Q_WS_QWS) || defined(Q_OS_SYMBIAN)
+#if defined(Q_WS_X11)
         QVERIFY(ic.updateCallCount > 0);
 #endif
         previousRect = currentRect;
@@ -2606,7 +2606,7 @@ void tst_qdeclarativetextinput::preeditMicroFocus()
     QApplication::sendEvent(&view, &imEvent);
     currentRect = input.inputMethodQuery(Qt::ImMicroFocus).toRect();
     QCOMPARE(currentRect, previousRect);
-#if defined(Q_WS_X11) || defined(Q_WS_QWS) || defined(Q_OS_SYMBIAN)
+#if defined(Q_WS_X11)
     QVERIFY(ic.updateCallCount > 0);
 #endif
 }
