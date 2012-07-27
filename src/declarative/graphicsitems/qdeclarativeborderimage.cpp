@@ -53,7 +53,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-    \qmlclass BorderImage QDeclarativeBorderImage
+    \qmltype BorderImage
+    \instantiates QDeclarativeBorderImage
     \brief The BorderImage element provides an image that can be used as a border.
     \inherits Item
     \since 4.7

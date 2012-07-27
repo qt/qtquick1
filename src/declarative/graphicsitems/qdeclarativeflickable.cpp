@@ -425,7 +425,8 @@ void QDeclarativeFlickablePrivate::updateBeginningEnd()
 }
 
 /*!
-    \qmlclass Flickable QDeclarativeFlickable
+    \qmltype Flickable
+    \instantiates QDeclarativeFlickable
     \since 4.7
     \ingroup qml-basic-interaction-elements
 

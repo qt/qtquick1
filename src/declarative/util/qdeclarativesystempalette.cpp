@@ -57,7 +57,8 @@ public:
 
 
 /*!
-    \qmlclass SystemPalette QDeclarativeSystemPalette
+    \qmltype SystemPalette
+    \instantiates QDeclarativeSystemPalette
     \ingroup qml-utility-elements
     \since 4.7
     \brief The SystemPalette element provides access to the Qt palettes.

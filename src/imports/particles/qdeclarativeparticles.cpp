@@ -153,7 +153,8 @@ void QDeclarativeParticleMotion::destroy(QDeclarativeParticle &particle)
 }
 
 /*!
-    \qmlclass ParticleMotionLinear QDeclarativeParticleMotionLinear
+    \qmltype ParticleMotionLinear
+    \instantiates QDeclarativeParticleMotionLinear
     \ingroup qml-particle-elements
     \since 4.7
     \brief The ParticleMotionLinear object moves particles linearly.
@@ -172,7 +173,8 @@ void QDeclarativeParticleMotionLinear::advance(QDeclarativeParticle &p, int inte
 }
 
 /*!
-    \qmlclass ParticleMotionGravity QDeclarativeParticleMotionGravity
+    \qmltype ParticleMotionGravity
+    \instantiates QDeclarativeParticleMotionGravity
     \ingroup qml-particle-elements
     \since 4.7
     \brief The ParticleMotionGravity object moves particles towards a point.
@@ -256,7 +258,8 @@ void QDeclarativeParticleMotionGravity::advance(QDeclarativeParticle &p, int int
 }
 
 /*!
-    \qmlclass ParticleMotionWander QDeclarativeParticleMotionWander
+    \qmltype ParticleMotionWander
+    \instantiates QDeclarativeParticleMotionWander
     \ingroup qml-particle-elements
     \since 4.7
     \brief The ParticleMotionWander object moves particles in a somewhat random fashion.
@@ -610,7 +613,8 @@ void QDeclarativeParticlesPrivate::updateOpacity(QDeclarativeParticle &p, int ag
 }
 
 /*!
-    \qmlclass Particles QDeclarativeParticles
+    \qmltype Particles
+    \instantiates QDeclarativeParticles
     \ingroup qml-particle-elements
     \since 4.7
     \brief The Particles object generates and moves particles.

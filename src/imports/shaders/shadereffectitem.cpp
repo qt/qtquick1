@@ -71,7 +71,8 @@ static const char qt_emptyAttributeName[] = "";
 
 
 /*!
-    \qmlclass ShaderEffectItem ShaderEffectItem
+    \qmltype ShaderEffectItem
+    \instantiates ShaderEffectItem
     \ingroup qml-shader-elements
     \brief The ShaderEffectItem object alters the output of given item with OpenGL shaders.
     \inherits Item

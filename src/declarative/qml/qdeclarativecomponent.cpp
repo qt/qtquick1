@@ -141,7 +141,8 @@ class QByteArray;
 */
 
 /*!
-    \qmlclass Component QDeclarativeComponent
+    \qmltype Component
+    \instantiates QDeclarativeComponent
     \ingroup qml-utility-elements
     \since 4.7
     \brief The Component element encapsulates a QML component definition.

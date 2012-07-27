@@ -1560,7 +1560,8 @@ void QDeclarativeListViewPrivate::flick(AxisData &data, qreal minExtent, qreal m
 //----------------------------------------------------------------------------
 
 /*!
-    \qmlclass ListView QDeclarativeListView
+    \qmltype ListView
+    \instantiates QDeclarativeListView
     \ingroup qml-view-elements
     \since 4.7
     \inherits Flickable

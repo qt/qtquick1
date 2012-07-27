@@ -347,7 +347,8 @@ void QDeclarativePathViewPrivate::regenerate()
 }
 
 /*!
-    \qmlclass PathView QDeclarativePathView
+    \qmltype PathView
+    \instantiates QDeclarativePathView
     \ingroup qml-view-elements
     \since 4.7
     \brief The PathView element lays out model-provided items on a path.

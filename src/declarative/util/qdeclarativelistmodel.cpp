@@ -86,7 +86,8 @@ QDeclarativeListModelParser::ListInstruction *QDeclarativeListModelParser::ListM
 }
 
 /*!
-    \qmlclass ListModel QDeclarativeListModel
+    \qmltype ListModel
+    \instantiates QDeclarativeListModel
     \ingroup qml-working-with-data
     \since 4.7
     \brief The ListModel element defines a free-form list data source.
@@ -874,7 +875,8 @@ bool QDeclarativeListModelParser::definesEmptyList(const QString &s)
 
 
 /*!
-    \qmlclass ListElement QDeclarativeListElement
+    \qmltype ListElement
+    \instantiates QDeclarativeListElement
     \ingroup qml-working-with-data
     \since 4.7
     \brief The ListElement element defines a data item in a ListModel.

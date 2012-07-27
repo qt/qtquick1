@@ -73,7 +73,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-    \qmlclass Animation QDeclarativeAbstractAnimation
+    \qmltype Animation
+    \instantiates QDeclarativeAbstractAnimation
     \ingroup qml-animation-transition
     \since 4.7
     \brief The Animation element is the base of all QML animations.
@@ -553,7 +554,8 @@ void QDeclarativeAbstractAnimation::timelineComplete()
 }
 
 /*!
-    \qmlclass PauseAnimation QDeclarativePauseAnimation
+    \qmltype PauseAnimation
+    \instantiates QDeclarativePauseAnimation
     \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -624,7 +626,8 @@ QAbstractAnimation *QDeclarativePauseAnimation::qtAnimation()
 }
 
 /*!
-    \qmlclass ColorAnimation QDeclarativeColorAnimation
+    \qmltype ColorAnimation
+    \instantiates QDeclarativeColorAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits PropertyAnimation
@@ -728,7 +731,8 @@ void QDeclarativeColorAnimation::setTo(const QColor &t)
 
 
 /*!
-    \qmlclass ScriptAction QDeclarativeScriptAction
+    \qmltype ScriptAction
+    \instantiates QDeclarativeScriptAction
     \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -862,7 +866,8 @@ QAbstractAnimation *QDeclarativeScriptAction::qtAnimation()
 
 
 /*!
-    \qmlclass PropertyAction QDeclarativePropertyAction
+    \qmltype PropertyAction
+    \instantiates QDeclarativePropertyAction
     \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -1123,7 +1128,8 @@ void QDeclarativePropertyAction::transition(QDeclarativeStateActions &actions,
 }
 
 /*!
-    \qmlclass NumberAnimation QDeclarativeNumberAnimation
+    \qmltype NumberAnimation
+    \instantiates QDeclarativeNumberAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits PropertyAnimation
@@ -1235,7 +1241,8 @@ void QDeclarativeNumberAnimation::setTo(qreal t)
 
 
 /*!
-    \qmlclass Vector3dAnimation QDeclarativeVector3dAnimation
+    \qmltype Vector3dAnimation
+    \instantiates QDeclarativeVector3dAnimation
     \ingroup qml-animation-transition
     \since 4.7
     \inherits PropertyAnimation
@@ -1311,7 +1318,8 @@ void QDeclarativeVector3dAnimation::setTo(QVector3D t)
 
 
 /*!
-    \qmlclass RotationAnimation QDeclarativeRotationAnimation
+    \qmltype RotationAnimation
+    \instantiates QDeclarativeRotationAnimation
     \ingroup qml-animation-transition
     \since 4.7
     \inherits PropertyAnimation
@@ -1555,7 +1563,8 @@ QDeclarativeListProperty<QDeclarativeAbstractAnimation> QDeclarativeAnimationGro
 }
 
 /*!
-    \qmlclass SequentialAnimation QDeclarativeSequentialAnimation
+    \qmltype SequentialAnimation
+    \instantiates QDeclarativeSequentialAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -1629,7 +1638,8 @@ void QDeclarativeSequentialAnimation::transition(QDeclarativeStateActions &actio
 
 
 /*!
-    \qmlclass ParallelAnimation QDeclarativeParallelAnimation
+    \qmltype ParallelAnimation
+    \instantiates QDeclarativeParallelAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -1743,7 +1753,8 @@ void QDeclarativePropertyAnimationPrivate::convertVariant(QVariant &variant, int
 }
 
 /*!
-    \qmlclass PropertyAnimation QDeclarativePropertyAnimation
+    \qmltype PropertyAnimation
+    \instantiates QDeclarativePropertyAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -2432,7 +2443,8 @@ void QDeclarativePropertyAnimation::transition(QDeclarativeStateActions &actions
 }
 
 /*!
-    \qmlclass ParentAnimation QDeclarativeParentAnimation
+    \qmltype ParentAnimation
+    \instantiates QDeclarativeParentAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation
@@ -2793,7 +2805,8 @@ QAbstractAnimation *QDeclarativeParentAnimation::qtAnimation()
 }
 
 /*!
-    \qmlclass AnchorAnimation QDeclarativeAnchorAnimation
+    \qmltype AnchorAnimation
+    \instantiates QDeclarativeAnchorAnimation
   \ingroup qml-animation-transition
     \since 4.7
     \inherits Animation

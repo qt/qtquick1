@@ -54,7 +54,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-    \qmlclass AnimatedImage QDeclarativeAnimatedImage
+    \qmltype AnimatedImage
+    \instantiates QDeclarativeAnimatedImage
     \inherits Image
     \since 4.7
     \ingroup basic-visual-elements

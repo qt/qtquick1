@@ -234,7 +234,8 @@ void QDeclarativeSpringAnimationPrivate::updateMode()
 }
 
 /*!
-    \qmlclass SpringAnimation QDeclarativeSpringAnimation
+    \qmltype SpringAnimation
+    \instantiates QDeclarativeSpringAnimation
     \ingroup qml-animation-transition
     \inherits NumberAnimation
     \since 4.7

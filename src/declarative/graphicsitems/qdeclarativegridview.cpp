@@ -1270,7 +1270,8 @@ void QDeclarativeGridViewPrivate::flick(AxisData &data, qreal minExtent, qreal m
 //----------------------------------------------------------------------------
 
 /*!
-    \qmlclass GridView QDeclarativeGridView
+    \qmltype GridView
+    \instantiates QDeclarativeGridView
     \since 4.7
     \ingroup qml-view-elements
 

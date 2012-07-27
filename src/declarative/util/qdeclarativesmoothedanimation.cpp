@@ -249,7 +249,8 @@ void QSmoothedAnimation::init()
 }
 
 /*!
-    \qmlclass SmoothedAnimation QDeclarativeSmoothedAnimation
+    \qmltype SmoothedAnimation
+    \instantiates QDeclarativeSmoothedAnimation
     \ingroup qml-animation-transition
     \since 4.7
     \inherits NumberAnimation

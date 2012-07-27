@@ -179,7 +179,8 @@ QDeclarativeMouseAreaPrivate::~QDeclarativeMouseAreaPrivate()
 }
 
 /*!
-    \qmlclass MouseArea QDeclarativeMouseArea
+    \qmltype MouseArea
+    \instantiates QDeclarativeMouseArea
     \ingroup qml-basic-interaction-elements
     \since 4.7
     \brief The MouseArea item enables simple mouse handling.

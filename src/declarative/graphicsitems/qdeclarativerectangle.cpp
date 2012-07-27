@@ -87,7 +87,8 @@ void QDeclarativePen::setWidth(int w)
 
 
 /*!
-    \qmlclass GradientStop QDeclarativeGradientStop
+    \qmltype GradientStop
+    \instantiates QDeclarativeGradientStop
     \ingroup qml-basic-visual-elements
     \since 4.7
     \brief The GradientStop item defines the color at a position in a Gradient.
@@ -114,7 +115,8 @@ void QDeclarativeGradientStop::updateGradient()
 }
 
 /*!
-    \qmlclass Gradient QDeclarativeGradient
+    \qmltype Gradient
+    \instantiates QDeclarativeGradient
     \ingroup qml-basic-visual-elements
     \since 4.7
     \brief The Gradient item defines a gradient fill.
@@ -196,7 +198,8 @@ void QDeclarativeGradient::doUpdate()
 
 
 /*!
-    \qmlclass Rectangle QDeclarativeRectangle
+    \qmltype Rectangle
+    \instantiates QDeclarativeRectangle
     \ingroup qml-basic-visual-elements
     \since 4.7
     \brief The Rectangle item provides a filled rectangle with an optional border.

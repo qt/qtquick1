@@ -70,7 +70,8 @@ typedef QPair<int, int> QDeclarativeXmlListRange;
 #define XMLLISTMODEL_CLEAR_ID 0
 
 /*!
-    \qmlclass XmlRole QDeclarativeXmlListModelRole
+    \qmltype XmlRole
+    \instantiates QDeclarativeXmlListModelRole
     \ingroup qml-working-with-data
   \since 4.7
     \brief The XmlRole element allows you to specify a role for an XmlListModel.
@@ -598,7 +599,8 @@ void QDeclarativeXmlListModelPrivate::clear_role(QDeclarativeListProperty<QDecla
 }
 
 /*!
-    \qmlclass XmlListModel QDeclarativeXmlListModel
+    \qmltype XmlListModel
+    \instantiates QDeclarativeXmlListModel
     \ingroup qml-working-with-data
   \since 4.7
     \brief The XmlListModel element is used to specify a read-only model using XPath expressions.

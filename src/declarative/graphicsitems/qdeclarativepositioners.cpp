@@ -322,7 +322,8 @@ void QDeclarativeBasePositioner::finishApplyTransitions()
 }
 
 /*!
-  \qmlclass Column QDeclarativeColumn
+  \qmltype Column
+    \instantiates QDeclarativeColumn
   \ingroup qml-positioning-elements
   \since 4.7
   \brief The Column item arranges its children vertically.
@@ -486,7 +487,8 @@ void QDeclarativeColumn::reportConflictingAnchors()
 }
 
 /*!
-  \qmlclass Row QDeclarativeRow
+  \qmltype Row
+    \instantiates QDeclarativeRow
   \ingroup qml-positioning-elements
   \since 4.7
   \brief The Row item arranges its children horizontally.
@@ -700,7 +702,8 @@ void QDeclarativeRow::reportConflictingAnchors()
 }
 
 /*!
-  \qmlclass Grid QDeclarativeGrid
+  \qmltype Grid
+    \instantiates QDeclarativeGrid
   \ingroup qml-positioning-elements
   \since 4.7
   \brief The Grid item positions its children in a grid.
@@ -1085,7 +1088,8 @@ void QDeclarativeGrid::reportConflictingAnchors()
 }
 
 /*!
-  \qmlclass Flow QDeclarativeFlow
+  \qmltype Flow
+    \instantiates QDeclarativeFlow
   \ingroup qml-positioning-elements
   \since 4.7
   \brief The Flow item arranges its children side by side, wrapping as necessary.

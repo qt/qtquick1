@@ -46,7 +46,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-    \qmlclass FocusScope QDeclarativeFocusScope
+    \qmltype FocusScope
+    \instantiates QDeclarativeFocusScope
     \since 4.7
     \ingroup qml-basic-interaction-elements
 

@@ -93,7 +93,8 @@ public:
 };
 
 /*!
-    \qmlclass FolderListModel QDeclarativeFolderListModel
+    \qmltype FolderListModel
+    \instantiates QDeclarativeFolderListModel
     \ingroup qml-working-with-data
     \brief The FolderListModel provides a model of the contents of a file system folder.
 

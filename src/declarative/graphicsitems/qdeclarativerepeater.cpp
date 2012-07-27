@@ -61,7 +61,8 @@ QDeclarativeRepeaterPrivate::~QDeclarativeRepeaterPrivate()
 }
 
 /*!
-    \qmlclass Repeater QDeclarativeRepeater
+    \qmltype Repeater
+    \instantiates QDeclarativeRepeater
     \ingroup qml-utility-elements
     \since 4.7
     \inherits Item

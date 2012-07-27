@@ -127,7 +127,8 @@ public:
 
 
 /*!
-    \qmlclass VisualItemModel QDeclarativeVisualItemModel
+    \qmltype VisualItemModel
+    \instantiates QDeclarativeVisualItemModel
     \ingroup qml-working-with-data
   \since 4.7
     \brief The VisualItemModel allows items to be provided to a view.
@@ -641,7 +642,8 @@ QDeclarativeVisualDataModelData *QDeclarativeVisualDataModelPrivate::data(QObjec
 //---------------------------------------------------------------------------
 
 /*!
-    \qmlclass VisualDataModel QDeclarativeVisualDataModel
+    \qmltype VisualDataModel
+    \instantiates QDeclarativeVisualDataModel
     \ingroup qml-working-with-data
     \brief The VisualDataModel encapsulates a model and delegate
 

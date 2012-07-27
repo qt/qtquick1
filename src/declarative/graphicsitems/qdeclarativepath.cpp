@@ -52,7 +52,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-    \qmlclass PathElement QDeclarativePathElement
+    \qmltype PathElement
+    \instantiates QDeclarativePathElement
     \ingroup qml-view-elements
     \since 4.7
     \brief PathElement is the base path type.
@@ -64,7 +65,8 @@ QT_BEGIN_NAMESPACE
 */
 
 /*!
-    \qmlclass Path QDeclarativePath
+    \qmltype Path
+    \instantiates QDeclarativePath
     \ingroup qml-view-elements
     \since 4.7
     \brief A Path object defines a path for use by \l PathView.
@@ -492,7 +494,8 @@ void QDeclarativeCurve::setY(qreal y)
 /****************************************************************************/
 
 /*!
-    \qmlclass PathAttribute QDeclarativePathAttribute
+    \qmltype PathAttribute
+    \instantiates QDeclarativePathAttribute
     \ingroup qml-view-elements
     \since 4.7
     \brief The PathAttribute allows setting an attribute at a given position in a Path.
@@ -608,7 +611,8 @@ void QDeclarativePathAttribute::setValue(qreal value)
 /****************************************************************************/
 
 /*!
-    \qmlclass PathLine QDeclarativePathLine
+    \qmltype PathLine
+    \instantiates QDeclarativePathLine
     \ingroup qml-view-elements
     \since 4.7
     \brief The PathLine defines a straight line.
@@ -641,7 +645,8 @@ void QDeclarativePathLine::addToPath(QPainterPath &path)
 /****************************************************************************/
 
 /*!
-    \qmlclass PathQuad QDeclarativePathQuad
+    \qmltype PathQuad
+    \instantiates QDeclarativePathQuad
     \ingroup qml-view-elements
     \since 4.7
     \brief The PathQuad defines a quadratic Bezier curve with a control point.
@@ -719,7 +724,8 @@ void QDeclarativePathQuad::addToPath(QPainterPath &path)
 /****************************************************************************/
 
 /*!
-   \qmlclass PathCubic QDeclarativePathCubic
+   \qmltype PathCubic
+    \instantiates QDeclarativePathCubic
     \ingroup qml-view-elements
     \since 4.7
    \brief The PathCubic defines a cubic Bezier curve with two control points.
@@ -827,7 +833,8 @@ void QDeclarativePathCubic::addToPath(QPainterPath &path)
 /****************************************************************************/
 
 /*!
-    \qmlclass PathPercent QDeclarativePathPercent
+    \qmltype PathPercent
+    \instantiates QDeclarativePathPercent
     \ingroup qml-view-elements
     \since 4.7
     \brief The PathPercent manipulates the way a path is interpreted.

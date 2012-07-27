@@ -52,7 +52,8 @@ QT_BEGIN_NAMESPACE
 
 
 /*!
-    \qmlclass PinchEvent QDeclarativePinchEvent
+    \qmltype PinchEvent
+    \instantiates QDeclarativePinchEvent
     \ingroup qml-event-elements
     \brief The PinchEvent object provides information about a pinch event.
 
@@ -160,7 +161,8 @@ QDeclarativePinchAreaPrivate::~QDeclarativePinchAreaPrivate()
 }
 
 /*!
-    \qmlclass PinchArea QDeclarativePinchArea
+    \qmltype PinchArea
+    \instantiates QDeclarativePinchArea
     \brief The PinchArea item enables simple pinch gesture handling.
     \inherits Item
 

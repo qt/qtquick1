@@ -664,7 +664,8 @@ QPixmap QDeclarativeTextPrivate::drawOutline(const QPixmap &source, const QPixma
 }
 
 /*!
-    \qmlclass Text QDeclarativeText
+    \qmltype Text
+    \instantiates QDeclarativeText
     \ingroup qml-basic-visual-elements
     \since 4.7
     \brief The Text item allows you to add formatted text to a scene.

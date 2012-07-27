@@ -61,7 +61,8 @@ QT_BEGIN_NAMESPACE
 
 
 /*!
-    \qmlclass TextInput QDeclarativeTextInput
+    \qmltype TextInput
+    \instantiates QDeclarativeTextInput
     \ingroup qml-basic-visual-elements
     \since 4.7
     \brief The TextInput item displays an editable line of text.
@@ -682,7 +683,8 @@ void QDeclarativeTextInput::setAutoScroll(bool b)
 }
 
 /*!
-    \qmlclass IntValidator QIntValidator
+    \qmltype IntValidator
+    \instantiates QIntValidator
     \ingroup qml-basic-visual-elements
 
     This element provides a validator for integer values.
@@ -706,7 +708,8 @@ void QDeclarativeTextInput::setAutoScroll(bool b)
 */
 
 /*!
-    \qmlclass DoubleValidator QDoubleValidator
+    \qmltype DoubleValidator
+    \instantiates QDoubleValidator
     \ingroup qml-basic-visual-elements
 
     This element provides a validator for non-integer numbers.
@@ -745,7 +748,8 @@ void QDeclarativeTextInput::setAutoScroll(bool b)
 */
 
 /*!
-    \qmlclass RegExpValidator QRegExpValidator
+    \qmltype RegExpValidator
+    \instantiates QRegExpValidator
     \ingroup qml-basic-visual-elements
 
     This element provides a validator, which counts as valid any string which

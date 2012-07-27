@@ -43,7 +43,8 @@
 
 QT_BEGIN_NAMESPACE
 /*!
-    \qmlclass KeyEvent QDeclarativeKeyEvent
+    \qmltype KeyEvent
+    \instantiates QDeclarativeKeyEvent
     \since 4.7
     \ingroup qml-event-elements
     
@@ -138,7 +139,8 @@ Item {
 
 
 /*!
-    \qmlclass MouseEvent QDeclarativeMouseEvent
+    \qmltype MouseEvent
+    \instantiates QDeclarativeMouseEvent
     \since 4.7
     \ingroup qml-event-elements
 

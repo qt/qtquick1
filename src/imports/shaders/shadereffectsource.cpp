@@ -47,7 +47,8 @@
 #include <QtOpenGL>
 
 /*!
-    \qmlclass ShaderEffectSource ShaderEffectSource
+    \qmltype ShaderEffectSource
+    \instantiates ShaderEffectSource
     \ingroup qml-shader-elements
     \brief The ShaderEffectSource object encapsulates the source content for the ShaderEffectItem.
 

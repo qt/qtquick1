@@ -71,7 +71,8 @@ public:
 };
 
 /*!
-    \qmlclass Behavior QDeclarativeBehavior
+    \qmltype Behavior
+    \instantiates QDeclarativeBehavior
     \ingroup qml-animation-transition
     \since 4.7
     \brief The Behavior element allows you to specify a default animation for a property change.

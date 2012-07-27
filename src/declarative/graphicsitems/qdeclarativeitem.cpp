@@ -68,7 +68,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-    \qmlclass Transform QGraphicsTransform
+    \qmltype Transform
+    \instantiates QGraphicsTransform
     \ingroup qml-transform-elements
     \since 4.7
     \brief The Transform elements provide a way of building advanced transformations on Items.
@@ -90,7 +91,8 @@ QT_BEGIN_NAMESPACE
 */
 
 /*!
-    \qmlclass Translate QDeclarativeTranslate
+    \qmltype Translate
+    \instantiates QDeclarativeTranslate
     \ingroup qml-transform-elements
     \since 4.7
     \brief The Translate object provides a way to move an Item without changing its x or y properties.
@@ -132,7 +134,8 @@ QT_BEGIN_NAMESPACE
 */
 
 /*!
-    \qmlclass Scale QGraphicsScale
+    \qmltype Scale
+    \instantiates QGraphicsScale
     \ingroup qml-transform-elements
     \since 4.7
     \brief The Scale element provides a way to scale an Item.
@@ -174,7 +177,8 @@ QT_BEGIN_NAMESPACE
 */
 
 /*!
-    \qmlclass Rotation QGraphicsRotation
+    \qmltype Rotation
+    \instantiates QGraphicsRotation
     \ingroup qml-transform-elements
     \since 4.7
     \brief The Rotation object provides a way to rotate an Item.
@@ -416,7 +420,8 @@ void QDeclarativeItemKeyFilter::componentComplete()
 
 
 /*!
-    \qmlclass KeyNavigation QDeclarativeKeyNavigationAttached
+    \qmltype KeyNavigation
+    \instantiates QDeclarativeKeyNavigationAttached
     \ingroup qml-basic-interaction-elements
     \since 4.7
     \brief The KeyNavigation attached property supports key navigation by arrow keys.
@@ -743,7 +748,8 @@ void QDeclarativeKeyNavigationAttached::setFocusNavigation(QDeclarativeItem *cur
 }
 
 /*!
-    \qmlclass LayoutMirroring QDeclarativeLayoutMirroringAttached
+    \qmltype LayoutMirroring
+    \instantiates QDeclarativeLayoutMirroringAttached
     \since QtQuick 1.1
     \ingroup qml-utility-elements
     \brief The LayoutMirroring attached property is used to mirror layout behavior.
@@ -907,7 +913,8 @@ void QDeclarativeItemPrivate::setLayoutMirror(bool mirror)
 }
 
 /*!
-    \qmlclass Keys QDeclarativeKeysAttached
+    \qmltype Keys
+    \instantiates QDeclarativeKeysAttached
     \ingroup qml-basic-interaction-elements
     \since 4.7
     \brief The Keys attached property provides key handling to Items.
@@ -1514,7 +1521,8 @@ QDeclarativeKeysAttached *QDeclarativeKeysAttached::qmlAttachedProperties(QObjec
 */
 
 /*!
-    \qmlclass Item QDeclarativeItem
+    \qmltype Item
+    \instantiates QDeclarativeItem
     \ingroup qml-basic-visual-elements
     \since 4.7
     \brief The Item is the most basic of all visual items in QML.

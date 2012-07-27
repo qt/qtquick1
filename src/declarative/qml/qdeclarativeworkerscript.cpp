@@ -582,7 +582,8 @@ void QDeclarativeWorkerScriptEngine::run()
 
 
 /*!
-    \qmlclass WorkerScript QDeclarativeWorkerScript
+    \qmltype WorkerScript
+    \instantiates QDeclarativeWorkerScript
     \ingroup qml-utility-elements
     \brief The WorkerScript element enables the use of threads in QML.
 

@@ -49,7 +49,8 @@
 QT_BEGIN_NAMESPACE
 
 /*!
-   \qmlclass FocusPanel QDeclarativeFocusPanel
+   \qmltype FocusPanel
+    \instantiates QDeclarativeFocusPanel
     \since 4.7
     \ingroup qml-basic-interaction-elements
 

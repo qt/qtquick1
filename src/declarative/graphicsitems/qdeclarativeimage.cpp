@@ -49,7 +49,8 @@ QT_BEGIN_NAMESPACE
 
 
 /*!
-    \qmlclass Image QDeclarativeImage
+    \qmltype Image
+    \instantiates QDeclarativeImage
     \since 4.7
     \ingroup qml-basic-visual-elements
     \brief The Image element displays an image in a declarative user interface
