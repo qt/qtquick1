@@ -79,7 +79,7 @@ QString QDeclarativeViewPlugin::whatsThis() const
 
 QString QDeclarativeViewPlugin::includeFile() const
 {
-    return QStringLiteral("QtDeclarative/QDeclarativeView");
+    return QStringLiteral("QtQuick1/QDeclarativeView");
 }
 
 QIcon QDeclarativeViewPlugin::icon() const
