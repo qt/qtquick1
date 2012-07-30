@@ -20,5 +20,3 @@ HEADERS += \
     ../../../../src/imports/shaders/scenegraph/qsggeometry.h
 
 include(../shared/qdeclarativedatatest.pri)
-
-CONFIG+=insignificant_test # QTQAINFRA-428
