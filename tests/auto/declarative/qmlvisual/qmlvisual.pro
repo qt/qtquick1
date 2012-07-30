@@ -38,4 +38,4 @@ symbian: {
 
 CONFIG += parallel_test
 
-CONFIG+=insignificant_test # QTQAINFRA-428
+CONFIG+=insignificant_test # QTBUG-26705
