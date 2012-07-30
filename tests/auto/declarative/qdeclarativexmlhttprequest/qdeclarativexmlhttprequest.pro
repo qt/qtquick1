@@ -13,4 +13,4 @@ SOURCES += tst_qdeclarativexmlhttprequest.cpp \
 
 include(../shared/qdeclarativedatatest.pri)
 
-CONFIG+=insignificant_test # QTQAINFRA-428
+win32:CONFIG+=insignificant_test # QTBUG-26703
