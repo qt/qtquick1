@@ -10,3 +10,4 @@ macx:CONFIG -= app_bundle
 include(../shared/qdeclarativedatatest.pri)
 
 CONFIG += parallel_test
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

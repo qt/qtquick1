@@ -21,3 +21,4 @@ symbian: {
 
 # QMAKE_CXXFLAGS = -fprofile-arcs -ftest-coverage
 # LIBS += -lgcov
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

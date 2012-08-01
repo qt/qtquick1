@@ -10,3 +10,4 @@ SOURCES += tst_qdeclarativeloader.cpp \
            ../shared/testhttpserver.cpp
 
 include(../shared/qdeclarativedatatest.pri)
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

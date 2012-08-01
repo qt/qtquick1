@@ -14,3 +14,4 @@ SOURCES += tst_qdeclarativexmlhttprequest.cpp \
 include(../shared/qdeclarativedatatest.pri)
 
 win32:CONFIG+=insignificant_test # QTBUG-26703
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

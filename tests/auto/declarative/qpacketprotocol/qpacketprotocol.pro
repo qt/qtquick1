@@ -10,3 +10,4 @@ SOURCES += tst_qpacketprotocol.cpp \
            ../shared/debugutil.cpp
 
 CONFIG += parallel_test
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

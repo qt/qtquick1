@@ -10,3 +10,4 @@ include(../qmldir_copier.pri)
 symbian: {
     TARGET.EPOCALLOWDLLDATA=1
 }
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

@@ -20,3 +20,4 @@ OTHER_FILES = data/backtrace1.js data/backtrace1.qml
 
 CONFIG += parallel_test
 CONFIG+=insignificant_test # QTQAINFRA-428
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

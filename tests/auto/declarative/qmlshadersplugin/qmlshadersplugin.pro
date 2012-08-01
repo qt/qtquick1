@@ -20,3 +20,4 @@ HEADERS += \
     ../../../../src/imports/shaders/scenegraph/qsggeometry.h
 
 include(../shared/qdeclarativedatatest.pri)
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

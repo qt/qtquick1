@@ -12,3 +12,4 @@ include(../shared/qdeclarativedatatest.pri)
 # LIBS += -lgcov
 
 CONFIG += parallel_test
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

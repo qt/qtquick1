@@ -12,3 +12,4 @@ SOURCES += tst_qdeclarativetimer.cpp
 }
 
 CONFIG += parallel_test
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

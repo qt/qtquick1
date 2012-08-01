@@ -6,3 +6,4 @@ contains(QT_CONFIG,quick1): QT += quick1 gui-private widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeapplication.cpp
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

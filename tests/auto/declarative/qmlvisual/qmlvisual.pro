@@ -39,3 +39,4 @@ symbian: {
 CONFIG += parallel_test
 
 CONFIG+=insignificant_test # QTBUG-26705
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

@@ -10,3 +10,4 @@ SOURCES += tst_qdeclarativedebugservice.cpp \
            ../shared/debugutil.cpp
 
 CONFIG += parallel_test declarative_debug
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
