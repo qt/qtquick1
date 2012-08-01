@@ -16,5 +16,3 @@ symbian: {
 }
 
 CONFIG += parallel_test
-
-CONFIG+=insignificant_test # QTBUG-26707

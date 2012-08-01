@@ -4,7 +4,6 @@ TARGET     = QtQuick1
 QT         = core-private gui-private widgets-private script-private
 
 MODULE=quick1
-MODULE_IMPORT_SUFFIX = /QtQuick1
 load(qt_module_config)
 
 # private dependencies
