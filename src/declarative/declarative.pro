@@ -2,7 +2,7 @@ load(qt_build_config)
 
 TARGET     = QtQuick1
 QT         = core-private gui-private widgets-private script-private
-QT_PRIVATE = xmlpatterns
+!isEmpty(QT.xmlpatterns.name): QT_PRIVATE = xmlpatterns
 
 MODULE=quick1
 load(qt_module)
