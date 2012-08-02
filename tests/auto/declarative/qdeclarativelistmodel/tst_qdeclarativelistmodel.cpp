@@ -602,11 +602,12 @@ void tst_qdeclarativelistmodel::enumerate()
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item != 0);
     QStringList r = item->property("result").toString().split(":");
-    QCOMPARE(r[0],QLatin1String("val1=1Y"));
-    QCOMPARE(r[1],QLatin1String("val2=2Y"));
-    QCOMPARE(r[2],QLatin1String("val3=strY"));
-    QCOMPARE(r[3],QLatin1String("val4=falseN"));
-    QCOMPARE(r[4],QLatin1String("val5=trueY"));
+    r.sort();
+    QCOMPARE(r[1],QLatin1String("val1=1Y"));
+    QCOMPARE(r[2],QLatin1String("val2=2Y"));
+    QCOMPARE(r[3],QLatin1String("val3=strY"));
+    QCOMPARE(r[4],QLatin1String("val4=falseN"));
+    QCOMPARE(r[5],QLatin1String("val5=trueY"));
     delete item;
 }
 
@@ -1133,9 +1134,14 @@ void tst_qdeclarativelistmodel::clear()
     model.clear();
     QCOMPARE(model.count(), 0);
     QCOMPARE(model.roles(), roles);
-    QCOMPARE(model.toString(roles[0]), QString("propertyA"));
-    QCOMPARE(model.toString(roles[1]), QString("propertyB"));
-    QCOMPARE(model.toString(roles[2]), QString("propertyC"));
+    QStringList roleNames = QStringList()
+            << model.toString(roles[0])
+            << model.toString(roles[1])
+            << model.toString(roles[2]);
+    roleNames.sort();
+    QCOMPARE(roleNames[0], QString("propertyA"));
+    QCOMPARE(roleNames[1], QString("propertyB"));
+    QCOMPARE(roleNames[2], QString("propertyC"));
 }
 
 QTEST_MAIN(tst_qdeclarativelistmodel)
