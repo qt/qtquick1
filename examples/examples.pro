@@ -1,2 +1,6 @@
 TEMPLATE = subdirs
-SUBDIRS += declarative
+SUBDIRS += \
+        declarative \
+        demos \
+        helper
+

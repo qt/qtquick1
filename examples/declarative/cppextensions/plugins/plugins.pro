@@ -17,16 +17,11 @@ qdeclarativesources.files += \
     com/nokia/TimeExample/hour.png \
     com/nokia/TimeExample/minute.png
 
-qdeclarativesources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/plugins/com/nokia/TimeExample
+qdeclarativesources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins/com/nokia/TimeExample
 
 sources.files += plugins.pro plugin.cpp plugins.qml README
-sources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/plugins
-target.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/plugins/com/nokia/TimeExample
+sources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins
+target.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins/com/nokia/TimeExample
 
 INSTALLS += qdeclarativesources sources target
 
-symbian {
-    include($$QT_SOURCE_TREE/examples/symbianpkgrules.pri)
-    TARGET.EPOCALLOWDLLDATA = 1
-}
-maemo5: include($$QT_SOURCE_TREE/examples/maemo5pkgrules.pri)

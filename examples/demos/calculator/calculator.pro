@@ -1,12 +1,12 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/twitter
+folder_01.source = qml/calculator
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-symbian:TARGET.UID3 = 0xE77B03CA
+symbian:TARGET.UID3 = 0xE8BEAB39
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
@@ -33,7 +33,7 @@ symbian:TARGET.CAPABILITY += NetworkServices
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_DEMOS]/declarative/twitter
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/demos/calculator
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

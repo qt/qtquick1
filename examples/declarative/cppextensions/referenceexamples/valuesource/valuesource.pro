@@ -9,7 +9,7 @@ HEADERS += person.h \
            happybirthdaysong.h
 RESOURCES += valuesource.qrc
 
-target.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/referenceexamples/valuesource
+target.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/referenceexamples/valuesource
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS valuesource.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/cppextensions/referenceexamples/valuesource
+sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/referenceexamples/valuesource
 INSTALLS += target sources

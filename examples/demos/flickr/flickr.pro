@@ -1,12 +1,12 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/minehunt
+folder_01.source = qml/flickr
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-symbian:TARGET.UID3 = 0xE1CB8EBB
+symbian:TARGET.UID3 = 0xE6E2201E
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
@@ -14,14 +14,6 @@ symbian:TARGET.UID3 = 0xE1CB8EBB
 # range value if unprotected UID is defined for the application and
 # 0x2002CCCF value if protected UID is given to the application
 #symbian:DEPLOYMENT.installer_header = 0x2002CCCF
-
-symbian:{
-    TARGET.EPOCALLOWDLLDATA = 1
-    TARGET.EPOCHEAPSIZE = 0x20000 0x2000000
-    include($$QT_SOURCE_TREE/demos/symbianpkgrules.pri)
-    qmlminehuntfiles.files = MinehuntCore minehunt.qml
-    DEPLOYMENT += qmlminehuntfiles
-}
 
 # Allow network access on Symbian
 symbian:TARGET.CAPABILITY += NetworkServices
@@ -37,12 +29,11 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # Add dependency to Symbian components
 # CONFIG += qt-components
 
-HEADERS += minehunt.h
-SOURCES += main.cpp minehunt.cpp
-RESOURCES = minehunt.qrc
+# The .cpp file which was generated for your project. Feel free to hack it.
+SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_DEMOS]/declarative/minehunt
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/demos/flickr
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

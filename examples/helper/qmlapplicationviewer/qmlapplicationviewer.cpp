@@ -95,8 +95,12 @@ QString QmlApplicationViewerPrivate::adjustPath(const QString &path)
         return QString::fromLatin1("%1/../Resources/%2")
                 .arg(QCoreApplication::applicationDirPath(), path);
 #else
-    const QString pathInInstallDir =
+    QString pathInInstallDir =
             QString::fromLatin1("%1/../%2").arg(QCoreApplication::applicationDirPath(), path);
+    if (QFileInfo(pathInInstallDir).exists())
+        return pathInInstallDir;
+    pathInInstallDir =
+            QString::fromLatin1("%1/%2").arg(QCoreApplication::applicationDirPath(), path);
     if (QFileInfo(pathInInstallDir).exists())
         return pathInInstallDir;
 #endif

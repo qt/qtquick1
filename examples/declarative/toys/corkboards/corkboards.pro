@@ -35,7 +35,7 @@ symbian:TARGET.UID3 = 0xEAF97D84
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/toys/corkboards
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/toys/corkboards
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
