@@ -254,6 +254,9 @@ public:
     QList<QDeclarativeDebugPropertyReference> properties() const;
     QList<QDeclarativeDebugObjectReference> children() const;
 
+    QDeclarativeDebugObjectReference findChildByClassName(const QString &className,
+        QDeclarativeDebugObjectReference after = QDeclarativeDebugObjectReference()) const;
+
 private:
     friend class QDeclarativeEngineDebugPrivate;
     int m_debugId;

@@ -1167,7 +1167,8 @@ void tst_QDeclarativeDebug::queryObjectTree()
 
 
     // check state
-    QDeclarativeDebugObjectReference state = obj.children()[0];
+    QDeclarativeDebugObjectReference state = obj.findChildByClassName(QString("State"));
+    QVERIFY(state.debugId() != -1);
     QCOMPARE(state.className(), QString("State"));
     QVERIFY(state.children().count() > 0);
 
@@ -1180,10 +1181,13 @@ void tst_QDeclarativeDebug::queryObjectTree()
     QDeclarativeDebugObjectReference targetReference = qvariant_cast<QDeclarativeDebugObjectReference>(propertyChangeTarget.value());
     QVERIFY(targetReference.debugId() != -1);
 
+    QDeclarativeDebugObjectReference nextState = obj.findChildByClassName(QString("State"), state);
+    QVERIFY(nextState.debugId() == -1);
 
 
     // check transition
-    QDeclarativeDebugObjectReference transition = obj.children()[1];
+    QDeclarativeDebugObjectReference transition = obj.findChildByClassName(QString("Transition"));
+    QVERIFY(transition.debugId() != -1);
     QCOMPARE(transition.className(), QString("Transition"));
     QCOMPARE(findProperty(transition.properties(),"from").value().toString(), QString("*"));
     QCOMPARE(findProperty(transition.properties(),"to").value(), findProperty(state.properties(),"name").value());
@@ -1200,6 +1204,9 @@ void tst_QDeclarativeDebug::queryObjectTree()
 
     QCOMPARE(findProperty(animation.properties(),"property").value().toString(), QString("width"));
     QCOMPARE(findProperty(animation.properties(),"duration").value().toInt(), 100);
+
+    QDeclarativeDebugObjectReference nextTransition = obj.findChildByClassName(QString("Transition"), transition);
+    QVERIFY(nextTransition.debugId() == -1);
 }
 
 int main(int argc, char *argv[])

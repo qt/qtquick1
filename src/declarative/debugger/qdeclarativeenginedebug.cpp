@@ -932,6 +932,20 @@ QList<QDeclarativeDebugObjectReference> QDeclarativeDebugObjectReference::childr
     return m_children;
 }
 
+QDeclarativeDebugObjectReference QDeclarativeDebugObjectReference::findChildByClassName(const QString &className, QDeclarativeDebugObjectReference after) const
+{
+    foreach (const QDeclarativeDebugObjectReference &child, m_children)
+        if (after.debugId() != -1) {
+            if (child.debugId() == after.debugId())
+                after = QDeclarativeDebugObjectReference();
+        } else {
+            if (child.className() == className)
+                return child;
+        }
+
+    return QDeclarativeDebugObjectReference();
+}
+
 QDeclarativeDebugContextReference::QDeclarativeDebugContextReference()
 : m_debugId(-1)
 {
