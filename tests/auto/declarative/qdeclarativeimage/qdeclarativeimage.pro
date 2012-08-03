@@ -16,5 +16,5 @@ symbian: {
     DEFINES += SRCDIR=\\\"$$PWD\\\"
 }
 
-CONFIG+=insignificant_test # QTQAINFRA-428
+linux-*:system(". /etc/lsb-release && [ $DISTRIB_CODENAME = lucid ]"):DEFINES+=UBUNTU_LUCID # QTBUG-26787
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
