@@ -1647,7 +1647,7 @@ static RegisterAnchorLineAtStartup registerAnchorLineAtStartup;
     Constructs a QDeclarativeItem with the given \a parent.
 */
 QDeclarativeItem::QDeclarativeItem(QDeclarativeItem* parent)
-  : QGraphicsObject(*(new QDeclarativeItemPrivate), parent, 0)
+  : QGraphicsObject(*(new QDeclarativeItemPrivate), parent)
 {
     Q_D(QDeclarativeItem);
     d->init(parent);
@@ -1656,7 +1656,7 @@ QDeclarativeItem::QDeclarativeItem(QDeclarativeItem* parent)
 /*! \internal
 */
 QDeclarativeItem::QDeclarativeItem(QDeclarativeItemPrivate &dd, QDeclarativeItem *parent)
-  : QGraphicsObject(dd, parent, 0)
+  : QGraphicsObject(dd, parent)
 {
     Q_D(QDeclarativeItem);
     d->init(parent);

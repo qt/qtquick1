@@ -46,6 +46,7 @@
 #include <QtWidgets/qgraphicsview.h>
 #include <QtWidgets/qgraphicsscene.h>
 #include <QtWidgets/qapplication.h>
+#include <QtGui/qpa/qwindowsysteminterface.h>
 
 class tst_qdeclarativeapplication : public QObject
 {

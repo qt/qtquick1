@@ -47,6 +47,7 @@
 #include <private/qdeclarativeflickable_p.h>
 #include <QtQuick1/qdeclarativeview.h>
 #include <QtQuick1/qdeclarativecontext.h>
+#include <QtGui/qpa/qwindowsysteminterface.h>
 
 #ifdef Q_OS_SYMBIAN
 // In Symbian OS test data is located in applications private dir
