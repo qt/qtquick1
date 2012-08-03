@@ -129,7 +129,7 @@ HEADERS += \
     $$PWD/qdeclarativeextensionplugin.h \
     $$PWD/qperformancetimer_p.h
 
-QT += sql
+QT += sql network
 include(parser/parser.pri)
 include(rewriter/rewriter.pri)
 
