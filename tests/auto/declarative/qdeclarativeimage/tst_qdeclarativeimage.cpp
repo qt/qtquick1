@@ -72,6 +72,10 @@ public:
     tst_qdeclarativeimage();
 
 private slots:
+    void initTestCase() {
+        qRegisterMetaType<QDeclarativeImageBase::Status>("QDeclarativeImageBase::Status");
+    }
+
     void noSource();
     void imageSource();
     void imageSource_data();
