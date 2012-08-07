@@ -2,12 +2,10 @@ load(qt_build_config)
 
 TARGET     = QtQuick1
 QT         = core-private gui-private widgets-private script-private
+QT_PRIVATE = xmlpatterns
 
 MODULE=quick1
 load(qt_module)
-
-# private dependencies
-QT += xmlpatterns
 
 DEFINES   += QT_NO_URL_CAST_FROM_STRING
 
