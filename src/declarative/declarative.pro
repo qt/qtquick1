@@ -4,7 +4,7 @@ TARGET     = QtQuick1
 QT         = core-private gui-private widgets-private script-private
 
 MODULE=quick1
-load(qt_module_config)
+load(qt_module)
 
 # private dependencies
 QT += xmlpatterns
