@@ -274,9 +274,7 @@ void tst_qdeclarativemetatype::copy()
     COPY_TEST(float, Float, 10.5, 0);
 
     QObject objectValue;
-    QWidget widgetValue;
     COPY_TEST(QObject *, QObjectStar, &objectValue, 0);
-    COPY_TEST(QWidget *, QWidgetStar, &widgetValue, 0);
     COPY_TEST(qreal, QReal, 10.5, 0);
 
     {

@@ -1021,7 +1021,6 @@ bool QDeclarativeMetaType::canCopy(int type)
     switch(type) {
     case QMetaType::VoidStar:
     case QMetaType::QObjectStar:
-    case QMetaType::QWidgetStar:
     case QMetaType::Long:
     case QMetaType::Int:
     case QMetaType::Short:
@@ -1116,7 +1115,6 @@ bool QDeclarativeMetaType::copy(int type, void *data, const void *copy)
         switch(type) {
         case QMetaType::VoidStar:
         case QMetaType::QObjectStar:
-        case QMetaType::QWidgetStar:
             *static_cast<void **>(data) = *static_cast<void* const *>(copy);
             return true;
         case QMetaType::Long:
@@ -1325,7 +1323,6 @@ bool QDeclarativeMetaType::copy(int type, void *data, const void *copy)
         switch(type) {
         case QMetaType::VoidStar:
         case QMetaType::QObjectStar:
-        case QMetaType::QWidgetStar:
             *static_cast<void **>(data) = 0;
             return true;
         case QMetaType::Long:
