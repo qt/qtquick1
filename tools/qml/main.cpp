@@ -429,7 +429,7 @@ static void parseCommandLineOptions(const QStringList &arguments)
 
 static QDeclarativeViewer *createViewer()
 {
-    Qt::WFlags wflags = (opts.frameless ? Qt::FramelessWindowHint : Qt::Widget);
+    Qt::WindowFlags wflags = (opts.frameless ? Qt::FramelessWindowHint : Qt::Widget);
     if (opts.stayOnTop)
         wflags |= Qt::WindowStaysOnTopHint;
 
