@@ -3043,10 +3043,11 @@ void tst_qdeclarativeecmascript::pushCleanContext()
     QScriptContext *context1 = engine.pushContext();
     context1->pushScope(object);
     QCOMPARE(engine.evaluate("a").toInt32(), 15);
+    QScriptValue func0 = engine.evaluate("(function() { return a; })");
 
     QScriptContext *context2 = engine.pushContext();
     Q_UNUSED(context2);
-    QCOMPARE(engine.evaluate("a").toInt32(), 15);
+    QCOMPARE(engine.evaluate("a").toInt32(), 6);
     QScriptValue func1 = engine.evaluate("(function() { return a; })");
 
     // Now check that pushCleanContext() works
@@ -3055,7 +3056,7 @@ void tst_qdeclarativeecmascript::pushCleanContext()
     QScriptValue func2 = engine.evaluate("(function() { return a; })");
 
     engine.popContext();
-    QCOMPARE(engine.evaluate("a").toInt32(), 15);
+    QCOMPARE(engine.evaluate("a").toInt32(), 6);
 
     engine.popContext();
     QCOMPARE(engine.evaluate("a").toInt32(), 15);
@@ -3064,7 +3065,8 @@ void tst_qdeclarativeecmascript::pushCleanContext()
     QCOMPARE(engine.evaluate("a").toInt32(), 6);
 
     // Check that function objects created in these contexts work
-    QCOMPARE(func1.call().toInt32(), 15);
+    QCOMPARE(func0.call().toInt32(), 15);
+    QCOMPARE(func1.call().toInt32(), 6);
     QCOMPARE(func2.call().toInt32(), 6);
 }
 
