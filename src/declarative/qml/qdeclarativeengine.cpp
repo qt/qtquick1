@@ -188,13 +188,16 @@ void QDeclarativeEnginePrivate::defineModule()
     qmlRegisterType<QObject>("QtQuick",1,0,"QtObject");
     qmlRegisterType<QDeclarativeWorkerScript>("QtQuick",1,0,"WorkerScript");
 
+    qmlRegisterType<QDeclarativeBinding>();
+}
+
+void QDeclarativeEnginePrivate::defineModuleCompat()
+{
 #ifndef QT_NO_IMPORT_QT47_QML
     qmlRegisterType<QDeclarativeComponent>("Qt",4,7,"Component");
     qmlRegisterType<QObject>("Qt",4,7,"QtObject");
     qmlRegisterType<QDeclarativeWorkerScript>("Qt",4,7,"WorkerScript");
 #endif
-
-    qmlRegisterType<QDeclarativeBinding>();
 }
 
 /*!
@@ -356,10 +359,10 @@ QDeclarativeEnginePrivate::QDeclarativeEnginePrivate(QDeclarativeEngine *e)
 {
     if (!qt_QmlQtModule_registered) {
         qt_QmlQtModule_registered = true;
-        QDeclarativeItemModule::defineModule();
-        QDeclarativeUtilModule::defineModule();
         QDeclarativeEnginePrivate::defineModule();
+        QDeclarativeItemModule::defineModule();
         QDeclarativeValueTypeFactory::registerValueTypes();
+        QDeclarativeUtilModule::defineModule();
     }
     globalClass = new QDeclarativeGlobalScriptClass(&scriptEngine);
 }
