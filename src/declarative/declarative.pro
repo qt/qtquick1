@@ -1,5 +1,3 @@
-load(qt_build_config)
-
 TARGET     = QtQuick1
 QT         = core-private gui-private widgets-private script-private
 !isEmpty(QT.xmlpatterns.name): QT_PRIVATE = xmlpatterns
