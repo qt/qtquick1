@@ -84,7 +84,7 @@ void sendPreeditText(const QString &text, int cursor)
     attributes.append(QInputMethodEvent::Attribute(QInputMethodEvent::Cursor, cursor,
                                                    text.length(), QVariant()));
     QInputMethodEvent event(text, attributes);
-    QApplication::sendEvent(qApp->inputMethod()->inputItem(), &event);
+    QApplication::sendEvent(qApp->focusObject(), &event);
 }
 
 
@@ -2672,7 +2672,8 @@ void tst_qdeclarativetextinput::inputMethodComposing()
 
     {
         QInputMethodEvent inputEvent(text.mid(3), QList<QInputMethodEvent::Attribute>());
-        QApplication::sendEvent(qApp->inputMethod()->inputItem(), &inputEvent);
+        if (qApp->focusObject())
+            QApplication::sendEvent(qApp->focusObject(), &inputEvent);
     }
 
     QCOMPARE(input.isInputMethodComposing(), true);
@@ -2680,7 +2681,8 @@ void tst_qdeclarativetextinput::inputMethodComposing()
 
     {
         QInputMethodEvent inputEvent(text.mid(12), QList<QInputMethodEvent::Attribute>());
-        QApplication::sendEvent(qApp->inputMethod()->inputItem(), &inputEvent);
+        if (qApp->focusObject())
+            QApplication::sendEvent(qApp->focusObject(), &inputEvent);
     }
 
     QCOMPARE(input.isInputMethodComposing(), true);
@@ -2688,7 +2690,8 @@ void tst_qdeclarativetextinput::inputMethodComposing()
 
     {
         QInputMethodEvent inputEvent;
-        QApplication::sendEvent(qApp->inputMethod()->inputItem(), &inputEvent);
+        if (qApp->focusObject())
+            QApplication::sendEvent(qApp->focusObject(), &inputEvent);
     }
     QCOMPARE(input.isInputMethodComposing(), false);
     QCOMPARE(spy.count(), 2);

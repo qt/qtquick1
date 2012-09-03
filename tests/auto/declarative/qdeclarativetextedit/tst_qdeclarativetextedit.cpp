@@ -90,7 +90,8 @@ void sendPreeditText(const QString &text, int cursor)
     attributes.append(QInputMethodEvent::Attribute(QInputMethodEvent::Cursor, cursor,
                                                    text.length(), QVariant()));
     QInputMethodEvent event(text, attributes);
-    QApplication::sendEvent(qApp->inputMethod()->inputItem(), &event);
+    if (qApp->focusObject())
+        QApplication::sendEvent(qApp->focusObject(), &event);
 }
 
 
@@ -2502,7 +2503,8 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
     sendPreeditText(preeditText, 0);
     ic.clear();
     QInputMethodEvent imEvent(preeditText, QList<QInputMethodEvent::Attribute>());
-    QApplication::sendEvent(qApp->inputMethod()->inputItem(), &imEvent);
+    if (qApp->focusObject())
+        QApplication::sendEvent(qApp->focusObject(), &imEvent);
     currentRect = edit.inputMethodQuery(Qt::ImMicroFocus).toRect();
     QCOMPARE(currentRect, previousRect);
 #if defined(Q_WS_X11)
