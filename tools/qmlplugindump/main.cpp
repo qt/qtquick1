@@ -40,13 +40,10 @@
 ****************************************************************************/
 
 #include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/private/qdeclarativeevents_p_p.h>
 #include <QtQuick1/private/qdeclarativemetatype_p.h>
-#include <QtQuick1/private/qdeclarativemousearea_p.h>
 #include <QtQuick1/private/qdeclarativeopenmetaobject_p.h>
-
-#include <QtWidgets/QApplication>
+#include <QtQuick1/private/qdeclarativeevents_p_p.h>
+#include <QtQuick1/private/qdeclarativepincharea_p.h>
 
 #include <QtGui/QGuiApplication>
 #include <QtCore/QDir>
@@ -83,8 +80,8 @@ void collectReachableMetaObjects(const QMetaObject *meta, QSet<const QMetaObject
     if (! meta || metas->contains(meta))
         return;
 
-    // dynamic meta objects can break things badly (like QDeclarative1VisualDataModelParts)
-    // but extended types are usually fine (like QDeclarative1GraphicsWidget)
+    // dynamic meta objects can break things badly
+    // but extended types are usually fine
     const QMetaObjectPrivate *mop = reinterpret_cast<const QMetaObjectPrivate *>(meta->d.data);
     if (extended || !(mop->flags & DynamicMetaObject))
         metas->insert(meta);
@@ -245,6 +242,7 @@ QSet<const QMetaObject *> collectReachableMetaObjects(QDeclarativeEngine *engine
 
         inObjectInstantiation = tyName;
         QObject *object = ty->create();
+
         inObjectInstantiation.clear();
 
         if (object)
@@ -352,10 +350,10 @@ public:
             // for QObject, hide deleteLater() and onDestroyed
             for (int index = meta->methodOffset(); index < meta->methodCount(); ++index) {
                 QMetaMethod method = meta->method(index);
-                const char *signature(method.signature());
-                if (signature == QLatin1String("destroyed(QObject*)")
-                        || signature == QLatin1String("destroyed()")
-                        || signature == QLatin1String("deleteLater()"))
+                QByteArray signature = method.methodSignature();
+                if (signature == QByteArrayLiteral("destroyed(QObject*)")
+                        || signature == QByteArrayLiteral("destroyed()")
+                        || signature == QByteArrayLiteral("deleteLater()"))
                     continue;
                 dump(method, implicitSignals);
             }
@@ -454,19 +452,14 @@ private:
             return; // nothing to do.
         }
 
-        QByteArray name = meth.signature();
-        int lparenIndex = name.indexOf('(');
-        if (lparenIndex == -1) {
-            return; // invalid signature
-        }
-        name = name.left(lparenIndex);
+        QByteArray name = meth.name();
         const QString typeName = convertToId(meth.typeName());
 
         if (implicitSignals.contains(name)
                 && !meth.revision()
                 && meth.methodType() == QMetaMethod::Signal
                 && meth.parameterNames().isEmpty()
-                && typeName.isEmpty()) {
+                && typeName == QLatin1String("void")) {
             // don't mention implicit signals
             return;
         }
@@ -483,7 +476,7 @@ private:
             qml->writeScriptBinding(QLatin1String("revision"), QString::number(revision));
 #endif
 
-        if (! typeName.isEmpty())
+        if (typeName != QLatin1String("void"))
             qml->writeScriptBinding(QLatin1String("type"), enquote(typeName));
 
         for (int i = 0; i < meth.parameterTypes().size(); ++i) {
@@ -561,7 +554,7 @@ int main(int argc, char *argv[])
     QtSimulatorPrivate::SimulatorConnection::createStubInstance();
 #endif
 
-    QApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
     const QStringList args = app.arguments();
     const QString appName = QFileInfo(app.applicationFilePath()).baseName();
     if (args.size() < 2) {
@@ -651,9 +644,8 @@ int main(int argc, char *argv[])
     QList<QDeclarativeType *> defaultTypes = QDeclarativeMetaType::qmlTypes();
 
     // add some otherwise unreachable QMetaObjects
-    //defaultReachable.insert(&QQuickMouseEvent::staticMetaObject);
     defaultReachable.insert(&QDeclarativeMouseEvent::staticMetaObject);
-    // QQuickKeyEvent, QQuickPinchEvent, QQuickDropEvent are not exported
+    // QDeclarativeKeyEvent, QDeclarativePinchEvent, QDeclarativeDropEvent are not exported
 
     // this will hold the meta objects we want to dump information of
     QSet<const QMetaObject *> metas;
@@ -724,10 +716,12 @@ int main(int argc, char *argv[])
 
     qml.writeStartDocument();
     qml.writeLibraryImport(QLatin1String("QtQuick.tooling"), 1, 1);
-    qml.write("\n"
+    qml.write(QString("\n"
               "// This file describes the plugin-supplied types contained in the library.\n"
               "// It is used for QML tooling purposes only.\n"
-              "\n");
+              "//\n"
+              "// This file was auto-generated with the command '%1'.\n"
+              "\n").arg(args.join(QLatin1String(" "))));
     qml.writeStartObject("Module");
 
     // put the metaobjects into a map so they are always dumped in the same order
