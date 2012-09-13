@@ -234,24 +234,24 @@ void tst_QDeclarativeWorkerScript::script_included()
 }
 
 static QString qdeclarativeworkerscript_lastWarning;
-static void qdeclarativeworkerscript_warningsHandler(QtMsgType type, const char *msg)
+static void qdeclarativeworkerscript_warningsHandler(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
     if (type == QtWarningMsg)
-         qdeclarativeworkerscript_lastWarning = QString::fromUtf8(msg);
+         qdeclarativeworkerscript_lastWarning = msg;
 }
 
 void tst_QDeclarativeWorkerScript::scriptError_onLoad()
 {
     QDeclarativeComponent component(&m_engine, testFileUrl("worker_error_onLoad.qml"));
 
-    QtMsgHandler previousMsgHandler = qInstallMsgHandler(qdeclarativeworkerscript_warningsHandler);
+    QtMessageHandler previousMsgHandler = qInstallMessageHandler(qdeclarativeworkerscript_warningsHandler);
     QDeclarativeWorkerScript *worker = qobject_cast<QDeclarativeWorkerScript*>(component.create());
     QVERIFY(worker != 0);
 
     QTRY_COMPARE(qdeclarativeworkerscript_lastWarning,
             testFileUrl("script_error_onLoad.js").toString() + QLatin1String(":3: SyntaxError: Parse error"));
 
-    qInstallMsgHandler(previousMsgHandler);
+    qInstallMessageHandler(previousMsgHandler);
     qApp->processEvents();
     delete worker;
 }
@@ -262,14 +262,14 @@ void tst_QDeclarativeWorkerScript::scriptError_onCall()
     QDeclarativeWorkerScript *worker = qobject_cast<QDeclarativeWorkerScript*>(component.create());
     QVERIFY(worker != 0);
 
-    QtMsgHandler previousMsgHandler = qInstallMsgHandler(qdeclarativeworkerscript_warningsHandler);
+    QtMessageHandler previousMsgHandler = qInstallMessageHandler(qdeclarativeworkerscript_warningsHandler);
     QVariant value;
     QVERIFY(QMetaObject::invokeMethod(worker, "testSend", Q_ARG(QVariant, value)));
 
     QTRY_COMPARE(qdeclarativeworkerscript_lastWarning,
             testFileUrl("script_error_onCall.js").toString() + QLatin1String(":4: ReferenceError: Can't find variable: getData"));
 
-    qInstallMsgHandler(previousMsgHandler);
+    qInstallMessageHandler(previousMsgHandler);
     qApp->processEvents();
     delete worker;
 }

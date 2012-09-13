@@ -1089,7 +1089,7 @@ void tst_QDeclarativePositioners::test_flow_implicit_resize()
 
 QString warningMessage;
 
-void interceptWarnings(QtMsgType type, const char *msg)
+void interceptWarnings(QtMsgType type, const QMessageLogContext &, const QString &msg)
 {
     Q_UNUSED( type );
     warningMessage = msg;
@@ -1097,7 +1097,7 @@ void interceptWarnings(QtMsgType type, const char *msg)
 
 void tst_QDeclarativePositioners::test_conflictinganchors()
 {
-    QtMsgHandler oldMsgHandler = qInstallMsgHandler(interceptWarnings);
+    QtMessageHandler oldMsgHandler = qInstallMessageHandler(interceptWarnings);
     QDeclarativeEngine engine;
     QDeclarativeComponent component(&engine);
 
@@ -1178,7 +1178,7 @@ void tst_QDeclarativePositioners::test_conflictinganchors()
     item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
     QCOMPARE(warningMessage, QString("file::2:1: QML Flow: Cannot specify anchors for items inside Flow"));
-    qInstallMsgHandler(oldMsgHandler);
+    qInstallMessageHandler(oldMsgHandler);
 }
 
 void tst_QDeclarativePositioners::test_vertical_qgraphicswidget()

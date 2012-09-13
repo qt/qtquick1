@@ -686,7 +686,7 @@ void tst_qdeclarativeimage::sourceSize_QTBUG_16389()
 }
 
 static int numberOfWarnings = 0;
-static void checkWarnings(QtMsgType, const char *)
+static void checkWarnings(QtMsgType, const QMessageLogContext &, const QString &)
 {
     numberOfWarnings++;
 }
@@ -702,14 +702,14 @@ void tst_qdeclarativeimage::nullPixmapPaint()
 
     QTRY_VERIFY(image != 0);
     
-    QtMsgHandler previousMsgHandler = qInstallMsgHandler(checkWarnings);
+    QtMessageHandler previousMsgHandler = qInstallMessageHandler(checkWarnings);
 
     QPixmap pm(100, 100);
     QPainter p(&pm);
 
     // used to print "QTransform::translate with NaN called"
     image->paint(&p, 0, 0);
-    qInstallMsgHandler(previousMsgHandler);
+    qInstallMessageHandler(previousMsgHandler);
     QVERIFY(numberOfWarnings == 0);
     delete image;
 }

@@ -59,7 +59,7 @@
 
 QT_USE_NAMESPACE
 
-QtMsgHandler systemMsgOutput = 0;
+QtMessageHandler systemMsgOutput = 0;
 
 static QDeclarativeViewer *openFile(const QString &fileName);
 static void showViewer(QDeclarativeViewer *viewer);
@@ -80,26 +80,24 @@ void exitApp(int i)
 QPointer<LoggerWidget> logger;
 static QAtomicInt recursiveLock(0);
 
-void myMessageOutput(QtMsgType type, const char *msg)
+void myMessageOutput(QtMsgType type, const QMessageLogContext &ctxt, const QString &msg)
 {
-    QString strMsg = QString::fromLatin1(msg);
-
     if (!QCoreApplication::closingDown()) {
         if (!logger.isNull()) {
             if (recursiveLock.testAndSetOrdered(0, 1)) {
-                QMetaObject::invokeMethod(logger.data(), "append", Q_ARG(QString, strMsg));
+                QMetaObject::invokeMethod(logger.data(), "append", Q_ARG(QString, msg));
                 recursiveLock = 0;
             }
         } else {
-            warnings += strMsg;
+            warnings += msg;
             warnings += QLatin1Char('\n');
         }
     }
 
     if (systemMsgOutput) {
-        systemMsgOutput(type, msg);
+        systemMsgOutput(type, ctxt, msg);
     } else { // Unix
-        fprintf(stderr, "%s\n", msg);
+        fprintf(stderr, "%s\n", msg.toLocal8Bit().constData());
         fflush(stderr);
     }
 }
@@ -538,7 +536,7 @@ static bool checkVersion(const QString &fileName)
 
 int main(int argc, char ** argv)
 {
-    systemMsgOutput = qInstallMsgHandler(myMessageOutput);
+    systemMsgOutput = qInstallMessageHandler(myMessageOutput);
 
     Application app(argc, argv);
     app.setApplicationName(QLatin1String("QtQmlViewer"));

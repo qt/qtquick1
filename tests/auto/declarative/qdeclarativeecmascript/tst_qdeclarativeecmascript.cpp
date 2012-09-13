@@ -1210,7 +1210,7 @@ void tst_qdeclarativeecmascript::exceptionBindingProducesWarning()
 }
 
 static int transientErrorsMsgCount = 0;
-static void transientErrorsMsgHandler(QtMsgType, const char *)
+static void transientErrorsMsgHandler(QtMsgType, const QMessageLogContext &, const QString &)
 {
     ++transientErrorsMsgCount;
 }
@@ -1222,12 +1222,12 @@ void tst_qdeclarativeecmascript::transientErrors()
     QDeclarativeComponent component(&engine, testFileUrl("transientErrors.qml"));
 
     transientErrorsMsgCount = 0;
-    QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     QObject *object = component.create();
     QVERIFY(object != 0);
 
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
 
     QCOMPARE(transientErrorsMsgCount, 0);
     }
@@ -1237,12 +1237,12 @@ void tst_qdeclarativeecmascript::transientErrors()
     QDeclarativeComponent component(&engine, testFileUrl("transientErrors.2.qml"));
 
     transientErrorsMsgCount = 0;
-    QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     QObject *object = component.create();
     QVERIFY(object != 0);
 
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
 
     QCOMPARE(transientErrorsMsgCount, 0);
     }
@@ -1256,11 +1256,11 @@ void tst_qdeclarativeecmascript::shutdownErrors()
     QVERIFY(object != 0);
 
     transientErrorsMsgCount = 0;
-    QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     delete object;
 
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
     QCOMPARE(transientErrorsMsgCount, 0);
 }
 
@@ -2457,11 +2457,11 @@ void tst_qdeclarativeecmascript::qtbug_9792()
     delete context;
 
     transientErrorsMsgCount = 0;
-    QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     object->basicSignal();
     
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
 
     QCOMPARE(transientErrorsMsgCount, 0);
 
@@ -2498,11 +2498,11 @@ void tst_qdeclarativeecmascript::noSpuriousWarningsAtShutdown()
     QObject *o = component.create();
 
     transientErrorsMsgCount = 0;
-    QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     delete o;
 
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
 
     QCOMPARE(transientErrorsMsgCount, 0);
     }
@@ -2514,11 +2514,11 @@ void tst_qdeclarativeecmascript::noSpuriousWarningsAtShutdown()
     QObject *o = component.create();
 
     transientErrorsMsgCount = 0;
-    QtMsgHandler old = qInstallMsgHandler(transientErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     delete o;
 
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
 
     QCOMPARE(transientErrorsMsgCount, 0);
     }

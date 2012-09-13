@@ -187,7 +187,7 @@ void tst_examples::examples_data()
         QTest::newRow(qPrintable(file)) << file;
 }
 
-static void silentErrorsMsgHandler(QtMsgType, const char *)
+static void silentErrorsMsgHandler(QtMsgType, const QMessageLogContext &, const QString &)
 {
 }
 
@@ -197,9 +197,9 @@ void tst_examples::examples()
 
     QDeclarativeViewer viewer;
 
-    QtMsgHandler old = qInstallMsgHandler(silentErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(silentErrorsMsgHandler);
     QVERIFY(viewer.open(file));
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
 
     if (viewer.view()->status() == QDeclarativeView::Error)
         qWarning() << viewer.view()->errors();

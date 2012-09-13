@@ -276,7 +276,7 @@ void tst_QDeclarativeView::resizemodegraphicswidget()
     delete canvas;
 }
 
-static void silentErrorsMsgHandler(QtMsgType, const char *)
+static void silentErrorsMsgHandler(QtMsgType, const QMessageLogContext &, const QString &)
 {
 }
 
@@ -284,9 +284,9 @@ void tst_QDeclarativeView::errors()
 {
     QDeclarativeView *canvas = new QDeclarativeView;
     QVERIFY(canvas);
-    QtMsgHandler old = qInstallMsgHandler(silentErrorsMsgHandler);
+    QtMessageHandler old = qInstallMessageHandler(silentErrorsMsgHandler);
     canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/error1.qml"));
-    qInstallMsgHandler(old);
+    qInstallMessageHandler(old);
     QVERIFY(canvas->status() == QDeclarativeView::Error);
     QVERIFY(canvas->errors().count() == 1);
     delete canvas;
