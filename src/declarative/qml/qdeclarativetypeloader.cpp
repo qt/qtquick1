@@ -71,7 +71,7 @@ static QSet<QString> *qmlFilesInDirectory(const QString &path)
         if (fileName == QLatin1String("qmldir")
                 || fileName.endsWith(QLatin1String(".qml"))
                 || fileName.endsWith(QLatin1String(".js"))) {
-#if defined(Q_OS_WIN32) || defined(Q_OS_WINCE) || defined(Q_OS_DARWIN) || defined(Q_OS_SYMBIAN)
+#if defined(Q_OS_WIN32) || defined(Q_OS_WINCE) || defined(Q_OS_DARWIN)
             fileName = fileName.toLower();
 #endif
             files->insert(fileName);
@@ -767,7 +767,7 @@ QString QDeclarativeTypeLoader::absoluteFilePath(const QString &path)
         QFileInfo fileInfo(path);
         return fileInfo.isFile() ? fileInfo.absoluteFilePath() : QString();
     }
-#if defined(Q_OS_WIN32) || defined(Q_OS_WINCE) || defined(Q_OS_DARWIN) || defined(Q_OS_SYMBIAN)
+#if defined(Q_OS_WIN32) || defined(Q_OS_WINCE) || defined(Q_OS_DARWIN)
     QString lowPath(path.toLower());
 #else
     QString lowPath(path);

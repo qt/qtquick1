@@ -61,11 +61,6 @@
 #include <private/qwidgettextcontrol_p.h>
 #include "../shared/platforminputcontext.h"
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
 Q_DECLARE_METATYPE(QDeclarativeTextEdit::SelectionMode)
 
 QString createExpectedFileIfNotFound(const QString& filebasename, const QImage& actual)

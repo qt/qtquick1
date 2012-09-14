@@ -14,9 +14,6 @@ QML_IMPORT_PATH =
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 # CONFIG += qdeclarative-boostable
 
-# Add dependency to Symbian components
-# CONFIG += qt-components
-
 HEADERS += minehunt.h
 SOURCES += main.cpp minehunt.cpp
 RESOURCES = minehunt.qrc

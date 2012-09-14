@@ -6,9 +6,7 @@ contains(QT_CONFIG,quick1): QT += quick1 quick1-private script script-private co
 SOURCES += tst_qdeclarativeinstruction.cpp
 macx:CONFIG -= app_bundle
 
-!symbian: {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 CONFIG += parallel_test
 

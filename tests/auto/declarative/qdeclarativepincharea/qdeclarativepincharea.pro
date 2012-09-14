@@ -7,12 +7,6 @@ macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativepincharea.cpp
 
-symbian: {
-    importFiles.sources = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

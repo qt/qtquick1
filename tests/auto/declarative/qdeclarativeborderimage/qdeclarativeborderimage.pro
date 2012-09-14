@@ -8,11 +8,5 @@ macx:CONFIG -= app_bundle
 HEADERS += ../shared/testhttpserver.h
 SOURCES += tst_qdeclarativeborderimage.cpp ../shared/testhttpserver.cpp
 
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

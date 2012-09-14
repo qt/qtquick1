@@ -200,10 +200,6 @@ Rectangle {
 
 */
 
-#ifdef Q_OS_SYMBIAN
-#define OBSERVE_GL_CONTEXT_LOSS 1
-#endif
-
 ShaderEffectItem::ShaderEffectItem(QDeclarativeItem *parent)
     : QDeclarativeItem(parent)
     , m_program(0)

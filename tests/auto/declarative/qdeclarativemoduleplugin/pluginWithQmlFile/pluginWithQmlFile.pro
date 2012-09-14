@@ -27,7 +27,4 @@ copyMyQmlFile.CONFIG += no_link
 copyMyQmlFile.CONFIG += no_clean
 QMAKE_EXTRA_COMPILERS += copyMyQmlFile
 
-symbian: {
-    TARGET.EPOCALLOWDLLDATA=1
-}
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

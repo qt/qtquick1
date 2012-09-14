@@ -49,11 +49,6 @@
 #include <private/qdeclarativetext_p.h>
 #include <QtQuick1/private/qdeclarativefocusscope_p.h>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
 class tst_qdeclarativefocusscope : public QObject
 {
     Q_OBJECT

@@ -7,8 +7,6 @@ macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeengine.cpp 
 
-!symbian: {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

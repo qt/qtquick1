@@ -49,11 +49,6 @@
 #include <QtQuick1/qdeclarativecontext.h>
 #include <QtGui/qpa/qwindowsysteminterface.h>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
 class tst_QDeclarativePinchArea: public QObject
 {
     Q_OBJECT

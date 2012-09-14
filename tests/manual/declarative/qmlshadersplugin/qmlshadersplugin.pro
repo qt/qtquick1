@@ -11,11 +11,6 @@ QML_IMPORT_PATH =
 # Avoid auto screen rotation
 #DEFINES += ORIENTATIONLOCK
 
-# Needs to be defined for Symbian
-#DEFINES += NETWORKACCESS
-
-symbian:TARGET.UID3 = 0xE40472A7
-
 # Define QMLJSDEBUGGER to enable basic debugging (setting breakpoints etc)
 # Define QMLOBSERVER for advanced features (requires experimental QmlInspector plugin!)
 #DEFINES += QMLJSDEBUGGER

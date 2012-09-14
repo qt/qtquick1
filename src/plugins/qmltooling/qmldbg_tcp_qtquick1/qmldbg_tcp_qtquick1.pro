@@ -15,5 +15,3 @@ OTHER_FILES += qtcpserverconnection.json
 
 target.path += $$[QT_INSTALL_PLUGINS]/qmltooling
 INSTALLS += target
-
-symbian:TARGET.UID3=0x20031E90

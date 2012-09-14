@@ -10,15 +10,7 @@ SOURCES += tst_examples.cpp
 
 include(../../../../tools/qml/qml.pri)
 
-include(../symbianlibs.pri)
-
-symbian: {
-    importFiles.files = data
-    importFiles.path = .
-    DEPLOYMENT += importFiles
-} else {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 CONFIG += parallel_test
 

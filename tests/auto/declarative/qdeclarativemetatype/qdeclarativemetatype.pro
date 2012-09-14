@@ -6,9 +6,7 @@ contains(QT_CONFIG,quick1): QT += quick1 quick1-private widgets
 SOURCES += tst_qdeclarativemetatype.cpp
 macx:CONFIG -= app_bundle
 
-!symbian: {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 CONFIG += parallel_test
 

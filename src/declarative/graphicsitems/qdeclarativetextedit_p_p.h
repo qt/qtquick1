@@ -76,11 +76,6 @@ public:
       mouseSelectionMode(QDeclarativeTextEdit::SelectCharacters), selectByMouse(false), canPaste(false),
       yoff(0)
     {
-#ifdef Q_OS_SYMBIAN
-        if (QSysInfo::symbianVersion() >= QSysInfo::SV_SF_1) {
-            showInputPanelOnFocus = false;
-        }
-#endif
     }
 
     void init();

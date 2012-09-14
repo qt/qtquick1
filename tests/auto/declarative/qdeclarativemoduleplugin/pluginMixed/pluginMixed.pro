@@ -27,7 +27,4 @@ copyFoo.CONFIG += no_link
 copyFoo.CONFIG += no_clean
 QMAKE_EXTRA_COMPILERS += copyFoo
 
-symbian: {
-    TARGET.EPOCALLOWDLLDATA=1
-}
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

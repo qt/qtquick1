@@ -47,7 +47,4 @@ copyComponentB.CONFIG += no_link
 copyComponentB.CONFIG += no_clean
 QMAKE_EXTRA_COMPILERS += copyComponentB
 
-symbian: {
-    TARGET.EPOCALLOWDLLDATA=1
-}
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

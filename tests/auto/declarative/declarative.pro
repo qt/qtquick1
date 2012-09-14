@@ -1,8 +1,4 @@
 TEMPLATE = subdirs
-!symbian: {
-SUBDIRS += \
-           qdeclarativemetatype
-}
 
 SUBDIRS += \
            examples \
@@ -15,6 +11,7 @@ SUBDIRS += \
            qdeclarativeinfo \
            qdeclarativelayoutitem \
            qdeclarativelistreference \
+           qdeclarativemetatype \
            qdeclarativemoduleplugin \
            qdeclarativeparticles \
            qdeclarativepixmapcache \

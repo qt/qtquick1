@@ -50,11 +50,6 @@
 #include <QtQuick1/qdeclarativeengine.h>
 #include <QtQuick1/qdeclarativeproperty.h>
 
-#ifdef Q_OS_SYMBIAN
-// In Symbian OS test data is located in applications private dir
-#define SRCDIR "."
-#endif
-
 class tst_QDeclarativeMouseArea: public QObject
 {
     Q_OBJECT

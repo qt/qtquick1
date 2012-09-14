@@ -6,9 +6,7 @@ contains(QT_CONFIG,quick1): QT += quick1
 SOURCES += tst_qdeclarativeerror.cpp
 macx:CONFIG -= app_bundle
 
-!symbian: {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 CONFIG += parallel_test
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

@@ -11,7 +11,5 @@ SOURCES += tst_qdeclarativeimageprovider.cpp
 # QMAKE_CXXFLAGS = -fprofile-arcs -ftest-coverage
 # LIBS += -lgcov
 
-!symbian: {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

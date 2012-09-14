@@ -7,9 +7,7 @@ macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativetimer.cpp
 
-!symbian: {
-    DEFINES += SRCDIR=\\\"$$PWD\\\"
-}
+DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 CONFIG += parallel_test
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0

@@ -9,18 +9,6 @@ QML_IMPORT_PATH =
 # Avoid auto screen rotation
 DEFINES += ORIENTATIONLOCK
 
-# Needs to be defined for Symbian
-#DEFINES += NETWORKACCESS
-
-symbian:TARGET.UID3 = 0xE647B679
-
-# Smart Installer package's UID
-# This UID is from the protected range 
-# and therefore the package will fail to install if self-signed
-# By default qmake uses the unprotected range value if unprotected UID is defined for the application
-# and 0x2002CCCF value if protected UID is given to the application
-#symbian:DEPLOYMENT.installer_header = 0x2002CCCF
-
 # Define QMLJSDEBUGGER to allow debugging of QML in debug builds
 # (This might significantly increase build time)
 # DEFINES += QMLJSDEBUGGER
