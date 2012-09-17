@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += qml
+SUBDIRS += qml qmlplugindump
