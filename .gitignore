@@ -263,10 +263,6 @@ src/xml/lib/
 *.map
 work
 
-#generated version headers
-src/qmltest/qtquicktestversion.h
-src/qtquick1/qtquick1version.h
-
 tests/auto/*/*.o
 tests/auto/*/*.moc
 tests/auto/*/*/*.o
