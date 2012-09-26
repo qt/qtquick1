@@ -79,5 +79,7 @@ contains(QT_CONFIG, private_tests) {
 
 contains(QT_CONFIG, opengl): SUBDIRS += qmlshadersplugin
 
+!isEmpty(QT.webkit.name): SUBDIRS += qdeclarativewebview
+
 # Tests which should run in Pulse
 PULSE_TESTS = $$SUBDIRS

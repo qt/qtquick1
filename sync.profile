@@ -15,4 +15,5 @@
     "qtjsbackend" => "refs/heads/master",
     "qtactiveqt" => "refs/heads/master",
     "qttools" => "refs/heads/master",
+    "qtwebkit" => "refs/heads/master",
 );
