@@ -10,3 +10,5 @@ SOURCES += tst_qdeclarativetextinput.cpp
 DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
+
+CONFIG += insignificant_test # QTBUG-27364
