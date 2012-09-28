@@ -53,7 +53,7 @@
 // We mean it.
 //
 
-#include <QtCore/qglobal.h>
+#include "qtquick1global.h"
 
 QT_BEGIN_HEADER
 
@@ -61,12 +61,12 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class Q_AUTOTEST_EXPORT QPerformanceTimer
+class Q_QUICK1_EXPORT QPerformanceTimer
 {
 public:
     void start();
     qint64 elapsed() const;
-
+    qint64 elapsedToAbsoluteTime(qint64 absoluteMonotonicTimeNs) const;
 private:
     qint64 t1;
     qint64 t2;
