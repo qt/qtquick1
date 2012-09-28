@@ -64,20 +64,14 @@ void tst_qperformancetimer::units()
         QVERIFY(elapsed > 300000000 && elapsed < 310000000);
     }
     {
-        qint64 monotonic_time_in_far_future = 1000000000 * 60 * 60 * 24 * 365 * 10; /// 10 years uptime
-        qint64 elapsed = timer.elapsedToAbsoluteTime(time_in_far_future);
-        elapsed = elapsed - timer.elapsedToAbsoluteTime(time_in_far_future - 2000000);
-        QVERIFY(elapsed == 2000000);
-    }
-    {
-        qint64 elapsed = timer.elapsed();
-        qint64 elapsed2 = timer.elapsedToAbsoluteTime(elapsed);
-        qint64 monotonic_now = 2 * elapsed - elapsed2;
-        QTest::qWait(300);
-        elapsed = timer.elapsed();
-        elapsed2 = timer.elapsedToAbsoluteTime(monotonic_now + 300 * 1000000);
-        qint64 diff = elapsed - elapsed2;
-        QVERIFY(diff > -10000000 && diff < 10000000);
+        timer.start();
+        qint64 monotonic_start = -timer.elapsedToAbsoluteTime(0);
+        qint64 wait_ms = 300;
+        QTest::qWait(wait_ms);
+        qint64 elapsed1 = timer.elapsed();
+        qint64 elapsed2 = timer.elapsedToAbsoluteTime(monotonic_start + elapsed1);
+        qint64 diff = elapsed1 - elapsed2;
+        QVERIFY(diff == 0);
     }
 }
 
