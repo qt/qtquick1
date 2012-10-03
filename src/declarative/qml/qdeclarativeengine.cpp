@@ -1019,7 +1019,7 @@ QDeclarativeEngine::ObjectOwnership QDeclarativeEngine::objectOwnership(QObject 
         return ddata->indestructible?CppOwnership:JavaScriptOwnership;
 }
 
-Q_AUTOTEST_EXPORT void qmlExecuteDeferred(QObject *object)
+void qmlExecuteDeferred(QObject *object)
 {
     QDeclarativeData *data = QDeclarativeData::get(object);
 
