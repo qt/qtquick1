@@ -44,8 +44,6 @@
 #include "shadereffect.h"
 #include "glfunctions.h"
 
-#include <QtOpenGL>
-
 /*!
     \qmltype ShaderEffectSource
     \instantiates ShaderEffectSource

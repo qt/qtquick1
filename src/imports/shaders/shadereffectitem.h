@@ -43,13 +43,16 @@
 #define SHADEREFFECTITEM_H
 
 #include <QDeclarativeItem>
-#include <QtOpenGL>
+#include <QSignalMapper>
 #include "shadereffectsource.h"
 #include "scenegraph/qsggeometry.h"
 
 QT_BEGIN_HEADER
 
 QT_BEGIN_NAMESPACE
+
+class QGLFramebufferObject;
+class QGLShaderProgram;
 
 class ShaderEffectItem : public QDeclarativeItem
 {

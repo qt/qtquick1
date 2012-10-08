@@ -45,7 +45,6 @@
 
 #include <QDeclarativeItem>
 #include <QPainter>
-#include <QtOpenGL>
 
 static QTransform savedWorldTransform;
 

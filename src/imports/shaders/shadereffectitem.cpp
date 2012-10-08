@@ -43,8 +43,10 @@
 #include "shadereffect.h"
 #include "glfunctions.h"
 
+#include <QGLShaderProgram>
+#include <QGLFramebufferObject>
+#include <QGraphicsView>
 #include <QPainter>
-#include <QtOpenGL>
 
 static const char qt_default_vertex_code[] =
         "uniform highp mat4 qt_ModelViewProjectionMatrix;\n"

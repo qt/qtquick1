@@ -43,7 +43,8 @@
 #define SHADEREFFECTSOURCE_H
 
 #include <QDeclarativeItem>
-#include <QtOpenGL>
+#include <QGLFunctions>
+#include <QPointer>
 
 QT_BEGIN_HEADER
 

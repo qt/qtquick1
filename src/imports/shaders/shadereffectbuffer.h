@@ -42,7 +42,7 @@
 #ifndef SHADEREFFECTBUFFER_H
 #define SHADEREFFECTBUFFER_H
 
-#include <QtOpenGL>
+#include <QGLFramebufferObject>
 
 QT_BEGIN_HEADER
 
