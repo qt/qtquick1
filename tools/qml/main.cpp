@@ -604,14 +604,12 @@ int main(int argc, char ** argv)
         }
     }
 
-    if (filesRunning != 0) {
-        QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
-
-        return app.exec();
-    } else {
+    // File names passed, but they are all of version 2. 'qmlscene' was launched by checkVersion, quit.
+    if (!fileNames.isEmpty() && !filesRunning)
         return 0;
-    }
 
+    QObject::connect(&app, SIGNAL(lastWindowClosed()), &app, SLOT(quit()));
+    return app.exec();
 }
 
 #include "main.moc"
