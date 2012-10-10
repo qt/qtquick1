@@ -41,6 +41,7 @@
 #include <QtTest/QtTest>
 #include <QtTest/QSignalSpy>
 #include <qdeclarativeview.h>
+#include <QDeclarativeError>
 #include <QGraphicsObject>
 
 class tst_QDeclarativeParticles : public QObject
@@ -63,10 +64,19 @@ tst_QDeclarativeParticles::tst_QDeclarativeParticles()
 {
 }
 
+static inline QByteArray msgDeclarativeErrors(const QList<QDeclarativeError> &errors)
+{
+    QString result;
+    QDebug debug(&result);
+    foreach (const QDeclarativeError &error, errors)
+        debug << error << '\n';
+    return result.toLocal8Bit();
+}
+
 void tst_QDeclarativeParticles::properties()
 {
     QDeclarativeView *canvas = createView(SRCDIR "/data/particlestest.qml");
-    QVERIFY(canvas->rootObject());
+    QVERIFY2(canvas->rootObject(), msgDeclarativeErrors(canvas->errors()).constData());
 
     QObject* particles = canvas->rootObject()->findChild<QObject*>("particles");
     QVERIFY(particles);
@@ -105,7 +115,7 @@ void tst_QDeclarativeParticles::properties()
 void tst_QDeclarativeParticles::motionGravity()
 {
     QDeclarativeView *canvas = createView(SRCDIR "/data/particlemotiontest.qml");
-    QVERIFY(canvas->rootObject());
+    QVERIFY2(canvas->rootObject(), msgDeclarativeErrors(canvas->errors()).constData());
 
     QObject* particles = canvas->rootObject()->findChild<QObject*>("particles");
     QVERIFY(particles);
@@ -145,7 +155,7 @@ void tst_QDeclarativeParticles::motionGravity()
 void tst_QDeclarativeParticles::motionWander()
 {
     QDeclarativeView *canvas = createView(SRCDIR "/data/particlemotiontest.qml");
-    QVERIFY(canvas->rootObject());
+    QVERIFY2(canvas->rootObject(), msgDeclarativeErrors(canvas->errors()).constData());
 
     QObject* particles = canvas->rootObject()->findChild<QObject*>("particles");
     QVERIFY(particles);
@@ -193,7 +203,7 @@ void tst_QDeclarativeParticles::motionWander()
 void tst_QDeclarativeParticles::runs()
 {
     QDeclarativeView *canvas = createView(SRCDIR "/data/particlestest.qml");
-    QVERIFY(canvas->rootObject());
+    QVERIFY2(canvas->rootObject(), msgDeclarativeErrors(canvas->errors()).constData());
 
     QObject* particles = canvas->rootObject()->findChild<QObject*>("particles");
     QVERIFY(particles);

@@ -233,10 +233,11 @@ void tst_QDeclarativeViewer::loading()
     delete viewer;
 }
 
-static int numberOfWarnings = 0;
-static void checkWarnings(QtMsgType, const QMessageLogContext &, const QString &)
+static QStringList warnings;
+
+static void checkWarnings(QtMsgType, const QMessageLogContext &, const QString &warning)
 {
-    numberOfWarnings++;
+    warnings.push_back(warning);
 }
 
 void tst_QDeclarativeViewer::fileBrowser()
@@ -251,7 +252,7 @@ void tst_QDeclarativeViewer::fileBrowser()
     qInstallMessageHandler(previousMsgHandler);
 
     // QTBUG-15720
-    QVERIFY(numberOfWarnings == 0);
+    QVERIFY2(warnings.isEmpty(), qPrintable(warnings.join(QLatin1Char('\n'))));
 
     QApplication::setActiveWindow(viewer);
     QVERIFY(QTest::qWaitForWindowActive(viewer));
