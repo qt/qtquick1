@@ -708,7 +708,7 @@ QDeclarativeImportDatabase::QDeclarativeImportDatabase(QDeclarativeEngine *e)
 
     // Search order is applicationDirPath(), $QML_IMPORT_PATH, QLibraryInfo::ImportsPath
 
-    QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath) + QString::fromLatin1("/QtDeclarative");
+    QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath);
 
     addImportPath(installImportsPath);
 

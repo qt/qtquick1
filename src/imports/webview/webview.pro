@@ -1,5 +1,5 @@
 TARGET  = qmlwebkitplugin
-TARGETPATH = QtQuick1/QtWebKit
+TARGETPATH = QtWebKit
 include(../qimportbase.pri)
 
 QT += declarative declarative-private widgets widgets-private gui gui-private core-private script-private webkitwidgets

@@ -1,5 +1,5 @@
 TARGET = qmlshadersplugin
-TARGETPATH = QtDeclarative/Qt/labs/shaders
+TARGETPATH = Qt/labs/shaders
 include(../qimportbase.pri)
 
 QT += declarative widgets opengl
