@@ -2,7 +2,7 @@ TARGET  = qmlwebkitplugin
 TARGETPATH = QtQuick1/QtWebKit
 include(../qimportbase.pri)
 
-QT += declarative declarative-private widgets widgets-private gui gui-private core-private script-private webkit
+QT += declarative declarative-private widgets widgets-private gui gui-private core-private script-private webkitwidgets
 
 SOURCES += qdeclarativewebview.cpp plugin.cpp
 HEADERS += qdeclarativewebview_p.h

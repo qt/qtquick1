@@ -23,8 +23,8 @@ wince* {
     contains(QT_CONFIG, xmlpatterns) {
         QT += xmlpatterns
     }
-    contains(QT_CONFIG, webkit) {
-        QT += webkit
+    contains(QT_CONFIG, webkitwidgets) {
+        QT += webkitwidgets
     }
 }
 
