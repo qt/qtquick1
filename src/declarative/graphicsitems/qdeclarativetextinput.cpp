@@ -1684,8 +1684,8 @@ void QDeclarativeTextInput::moveCursorSelection(int pos, SelectionMode mode)
             finder.setPosition(anchor);
 
             const QTextBoundaryFinder::BoundaryReasons reasons = finder.boundaryReasons();
-            if (anchor < text.length() && (!(reasons & QTextBoundaryFinder::StartWord)
-                    || ((reasons & QTextBoundaryFinder::EndWord) && anchor > cursor))) {
+            if (anchor < text.length() && (reasons == QTextBoundaryFinder::NotAtBoundary
+                                           || (reasons & QTextBoundaryFinder::EndOfItem))) {
                 finder.toPreviousBoundary();
             }
             anchor = finder.position() != -1 ? finder.position() : 0;
@@ -1702,8 +1702,8 @@ void QDeclarativeTextInput::moveCursorSelection(int pos, SelectionMode mode)
             finder.setPosition(anchor);
 
             const QTextBoundaryFinder::BoundaryReasons reasons = finder.boundaryReasons();
-            if (anchor > 0 && (!(reasons & QTextBoundaryFinder::EndWord)
-                    || ((reasons & QTextBoundaryFinder::StartWord) && anchor < cursor))) {
+            if (anchor > 0 && (reasons == QTextBoundaryFinder::NotAtBoundary
+                               || (reasons & QTextBoundaryFinder::StartOfItem))) {
                 finder.toNextBoundary();
             }
             anchor = finder.position() != -1 ? finder.position() : text.length();
