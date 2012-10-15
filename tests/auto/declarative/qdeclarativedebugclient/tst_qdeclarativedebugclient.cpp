@@ -45,7 +45,7 @@
 #include <QDebug>
 #include <QThread>
 
-#include <QtQuick1/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativeengine.h>
 
 #include <private/qdeclarativedebugclient_p.h>
 

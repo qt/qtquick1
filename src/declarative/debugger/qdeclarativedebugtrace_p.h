@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEDEBUGTRACE_P_H
 #define QDECLARATIVEDEBUGTRACE_P_H
 
-#include "qtquick1global.h"
+#include "qtdeclarativeglobal.h"
 
 #include <private/qdeclarativedebugservice_p.h>
 #include <private/qperformancetimer_p.h>
@@ -65,7 +65,7 @@ struct QDeclarativeDebugData
 };
 
 class QUrl;
-class Q_QUICK1_EXPORT QDeclarativeDebugTrace : public QDeclarativeDebugService
+class Q_DECLARATIVE_EXPORT QDeclarativeDebugTrace : public QDeclarativeDebugService
 {
 public:
     enum Message {

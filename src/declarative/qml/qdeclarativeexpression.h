@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEEXPRESSION_H
 #define QDECLARATIVEEXPRESSION_H
 
-#include <QtQuick1/qdeclarativeerror.h>
+#include <QtDeclarative/qdeclarativeerror.h>
 
 #include <QtCore/qobject.h>
 #include <QtCore/qvariant.h>
@@ -60,7 +60,7 @@ class QDeclarativeContext;
 class QDeclarativeExpressionPrivate;
 class QDeclarativeContextData;
 class QScriptValue;
-class Q_QUICK1_EXPORT QDeclarativeExpression : public QObject
+class Q_DECLARATIVE_EXPORT QDeclarativeExpression : public QObject
 {
     Q_OBJECT
 public:

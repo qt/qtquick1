@@ -1,7 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativemoduleplugin
 
-QT += quick1 network testlib
+QT += declarative network testlib
 CONFIG -= app_bundle
 
 HEADERS = ../shared/testhttpserver.h

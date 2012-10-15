@@ -40,8 +40,8 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QtTest/QtTest>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativeimageprovider.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativeimageprovider.h>
 #include <private/qdeclarativeimage_p.h>
 #include <QImageReader>
 #include <QWaitCondition>

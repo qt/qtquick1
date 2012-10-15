@@ -45,7 +45,7 @@
 #include <QtCore/qurl.h>
 #include <QtCore/qvariant.h>
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 
@@ -67,7 +67,7 @@ class QDeclarativeDebugObjectReference;
 class QDeclarativeDebugFileReference;
 class QDeclarativeDebugEngineReference;
 class QDeclarativeEngineDebugPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeEngineDebug : public QObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeEngineDebug : public QObject
 {
 Q_OBJECT
 public:
@@ -114,7 +114,7 @@ private:
     Q_DECLARE_PRIVATE(QDeclarativeEngineDebug)
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugWatch : public QObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugWatch : public QObject
 {
 Q_OBJECT
 public:
@@ -145,7 +145,7 @@ private:
     int m_objectDebugId;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugPropertyWatch : public QDeclarativeDebugWatch
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugPropertyWatch : public QDeclarativeDebugWatch
 {
     Q_OBJECT
 public:
@@ -158,7 +158,7 @@ private:
     QString m_name;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugObjectExpressionWatch : public QDeclarativeDebugWatch
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugObjectExpressionWatch : public QDeclarativeDebugWatch
 {
     Q_OBJECT
 public:
@@ -173,7 +173,7 @@ private:
 };
 
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugQuery : public QObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugQuery : public QObject
 {
 Q_OBJECT
 public:
@@ -197,7 +197,7 @@ private:
     State m_state;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugFileReference
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugFileReference
 {
 public:
     QDeclarativeDebugFileReference();
@@ -218,7 +218,7 @@ private:
     int m_columnNumber;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugEngineReference
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugEngineReference
 {
 public:
     QDeclarativeDebugEngineReference();
@@ -235,7 +235,7 @@ private:
     QString m_name;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugObjectReference
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugObjectReference
 {
 public:
     QDeclarativeDebugObjectReference();
@@ -269,7 +269,7 @@ private:
     QList<QDeclarativeDebugObjectReference> m_children;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugContextReference
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugContextReference
 {
 public:
     QDeclarativeDebugContextReference();
@@ -290,7 +290,7 @@ private:
     QList<QDeclarativeDebugContextReference> m_contexts;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugPropertyReference
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugPropertyReference
 {
 public:
     QDeclarativeDebugPropertyReference();
@@ -315,7 +315,7 @@ private:
 };
 
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugEnginesQuery : public QDeclarativeDebugQuery
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugEnginesQuery : public QDeclarativeDebugQuery
 {
 Q_OBJECT
 public:
@@ -330,7 +330,7 @@ private:
     QList<QDeclarativeDebugEngineReference> m_engines;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugRootContextQuery : public QDeclarativeDebugQuery
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugRootContextQuery : public QDeclarativeDebugQuery
 {
 Q_OBJECT
 public:
@@ -345,7 +345,7 @@ private:
     QDeclarativeDebugContextReference m_context;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugObjectQuery : public QDeclarativeDebugQuery
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugObjectQuery : public QDeclarativeDebugQuery
 {
 Q_OBJECT
 public:
@@ -361,7 +361,7 @@ private:
 
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDebugExpressionQuery : public QDeclarativeDebugQuery
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDebugExpressionQuery : public QDeclarativeDebugQuery
 {
 Q_OBJECT
 public:

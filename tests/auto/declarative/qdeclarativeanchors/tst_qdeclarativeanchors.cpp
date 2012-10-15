@@ -43,13 +43,13 @@
 #include <QSignalSpy>
 #include <QtWidgets/QGraphicsWidget>
 #include <private/qgraphicsitem_p.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeview.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativetext_p.h>
-#include <QtQuick1/private/qdeclarativeanchors_p_p.h>
-#include <QtQuick1/private/qdeclarativeitem_p.h>
+#include <QtDeclarative/private/qdeclarativeanchors_p_p.h>
+#include <QtDeclarative/private/qdeclarativeitem_p.h>
 
 Q_DECLARE_METATYPE(QDeclarativeAnchors::Anchor)
 Q_DECLARE_METATYPE(QDeclarativeAnchorLine::AnchorLine)

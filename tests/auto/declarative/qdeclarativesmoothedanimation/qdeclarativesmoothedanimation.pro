@@ -2,7 +2,7 @@ CONFIG += testcase
 TARGET = tst_qdeclarativesmoothedanimation
 
 QT += testlib
-contains(QT_CONFIG,quick1): QT += quick1 quick1-private gui core-private script-private widgets
+contains(QT_CONFIG,declarative): QT += declarative declarative-private gui core-private script-private widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativesmoothedanimation.cpp

@@ -47,7 +47,7 @@
 #include <QtCore/QDir>
 #include <QtCore/QPluginLoader>
 
-#include <QtQuick1/QDeclarativeView>
+#include <QtDeclarative/QDeclarativeView>
 
 QT_BEGIN_NAMESPACE
 

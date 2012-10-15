@@ -3,7 +3,7 @@ testcase.timeout = 1200 # this is a slow test
 TARGET = tst_qdeclarativexmlhttprequest
 
 QT += testlib
-contains(QT_CONFIG,quick1): QT += quick1 network
+contains(QT_CONFIG,declarative): QT += declarative network
 macx:CONFIG -= app_bundle
 
 HEADERS += ../shared/testhttpserver.h

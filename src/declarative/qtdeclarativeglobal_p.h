@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 
-#ifndef QTQUICK1GLOBAL_P_H
-#define QTQUICK1GLOBAL_P_H
+#ifndef QTDECLARATIVEGLOBAL_P_H
+#define QTDECLARATIVEGLOBAL_P_H
 
 //
 //  W A R N I N G
@@ -53,8 +53,8 @@
 // We mean it.
 //
 
-#include "qtquick1global.h"
+#include "qtdeclarativeglobal.h"
 
-#define Q_QUICK1_PRIVATE_EXPORT Q_QUICK1_EXPORT
+#define Q_DECLARATIVE_PRIVATE_EXPORT Q_DECLARATIVE_EXPORT
 
-#endif // QTQUICK1GLOBAL_P_H
+#endif // QTDECLARATIVEGLOBAL_P_H

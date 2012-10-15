@@ -1,4 +1,4 @@
-QT += quick1 opengl widgets
+QT += declarative opengl widgets
 
 # Add more folders to ship with the application, here
 folder_01.source = qml/qmlshadersplugintest

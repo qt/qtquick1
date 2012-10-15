@@ -54,7 +54,7 @@ QT_MODULE(Declarative)
 class QDeclarativeDebugService;
 
 class QDeclarativeDebugServerPrivate;
-class Q_QUICK1_EXPORT QDeclarativeDebugServer : public QObject
+class Q_DECLARATIVE_EXPORT QDeclarativeDebugServer : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(QDeclarativeDebugServer)

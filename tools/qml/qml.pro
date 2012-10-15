@@ -1,6 +1,6 @@
 TEMPLATE = app
-CONFIG += qt uic quick1_debug quick1
-DESTDIR = $$QT.quick1.bins
+CONFIG += qt uic declarative_debug declarative
+DESTDIR = $$QT.declarative.bins
 
 include(qml.pri)
 

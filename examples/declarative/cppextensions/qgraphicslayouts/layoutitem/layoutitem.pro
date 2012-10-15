@@ -1,4 +1,4 @@
-QT += widgets quick1
+QT += widgets declarative
 
 SOURCES += main.cpp
 RESOURCES += layoutitem.qrc

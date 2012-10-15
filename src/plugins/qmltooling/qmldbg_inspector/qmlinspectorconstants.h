@@ -42,7 +42,7 @@
 #ifndef QMLINSPECTORCONSTANTS_H
 #define QMLINSPECTORCONSTANTS_H
 
-#include <QtQuick1/private/qdeclarativeglobal_p.h>
+#include <QtDeclarative/private/qdeclarativeglobal_p.h>
 
 namespace QmlJSDebugger {
 namespace Constants {

@@ -1,15 +1,15 @@
 TARGET  = qmlfolderlistmodelplugin
-TARGETPATH = QtQuick1/Qt/labs/folderlistmodel
+TARGETPATH = QtDeclarative/Qt/labs/folderlistmodel
 include(../qimportbase.pri)
 
-QT += widgets quick1 script
+QT += widgets declarative script
 
 SOURCES += qdeclarativefolderlistmodel.cpp plugin.cpp
 HEADERS += qdeclarativefolderlistmodel.h
 
 OTHER_FILES += folderlistmodel.json
 
-DESTDIR = $$QT.quick1.imports/$$TARGETPATH
+DESTDIR = $$QT.declarative.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 
 qmldir.files += $$PWD/qmldir

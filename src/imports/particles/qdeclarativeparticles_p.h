@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEPARTICLES_H
 #define QDECLARATIVEPARTICLES_H
 
-#include <QtQuick1/qdeclarativeitem.h>
+#include <QtDeclarative/qdeclarativeitem.h>
 
 QT_BEGIN_HEADER
 

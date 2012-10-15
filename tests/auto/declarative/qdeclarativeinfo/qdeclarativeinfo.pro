@@ -2,7 +2,7 @@ CONFIG += testcase
 TARGET = tst_qdeclarativeinfo
 
 QT += testlib
-contains(QT_CONFIG,quick1): QT += quick1 widgets
+contains(QT_CONFIG,declarative): QT += declarative widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeinfo.cpp

@@ -41,7 +41,7 @@
 #ifndef DIALOGPLUGIN_H
 #define DIALOGPLUGIN_H
 
-#include <QtQuick1/QDeclarativeExtensionPlugin>
+#include <QtDeclarative/QDeclarativeExtensionPlugin>
 
 class DialogPlugin : public QDeclarativeExtensionPlugin
 {

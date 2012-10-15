@@ -39,11 +39,11 @@
 **
 ****************************************************************************/
 
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/private/qdeclarativemetatype_p.h>
-#include <QtQuick1/private/qdeclarativeopenmetaobject_p.h>
-#include <QtQuick1/private/qdeclarativeevents_p_p.h>
-#include <QtQuick1/private/qdeclarativepincharea_p.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/private/qdeclarativemetatype_p.h>
+#include <QtDeclarative/private/qdeclarativeopenmetaobject_p.h>
+#include <QtDeclarative/private/qdeclarativeevents_p_p.h>
+#include <QtDeclarative/private/qdeclarativepincharea_p.h>
 
 #include <QtGui/QGuiApplication>
 #include <QtCore/QDir>

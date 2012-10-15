@@ -40,9 +40,9 @@
 ****************************************************************************/
 
 #include <qtest.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativeitem.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativeitem.h>
 #include <QtWidgets/qgraphicsview.h>
 #include <QtWidgets/qgraphicsscene.h>
 #include <QtWidgets/qapplication.h>

@@ -47,7 +47,7 @@
 #include "abstractviewinspector.h"
 
 #include <QtCore/QScopedPointer>
-#include <QtQuick1/QDeclarativeView>
+#include <QtDeclarative/QDeclarativeView>
 
 namespace QmlJSDebugger {
 namespace QtQuick1 {

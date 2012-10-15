@@ -46,15 +46,15 @@
 
 #include <qtest.h>
 #include <QtTest/qsignalspy.h>
-#include <QtQuick1/qdeclarativenetworkaccessmanagerfactory.h>
+#include <QtDeclarative/qdeclarativenetworkaccessmanagerfactory.h>
 #include <QtNetwork/qnetworkaccessmanager.h>
 #include <QtNetwork/qnetworkrequest.h>
 #include <QtCore/qtimer.h>
 #include <QtCore/qfile.h>
 #include <QtCore/qtemporaryfile.h>
 
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
 #include <private/qdeclarativexmllistmodel_p.h>
 
 typedef QPair<int, int> QDeclarativeXmlListRange;

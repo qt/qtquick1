@@ -45,11 +45,11 @@
 #include "qdeclarativeviewinspector.h"
 
 #include <QtCore/QScopedPointer>
-#include <QtQuick1/QDeclarativeView>
+#include <QtDeclarative/QDeclarativeView>
 #include <QtCore/QPointer>
 #include <QtCore/QPointF>
 
-#include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
+#include <QtDeclarative/private/qdeclarativeinspectorservice_p.h>
 
 namespace QmlJSDebugger {
 namespace QtQuick1 {

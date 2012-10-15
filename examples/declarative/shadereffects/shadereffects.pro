@@ -14,7 +14,7 @@ QML_IMPORT_PATH =
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 # CONFIG += qdeclarative-boostable
 
-QT += quick1 opengl
+QT += declarative opengl
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp
@@ -24,7 +24,7 @@ symbian {
 }
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/shadereffects
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtdeclarative/declarative/shadereffects
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)

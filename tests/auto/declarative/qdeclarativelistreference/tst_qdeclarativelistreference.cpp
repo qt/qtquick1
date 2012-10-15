@@ -46,9 +46,9 @@
 #include <QDir>
 #include <QDeclarativeEngine>
 #include <QDeclarativeComponent>
-#include <QtQuick1/qdeclarative.h>
-#include <QtQuick1/qdeclarativeprivate.h>
-#include <QtQuick1/qdeclarativeproperty.h>
+#include <QtDeclarative/qdeclarative.h>
+#include <QtDeclarative/qdeclarativeprivate.h>
+#include <QtDeclarative/qdeclarativeproperty.h>
 #include <QDebug>
 
 class tst_qdeclarativelistreference : public QDeclarativeDataTest

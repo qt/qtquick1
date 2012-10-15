@@ -45,7 +45,7 @@
 #include <QtCore/QMetaObject>
 #include <QtCore/QObject>
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 #include <private/qdeclarativerefcount_p.h>
 #include <private/qobject_p.h>
 
@@ -58,7 +58,7 @@ QT_MODULE(Declarative)
 class QDeclarativeEngine;
 class QMetaPropertyBuilder;
 class QDeclarativeOpenMetaObjectTypePrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeOpenMetaObjectType : public QDeclarativeRefCount
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeOpenMetaObjectType : public QDeclarativeRefCount
 {
 public:
     QDeclarativeOpenMetaObjectType(const QMetaObject *base, QDeclarativeEngine *engine);
@@ -79,7 +79,7 @@ private:
 };
 
 class QDeclarativeOpenMetaObjectPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeOpenMetaObject : public QAbstractDynamicMetaObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeOpenMetaObject : public QAbstractDynamicMetaObject
 {
 public:
     QDeclarativeOpenMetaObject(QObject *, bool = true);

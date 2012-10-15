@@ -1,4 +1,4 @@
-QT       += core gui quick1 opengl widgets
+QT       += core gui declarative opengl widgets
 
 VERSION = 1.1.1
 

@@ -55,7 +55,7 @@
 
 #include "qdeclarativeproperty.h"
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 #include <private/qobject_p.h>
 #include <private/qdeclarativepropertycache_p.h>
 #include <private/qdeclarativeguard_p.h>
@@ -65,7 +65,7 @@ QT_BEGIN_NAMESPACE
 class QDeclarativeContext;
 class QDeclarativeEnginePrivate;
 class QDeclarativeExpression;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativePropertyPrivate : public QDeclarativeRefCount
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativePropertyPrivate : public QDeclarativeRefCount
 {
 public:
     enum WriteFlag { BypassInterceptor = 0x01, DontRemoveBinding = 0x02, RemoveBindingOnAliasWrite = 0x04 };

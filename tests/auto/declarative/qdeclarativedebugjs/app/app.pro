@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += quick1 quick1-private gui widgets
+QT += declarative declarative-private gui widgets
 CONFIG += declarative_debug
 
 CONFIG += console

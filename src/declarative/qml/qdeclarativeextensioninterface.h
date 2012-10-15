@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEEXTENSIONINTERFACE_H
 #define QDECLARATIVEEXTENSIONINTERFACE_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qobject.h>
 
 QT_BEGIN_HEADER
@@ -53,7 +53,7 @@ QT_MODULE(Declarative)
 
 class QDeclarativeEngine;
 
-struct Q_QUICK1_EXPORT QDeclarativeExtensionInterface
+struct Q_DECLARATIVE_EXPORT QDeclarativeExtensionInterface
 {
     virtual ~QDeclarativeExtensionInterface() {}
     virtual void registerTypes(const char *uri) = 0;

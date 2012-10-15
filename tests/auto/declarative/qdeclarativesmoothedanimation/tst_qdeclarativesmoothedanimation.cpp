@@ -39,8 +39,8 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
 #include <private/qdeclarativesmoothedanimation_p.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativevaluetype_p.h>

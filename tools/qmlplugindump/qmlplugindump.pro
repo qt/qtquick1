@@ -1,7 +1,7 @@
-DESTDIR = $$QT.quick1.bins
+DESTDIR = $$QT.declarative.bins
 TARGET = qml1plugindump
 
-QT += core-private quick1-private
+QT += core-private declarative-private
 
 SOURCES += \
     main.cpp \

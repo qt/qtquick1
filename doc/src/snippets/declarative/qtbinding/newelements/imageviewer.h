@@ -39,7 +39,7 @@
 ****************************************************************************/
 //![0]
 #include <QtCore>
-#include <QtQuick1>
+#include <QtDeclarative>
 
 class ImageViewer : public QDeclarativeItem
 {

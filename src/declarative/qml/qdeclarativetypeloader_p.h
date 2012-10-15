@@ -55,8 +55,8 @@
 
 #include <QtCore/qobject.h>
 #include <QtNetwork/qnetworkreply.h>
-#include <QtQuick1/qdeclarativeerror.h>
-#include <QtQuick1/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativeerror.h>
+#include <QtDeclarative/qdeclarativeengine.h>
 #include <private/qdeclarativescriptparser_p.h>
 #include <private/qdeclarativedirparser_p.h>
 #include <private/qdeclarativeimport_p.h>

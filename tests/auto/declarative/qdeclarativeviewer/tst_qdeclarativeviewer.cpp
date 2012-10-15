@@ -40,10 +40,10 @@
 ****************************************************************************/
 
 #include <qtest.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativeview.h>
-#include <QtQuick1/qdeclarativeitem.h>
-#include <QtQuick1/qdeclarativecontext.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativeitem.h>
+#include <QtDeclarative/qdeclarativecontext.h>
 #include <QtWidgets/qmenubar.h>
 #include <QSignalSpy>
 #include "qmlruntime.h"

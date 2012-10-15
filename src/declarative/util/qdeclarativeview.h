@@ -47,7 +47,7 @@
 #include <QtWidgets/qgraphicssceneevent.h>
 #include <QtWidgets/qgraphicsview.h>
 #include <QtWidgets/qwidget.h>
-#include <QtQuick1/qdeclarativedebug.h>
+#include <QtDeclarative/qdeclarativedebug.h>
 
 QT_BEGIN_HEADER
 
@@ -61,7 +61,7 @@ class QDeclarativeContext;
 class QDeclarativeError;
 
 class QDeclarativeViewPrivate;
-class Q_QUICK1_EXPORT QDeclarativeView : public QGraphicsView
+class Q_DECLARATIVE_EXPORT QDeclarativeView : public QGraphicsView
 {
     Q_OBJECT
     Q_PROPERTY(ResizeMode resizeMode READ resizeMode WRITE setResizeMode)

@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVECONTEXT_H
 #define QDECLARATIVECONTEXT_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qurl.h>
 #include <QtCore/qobject.h>
 #include <QtScript/qscriptvalue.h>
@@ -62,7 +62,7 @@ class QDeclarativeContextPrivate;
 class QDeclarativeCompositeTypeData;
 class QDeclarativeContextData;
 
-class Q_QUICK1_EXPORT QDeclarativeContext : public QObject
+class Q_DECLARATIVE_EXPORT QDeclarativeContext : public QObject
 {
     Q_OBJECT
     Q_DECLARE_PRIVATE(QDeclarativeContext)

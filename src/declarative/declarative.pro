@@ -1,9 +1,9 @@
-TARGET     = QtQuick1
+TARGET     = QtDeclarative
 QT         = core-private gui-private widgets-private script-private
 !isEmpty(QT.xmlpatterns.name): QT_PRIVATE = xmlpatterns
 else: DEFINES += QT_NO_XMLPATTERNS
 
-MODULE=quick1
+MODULE=declarative
 load(qt_module)
 
 DEFINES   += QT_NO_URL_CAST_FROM_STRING
@@ -23,8 +23,8 @@ include(graphicsitems/graphicsitems.pri)
 include(debugger/debugger.pri)
 
 HEADERS += \
-    qtquick1global.h \
-    qtquick1global_p.h
+    qtdeclarativeglobal.h \
+    qtdeclarativeglobal_p.h
 
 linux-g++-maemo:DEFINES += QDECLARATIVEVIEW_NOBACKGROUND
 

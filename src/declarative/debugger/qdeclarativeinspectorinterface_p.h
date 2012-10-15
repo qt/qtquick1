@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEOBSERVERINTERFACE_H
 #define QDECLARATIVEOBSERVERINTERFACE_H
 
-#include <QtQuick1/private/qtquick1global_p.h>
+#include <QtDeclarative/private/qtdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 
@@ -50,7 +50,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class Q_QUICK1_EXPORT QDeclarativeInspectorInterface
+class Q_DECLARATIVE_EXPORT QDeclarativeInspectorInterface
 {
 public:
     QDeclarativeInspectorInterface() {}

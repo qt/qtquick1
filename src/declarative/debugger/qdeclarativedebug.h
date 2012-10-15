@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEDEBUG_H
 #define QDECLARATIVEDEBUG_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 
 QT_BEGIN_HEADER
 
@@ -50,7 +50,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-struct Q_QUICK1_EXPORT QDeclarativeDebuggingEnabler
+struct Q_DECLARATIVE_EXPORT QDeclarativeDebuggingEnabler
 {
     QDeclarativeDebuggingEnabler();
 };

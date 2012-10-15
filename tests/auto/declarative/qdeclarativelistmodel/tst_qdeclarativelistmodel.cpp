@@ -39,11 +39,11 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtQuick1/private/qdeclarativeitem_p.h>
-#include <QtQuick1/private/qdeclarativetext_p.h>
-#include <QtQuick1/private/qdeclarativeengine_p.h>
-#include <QtQuick1/private/qdeclarativelistmodel_p.h>
-#include <QtQuick1/private/qdeclarativeexpression_p.h>
+#include <QtDeclarative/private/qdeclarativeitem_p.h>
+#include <QtDeclarative/private/qdeclarativetext_p.h>
+#include <QtDeclarative/private/qdeclarativeengine_p.h>
+#include <QtDeclarative/private/qdeclarativelistmodel_p.h>
+#include <QtDeclarative/private/qdeclarativeexpression_p.h>
 #include <QDeclarativeComponent>
 
 #include <QtCore/qtimer.h>

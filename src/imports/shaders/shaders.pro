@@ -1,8 +1,8 @@
 TARGET = qmlshadersplugin
-TARGETPATH = QtQuick1/Qt/labs/shaders
+TARGETPATH = QtDeclarative/Qt/labs/shaders
 include(../qimportbase.pri)
 
-QT += quick1 widgets opengl
+QT += declarative widgets opengl
 
 SOURCES += \
     qmlshadersplugin_plugin.cpp \
@@ -23,7 +23,7 @@ HEADERS += \
 
 OTHER_FILES += shaders.json
 
-DESTDIR = $$QT.quick1.imports/$$TARGETPATH
+DESTDIR = $$QT.declarative.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 
 qmldir.files += $$PWD/qmldir

@@ -2,7 +2,7 @@ CONFIG += testcase
 TARGET = tst_qdeclarativepincharea
 
 QT += testlib
-contains(QT_CONFIG,quick1): QT += quick1 quick1-private gui-private widgets
+contains(QT_CONFIG,declarative): QT += declarative declarative-private gui-private widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativepincharea.cpp

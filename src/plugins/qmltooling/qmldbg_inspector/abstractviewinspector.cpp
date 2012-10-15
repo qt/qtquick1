@@ -44,10 +44,10 @@
 #include "abstracttool.h"
 #include "qdeclarativeinspectorprotocol.h"
 
-#include <QtQuick1/QDeclarativeEngine>
-#include <QtQuick1/QDeclarativeComponent>
+#include <QtDeclarative/QDeclarativeEngine>
+#include <QtDeclarative/QDeclarativeComponent>
 #include <QtCore/private/qabstractanimation_p.h>
-#include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
+#include <QtDeclarative/private/qdeclarativeinspectorservice_p.h>
 
 #include <QtGui/QMouseEvent>
 

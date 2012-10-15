@@ -48,7 +48,7 @@
 
 #include <QtCore/QObject>
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 
@@ -58,7 +58,7 @@ QT_MODULE(Declarative)
 
 class QDeclarativeAnchorsPrivate;
 class QDeclarativeAnchorLine;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeAnchors : public QObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeAnchors : public QObject
 {
     Q_OBJECT
 

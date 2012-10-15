@@ -2,7 +2,7 @@ CONFIG += testcase
 TARGET = tst_qdeclarativetext
 
 QT += testlib
-contains(QT_CONFIG,quick1): QT += quick1 quick1-private gui gui-private widgets widgets-private core-private script-private
+contains(QT_CONFIG,declarative): QT += declarative declarative-private gui gui-private widgets widgets-private core-private script-private
 QT += network
 macx:CONFIG -= app_bundle
 

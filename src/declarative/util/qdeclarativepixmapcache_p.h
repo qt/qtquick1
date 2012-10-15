@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEPIXMAPCACHE_H
 #define QDECLARATIVEPIXMAPCACHE_H
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 
 #include <QtCore/qcoreapplication.h>
 #include <QtCore/qstring.h>
@@ -57,7 +57,7 @@ QT_MODULE(Declarative)
 
 class QDeclarativeEngine;
 class QDeclarativePixmapData;
-class Q_QUICK1_EXPORT QDeclarativePixmap
+class Q_DECLARATIVE_EXPORT QDeclarativePixmap
 {
     Q_DECLARE_TR_FUNCTIONS(QDeclarativePixmap)
 public:

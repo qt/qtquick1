@@ -40,10 +40,10 @@
 ****************************************************************************/
 #include <QtTest/QSignalSpy>
 #include <qtest.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
 #include <private/qdeclarativetimer_p.h>
-#include <QtQuick1/qdeclarativeitem.h>
+#include <QtDeclarative/qdeclarativeitem.h>
 #include <QDebug>
 
 class tst_qdeclarativetimer : public QObject

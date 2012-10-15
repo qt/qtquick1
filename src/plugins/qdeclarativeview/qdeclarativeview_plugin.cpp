@@ -45,7 +45,7 @@
 #include <QtDesigner/QExtensionManager>
 
 #include <QtCore/qplugin.h>
-#include <QtQuick1/QDeclarativeView>
+#include <QtDeclarative/QDeclarativeView>
 
 static const char toolTipC[] = "QtDeclarative view widget";
 
@@ -79,7 +79,7 @@ QString QDeclarativeViewPlugin::whatsThis() const
 
 QString QDeclarativeViewPlugin::includeFile() const
 {
-    return QStringLiteral("QtQuick1/QDeclarativeView");
+    return QStringLiteral("QtDeclarative/QDeclarativeView");
 }
 
 QIcon QDeclarativeViewPlugin::icon() const

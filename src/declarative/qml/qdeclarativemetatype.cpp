@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-#include <QtQuick1/qdeclarativeprivate.h>
+#include <QtDeclarative/qdeclarativeprivate.h>
 #include "private/qdeclarativemetatype_p.h"
 
 #include "private/qdeclarativeproxymetaobject_p.h"

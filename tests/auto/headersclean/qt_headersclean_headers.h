@@ -42,6 +42,6 @@
 #ifndef QT_HEADERSCLEAN_HEADERS
 #define QT_HEADERSCLEAN_HEADERS
 
-#include <QtQuick1>
+#include <QtDeclarative>
 
 #endif

@@ -38,7 +38,7 @@
 **
 ****************************************************************************/
 #include <QtCore>
-#include <QtQuick1>
+#include <QtDeclarative>
 
 int main(int argc, char *argv[])
 {

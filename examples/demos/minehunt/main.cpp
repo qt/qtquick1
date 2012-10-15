@@ -42,8 +42,8 @@
 #include "qmlapplicationviewer.h"
 #include "minehunt.h"
 #include <QtWidgets/QApplication>
-#include <QtQuick1/QDeclarativeContext>
-#include <QtQuick1/QDeclarativeEngine>
+#include <QtDeclarative/QDeclarativeContext>
+#include <QtDeclarative/QDeclarativeEngine>
 
 int main(int argc, char *argv[])
 {

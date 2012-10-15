@@ -2,7 +2,7 @@ CONFIG += testcase
 TARGET = tst_qdeclarativeecmascript
 
 QT += testlib
-contains(QT_CONFIG,quick1): QT += quick1 quick1-private script script-private network widgets core-private
+contains(QT_CONFIG,declarative): QT += declarative declarative-private script script-private network widgets core-private
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeecmascript.cpp \

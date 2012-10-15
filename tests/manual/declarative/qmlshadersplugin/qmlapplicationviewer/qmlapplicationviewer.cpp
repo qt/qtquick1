@@ -45,9 +45,9 @@
 #include <QtCore/QCoreApplication>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
-#include <QtQuick1/QDeclarativeComponent>
-#include <QtQuick1/QDeclarativeEngine>
-#include <QtQuick1/QDeclarativeContext>
+#include <QtDeclarative/QDeclarativeComponent>
+#include <QtDeclarative/QDeclarativeEngine>
+#include <QtDeclarative/QDeclarativeContext>
 
 #if defined(QMLJSDEBUGGER)
 #include <jsdebuggeragent.h>

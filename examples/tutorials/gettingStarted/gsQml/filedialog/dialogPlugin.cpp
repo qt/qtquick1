@@ -41,7 +41,7 @@
 #include "dialogPlugin.h"
 #include "directory.h"
 #include "file.h"
-#include <QtQuick1/qdeclarative.h>
+#include <QtDeclarative/qdeclarative.h>
 
 void DialogPlugin::registerTypes(const char *uri)
 {

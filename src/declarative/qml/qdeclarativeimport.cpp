@@ -47,7 +47,7 @@
 #include <QtCore/qpluginloader.h>
 #include <QtCore/qlibraryinfo.h>
 #include <QtCore/qalgorithms.h>
-#include <QtQuick1/qdeclarativeextensioninterface.h>
+#include <QtDeclarative/qdeclarativeextensioninterface.h>
 #include <private/qdeclarativeglobal_p.h>
 #include <private/qdeclarativetypenamecache_p.h>
 #include <private/qdeclarativeengine_p.h>
@@ -708,7 +708,7 @@ QDeclarativeImportDatabase::QDeclarativeImportDatabase(QDeclarativeEngine *e)
 
     // Search order is applicationDirPath(), $QML_IMPORT_PATH, QLibraryInfo::ImportsPath
 
-    QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath) + QString::fromLatin1("/QtQuick1");
+    QString installImportsPath =  QLibraryInfo::location(QLibraryInfo::ImportsPath) + QString::fromLatin1("/QtDeclarative");
 
     addImportPath(installImportsPath);
 

@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-#include <QtQuick1/QDeclarativeExtensionPlugin>
-#include <QtQuick1/qdeclarative.h>
+#include <QtDeclarative/QDeclarativeExtensionPlugin>
+#include <QtDeclarative/qdeclarative.h>
 #include <QtWidgets/QGraphicsProxyWidget>
 #include <QtWidgets/QPushButton>
 #include <QDebug>

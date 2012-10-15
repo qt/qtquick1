@@ -45,7 +45,7 @@
 #include <QtCore/qobject.h>
 #include <QtCore/qdatastream.h>
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 
@@ -59,7 +59,7 @@ class QPacket;
 class QPacketAutoSend;
 class QPacketProtocolPrivate;
 
-class Q_QUICK1_EXPORT QPacketProtocol : public QObject
+class Q_DECLARATIVE_EXPORT QPacketProtocol : public QObject
 {
 Q_OBJECT
 public:
@@ -91,7 +91,7 @@ private:
 };
 
 
-class Q_QUICK1_EXPORT QPacket : public QDataStream
+class Q_DECLARATIVE_EXPORT QPacket : public QDataStream
 {
 public:
     QPacket();
@@ -109,7 +109,7 @@ protected:
     QBuffer * buf;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QPacketAutoSend : public QPacket
+class Q_DECLARATIVE_PRIVATE_EXPORT QPacketAutoSend : public QPacket
 {
 public:
     virtual ~QPacketAutoSend();

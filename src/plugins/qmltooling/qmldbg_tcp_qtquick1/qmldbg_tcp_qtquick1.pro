@@ -1,9 +1,9 @@
-TARGET = qmldbg_tcp_qtquick1
-QT       += quick1 quick1-private network
+TARGET = qmldbg_tcp_qtdeclarative
+QT       += declarative declarative-private network
 
 load(qt_plugin)
 
-DESTDIR  = $$QT.quick1.plugins/qmltooling
+DESTDIR  = $$QT.declarative.plugins/qmltooling
 
 SOURCES += \
     qtcpserverconnection.cpp

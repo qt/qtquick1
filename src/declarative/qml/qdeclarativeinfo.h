@@ -44,7 +44,7 @@
 
 #include <QtCore/qdebug.h>
 #include <QtCore/qurl.h>
-#include <QtQuick1/qdeclarativeerror.h>
+#include <QtDeclarative/qdeclarativeerror.h>
 
 QT_BEGIN_HEADER
 
@@ -53,7 +53,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativeInfoPrivate;
-class Q_QUICK1_EXPORT QDeclarativeInfo : public QDebug
+class Q_DECLARATIVE_EXPORT QDeclarativeInfo : public QDebug
 {
 public:
     QDeclarativeInfo(const QDeclarativeInfo &);
@@ -85,17 +85,17 @@ public:
 #endif
 
 private:
-    friend Q_QUICK1_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
-    friend Q_QUICK1_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QDeclarativeError &error);
-    friend Q_QUICK1_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &errors);
+    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
+    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QDeclarativeError &error);
+    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &errors);
 
     QDeclarativeInfo(QDeclarativeInfoPrivate *);
     QDeclarativeInfoPrivate *d;
 };
 
-Q_QUICK1_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
-Q_QUICK1_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QDeclarativeError &error);
-Q_QUICK1_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &errors);
+Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
+Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QDeclarativeError &error);
+Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &errors);
 
 QT_END_NAMESPACE
 

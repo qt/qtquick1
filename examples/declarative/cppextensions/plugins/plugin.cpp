@@ -38,8 +38,8 @@
 **
 ****************************************************************************/
 
-#include <QtQuick1/QDeclarativeExtensionPlugin>
-#include <QtQuick1/qdeclarative.h>
+#include <QtDeclarative/QDeclarativeExtensionPlugin>
+#include <QtDeclarative/qdeclarative.h>
 #include <qdebug.h>
 #include <qdatetime.h>
 #include <qbasictimer.h>

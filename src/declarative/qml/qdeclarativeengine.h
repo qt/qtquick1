@@ -46,8 +46,8 @@
 #include <QtCore/qobject.h>
 #include <QtCore/qmap.h>
 #include <QtScript/qscriptvalue.h>
-#include <QtQuick1/qdeclarativeerror.h>
-#include <QtQuick1/qdeclarativedebug.h>
+#include <QtDeclarative/qdeclarativeerror.h>
+#include <QtDeclarative/qdeclarativedebug.h>
 
 QT_BEGIN_HEADER
 
@@ -67,7 +67,7 @@ class QScriptContext;
 class QDeclarativeImageProvider;
 class QNetworkAccessManager;
 class QDeclarativeNetworkAccessManagerFactory;
-class Q_QUICK1_EXPORT QDeclarativeEngine : public QObject
+class Q_DECLARATIVE_EXPORT QDeclarativeEngine : public QObject
 {
     Q_PROPERTY(QString offlineStoragePath READ offlineStoragePath WRITE setOfflineStoragePath)
     Q_OBJECT

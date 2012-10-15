@@ -42,9 +42,9 @@
 #include <qtest.h>
 #include <qdeclarativedatatest.h>
 #include <QtTest/QSignalSpy>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/qdeclarativecontext.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativecontext.h>
 #include <private/qdeclarativefontloader_p.h>
 #include "../shared/testhttpserver.h"
 

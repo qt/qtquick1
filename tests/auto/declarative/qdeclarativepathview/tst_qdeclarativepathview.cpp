@@ -40,17 +40,17 @@
 ****************************************************************************/
 
 #include <QtTest/QtTest>
-#include <QtQuick1/qdeclarativeview.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/qdeclarativecontext.h>
-#include <QtQuick1/qdeclarativeexpression.h>
-#include <QtQuick1/private/qdeclarativepathview_p.h>
-#include <QtQuick1/private/qdeclarativepath_p.h>
-#include <QtQuick1/private/qdeclarativetext_p.h>
-#include <QtQuick1/private/qdeclarativerectangle_p.h>
-#include <QtQuick1/private/qdeclarativelistmodel_p.h>
-#include <QtQuick1/private/qdeclarativevaluetype_p.h>
+#include <QtDeclarative/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativecontext.h>
+#include <QtDeclarative/qdeclarativeexpression.h>
+#include <QtDeclarative/private/qdeclarativepathview_p.h>
+#include <QtDeclarative/private/qdeclarativepath_p.h>
+#include <QtDeclarative/private/qdeclarativetext_p.h>
+#include <QtDeclarative/private/qdeclarativerectangle_p.h>
+#include <QtDeclarative/private/qdeclarativelistmodel_p.h>
+#include <QtDeclarative/private/qdeclarativevaluetype_p.h>
 #include <QAbstractListModel>
 #include <QStringListModel>
 #include <QStandardItemModel>

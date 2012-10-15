@@ -1,9 +1,9 @@
 TARGET = qmldbg_inspector
-QT       += quick1 quick1-private gui widgets core-private
+QT       += declarative declarative-private gui widgets core-private
 
 load(qt_plugin)
 
-DESTDIR  = $$QT.quick1.plugins/qmltooling
+DESTDIR  = $$QT.declarative.plugins/qmltooling
 
 INCLUDEPATH *= $$PWD
 

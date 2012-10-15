@@ -1,5 +1,5 @@
 %modules = ( # path to module name map
-    "QtQuick1" => "$basedir/src/declarative",
+    "QtDeclarative" => "$basedir/src/declarative",
 );
 # Module dependencies.
 # Every module that is required to build this module should have one entry.

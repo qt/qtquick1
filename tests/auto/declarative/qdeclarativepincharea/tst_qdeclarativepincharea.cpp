@@ -45,8 +45,8 @@
 #include <private/qdeclarativepincharea_p.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativeflickable_p.h>
-#include <QtQuick1/qdeclarativeview.h>
-#include <QtQuick1/qdeclarativecontext.h>
+#include <QtDeclarative/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativecontext.h>
 #include <QtGui/qpa/qwindowsysteminterface.h>
 
 class tst_QDeclarativePinchArea: public QObject

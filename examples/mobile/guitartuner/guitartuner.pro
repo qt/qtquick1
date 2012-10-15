@@ -65,8 +65,8 @@ symbian {
     TARGET.CAPABILITY = UserEnvironment
 }
 
-# Add quick1 module
-QT       += quick1
+# Add declarative module
+QT       += declarative
 
 OTHER_FILES += \
     src/application.qml \

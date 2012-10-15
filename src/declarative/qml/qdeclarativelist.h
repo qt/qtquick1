@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVELIST_H
 #define QDECLARATIVELIST_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qlist.h>
 #include <QtCore/qvariant.h>
 
@@ -114,7 +114,7 @@ private:
 
 class QDeclarativeEngine;
 class QDeclarativeListReferencePrivate;
-class Q_QUICK1_EXPORT QDeclarativeListReference
+class Q_DECLARATIVE_EXPORT QDeclarativeListReference
 {
 public:
     QDeclarativeListReference();

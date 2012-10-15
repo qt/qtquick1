@@ -39,11 +39,11 @@
 **
 ****************************************************************************/
 #include <qtest.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
 #include <private/qdeclarativeconnections_p.h>
 #include <private/qdeclarativeitem_p.h>
-#include <QtQuick1/qdeclarativescriptstring.h>
+#include <QtDeclarative/qdeclarativescriptstring.h>
 
 class tst_qdeclarativeconnection : public QObject
 

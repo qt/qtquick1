@@ -39,25 +39,25 @@
 **
 ****************************************************************************/
 
-#ifndef QTQUICK1GLOBAL_H
-#define QTQUICK1GLOBAL_H
+#ifndef QTDECLARATIVEGLOBAL_H
+#define QTDECLARATIVEGLOBAL_H
 
 #include <QtCore/qglobal.h>
 
 // This definition is in the process of being removed from qtbase - once it
 // has been expunged, this will no longer be necssary:
-#if defined(Q_QUICK1_EXPORT)
-#  undef Q_QUICK1_EXPORT
+#if defined(Q_DECLARATIVE_EXPORT)
+#  undef Q_DECLARATIVE_EXPORT
 #endif
 
 #ifndef QT_STATIC
-#  if defined(QT_BUILD_QUICK1_LIB)
-#    define Q_QUICK1_EXPORT Q_DECL_EXPORT
+#  if defined(QT_BUILD_DECLARATIVE_LIB)
+#    define Q_DECLARATIVE_EXPORT Q_DECL_EXPORT
 #  else
-#    define Q_QUICK1_EXPORT Q_DECL_IMPORT
+#    define Q_DECLARATIVE_EXPORT Q_DECL_IMPORT
 #  endif
 #else
-#  define Q_QUICK1_EXPORT
+#  define Q_DECLARATIVE_EXPORT
 #endif
 
-#endif // QTQUICK1GLOBAL_H
+#endif // QTDECLARATIVEGLOBAL_H

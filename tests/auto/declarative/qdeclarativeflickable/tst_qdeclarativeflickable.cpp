@@ -40,9 +40,9 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QtTest/QSignalSpy>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeview.h>
 #include <private/qdeclarativeflickable_p.h>
 #include <private/qdeclarativevaluetype_p.h>
 #include <QtWidgets/qgraphicswidget.h>

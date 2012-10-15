@@ -41,10 +41,10 @@
 
 #include "qdeclarativedatatest.h"
 
-#include <QtQuick1/QDeclarativeComponent>
-#include <QtQuick1/QDeclarativeError>
-#include <QtQuick1/QDeclarativeContext>
-#include <QtQuick1/QDeclarativeEngine>
+#include <QtDeclarative/QDeclarativeComponent>
+#include <QtDeclarative/QDeclarativeError>
+#include <QtDeclarative/QDeclarativeContext>
+#include <QtDeclarative/QDeclarativeEngine>
 #include <QtCore/QTextStream>
 
 QDeclarativeDataTest *QDeclarativeDataTest::m_instance = 0;

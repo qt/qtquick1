@@ -48,7 +48,7 @@
 #include "editor/livelayeritem.h"
 #include "editor/boundingrecthighlighter.h"
 
-#include <QtQuick1/QDeclarativeItem>
+#include <QtDeclarative/QDeclarativeItem>
 #include <QtGui/QMouseEvent>
 
 namespace QmlJSDebugger {

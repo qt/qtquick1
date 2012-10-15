@@ -44,7 +44,7 @@
 
 #include <QtCore/QObject>
 #include <qdeclarative.h>
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 
@@ -53,7 +53,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativeApplicationPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeApplication : public QObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeApplication : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(bool active READ active NOTIFY activeChanged)

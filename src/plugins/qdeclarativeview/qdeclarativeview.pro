@@ -1,7 +1,7 @@
 TEMPLATE    = lib
 TARGET      = qdeclarativeview
 CONFIG     += qt warn_on plugin designer
-QT         += quick1 widgets designer
+QT         += declarative widgets designer
 
 DESTDIR = $$QT.designer.plugins/designer
 contains(TEMPLATE, ".*lib"):TARGET = $$qtLibraryTarget($$TARGET)

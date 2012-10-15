@@ -53,7 +53,7 @@
 // We mean it.
 //
 
-#include "qtquick1global.h"
+#include "qtdeclarativeglobal.h"
 
 QT_BEGIN_HEADER
 
@@ -61,7 +61,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class Q_QUICK1_EXPORT QPerformanceTimer
+class Q_DECLARATIVE_EXPORT QPerformanceTimer
 {
 public:
     void start();

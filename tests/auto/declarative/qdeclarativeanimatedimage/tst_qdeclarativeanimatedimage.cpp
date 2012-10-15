@@ -40,14 +40,14 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <qdeclarativedatatest.h>
-#include <QtQuick1/qdeclarativeengine.h>
-#include <QtQuick1/qdeclarativecomponent.h>
-#include <QtQuick1/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativeview.h>
 #include <private/qdeclarativerectangle_p.h>
 #include <private/qdeclarativeimage_p.h>
 #include <private/qdeclarativeanimatedimage_p.h>
 #include <QSignalSpy>
-#include <QtQuick1/qdeclarativecontext.h>
+#include <QtDeclarative/qdeclarativecontext.h>
 
 #include "../shared/testhttpserver.h"
 

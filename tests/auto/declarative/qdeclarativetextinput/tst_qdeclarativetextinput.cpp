@@ -40,9 +40,9 @@
 ****************************************************************************/
 #include <qtest.h>
 #include <QtTest/QSignalSpy>
-#include <QtQuick1/qdeclarativeengine.h>
+#include <QtDeclarative/qdeclarativeengine.h>
 #include <QFile>
-#include <QtQuick1/qdeclarativeview.h>
+#include <QtDeclarative/qdeclarativeview.h>
 #include <private/qdeclarativetextinput_p.h>
 #include <private/qdeclarativetextinput_p_p.h>
 #include <QDebug>

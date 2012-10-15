@@ -42,19 +42,19 @@
 #define TESTTYPES_H
 
 #include <QtCore/qobject.h>
-#include <QtQuick1/qdeclarative.h>
-#include <QtQuick1/qdeclarativeexpression.h>
+#include <QtDeclarative/qdeclarative.h>
+#include <QtDeclarative/qdeclarativeexpression.h>
 #include <QtCore/qpoint.h>
 #include <QtCore/qsize.h>
-#include <QtQuick1/qdeclarativelist.h>
+#include <QtDeclarative/qdeclarativelist.h>
 #include <QtCore/qrect.h>
 #include <QtGui/qmatrix.h>
 #include <QtGui/qcolor.h>
 #include <QtGui/qvector3d.h>
 #include <QtCore/qdatetime.h>
 #include <QtScript/qscriptvalue.h>
-#include <QtQuick1/qdeclarativescriptstring.h>
-#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativescriptstring.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
 
 class MyQmlAttachedObject : public QObject
 {

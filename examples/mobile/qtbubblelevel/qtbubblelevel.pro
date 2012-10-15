@@ -1,4 +1,4 @@
-QT       += core gui quick1
+QT       += core gui declarative
 CONFIG   += mobility
 MOBILITY += sensors
 

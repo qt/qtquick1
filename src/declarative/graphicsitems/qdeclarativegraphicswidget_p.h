@@ -43,7 +43,7 @@
 #define QDECLARATIVEGRAPHICSWIDGET_P_H
 
 #include <QObject>
-#include <QtQuick1/qdeclarativecomponent.h>
+#include <QtDeclarative/qdeclarativecomponent.h>
 
 QT_BEGIN_HEADER
 

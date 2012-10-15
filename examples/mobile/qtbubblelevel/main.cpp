@@ -39,7 +39,7 @@
 **
 ****************************************************************************/
 
-#include <QtQuick1>
+#include <QtDeclarative>
 #include <QtGui>
 #include <QAccelerometer>
 

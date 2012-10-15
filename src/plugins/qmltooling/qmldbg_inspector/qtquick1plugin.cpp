@@ -43,8 +43,8 @@
 #include "qdeclarativeviewinspector.h"
 
 #include <QtCore/qplugin.h>
-#include <QtQuick1/private/qdeclarativeinspectorservice_p.h>
-#include <QtQuick1/qdeclarativeview.h>
+#include <QtDeclarative/private/qdeclarativeinspectorservice_p.h>
+#include <QtDeclarative/qdeclarativeview.h>
 
 namespace QmlJSDebugger {
 namespace QtQuick1 {

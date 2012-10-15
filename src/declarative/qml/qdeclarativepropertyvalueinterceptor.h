@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEPROPERTYVALUEINTERCEPTOR_H
 #define QDECLARATIVEPROPERTYVALUEINTERCEPTOR_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qobject.h>
 
 QT_BEGIN_HEADER
@@ -52,7 +52,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativeProperty;
-class Q_QUICK1_EXPORT QDeclarativePropertyValueInterceptor
+class Q_DECLARATIVE_EXPORT QDeclarativePropertyValueInterceptor
 {
 public:
     QDeclarativePropertyValueInterceptor();

@@ -58,7 +58,7 @@
 #include <QtCore/qlist.h>
 #include <QtCore/qshareddata.h>
 
-#include <private/qtquick1global_p.h>
+#include <private/qtdeclarativeglobal_p.h>
 
 QT_BEGIN_HEADER
 
@@ -78,7 +78,7 @@ class QIODevice;
 
 class QDeclarativeDomDocumentPrivate;
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomDocument
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomDocument
 {
 public:
     QDeclarativeDomDocument();
@@ -98,7 +98,7 @@ private:
 };
 
 class QDeclarativeDomPropertyPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomProperty
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomProperty
 {
 public:
     QDeclarativeDomProperty();
@@ -125,7 +125,7 @@ private:
 };
 
 class QDeclarativeDomDynamicPropertyPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomDynamicProperty
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomDynamicProperty
 {
 public:
     QDeclarativeDomDynamicProperty();
@@ -153,7 +153,7 @@ private:
 };
 
 class QDeclarativeDomObjectPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomObject
 {
 public:
     QDeclarativeDomObject();
@@ -198,7 +198,7 @@ private:
 
 class QDeclarativeDomValuePrivate;
 class QDeclarativeDomBasicValuePrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomValueLiteral
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomValueLiteral
 {
 public:
     QDeclarativeDomValueLiteral();
@@ -213,7 +213,7 @@ private:
     QSharedDataPointer<QDeclarativeDomBasicValuePrivate> d;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomValueBinding
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomValueBinding
 {
 public:
     QDeclarativeDomValueBinding();
@@ -228,7 +228,7 @@ private:
     QSharedDataPointer<QDeclarativeDomBasicValuePrivate> d;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomValueValueSource
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomValueValueSource
 {
 public:
     QDeclarativeDomValueValueSource();
@@ -243,7 +243,7 @@ private:
     QSharedDataPointer<QDeclarativeDomBasicValuePrivate> d;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomValueValueInterceptor
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomValueValueInterceptor
 {
 public:
     QDeclarativeDomValueValueInterceptor();
@@ -259,7 +259,7 @@ private:
 };
 
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomComponent : public QDeclarativeDomObject
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomComponent : public QDeclarativeDomObject
 {
 public:
     QDeclarativeDomComponent();
@@ -270,7 +270,7 @@ public:
     QDeclarativeDomObject componentRoot() const;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomValue
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomValue
 {
 public:
     enum Type { 
@@ -314,7 +314,7 @@ private:
     QSharedDataPointer<QDeclarativeDomValuePrivate> d;
 };
 
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomList
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomList
 {
 public:
     QDeclarativeDomList();
@@ -335,7 +335,7 @@ private:
 };
 
 class QDeclarativeDomImportPrivate;
-class Q_QUICK1_PRIVATE_EXPORT QDeclarativeDomImport
+class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomImport
 {
 public:
     enum Type { Library, File };

@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVENETWORKACCESSMANAGERFACTORY_H
 #define QDECLARATIVENETWORKACCESSMANAGERFACTORY_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qobject.h>
 
 QT_BEGIN_HEADER
@@ -52,7 +52,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QNetworkAccessManager;
-class Q_QUICK1_EXPORT QDeclarativeNetworkAccessManagerFactory
+class Q_DECLARATIVE_EXPORT QDeclarativeNetworkAccessManagerFactory
 {
 public:
     virtual ~QDeclarativeNetworkAccessManagerFactory();

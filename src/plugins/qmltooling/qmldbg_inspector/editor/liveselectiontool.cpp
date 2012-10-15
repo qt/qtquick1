@@ -52,8 +52,8 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QGraphicsObject>
 
-#include <QtQuick1/QDeclarativeItem>
-#include <QtQuick1/QDeclarativeEngine>
+#include <QtDeclarative/QDeclarativeItem>
+#include <QtDeclarative/QDeclarativeEngine>
 
 #include <QtCore/QDebug>
 

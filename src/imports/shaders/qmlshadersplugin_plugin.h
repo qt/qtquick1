@@ -42,7 +42,7 @@
 #ifndef QMLSHADERSPLUGIN_PLUGIN_H
 #define QMLSHADERSPLUGIN_PLUGIN_H
 
-#include <QtQuick1/QDeclarativeExtensionPlugin>
+#include <QtDeclarative/QDeclarativeExtensionPlugin>
 
 class qmlshaderspluginPlugin : public QDeclarativeExtensionPlugin
 {

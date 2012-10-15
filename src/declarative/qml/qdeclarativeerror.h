@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEERROR_H
 #define QDECLARATIVEERROR_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qurl.h>
 #include <QtCore/qstring.h>
 
@@ -54,7 +54,7 @@ QT_MODULE(Declarative)
 
 class QDebug;
 class QDeclarativeErrorPrivate;
-class Q_QUICK1_EXPORT QDeclarativeError
+class Q_DECLARATIVE_EXPORT QDeclarativeError
 {
 public:
     QDeclarativeError();
@@ -78,7 +78,7 @@ private:
     QDeclarativeErrorPrivate *d;
 };
 
-QDebug Q_QUICK1_EXPORT operator<<(QDebug debug, const QDeclarativeError &error);
+QDebug Q_DECLARATIVE_EXPORT operator<<(QDebug debug, const QDeclarativeError &error);
 
 QT_END_NAMESPACE
 

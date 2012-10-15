@@ -42,7 +42,7 @@
 #ifndef QDECLARATIVEPROPERTYVALUESOURCE_H
 #define QDECLARATIVEPROPERTYVALUESOURCE_H
 
-#include <QtQuick1/qtquick1global.h>
+#include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qobject.h>
 
 QT_BEGIN_HEADER
@@ -52,7 +52,7 @@ QT_BEGIN_NAMESPACE
 QT_MODULE(Declarative)
 
 class QDeclarativeProperty;
-class Q_QUICK1_EXPORT QDeclarativePropertyValueSource
+class Q_DECLARATIVE_EXPORT QDeclarativePropertyValueSource
 {
 public:
     QDeclarativePropertyValueSource();

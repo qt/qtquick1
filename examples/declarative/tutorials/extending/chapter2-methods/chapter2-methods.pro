@@ -1,4 +1,4 @@
-QT += widgets quick1
+QT += widgets declarative
 
 HEADERS += piechart.h
 SOURCES += piechart.cpp \
