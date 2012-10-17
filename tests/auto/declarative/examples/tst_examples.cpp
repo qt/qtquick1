@@ -67,19 +67,30 @@ private:
 tst_examples::tst_examples()
 {
     // Add directories you want excluded here
-    excludedDirs << "doc/src/snippets/declarative/visualdatamodel_rootindex";
-    excludedDirs << "doc/src/snippets/declarative/qtbinding";
+    excludedDirs << "doc/src/snippets/declarative/visualdatamodel_rootindex"
+                 << "doc/src/snippets/declarative/qtbinding";
+    // Known to violate naming conventions, QTQAINFRA-428
+    excludedDirs << "demos/mobile/qtbubblelevel/qml"
+                 << "demos/mobile/quickhit";
+    // Layouts do not install, QTQAINFRA-428
+    excludedDirs << "examples/declarative/cppextensions/qgraphicslayouts/qgraphicsgridlayout/qml/qgraphicsgridlayout"
+                 << "examples/declarative/cppextensions/qgraphicslayouts/qgraphicslinearlayout/qml/qgraphicslinearlayout";
+    // Various QML errors, QTQAINFRA-428
+    excludedDirs << "doc/src/snippets/declarative/imports";
 
 #ifdef QT_NO_WEBKIT
-    excludedDirs << "examples/declarative/modelviews/webview";
-    excludedDirs << "demos/declarative/webbrowser";
+    excludedDirs << "examples/declarative/modelviews/webview"
+                 << "demos/declarative/webbrowser"
+                 << "doc/src/snippets/declarative/webview";
 #endif
 
 #ifdef QT_NO_XMLPATTERNS
-    excludedDirs << "examples/declarative/xml/xmldata";
-    excludedDirs << "demos/declarative/twitter";
-    excludedDirs << "demos/declarative/flickr";
-    excludedDirs << "demos/declarative/photoviewer";
+    excludedDirs << "examples/declarative/xml/xmldata"
+                 << "demos/declarative/twitter"
+                 << "demos/declarative/flickr"
+                 << "demos/declarative/photoviewer"
+                 << "demos/declarative/rssnews/qml/rssnews"
+                 << "doc/src/snippets/declarative";
 #endif
 }
 
@@ -128,11 +139,14 @@ void tst_examples::namingConvention()
 
 QStringList tst_examples::findQmlFiles(const QDir &d)
 {
-    for (int ii = 0; ii < excludedDirs.count(); ++ii) {
-        QString s = excludedDirs.at(ii);
-        if (d.absolutePath().endsWith(s))
+    const QString absolutePath = d.absolutePath();
+#ifdef Q_OS_MAC // Mac: Do not recurse into bundle folders of built examples.
+    if (absolutePath.endsWith(QLatin1String(".app")))
+        return QStringList();
+#endif
+    foreach (const QString &excludedDir, excludedDirs)
+        if (absolutePath.endsWith(excludedDir))
             return QStringList();
-    }
 
     QStringList rv;
 
@@ -186,6 +200,13 @@ static void silentErrorsMsgHandler(QtMsgType, const QMessageLogContext &, const 
 {
 }
 
+static inline QByteArray msgViewerErrors(const QList<QDeclarativeError> &l)
+{
+    QString errors;
+    QDebug(&errors) << '\n' << l;
+    return errors.toLocal8Bit();
+}
+
 void tst_examples::examples()
 {
     QFETCH(QString, file);
@@ -195,11 +216,12 @@ void tst_examples::examples()
     QtMessageHandler old = qInstallMessageHandler(silentErrorsMsgHandler);
     QVERIFY(viewer.open(file));
     qInstallMessageHandler(old);
+    QVERIFY2(viewer.view()->status() != QDeclarativeView::Error,
+             msgViewerErrors(viewer.view()->errors()).constData());
+    QTRY_VERIFY(viewer.view()->status() != QDeclarativeView::Loading);
+    QVERIFY2(viewer.view()->status() == QDeclarativeView::Ready,
+             msgViewerErrors(viewer.view()->errors()).constData());
 
-    if (viewer.view()->status() == QDeclarativeView::Error)
-        qWarning() << viewer.view()->errors();
-
-    QCOMPARE(viewer.view()->status(), QDeclarativeView::Ready);
     viewer.show();
 
     QVERIFY(QTest::qWaitForWindowActive(&viewer));

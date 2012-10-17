@@ -486,10 +486,30 @@ QString QDeclarativeViewer::getVideoFileName()
     return QFileDialog::getSaveFileName(this, title, QString(), types.join(QLatin1String(";; ")));
 }
 
+// Check for presence of ImageMagick by launching its command line
+// convert tool except on Windows, where convert.exe is a file system converter.
+static bool senseImageMagick()
+{
+#ifdef Q_OS_WIN
+    return false;
+#else
+    static int imageMagickFound = -1;
+    if (imageMagickFound == -1) {
+        QProcess proc;
+        proc.start(QLatin1String("convert"), QStringList(QLatin1String("-h")));
+        imageMagickFound = proc.waitForStarted() && proc.waitForFinished(2000)
+                           && proc.readAllStandardOutput().contains("ImageMagick") ?
+                           1 : 0;
+    }
+    return imageMagickFound != 0;
+#endif
+}
+
 QDeclarativeViewer::QDeclarativeViewer(QWidget *parent, Qt::WindowFlags flags)
     : QMainWindow(parent, flags)
       , loggerWindow(new LoggerWidget(this))
       , frame_stream(0)
+      , convertAvailable(senseImageMagick())
       , rotateAction(0)
       , orientation(0)
       , showWarningsWindow(0)
@@ -510,7 +530,6 @@ QDeclarativeViewer::QDeclarativeViewer(QWidget *parent, Qt::WindowFlags flags)
     recdlg = new RecordingDialog(this);
     connect(recdlg->pickfile, SIGNAL(clicked()), this, SLOT(pickRecordingFile()));
     senseFfmpeg();
-    senseImageMagick();
     if (!ffmpegAvailable)
         recdlg->showffmpegOptions(false);
     if (!ffmpegAvailable && !convertAvailable)
@@ -1052,23 +1071,27 @@ bool QDeclarativeViewer::event(QEvent *event)
     return QWidget::event(event);
 }
 
-void QDeclarativeViewer::senseImageMagick()
+// Detect ffmpeg, return its help string.
+static inline QString detectFfmpeg()
 {
-    QProcess proc;
-    proc.start(QLatin1String("convert"), QStringList() << QLatin1String("-h"));
-    proc.waitForFinished(2000);
-    QString help = QString::fromLatin1(proc.readAllStandardOutput());
-    convertAvailable = help.contains(QLatin1String("ImageMagick"));
+    static QString ffmpegHelp;
+    if (ffmpegHelp.isNull()) {
+        QProcess proc;
+        proc.start(QLatin1String("ffmpeg"), QStringList(QLatin1String("-h")));
+        if (proc.waitForStarted() && proc.waitForFinished(2000)) {
+            ffmpegHelp = QString::fromLocal8Bit(proc.readAllStandardOutput());
+        } else {
+            ffmpegHelp = QLatin1String("");
+        }
+    }
+    return ffmpegHelp;
 }
 
 void QDeclarativeViewer::senseFfmpeg()
 {
-    QProcess proc;
-    proc.start(QLatin1String("ffmpeg"), QStringList() << QLatin1String("-h"));
-    proc.waitForFinished(2000);
-    QString ffmpegHelp = QString::fromLatin1(proc.readAllStandardOutput());
+    const QString ffmpegHelp = detectFfmpeg();
     ffmpegAvailable = ffmpegHelp.contains(QLatin1String("-s "));
-    ffmpegHelp = tr("Video recording uses ffmpeg:") + QLatin1String("\n\n") + ffmpegHelp;
+    const QString text = tr("Video recording uses ffmpeg:") + QLatin1String("\n\n") + ffmpegHelp;
 
     QDialog *d = new QDialog(recdlg);
     QVBoxLayout *l = new QVBoxLayout(d);
@@ -1076,7 +1099,7 @@ void QDeclarativeViewer::senseFfmpeg()
     QFont f = b->font();
     f.setFamily(QLatin1String("courier"));
     b->setFont(f);
-    b->setText(ffmpegHelp);
+    b->setText(text);
     l->addWidget(b);
     d->setLayout(l);
     ffmpegHelpWindow = d;
