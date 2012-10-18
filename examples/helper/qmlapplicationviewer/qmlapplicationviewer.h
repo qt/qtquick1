@@ -41,7 +41,7 @@
 #ifndef QMLAPPLICATIONVIEWER_H
 #define QMLAPPLICATIONVIEWER_H
 
-#include <QtDeclarative/QDeclarativeView>
+#include <QDeclarativeView>
 
 class QmlApplicationViewer : public QDeclarativeView
 {
@@ -68,7 +68,6 @@ public:
     void showExpanded();
 
 private:
-    explicit QmlApplicationViewer(QDeclarativeView *view, QWidget *parent);
     class QmlApplicationViewerPrivate *d;
 };
 
