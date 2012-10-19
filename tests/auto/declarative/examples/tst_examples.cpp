@@ -224,7 +224,7 @@ void tst_examples::examples()
 
     viewer.show();
 
-    QVERIFY(QTest::qWaitForWindowActive(&viewer, 3000));
+    QVERIFY(QTest::qWaitForWindowExposed(&viewer, 3000));
 }
 
 QTEST_MAIN(tst_examples)
