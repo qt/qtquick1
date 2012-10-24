@@ -1,8 +1,5 @@
-CONFIG += designer
-win32|mac: CONFIG+= debug_and_release
-DESTDIR = $$QT.designer.plugins
-contains(TEMPLATE, ".*lib"):TARGET = $$qtLibraryTarget($$TARGET)
+QT += designer declarative
 
-# install
-target.path = $$[QT_INSTALL_PLUGINS]/designer
-INSTALLS += target
+PLUGIN_TYPE = designer
+CONFIG += tool_plugin
+load(qt_plugin)

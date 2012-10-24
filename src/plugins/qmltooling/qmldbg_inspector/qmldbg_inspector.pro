@@ -1,9 +1,8 @@
 TARGET = qmldbg_inspector
 QT       += declarative declarative-private gui widgets core-private
 
+PLUGIN_TYPE = qmltooling
 load(qt_plugin)
-
-DESTDIR  = $$QT.declarative.plugins/qmltooling
 
 INCLUDEPATH *= $$PWD
 
@@ -45,6 +44,3 @@ HEADERS += \
     abstracttool.h
 
 OTHER_FILES += qtquick1plugin.json
-
-target.path += $$[QT_INSTALL_PLUGINS]/qmltooling
-INSTALLS += target
