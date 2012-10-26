@@ -1,6 +1,6 @@
+CXX_MODULE = declarative
 TARGET = qmlshadersplugin
 TARGETPATH = Qt/labs/shaders
-include(../qimportbase.pri)
 
 QT += declarative widgets opengl
 
@@ -23,10 +23,4 @@ HEADERS += \
 
 OTHER_FILES += shaders.json
 
-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
-target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
-
-qmldir.files += $$PWD/qmldir
-qmldir.path +=  $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
-
-INSTALLS += target qmldir
+load(qml1_plugin)

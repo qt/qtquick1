@@ -1,6 +1,6 @@
+CXX_MODULE = declarative
 TARGET  = qmlwebkitplugin
 TARGETPATH = QtWebKit
-include(../qimportbase.pri)
 
 QT += declarative declarative-private widgets widgets-private gui gui-private core-private script-private webkitwidgets
 
@@ -9,10 +9,4 @@ HEADERS += qdeclarativewebview_p.h
 
 OTHER_FILES += plugin.json
 
-DESTDIR = $$QT.declarative.imports/$$TARGETPATH
-target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
-
-qmldir.files += $$PWD/qmldir
-qmldir.path +=  $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
-
-INSTALLS += target qmldir
+load(qml1_plugin)
