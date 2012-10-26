@@ -1,4 +1,3 @@
-DESTDIR = $$QT.declarative.bins
 TARGET = qml1plugindump
 
 QT += core-private declarative-private
