@@ -10,8 +10,8 @@ SOURCES += qwidgets.cpp
 OTHER_FILES += qwidgets.json
 
 sources.files += qwidgets.pro qwidgets.cpp qwidgets.qml
-sources.path += $$[QT_INSTALL_EXAMPLES]/qtdeclarative/declarative/cppextensions/plugins
-target.path += $$[QT_INSTALL_EXAMPLES]/qtdeclarative/declarative/cppextensions/plugins
+sources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins
+target.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins
 
 INSTALLS += sources target
 

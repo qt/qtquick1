@@ -4,5 +4,5 @@ TEMPLATE = subdirs
 sources.files = \
     qmlapplicationviewer \
     deployment.pri
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtdeclarative/helper
+sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/helper
 INSTALLS += sources
