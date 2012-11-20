@@ -44,6 +44,10 @@
 
 #include <QtCore/qglobal.h>
 
+QT_BEGIN_HEADER
+
+QT_BEGIN_NAMESPACE
+
 // This definition is in the process of being removed from qtbase - once it
 // has been expunged, this will no longer be necssary:
 #if defined(Q_DECLARATIVE_EXPORT)
@@ -59,5 +63,9 @@
 #else
 #  define Q_DECLARATIVE_EXPORT
 #endif
+
+QT_END_NAMESPACE
+
+QT_END_HEADER
 
 #endif // QTDECLARATIVEGLOBAL_H
