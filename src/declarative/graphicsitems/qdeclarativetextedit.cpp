@@ -1139,6 +1139,7 @@ void QDeclarativeTextEdit::setReadOnly(bool r)
     if (!r)
         d->control->moveCursor(QTextCursor::End);
 
+    q_canPasteChanged();
     emit readOnlyChanged(r);
 }
 
@@ -1508,6 +1509,10 @@ void QDeclarativeTextEdit::updateImgCache(const QRectF &rf)
 bool QDeclarativeTextEdit::canPaste() const
 {
     Q_D(const QDeclarativeTextEdit);
+    if (!d->canPasteValid) {
+        d->canPaste = d->control->canPaste();
+        d->canPasteValid = true;
+    }
     return d->canPaste;
 }
 
@@ -1565,9 +1570,7 @@ void QDeclarativeTextEditPrivate::init()
     QObject::connect(control, SIGNAL(microFocusChanged()), q, SLOT(moveCursorDelegate()));
     QObject::connect(control, SIGNAL(linkActivated(QString)), q, SIGNAL(linkActivated(QString)));
 #ifndef QT_NO_CLIPBOARD
-    QObject::connect(q, SIGNAL(readOnlyChanged(bool)), q, SLOT(q_canPasteChanged()));
     QObject::connect(QApplication::clipboard(), SIGNAL(dataChanged()), q, SLOT(q_canPasteChanged()));
-    canPaste = control->canPaste();
 #endif
 
     document = control->document();
@@ -1888,7 +1891,9 @@ void QDeclarativeTextEdit::q_canPasteChanged()
     Q_D(QDeclarativeTextEdit);
     bool old = d->canPaste;
     d->canPaste = d->control->canPaste();
-    if(old!=d->canPaste)
+    bool changed = old != d->canPaste || !d->canPasteValid;
+    d->canPasteValid = true;
+    if (changed)
         emit canPasteChanged();
 }
 

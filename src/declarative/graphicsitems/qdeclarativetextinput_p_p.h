@@ -76,8 +76,8 @@ public:
                  mouseSelectionMode(QDeclarativeTextInput::SelectCharacters), inputMethodHints(Qt::ImhNone),
                  hscroll(0), oldScroll(0), oldValidity(false), focused(false), focusOnPress(true),
                  showInputPanelOnFocus(true), clickCausedFocus(false), cursorVisible(false),
-                 autoScroll(true), selectByMouse(false), canPaste(false), hAlignImplicit(true),
-                 selectPressed(false)
+                 autoScroll(true), selectByMouse(false), canPaste(false), canPasteValid(false)
+               , hAlignImplicit(true), selectPressed(false)
     {
     }
 
@@ -134,7 +134,8 @@ public:
     bool cursorVisible:1;
     bool autoScroll:1;
     bool selectByMouse:1;
-    bool canPaste:1;
+    mutable bool canPaste:1;
+    mutable bool canPasteValid:1;
     bool hAlignImplicit:1;
     bool selectPressed:1;
 

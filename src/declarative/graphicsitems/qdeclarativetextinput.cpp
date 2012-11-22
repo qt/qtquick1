@@ -52,6 +52,7 @@
 #include <QFontMetrics>
 #include <QPainter>
 #include <QTextBoundaryFinder>
+#include <QMimeData>
 #include <qstyle.h>
 
 #ifndef QT_NO_LINEEDIT
@@ -454,6 +455,7 @@ void QDeclarativeTextInput::setReadOnly(bool ro)
     setFlag(QGraphicsItem::ItemAcceptsInputMethod, !ro);
     d->control->setReadOnly(ro);
 
+    q_canPasteChanged();
     emit readOnlyChanged(ro);
 }
 
@@ -1615,6 +1617,11 @@ void QDeclarativeTextInput::setMouseSelectionMode(SelectionMode mode)
 bool QDeclarativeTextInput::canPaste() const
 {
     Q_D(const QDeclarativeTextInput);
+    if (!d->canPasteValid) {
+        if (const QMimeData *mimeData = QApplication::clipboard()->mimeData())
+            d->canPaste = !d->control->isReadOnly() && mimeData->hasText();
+        d->canPasteValid = true;
+    }
     return d->canPaste;
 }
 
@@ -1867,11 +1874,8 @@ void QDeclarativeTextInputPrivate::init()
     q->connect(control, SIGNAL(updateNeeded(QRect)),
                q, SLOT(updateRect(QRect)));
 #ifndef QT_NO_CLIPBOARD
-    q->connect(q, SIGNAL(readOnlyChanged(bool)),
-            q, SLOT(q_canPasteChanged()));
     q->connect(QApplication::clipboard(), SIGNAL(dataChanged()),
             q, SLOT(q_canPasteChanged()));
-    canPaste = !control->isReadOnly() && QApplication::clipboard()->text().length() != 0;
 #endif // QT_NO_CLIPBOARD
     q->connect(control, SIGNAL(updateMicroFocus()),
                q, SLOT(updateCursorRectangle()));
@@ -1994,9 +1998,14 @@ void QDeclarativeTextInput::q_canPasteChanged()
     Q_D(QDeclarativeTextInput);
     bool old = d->canPaste;
 #ifndef QT_NO_CLIPBOARD
-    d->canPaste = !d->control->isReadOnly() && QApplication::clipboard()->text().length() != 0;
+    if (const QMimeData *mimeData = QApplication::clipboard()->mimeData())
+        d->canPaste = !d->control->isReadOnly() && mimeData->hasText();
+    else
+        d->canPaste = false;
 #endif
-    if(d->canPaste != old)
+    bool changed = d->canPaste != old || !d->canPasteValid;
+    d->canPasteValid = true;
+    if (changed)
         emit canPasteChanged();
 }
 

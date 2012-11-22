@@ -71,9 +71,10 @@ public:
       : color("black"), hAlign(QDeclarativeTextEdit::AlignLeft), vAlign(QDeclarativeTextEdit::AlignTop),
       imgDirty(true), dirty(false), richText(false), cursorVisible(false), focusOnPress(true),
       showInputPanelOnFocus(true), clickCausedFocus(false), persistentSelection(true), requireImplicitWidth(false),
-      hAlignImplicit(true), rightToLeftText(false), textMargin(0.0), lastSelectionStart(0), lastSelectionEnd(0),
+      hAlignImplicit(true), rightToLeftText(false), selectByMouse(false), canPaste(false), canPasteValid(false),
+      textMargin(0.0), lastSelectionStart(0), lastSelectionEnd(0),
       cursorComponent(0), cursor(0), format(QDeclarativeTextEdit::AutoText), document(0), wrapMode(QDeclarativeTextEdit::NoWrap),
-      mouseSelectionMode(QDeclarativeTextEdit::SelectCharacters), selectByMouse(false), canPaste(false),
+      mouseSelectionMode(QDeclarativeTextEdit::SelectCharacters),
       yoff(0)
     {
     }
@@ -112,6 +113,9 @@ public:
     bool requireImplicitWidth:1;
     bool hAlignImplicit:1;
     bool rightToLeftText:1;
+    bool selectByMouse : 1;
+    mutable bool canPaste : 1;
+    mutable bool canPasteValid : 1;
     qreal textMargin;
     int lastSelectionStart;
     int lastSelectionEnd;
@@ -123,8 +127,6 @@ public:
     QDeclarativeTextEdit::WrapMode wrapMode;
     QDeclarativeTextEdit::SelectionMode mouseSelectionMode;
     int lineCount;
-    bool selectByMouse;
-    bool canPaste;
     int yoff;
     QSize paintedSize;
 };
