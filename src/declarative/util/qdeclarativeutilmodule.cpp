@@ -77,7 +77,7 @@
 
 void QDeclarativeUtilModule::defineModule()
 {
-    if (QApplication::type() != QApplication::Tty) {
+    if (qobject_cast<QApplication *>(QCoreApplication::instance())) {
         qmlRegisterUncreatableType<QDeclarativeApplication>("QtQuick",1,1,"Application", QDeclarativeApplication::tr("Application is an abstract class"));
 
         qmlRegisterType<QDeclarativeAnchorAnimation>("QtQuick",1,0,"AnchorAnimation");
@@ -133,7 +133,7 @@ void QDeclarativeUtilModule::defineModule()
 void QDeclarativeUtilModule::defineModuleCompat()
 {
 #ifndef QT_NO_IMPORT_QT47_QML
-    if (QApplication::type() != QApplication::Tty) {
+    if (qobject_cast<QApplication *>(QCoreApplication::instance())) {
         qmlRegisterType<QDeclarativeAnchorAnimation>("Qt",4,7,"AnchorAnimation");
         qmlRegisterType<QDeclarativeAnchorChanges>("Qt",4,7,"AnchorChanges");
         qmlRegisterType<QDeclarativeBehavior>("Qt",4,7,"Behavior");

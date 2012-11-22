@@ -111,7 +111,7 @@ void QDeclarativeValueTypeFactory::registerValueTypes()
 
 void QDeclarativeValueTypeFactory::registerValueTypesCompat()
 {
-    if (QApplication::type() == QApplication::Tty)
+    if (!qobject_cast<QApplication *>(QCoreApplication::instance()))
         return;
 
     qmlRegisterValueTypeEnums<QDeclarativeEasingValueType>("Qt",4,7,"Easing");

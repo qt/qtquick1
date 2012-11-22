@@ -96,7 +96,7 @@ static QDeclarativePrivate::AutoParentResult qgraphicsobject_autoParent(QObject 
 
 void QDeclarativeItemModule::defineModule()
 {
-    if (QApplication::type() == QApplication::Tty)
+    if (!qobject_cast<QApplication *>(QCoreApplication::instance()))
         return;
 
     QDeclarativePrivate::RegisterAutoParent autoparent = { 0, &qgraphicsobject_autoParent };
@@ -206,7 +206,7 @@ void QDeclarativeItemModule::defineModule()
 
 void QDeclarativeItemModule::defineModuleCompat()
 {
-    if (QApplication::type() == QApplication::Tty)
+    if (!qobject_cast<QApplication *>(QCoreApplication::instance()))
         return;
 
 #ifdef QT_NO_MOVIE
