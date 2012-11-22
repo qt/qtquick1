@@ -23,7 +23,8 @@ contains(QT_CONFIG, opengl): SUBDIRS += shadereffects
 # These examples contain no C++ and can simply be copied
 sources.files = \
    cppextensions \
-   xml
+   xml \
+   declarative.pro
 
 sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative
 INSTALLS += sources

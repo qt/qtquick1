@@ -47,7 +47,7 @@ android {
 } else { # Assumed to be a Desktop Unix, Windows, or Mac
     installPrefix = $$desktopInstallPrefix
     target.path = $${installPrefix}
-    sources.files = *.cpp *.h *.desktop *.png *.pro *.qml *.qmlproject *.svg
+    sources.files = *.cpp *.h *.desktop *.png *.pro *.qml *.qmlproject *.svg *.qrc
     sources.path = $$desktopInstallPrefix
     export(sources.files)
     export(sources.path)
