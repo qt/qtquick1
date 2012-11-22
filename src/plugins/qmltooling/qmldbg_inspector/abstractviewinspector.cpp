@@ -63,6 +63,8 @@ AbstractViewInspector::AbstractViewInspector(QObject *parent) :
     m_slowDownFactor(1.0),
     m_debugService(QDeclarativeInspectorService::instance())
 {
+    connect(m_debugService, SIGNAL(gotMessage(QByteArray)),
+            this, SLOT(handleMessage(QByteArray)));
 }
 
 void AbstractViewInspector::createQmlObject(const QString &qml, QObject *parent,

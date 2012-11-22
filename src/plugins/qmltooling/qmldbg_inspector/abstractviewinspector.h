@@ -72,8 +72,6 @@ class AbstractViewInspector : public QObject
 public:
     explicit AbstractViewInspector(QObject *parent = 0);
 
-    void handleMessage(const QByteArray &message);
-
     void createQmlObject(const QString &qml, QObject *parent,
                          const QStringList &importList,
                          const QString &filename = QString());
@@ -101,6 +99,9 @@ public:
     virtual Qt::WindowFlags windowFlags() const = 0;
     virtual void setWindowFlags(Qt::WindowFlags flags) = 0;
     virtual QDeclarativeEngine *declarativeEngine() const = 0;
+
+public slots:
+    void handleMessage(const QByteArray &message);
 
 signals:
     void designModeBehaviorChanged(bool inDesignMode);
