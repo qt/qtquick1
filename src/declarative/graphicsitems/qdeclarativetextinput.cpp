@@ -1617,11 +1617,13 @@ void QDeclarativeTextInput::setMouseSelectionMode(SelectionMode mode)
 bool QDeclarativeTextInput::canPaste() const
 {
     Q_D(const QDeclarativeTextInput);
+#ifndef QT_NO_CLIPBOARD
     if (!d->canPasteValid) {
         if (const QMimeData *mimeData = QApplication::clipboard()->mimeData())
             d->canPaste = !d->control->isReadOnly() && mimeData->hasText();
         d->canPasteValid = true;
     }
+#endif
     return d->canPaste;
 }
 
