@@ -1,6 +1,6 @@
 TARGET = qml1plugindump
 
-QT += core-private declarative-private
+QT += core-private declarative-private widgets
 
 SOURCES += \
     main.cpp \

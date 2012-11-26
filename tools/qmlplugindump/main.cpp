@@ -45,7 +45,7 @@
 #include <QtDeclarative/private/qdeclarativeevents_p_p.h>
 #include <QtDeclarative/private/qdeclarativepincharea_p.h>
 
-#include <QtGui/QGuiApplication>
+#include <QtWidgets/QApplication>
 #include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtCore/QSet>
@@ -554,7 +554,7 @@ int main(int argc, char *argv[])
     QtSimulatorPrivate::SimulatorConnection::createStubInstance();
 #endif
 
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     const QStringList args = app.arguments();
     const QString appName = QFileInfo(app.applicationFilePath()).baseName();
     if (args.size() < 2) {
