@@ -158,6 +158,8 @@ private slots:
     void crash1();
     void crash2();
 
+    void compatibilitySemicolon();
+
 private:
     QDeclarativeEngine engine;
     void testType(const QString& qml, const QString& type, const QString& error);
@@ -2007,6 +2009,15 @@ void tst_qdeclarativelanguage::aliasPropertyChangeSignals()
 
         delete o;
     }
+}
+
+void tst_qdeclarativelanguage::compatibilitySemicolon()
+{
+    QDeclarativeComponent component(&engine, testFileUrl("compatibilitySemicolon.qml"));
+
+    VERIFY_ERRORS(0);
+    QObject *o = component.create();
+    QVERIFY(o != 0);
 }
 
 QTEST_MAIN(tst_qdeclarativelanguage)

@@ -19,3 +19,6 @@ SOURCES += \
     $$PWD/qdeclarativejsgrammar.cpp \
     $$PWD/qdeclarativejslexer.cpp \
     $$PWD/qdeclarativejsparser.cpp
+
+OTHER_FILES += \
+    $$PWD/qdeclarativejs.g

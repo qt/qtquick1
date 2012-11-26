@@ -3,7 +3,7 @@
 ** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
-** This file is part of the QtDeclarative module of the Qt Toolkit.
+** This file is part of the Qt Toolkit.
 **
 ** $QT_BEGIN_LICENSE:LGPL$
 ** Commercial License Usage
@@ -63,12 +63,12 @@ class QDeclarativeJSGrammar
 public:
   enum VariousConstants {
     EOF_SYMBOL = 0,
-    REDUCE_HERE = 100,
-    SHIFT_THERE = 99,
+    REDUCE_HERE = 101,
+    SHIFT_THERE = 100,
     T_AND = 1,
     T_AND_AND = 2,
     T_AND_EQ = 3,
-    T_AS = 91,
+    T_AS = 92,
     T_AUTOMATIC_SEMICOLON = 62,
     T_BREAK = 4,
     T_CASE = 5,
@@ -76,6 +76,7 @@ public:
     T_COLON = 7,
     T_COMMA = 8,
     T_COMMENT = 88,
+    T_COMPATIBILITY_SEMICOLON = 89,
     T_CONST = 84,
     T_CONTINUE = 9,
     T_DEBUGGER = 85,
@@ -90,12 +91,12 @@ public:
     T_EQ_EQ = 18,
     T_EQ_EQ_EQ = 19,
     T_FALSE = 83,
-    T_FEED_JS_EXPRESSION = 96,
-    T_FEED_JS_PROGRAM = 98,
-    T_FEED_JS_SOURCE_ELEMENT = 97,
-    T_FEED_JS_STATEMENT = 95,
-    T_FEED_UI_OBJECT_MEMBER = 94,
-    T_FEED_UI_PROGRAM = 93,
+    T_FEED_JS_EXPRESSION = 97,
+    T_FEED_JS_PROGRAM = 99,
+    T_FEED_JS_SOURCE_ELEMENT = 98,
+    T_FEED_JS_STATEMENT = 96,
+    T_FEED_UI_OBJECT_MEMBER = 95,
+    T_FEED_UI_PROGRAM = 94,
     T_FINALLY = 20,
     T_FOR = 21,
     T_FUNCTION = 22,
@@ -107,7 +108,7 @@ public:
     T_GT_GT_GT_EQ = 28,
     T_IDENTIFIER = 29,
     T_IF = 30,
-    T_IMPORT = 90,
+    T_IMPORT = 91,
     T_IN = 31,
     T_INSTANCEOF = 32,
     T_LBRACE = 33,
@@ -127,7 +128,7 @@ public:
     T_NOT_EQ_EQ = 46,
     T_NULL = 81,
     T_NUMERIC_LITERAL = 47,
-    T_ON = 92,
+    T_ON = 93,
     T_OR = 48,
     T_OR_EQ = 49,
     T_OR_OR = 50,
@@ -135,7 +136,7 @@ public:
     T_PLUS_EQ = 52,
     T_PLUS_PLUS = 53,
     T_PROPERTY = 66,
-    T_PUBLIC = 89,
+    T_PUBLIC = 90,
     T_QUESTION = 54,
     T_RBRACE = 55,
     T_RBRACKET = 56,
@@ -164,15 +165,15 @@ public:
     T_XOR = 79,
     T_XOR_EQ = 80,
 
-    ACCEPT_STATE = 645,
-    RULE_COUNT = 347,
-    STATE_COUNT = 646,
-    TERMINAL_COUNT = 101,
+    ACCEPT_STATE = 646,
+    RULE_COUNT = 348,
+    STATE_COUNT = 647,
+    TERMINAL_COUNT = 102,
     NON_TERMINAL_COUNT = 106,
 
-    GOTO_INDEX_OFFSET = 646,
-    GOTO_INFO_OFFSET = 2714,
-    GOTO_CHECK_OFFSET = 2714
+    GOTO_INDEX_OFFSET = 647,
+    GOTO_INFO_OFFSET = 2776,
+    GOTO_CHECK_OFFSET = 2776
   };
 
   static const char  *const    spell [];
