@@ -146,8 +146,6 @@ private:
     bool m_hasShaderPrograms : 1;
     bool m_mirrored : 1;
     bool m_defaultVertexShader : 1;
-
-    QGLFramebufferObject* m_contextObserver;
 };
 
 QT_END_HEADER
