@@ -554,6 +554,9 @@ int main(int argc, char *argv[])
     QtSimulatorPrivate::SimulatorConnection::createStubInstance();
 #endif
 
+    // don't require a window manager even though we're a QGuiApplication
+    qputenv("QT_QPA_PLATFORM", QByteArrayLiteral("minimal"));
+
     QApplication app(argc, argv);
     const QStringList args = app.arguments();
     const QString appName = QFileInfo(app.applicationFilePath()).baseName();
