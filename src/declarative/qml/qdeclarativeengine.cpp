@@ -2469,7 +2469,7 @@ const QMetaObject *QDeclarativeEnginePrivate::metaObjectForType(int t) const
     }
 }
 
-bool QDeclarative_isFileCaseCorrect(const QString &fileName)
+bool QDeclarative_isFileCaseCorrect(const QString &fileName, int lengthIn /* = -1 */)
 {
 #if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
     QFileInfo info(fileName);
@@ -2493,6 +2493,20 @@ bool QDeclarative_isFileCaseCorrect(const QString &fileName)
     int canonicalLength = canonical.length();
 
     int length = qMin(absoluteLength, canonicalLength);
+    if (lengthIn >= 0) {
+        length = qMin(lengthIn, length);
+    } else {
+        // No length given: Limit to file name. Do not trigger
+        // on drive letters or folder names.
+        int lastSlash = absolute.lastIndexOf(QLatin1Char('/'));
+        if (lastSlash < 0)
+            lastSlash = absolute.lastIndexOf(QLatin1Char('\\'));
+        if (lastSlash >= 0) {
+            const int fileNameLength = absoluteLength - 1 - lastSlash;
+            length = qMin(length, fileNameLength);
+        }
+    }
+
     for (int ii = 0; ii < length; ++ii) {
         const QChar &a = absolute.at(absoluteLength - 1 - ii);
         const QChar &c = canonical.at(canonicalLength - 1 - ii);
@@ -2503,6 +2517,7 @@ bool QDeclarative_isFileCaseCorrect(const QString &fileName)
             return false;
     }
 #else
+    Q_UNUSED(lengthIn)
     Q_UNUSED(fileName)
 #endif
     return true;

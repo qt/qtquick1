@@ -1818,15 +1818,16 @@ void tst_qdeclarativelanguage::importsOrder()
 
 void tst_qdeclarativelanguage::importIncorrectCase()
 {
-    QDeclarativeComponent component(&engine, testFileUrl("importIncorrectCase.qml"));
+    // Load "importIncorrectCase.qml" using wrong case
+    QDeclarativeComponent component(&engine, testFileUrl("ImportIncorrectCase.qml"));
 
     QList<QDeclarativeError> errors = component.errors();
     QCOMPARE(errors.count(), 1);
 
-#if defined(Q_OS_MAC) || defined(Q_OS_WIN32)
-    QString expectedError = QLatin1String("cannot load module \"com.Nokia.installedtest\": File name case mismatch for \"") + QFileInfo(__FILE__).absoluteDir().filePath("data/lib/com/Nokia/installedtest/qmldir") + QLatin1String("\"");
+#if defined(Q_OS_MAC) || defined(Q_OS_WIN)
+    QString expectedError = QLatin1String("File name case mismatch");
 #else
-    QString expectedError = QLatin1String("module \"com.Nokia.installedtest\" is not installed");
+    QString expectedError = QLatin1String("File not found");
 #endif
 
     QCOMPARE(errors.at(0).description(), expectedError);
