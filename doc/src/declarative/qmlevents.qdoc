@@ -29,7 +29,7 @@
 \page qmlevents.html
 \ingroup qml-features
 \contentspage QML Features
-\previouspage {Keyboard Focus in QML}{Keyboard Focus}
+\previouspage {Keyboard Focus in Qt Quick 1}{Keyboard Focus}
 \nextpage Importing Reusable Components
 
 \title QML Signal and Handler Event System

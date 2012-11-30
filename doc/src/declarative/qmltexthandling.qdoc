@@ -30,7 +30,7 @@
 \title QML Text Handling and Validators
 \ingroup QML Features
 \previouspage {QML Mouse Events}{Mouse Events}
-\nextpage {Keyboard Focus in QML}{Keyboard Focus}
+\nextpage {Keyboard Focus in Qt Quick 1}{Keyboard Focus}
 \contentspage QML Features
 
 \tableofcontents

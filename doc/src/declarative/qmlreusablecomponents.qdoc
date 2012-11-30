@@ -132,7 +132,7 @@ The Button's \c text alias is accessible from outside the component as well as
 the Rectangle's visual properties and signals such as \c x, \c y, \c anchors,
 and \c states.
 
-Alternatively, we may choose a \l {Keyboard Focus in QML}{FocusScope} as our
+Alternatively, we may choose a \l {Keyboard Focus in Qt Quick 1}{FocusScope} as our
 top-level object. The \l FocusScope element manage keyboard focus for its
 children which is beneficial for certain types of interfaces. However, since
 \c FocusScopes are not visual elements, the visual properties of its child need

@@ -185,7 +185,7 @@ to provide additional functionality to objects. Two prominent elements,
 handlers.
 \snippet doc/src/snippets/declarative/properties.qml attached signal handler
 
-Read the \l{QML Signal and Handler Event System} and the \l{Keyboard Focus in QML}
+Read the \l{QML Signal and Handler Event System} and the \l{Keyboard Focus in Qt Quick 1}
 articles for more information.
 
 \section2 List properties
