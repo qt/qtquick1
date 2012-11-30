@@ -19,3 +19,5 @@ OTHER_FILES = data/qtquick1.qml
 
 CONFIG += parallel_test
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
+
+CONFIG+=insignificant_test # QTBUG-28298
