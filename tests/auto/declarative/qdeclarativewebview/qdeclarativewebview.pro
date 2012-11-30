@@ -9,7 +9,7 @@ SOURCES += ../shared/debugutil.cpp
 
 INCLUDEPATH += $$PWD/../../../../src/imports/webview
 
-QT += testlib network webkit widgets declarative declarative-private core-private widgets-private gui-private
+QT += testlib network webkitwidgets widgets declarative declarative-private core-private widgets-private gui-private
 
 exists($${TARGET}.qrc):RESOURCES += $${TARGET}.qrc
 
