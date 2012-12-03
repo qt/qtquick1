@@ -233,10 +233,19 @@ namespace QDeclarativePrivate
         AutoParentFunction function;
     };
 
+    struct RegisterComponent {
+        const QUrl &url;
+        const char *uri;
+        const char *typeName;
+        int majorVersion;
+        int minorVersion;
+    };
+
     enum RegistrationType {
         TypeRegistration       = 0, 
         InterfaceRegistration  = 1,
-        AutoParentRegistration = 2
+        AutoParentRegistration = 2,
+        ComponentRegistration  = 3
     };
 
     int Q_DECLARATIVE_EXPORT qmlregister(RegistrationType, void *);

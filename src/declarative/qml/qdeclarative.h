@@ -49,6 +49,7 @@
 #include <QtDeclarative/qdeclarativelist.h>
 
 #include <QtCore/qbytearray.h>
+#include <QtCore/qurl.h>
 #include <QtCore/qmetaobject.h>
 
 QT_BEGIN_HEADER
@@ -388,6 +389,19 @@ int qmlRegisterCustomType(const char *uri, int versionMajor, int versionMinor,
     };
 
     return QDeclarativePrivate::qmlregister(QDeclarativePrivate::TypeRegistration, &type);
+}
+
+inline int Q_DECLARATIVE_EXPORT qmlRegisterType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+{
+    QDeclarativePrivate::RegisterComponent type = {
+        url,
+        uri,
+        qmlName,
+        versionMajor,
+        versionMinor
+    };
+
+    return QDeclarativePrivate::qmlregister(QDeclarativePrivate::ComponentRegistration, &type);
 }
 
 class QDeclarativeContext;

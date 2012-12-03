@@ -99,6 +99,7 @@ private slots:
     void assignLiteralToVariant();
     void customParserTypes();
     void rootAsQmlComponent();
+    void qmlComponentType();
     void inlineQmlComponents();
     void idProperty();
     void autoNotifyConnection();
@@ -626,6 +627,16 @@ void tst_qdeclarativelanguage::rootAsQmlComponent()
     QVERIFY(object != 0);
     QCOMPARE(object->property("x"), QVariant(11));
     QCOMPARE(object->getChildren()->count(), 2);
+}
+
+// Tests that types can be specified from a QML only component
+void tst_qdeclarativelanguage::qmlComponentType()
+{
+    QDeclarativeComponent component(&engine, testFileUrl("qmlComponentType.qml"));
+    VERIFY_ERRORS(0);
+    QObject *object = qobject_cast<QObject *>(component.create());
+    QVERIFY(object != 0);
+    QCOMPARE(object->property("test"), QVariant(11));
 }
 
 // Tests that components can be specified inline
@@ -1965,6 +1976,8 @@ void tst_qdeclarativelanguage::initTestCase()
 {
     QDeclarativeDataTest::initTestCase();
     registerTypes();
+    // Registered here because it uses testFileUrl
+    qmlRegisterType(testFileUrl("MyComponentType.qml"), "Test", 1, 0, "MyComponentType");
 
     // Registering the TestType class in other modules should have no adverse effects
     qmlRegisterType<TestType>("com.nokia.TestPre", 1, 0, "Test");
