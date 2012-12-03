@@ -132,6 +132,7 @@ private slots:
     void reservedWords();
     void inlineAssignmentsOverrideBindings();
     void nestedComponentRoots();
+    void implicitImportsLast();
 
     void basicRemote_data();
     void basicRemote();
@@ -1806,6 +1807,11 @@ void tst_qdeclarativelanguage::importsOrder_data()
            "LocalLast {}"
            << (!qmlCheckTypes()?"QDeclarativeRectangle":"")// i.e. from com.nokia.installedtest, not data/LocalLast.qml
            << (!qmlCheckTypes()?"":"LocalLast is ambiguous. Found in lib/com/nokia/installedtest and in local directory");
+    QTest::newRow("local last 3") <<
+           "import com.nokia.installedtest 1.0\n"
+           "LocalLast {LocalLast2{}}"
+           << (!qmlCheckTypes()?"QDeclarativeRectangle":"")// i.e. from com.nokia.installedtest, not data/LocalLast.qml
+           << (!qmlCheckTypes()?"":"LocalLast is ambiguous. Found in lib/com/nokia/installedtest and in local directory");
 }
 
 void tst_qdeclarativelanguage::importsOrder()
@@ -2019,6 +2025,23 @@ void tst_qdeclarativelanguage::compatibilitySemicolon()
     VERIFY_ERRORS(0);
     QObject *o = component.create();
     QVERIFY(o != 0);
+}
+
+// Tests that the implicit import has lowest precedence, in the case where
+// there are conflicting types and types only found in the local import.
+// Tests that just check one (or the root) type are in ::importsOrder
+void tst_qdeclarativelanguage::implicitImportsLast()
+{
+    if (qmlCheckTypes())
+        QSKIP("This test is about maintaining the same choice when type is ambiguous.");
+    QDeclarativeComponent component(&engine, testFileUrl("localOrderTest.qml"));
+    VERIFY_ERRORS(0);
+    QObject *object = qobject_cast<QObject *>(component.create());
+    QVERIFY(object != 0);
+    QVERIFY(QString(object->metaObject()->className()).startsWith(QLatin1String("QDeclarativeMouseArea")));
+    QObject* object2 = object->property("item").value<QObject*>();
+    QVERIFY(object2 != 0);
+    QCOMPARE(QString(object2->metaObject()->className()), QLatin1String("QDeclarativeRectangle"));
 }
 
 QTEST_MAIN(tst_qdeclarativelanguage)
