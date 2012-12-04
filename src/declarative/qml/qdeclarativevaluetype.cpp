@@ -80,9 +80,19 @@ int qmlRegisterValueTypeEnums(const char *uri, int versionMajor, int versionMino
 
 QDeclarativeValueTypeFactory::QDeclarativeValueTypeFactory()
 {
+    static int isGuiApp = -1;
+    memset(valueTypes, 0, sizeof(valueTypes));
+    /*FIXME: is there a better way to tell if an app is Gui or not?*/
+    if (isGuiApp == -1)
+        isGuiApp = (int) qApp->inherits("QGuiApplication");
     // ### Optimize
-    for (unsigned int ii = 0; ii < (QVariant::UserType - 1); ++ii)
+    for (unsigned int ii = 0; ii <= QVariant::LastCoreType; ++ii)
         valueTypes[ii] = valueType(ii);
+
+    if (isGuiApp) {
+        for (unsigned int ii = QVariant::LastCoreType + 1; ii < (QVariant::UserType - 1); ++ii)
+            valueTypes[ii] = valueType(ii);
+    }
 }
 
 QDeclarativeValueTypeFactory::~QDeclarativeValueTypeFactory()
