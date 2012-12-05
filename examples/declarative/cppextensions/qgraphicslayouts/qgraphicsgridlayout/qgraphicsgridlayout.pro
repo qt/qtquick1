@@ -28,8 +28,8 @@ RESOURCES += \
     gridlayout.qrc
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/qgraphicslayouts/qgraphicsgridlayout
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/qgraphicslayouts/qgraphicsgridlayout
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(../../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+else:include(../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
 

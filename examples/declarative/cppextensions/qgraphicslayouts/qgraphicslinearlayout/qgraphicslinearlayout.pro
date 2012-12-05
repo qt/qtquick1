@@ -28,7 +28,7 @@ RESOURCES += \
     linearlayout.qrc
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/qgraphicslayouts/qgraphicslinearlayout
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/qgraphicslayouts/qgraphicslinearlayout
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(../../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+else:include(../../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

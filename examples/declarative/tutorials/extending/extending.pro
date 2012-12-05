@@ -7,9 +7,3 @@ SUBDIRS += \
     chapter4-customPropertyTypes \
     chapter5-listproperties \
     chapter6-plugins 
-
-# install
-sources.files = extending.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/tutorials/extending
-INSTALLS += sources
-

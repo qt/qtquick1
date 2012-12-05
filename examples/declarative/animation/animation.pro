@@ -5,9 +5,5 @@ SUBDIRS += \
     basics/color-animation \
     easing \
     behaviors/behavior-example \
+    behaviors/wigglytext \
     states
-
-# install
-sources.files = animation.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/animation
-INSTALLS += sources

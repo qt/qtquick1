@@ -23,8 +23,8 @@ DEFINES += ORIENTATIONLOCK
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/i18n
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/i18n
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+else:include(../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

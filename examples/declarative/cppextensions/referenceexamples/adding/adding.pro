@@ -5,7 +5,5 @@ SOURCES += main.cpp \
 HEADERS += person.h
 RESOURCES += adding.qrc
 
-target.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/referenceexamples/adding
-sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS adding.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/referenceexamples/adding
-INSTALLS += target sources
+target.path = $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/referenceexamples/adding
+INSTALLS += target

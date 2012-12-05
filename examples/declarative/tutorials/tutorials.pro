@@ -1,9 +1,9 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    extending
+    extending \
+    gettingStarted
 
-# install
-sources.files = tutorials.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/tutorials
-INSTALLS += sources
+EXAMPLE_FILES = \
+    helloworld \
+    samegame
