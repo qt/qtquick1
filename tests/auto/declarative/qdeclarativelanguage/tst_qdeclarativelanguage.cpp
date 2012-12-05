@@ -1513,13 +1513,13 @@ void tst_qdeclarativelanguage::importsBuiltin_data()
            "import org.qtproject.Test 1.12\n"
            "Test {}"
         << (!qmlCheckTypes()?"TestType2":"")
-        << (!qmlCheckTypes()?"":"Test is ambiguous. Found in com/nokia/Test in version 1.12 and 1.11");
+        << (!qmlCheckTypes()?"":"Test is ambiguous. Found in org/qtproject/Test in version 1.12 and 1.11");
     QTest::newRow("multiversion 2")
         << "import org.qtproject.Test 1.11\n"
            "import org.qtproject.Test 1.12\n"
            "OldTest {}"
         << (!qmlCheckTypes()?"TestType":"")
-        << (!qmlCheckTypes()?"":"OldTest is ambiguous. Found in com/nokia/Test in version 1.12 and 1.11");
+        << (!qmlCheckTypes()?"":"OldTest is ambiguous. Found in org/qtproject/Test in version 1.12 and 1.11");
     QTest::newRow("qualified multiversion 3")
         << "import org.qtproject.Test 1.0 as T0\n"
            "import org.qtproject.Test 1.8 as T8\n"
@@ -1588,7 +1588,7 @@ void tst_qdeclarativelanguage::importsLocal_data()
            "import org.qtproject.Test 1.0\n"
            "Test {}"
         << (!qmlCheckTypes()?"TestType":"")
-        << (!qmlCheckTypes()?"":"Test is ambiguous. Found in com/nokia/Test and in subdir");
+        << (!qmlCheckTypes()?"":"Test is ambiguous. Found in org/qtproject/Test and in subdir");
 }
 
 void tst_qdeclarativelanguage::importsLocal()
@@ -1744,26 +1744,26 @@ void tst_qdeclarativelanguage::importsOrder_data()
            "import org.qtproject.installedtest 1.4\n"
            "InstalledTest {}"
            << (!qmlCheckTypes()?"QDeclarativeText":"")
-           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/com/nokia/installedtest in version 1.4 and 1.4");
+           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/org/qtproject/installedtest in version 1.4 and 1.4");
     QTest::newRow("installed import overrides 1") <<
            "import org.qtproject.installedtest 1.0\n"
            "import org.qtproject.installedtest 1.4\n"
            "InstalledTest {}"
            << (!qmlCheckTypes()?"QDeclarativeText":"")
-           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/com/nokia/installedtest in version 1.4 and 1.0");
+           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/org/qtproject/installedtest in version 1.4 and 1.0");
     QTest::newRow("installed import overrides 2") <<
            "import org.qtproject.installedtest 1.4\n"
            "import org.qtproject.installedtest 1.0\n"
            "InstalledTest {}"
            << (!qmlCheckTypes()?"QDeclarativeRectangle":"")
-           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/com/nokia/installedtest in version 1.0 and 1.4");
+           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/org/qtproject/installedtest in version 1.0 and 1.4");
     QTest::newRow("installed import re-overrides 1") <<
            "import org.qtproject.installedtest 1.4\n"
            "import org.qtproject.installedtest 1.0\n"
            "import org.qtproject.installedtest 1.4\n"
            "InstalledTest {}"
            << (!qmlCheckTypes()?"QDeclarativeText":"")
-           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/com/nokia/installedtest in version 1.4 and 1.0");
+           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/org/qtproject/installedtest in version 1.4 and 1.0");
     QTest::newRow("installed import re-overrides 2") <<
            "import org.qtproject.installedtest 1.4\n"
            "import org.qtproject.installedtest 1.0\n"
@@ -1771,20 +1771,20 @@ void tst_qdeclarativelanguage::importsOrder_data()
            "import org.qtproject.installedtest 1.0\n"
            "InstalledTest {}"
            << (!qmlCheckTypes()?"QDeclarativeRectangle":"")
-           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/com/nokia/installedtest in version 1.0 and 1.4");
+           << (!qmlCheckTypes()?"":"InstalledTest is ambiguous. Found in lib/org/qtproject/installedtest in version 1.0 and 1.4");
 
     QTest::newRow("installed import versus builtin 1") <<
            "import org.qtproject.installedtest 1.5\n"
            "import QtQuick 1.0\n"
            "Rectangle {}"
            << (!qmlCheckTypes()?"QDeclarativeRectangle":"")
-           << (!qmlCheckTypes()?"":"Rectangle is ambiguous. Found in Qt and in lib/com/nokia/installedtest");
+           << (!qmlCheckTypes()?"":"Rectangle is ambiguous. Found in Qt and in lib/org/qtproject/installedtest");
     QTest::newRow("installed import versus builtin 2") <<
            "import QtQuick 1.0\n"
            "import org.qtproject.installedtest 1.5\n"
            "Rectangle {}"
            << (!qmlCheckTypes()?"QDeclarativeText":"")
-           << (!qmlCheckTypes()?"":"Rectangle is ambiguous. Found in lib/com/nokia/installedtest and in Qt");
+           << (!qmlCheckTypes()?"":"Rectangle is ambiguous. Found in lib/org/qtproject/installedtest and in Qt");
     QTest::newRow("namespaces cannot be overridden by types 1") <<
            "import QtQuick 1.0 as Rectangle\n"
            "import org.qtproject.installedtest 1.5\n"
@@ -1805,7 +1805,7 @@ void tst_qdeclarativelanguage::importsOrder_data()
            "import org.qtproject.installedtest 1.0\n"
            "LocalLast {}"
            << (!qmlCheckTypes()?"QDeclarativeRectangle":"")// i.e. from org.qtproject.installedtest, not data/LocalLast.qml
-           << (!qmlCheckTypes()?"":"LocalLast is ambiguous. Found in lib/com/nokia/installedtest and in local directory");
+           << (!qmlCheckTypes()?"":"LocalLast is ambiguous. Found in lib/org/qtproject/installedtest and in local directory");
 }
 
 void tst_qdeclarativelanguage::importsOrder()
