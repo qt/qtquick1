@@ -2,6 +2,7 @@ TARGET = qmldbg_inspector
 QT       += declarative declarative-private gui widgets core-private
 
 PLUGIN_TYPE = qmltooling
+PLUGIN_CLASS_NAME = QtQuick1Plugin
 load(qt_plugin)
 
 INCLUDEPATH *= $$PWD
