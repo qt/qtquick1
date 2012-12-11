@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-SUBDIRS += declarative imports plugins
+SUBDIRS += declarative imports plugins doc
 

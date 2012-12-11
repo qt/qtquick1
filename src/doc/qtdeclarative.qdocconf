@@ -1,0 +1,31 @@
+include($QT_INSTALL_DOCS/global/qt-module-defaults.qdocconf)
+
+project     = QtDeclarative
+description = "Qt Declarative Examples Documentation"
+url         = http://qt-project.org/doc/qt-5.0/qtdeclarative
+version     = 5.0.0
+
+exampleinstallpath = declarative
+
+qhp.projects = QtDeclarative
+
+qhp.QtDeclarative.file = qtdeclarative.qhp
+qhp.QtDeclarative.namespace = org.qt-project.qtdeclarative.500
+qhp.QtDeclarative.virtualFolder = declarative
+qhp.QtDeclarative.indexTitle = Qt Quick
+qhp.QtDeclarative.indexRoot =
+
+qhp.QtDeclarative.filterAttributes = declarative 5.0.0 qtrefdoc
+qhp.QtDeclarative.customFilters.Qt.name = declarative 5.0.0
+qhp.QtDeclarative.customFilters.Qt.filterAttributes = declarative 5.0.0
+
+depends += qtcore qtgui qtscript qtdoc
+
+exampledirs = ../examples/declarative
+
+headerdirs  += ..
+
+sourcedirs  += ..
+
+imagedirs   += images
+
