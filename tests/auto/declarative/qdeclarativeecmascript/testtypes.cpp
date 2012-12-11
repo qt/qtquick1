@@ -127,7 +127,7 @@ void registerTypes()
     qmlRegisterType<QPlainTextEdit>("Qt.test",1,0,"QPlainTextEdit");
 
     qRegisterMetaType<MyQmlObject::MyType>("MyQmlObject::MyType");
-    qRegisterMetaType<MyQmlObject::MyType>("MyEnum2");
+    qRegisterMetaType<MyQmlObject::MyEnum2>("MyEnum2");
     qRegisterMetaType<Qt::MouseButtons>("Qt::MouseButtons");
 }
 
