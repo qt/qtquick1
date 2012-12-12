@@ -2,6 +2,8 @@ TARGET = qml1plugindump
 
 QT += core-private declarative-private widgets
 
+CONFIG += qpa_minimal_plugin
+
 SOURCES += \
     main.cpp \
     qmlstreamwriter.cpp
