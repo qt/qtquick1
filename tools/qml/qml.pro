@@ -1,5 +1,5 @@
 TEMPLATE = app
-CONFIG += qt uic declarative_debug declarative
+CONFIG += uic declarative_debug declarative
 DESTDIR = $$QT.declarative.bins
 
 include(qml.pri)
