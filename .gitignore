@@ -268,3 +268,6 @@ tests/auto/*/*.moc
 tests/auto/*/*/*.o
 tests/auto/*/*/*.moc
 src/declarative/generated/
+
+# Generated static plugin import sources
+*_plugin_import.cpp
