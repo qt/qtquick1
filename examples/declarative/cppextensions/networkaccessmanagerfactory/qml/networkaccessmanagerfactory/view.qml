@@ -43,5 +43,5 @@ import QtQuick 1.0
 Image {
     width: 100
     height: 100
-    source: "http://qt.nokia.com/logo.png"
+    source: "http://planet.qt-project.org/images/logo.png"
 }
