@@ -101,7 +101,7 @@ Projects Forum Nokia: https://projects.forum.nokia.com/qtbubblelevel
 
     \snippet demos/mobile/qtbubblelevel/qml/BubbleLevel.qml 0
 
-    The Tube element represents the the glass tube of the bubble level. It is anchored to the centre of the wooden board. The width and height are calculated with specific factors to make the glass tube scale to different resolutions.
+    The Tube element represents the glass tube of the bubble level. It is anchored to the center of the wooden board. The width and height are calculated with specific factors to make the glass tube scale to different resolutions.
 
     \snippet demos/mobile/qtbubblelevel/qml/BubbleLevel.qml 1
 

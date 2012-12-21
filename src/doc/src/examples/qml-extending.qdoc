@@ -137,7 +137,7 @@ behavior.
 
 \section2 Define People as a base class
 
-The implementation of the People class itself has not changed since the the 
+The implementation of the People class itself has not changed since the
 previous example.  However, as we have repurposed the People class as a common
 base for Boy and Girl, we want to prevent it from being instantiated from QML
 directly - an explicit Boy or Girl should be instantiated instead.
