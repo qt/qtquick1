@@ -61,6 +61,12 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
+#if defined(Q_CC_GNU) && !defined(Q_CC_INTEL) && \
+    (defined(Q_CC_CLANG) || (__GNUC__ * 100 + __GNUC_MINOR__) > 406)
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Woverloaded-virtual"
+#endif
+
 class QDeclarativeAbstractAnimationPrivate;
 class QDeclarativeAnimationGroup;
 class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeAbstractAnimation : public QObject, public QDeclarativePropertyValueSource, public QDeclarativeParserStatus
@@ -506,6 +512,11 @@ protected:
                             TransitionDirection direction);
     virtual QAbstractAnimation *qtAnimation();
 };
+
+#if defined(Q_CC_GNU) && !defined(Q_CC_INTEL) && \
+    (defined(Q_CC_CLANG) || (__GNUC__ * 100 + __GNUC_MINOR__) > 406)
+#  pragma GCC diagnostic pop
+#endif
 
 QT_END_NAMESPACE
 
