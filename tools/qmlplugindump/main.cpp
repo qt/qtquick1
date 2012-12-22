@@ -177,7 +177,7 @@ QByteArray convertToId(const QMetaObject *mo)
     return className;
 }
 
-QSet<const QMetaObject *> collectReachableMetaObjects(QDeclarativeEngine *engine, const QList<QDeclarativeType *> &skip = QList<QDeclarativeType *>())
+QSet<const QMetaObject *> collectReachableMetaObjects(QDeclarativeEngine *, const QList<QDeclarativeType *> &skip = QList<QDeclarativeType *>())
 {
     QSet<const QMetaObject *> metas;
     metas.insert(FriendlyQObject::qtMeta());
