@@ -71,7 +71,9 @@ void exitApp(int i)
     // Debugging output is not visible by default on Windows -
     // therefore show modal dialog with errors instead.
     if (!warnings.isEmpty()) {
-        QMessageBox::warning(0, QApplication::translate("QDeclarativeViewer", "Qt QML Viewer"), warnings);
+        const QString message = QStringLiteral("<pre>") + warnings + QStringLiteral("</pre>");
+        QMessageBox::warning(0, QApplication::translate("QDeclarativeViewer", "Qt QML Viewer"),
+                             message);
     }
 #endif
     exit(i);

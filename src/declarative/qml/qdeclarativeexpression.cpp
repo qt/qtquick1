@@ -460,7 +460,7 @@ QScriptValue QDeclarativeQtScriptExpression::scriptValue(QObject *secondaryScope
     QDeclarativeEnginePrivate *ep = QDeclarativeEnginePrivate::get(context()->engine);
 
     bool lastCaptureProperties = ep->captureProperties;
-    QPODVector<QDeclarativeEnginePrivate::CapturedProperty> lastCapturedProperties;
+    QPODVector<QDeclarativeEnginePrivate::CapturedProperty, 16> lastCapturedProperties;
     ep->captureProperties = trackChange;
     ep->capturedProperties.copyAndClear(lastCapturedProperties);
 
@@ -539,7 +539,7 @@ QScriptValue QDeclarativeQtScriptExpression::eval(QObject *secondaryScope, bool 
     }
 }
 
-void QDeclarativeQtScriptExpression::updateGuards(const QPODVector<QDeclarativeEnginePrivate::CapturedProperty> &properties)
+void QDeclarativeQtScriptExpression::updateGuards(const QPODVector<QDeclarativeEnginePrivate::CapturedProperty, 16> &properties)
 {
     Q_ASSERT(guardObject);
     Q_ASSERT(guardObjectNotifyIndex != -1);

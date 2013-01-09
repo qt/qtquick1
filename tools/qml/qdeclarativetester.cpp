@@ -53,6 +53,15 @@
 
 QT_BEGIN_NAMESPACE
 
+enum {
+    TestSuccessExitCode = 0,
+#ifdef Q_OS_WIN
+    TestFailureExitCode = 1 // QProcess on Windows reports crash for exit codes < 0, QTBUG-28735
+#else
+    TestFailureExitCode = -1
+#endif
+};
+
 extern Q_GUI_EXPORT bool qt_applefontsmoothing_enabled;
 
 QDeclarativeTester::QDeclarativeTester(const QString &script, QDeclarativeViewer::ScriptOptions opts,
@@ -137,7 +146,7 @@ void QDeclarativeTester::executefailure()
     hasFailed = true;
 
     if (options & QDeclarativeViewer::ExitOnFailure)
-        exit(-1);
+        QCoreApplication::exit(TestFailureExitCode);
 }
 
 void QDeclarativeTester::imagefailure()
@@ -146,7 +155,7 @@ void QDeclarativeTester::imagefailure()
 
     if (options & QDeclarativeViewer::ExitOnFailure){
         testSkip();
-        exit(hasFailed?-1:0);
+        QCoreApplication::exit(hasFailed ? TestFailureExitCode : TestSuccessExitCode);
     }
 }
 
@@ -178,7 +187,7 @@ void QDeclarativeTester::complete()
 
     testSkip();
     if (options & QDeclarativeViewer::ExitOnComplete)
-        QApplication::exit(hasFailed?-1:0);
+        QCoreApplication::exit(hasFailed? TestFailureExitCode : TestSuccessExitCode);
 
     if (hasCompleted)
         return;
@@ -193,8 +202,13 @@ void QDeclarativeTester::run()
     QDeclarativeComponent c(m_view->engine(), m_script + QLatin1String(".qml"));
 
     testscript = qobject_cast<QDeclarativeVisualTest *>(c.create());
-    if (testscript) testscript->setParent(this);
-    else { executefailure(); exit(-1); }
+    if (testscript) {
+        testscript->setParent(this);
+    } else {
+        executefailure();
+        if (!(options & QDeclarativeViewer::ExitOnFailure))
+            QCoreApplication::exit(TestFailureExitCode);
+    }
     testscriptidx = 0;
 }
 
