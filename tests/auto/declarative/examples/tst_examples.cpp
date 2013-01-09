@@ -68,7 +68,8 @@ tst_examples::tst_examples()
 {
     // Add directories you want excluded here
     excludedDirs << "doc/src/snippets/declarative/visualdatamodel_rootindex"
-                 << "doc/src/snippets/declarative/qtbinding";
+                 << "doc/src/snippets/declarative/qtbinding"
+                 << "examples/declarative/tutorials"; //Excluded when tutorials were moved into examples (not checked before)
     // Known to violate naming conventions, QTQAINFRA-428
     excludedDirs << "demos/mobile/qtbubblelevel/qml"
                  << "demos/mobile/quickhit";

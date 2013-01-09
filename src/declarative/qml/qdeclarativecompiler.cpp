@@ -662,7 +662,8 @@ void QDeclarativeCompiler::compileTree(QDeclarativeParser::Object *tree)
     output->bytecode << init;
 
     // Build global import scripts
-    QHash<QString, Object::ScriptBlock> importedScripts;
+    QSet<QString> importedScripts;
+    QList<Object::ScriptBlock> importedScriptList;
     QStringList importedScriptIndexes;
 
     foreach (const QDeclarativeTypeData::ScriptReference &script, unit->resolvedScripts()) {
@@ -672,24 +673,23 @@ void QDeclarativeCompiler::compileTree(QDeclarativeParser::Object *tree)
         Q_ASSERT(!importedScripts.contains(script.qualifier));
 
         if (!scriptCode.isEmpty()) {
-            Object::ScriptBlock &scriptBlock = importedScripts[script.qualifier];
+            importedScripts.insert(script.qualifier);
 
+            Object::ScriptBlock scriptBlock;
             scriptBlock.code = scriptCode;
             scriptBlock.file = script.script->finalUrl().toString();
             scriptBlock.pragmas = pragmas;
+            importedScriptList.append(scriptBlock);
+            importedScriptIndexes.append(script.qualifier);
         }
     }
 
-    for (QHash<QString, Object::ScriptBlock>::Iterator iter = importedScripts.begin(); 
-         iter != importedScripts.end(); ++iter) {
-
-        importedScriptIndexes.append(iter.key());
-
+    for (int i = 0; i < importedScriptList.count(); ++i) {
         QDeclarativeInstruction import;
         import.type = QDeclarativeInstruction::StoreImportedScript;
         import.line = 0;
         import.storeScript.value = output->scripts.count();
-        output->scripts << *iter;
+        output->scripts << importedScriptList.at(i);
         output->bytecode << import;
     }
 

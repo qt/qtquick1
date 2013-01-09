@@ -6,8 +6,8 @@ examples/*/*/*
 !examples/*/*/README
 examples/*/*/*[.]app
 !examples/declarative/*
-!examples/tutorials/*
-!examples/tutorials/*/*
+!examples/declarative/tutorials/*
+!examples/declarative/tutorials/*/*
 !examples/ja_JP/*/*
 demos/*/*
 !demos/spectrum/*
@@ -268,3 +268,6 @@ tests/auto/*/*.moc
 tests/auto/*/*/*.o
 tests/auto/*/*/*.moc
 src/declarative/generated/
+
+# Generated static plugin import sources
+*_plugin_import.cpp

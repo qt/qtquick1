@@ -41,6 +41,7 @@
 #include <qtest.h>
 #include <QtTest/QSignalSpy>
 #include "../shared/testhttpserver.h"
+#include <qdeclarativedatatest.h>
 #include <math.h>
 #include <QFile>
 #include <QTextDocument>
@@ -63,20 +64,20 @@
 
 Q_DECLARE_METATYPE(QDeclarativeTextEdit::SelectionMode)
 
-QString createExpectedFileIfNotFound(const QString& filebasename, const QImage& actual)
+// Make a widget frameless to prevent size constraints of title bars
+// from interfering (Windows).
+static inline void setFrameless(QWidget *w)
 {
-    // XXX This will be replaced by some clever persistent platform image store.
-    QString persistent_dir = SRCDIR "/data";
-    QString arch = "unknown-architecture"; // QTest needs to help with this.
+    Qt::WindowFlags flags = w->windowFlags();
+    flags |= Qt::FramelessWindowHint;
+    flags &= ~(Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
+    w->setWindowFlags(flags);
+}
 
-    QString expectfile = persistent_dir + QDir::separator() + filebasename + "-" + arch + ".png";
-
-    if (!QFile::exists(expectfile)) {
-        actual.save(expectfile);
-        qWarning() << "created" << expectfile;
-    }
-
-    return expectfile;
+// Helper message for comparisons
+static inline QByteArray msgComparison(int v1, int v2)
+{
+    return QByteArray::number(v1) + ' ' + QByteArray::number(v2);
 }
 
 void sendPreeditText(const QString &text, int cursor)
@@ -90,7 +91,7 @@ void sendPreeditText(const QString &text, int cursor)
 }
 
 
-class tst_qdeclarativetextedit : public QObject
+class tst_qdeclarativetextedit : public QDeclarativeDataTest
 
 {
     Q_OBJECT
@@ -168,6 +169,7 @@ private slots:
 private:
     void simulateKey(QDeclarativeView *, int key, Qt::KeyboardModifiers modifiers = 0);
     QDeclarativeView *createView(const QString &filename);
+    QString alignmentReferenceImage(const QString& filebasename) const;
 
     QStringList standard;
     QStringList richText;
@@ -395,6 +397,12 @@ void tst_qdeclarativetextedit::alignments_data()
     QTest::newRow("CC") << int(Qt::AlignHCenter) << int(Qt::AlignVCenter) << "alignments_cc";
 }
 
+QString tst_qdeclarativetextedit::alignmentReferenceImage(const QString& filebasename) const
+{
+    // XXX This will be replaced by some clever persistent platform image store.
+    static const QString arch = QGuiApplication::platformName() + QLatin1Char('-') + qApp->style()->objectName();
+    return testFile(filebasename + QLatin1Char('-') + arch + QStringLiteral(".png"));
+}
 
 void tst_qdeclarativetextedit::alignments()
 {
@@ -402,7 +410,14 @@ void tst_qdeclarativetextedit::alignments()
     QFETCH(int, vAlign);
     QFETCH(QString, expectfile);
 
-    QDeclarativeView *canvas = createView(SRCDIR "/data/alignments.qml");
+    const QString referenceImage = alignmentReferenceImage(expectfile);
+    if (!QFile(referenceImage).exists())
+        QSKIP(qPrintable(QStringLiteral("Reference image '")
+                         + QDir::toNativeSeparators(referenceImage)
+                         + QStringLiteral("' does not exist.")));
+
+    QDeclarativeView *canvas = createView(testFile("alignments.qml"));
+    setFrameless(canvas);
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
@@ -419,9 +434,8 @@ void tst_qdeclarativetextedit::alignments()
     QPainter p(&actual);
     canvas->render(&p);
 
-    expectfile = createExpectedFileIfNotFound(expectfile, actual);
-
-    QImage expect(expectfile);
+    QImage expect(referenceImage);
+    QVERIFY(!expect.isNull());
 
     QCOMPARE(actual,expect);
 
@@ -466,7 +480,7 @@ void tst_qdeclarativetextedit::hAlign()
 
 void tst_qdeclarativetextedit::hAlign_RightToLeft()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/horizontalAlignment_RightToLeft.qml");
+    QDeclarativeView *canvas = createView(testFile("horizontalAlignment_RightToLeft.qml"));
     QDeclarativeTextEdit *textEdit = canvas->rootObject()->findChild<QDeclarativeTextEdit*>("text");
     QVERIFY(textEdit != 0);
     canvas->show();
@@ -957,7 +971,7 @@ void tst_qdeclarativetextedit::isRightToLeft()
 
 void tst_qdeclarativetextedit::keySelection()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/navigation.qml");
+    QDeclarativeView *canvas = createView(testFile("navigation.qml"));
     canvas->show();
     QApplication::setActiveWindow(canvas);
     QVERIFY(QTest::qWaitForWindowActive(canvas));
@@ -1349,19 +1363,19 @@ void tst_qdeclarativetextedit::mouseSelection_data()
     QTest::addColumn<QString>("selectedText");
 
     // import installed
-    QTest::newRow("on") << SRCDIR "/data/mouseselection_true.qml" << 4 << 9 << "45678";
-    QTest::newRow("off") << SRCDIR "/data/mouseselection_false.qml" << 4 << 9 << QString();
-    QTest::newRow("default") << SRCDIR "/data/mouseselection_default.qml" << 4 << 9 << QString();
-    QTest::newRow("off word selection") << SRCDIR "/data/mouseselection_false_words.qml" << 4 << 9 << QString();
-    QTest::newRow("on word selection (4,9)") << SRCDIR "/data/mouseselection_true_words.qml" << 4 << 9 << "0123456789";
-    QTest::newRow("on word selection (2,13)") << SRCDIR "/data/mouseselection_true_words.qml" << 2 << 13 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (2,30)") << SRCDIR "/data/mouseselection_true_words.qml" << 2 << 30 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (9,13)") << SRCDIR "/data/mouseselection_true_words.qml" << 9 << 13 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (9,30)") << SRCDIR "/data/mouseselection_true_words.qml" << 9 << 30 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (13,2)") << SRCDIR "/data/mouseselection_true_words.qml" << 13 << 2 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (20,2)") << SRCDIR "/data/mouseselection_true_words.qml" << 20 << 2 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (12,9)") << SRCDIR "/data/mouseselection_true_words.qml" << 12 << 9 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    QTest::newRow("on word selection (30,9)") << SRCDIR "/data/mouseselection_true_words.qml" << 30 << 9 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on") << testFile("mouseselection_true.qml") << 4 << 9 << "45678";
+    QTest::newRow("off") << testFile("mouseselection_false.qml") << 4 << 9 << QString();
+    QTest::newRow("default") << testFile("mouseselection_default.qml") << 4 << 9 << QString();
+    QTest::newRow("off word selection") << testFile("mouseselection_false_words.qml") << 4 << 9 << QString();
+    QTest::newRow("on word selection (4,9)") << testFile("mouseselection_true_words.qml") << 4 << 9 << "0123456789";
+    QTest::newRow("on word selection (2,13)") << testFile("mouseselection_true_words.qml") << 2 << 13 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (2,30)") << testFile("mouseselection_true_words.qml") << 2 << 30 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (9,13)") << testFile("mouseselection_true_words.qml") << 9 << 13 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (9,30)") << testFile("mouseselection_true_words.qml") << 9 << 30 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (13,2)") << testFile("mouseselection_true_words.qml") << 13 << 2 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (20,2)") << testFile("mouseselection_true_words.qml") << 20 << 2 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (12,9)") << testFile("mouseselection_true_words.qml") << 12 << 9 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    QTest::newRow("on word selection (30,9)") << testFile("mouseselection_true_words.qml") << 30 << 9 << "0123456789 ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 }
 
 void tst_qdeclarativetextedit::mouseSelection()
@@ -1403,8 +1417,7 @@ void tst_qdeclarativetextedit::mouseSelection()
 
 void tst_qdeclarativetextedit::multilineMouseSelection()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/mouseselection_multiline.qml");
-
+    QDeclarativeView *canvas = createView(testFile("mouseselection_multiline.qml"));
     canvas->show();
     QApplication::setActiveWindow(canvas);
     QVERIFY(QTest::qWaitForWindowActive(canvas));
@@ -1440,8 +1453,8 @@ void tst_qdeclarativetextedit::deferEnableSelectByMouse_data()
 {
     QTest::addColumn<QString>("qmlfile");
 
-    QTest::newRow("writable") << SRCDIR "/data/mouseselection_false.qml";
-    QTest::newRow("read only") << SRCDIR "/data/mouseselection_false_readonly.qml";
+    QTest::newRow("writable") << testFile("mouseselection_false.qml");
+    QTest::newRow("read only") << testFile("mouseselection_false_readonly.qml");
 }
 
 void tst_qdeclarativetextedit::deferEnableSelectByMouse()
@@ -1480,8 +1493,8 @@ void tst_qdeclarativetextedit::deferDisableSelectByMouse_data()
 {
     QTest::addColumn<QString>("qmlfile");
 
-    QTest::newRow("writable") << SRCDIR "/data/mouseselection_true.qml";
-    QTest::newRow("read only") << SRCDIR "/data/mouseselection_true_readonly.qml";
+    QTest::newRow("writable") << testFile("mouseselection_true.qml");
+    QTest::newRow("read only") << testFile("mouseselection_true_readonly.qml");
 }
 
 void tst_qdeclarativetextedit::deferDisableSelectByMouse()
@@ -1518,7 +1531,7 @@ void tst_qdeclarativetextedit::deferDisableSelectByMouse()
 
 void tst_qdeclarativetextedit::dragMouseSelection()
 {
-    QString qmlfile = SRCDIR "/data/mouseselection_true.qml";
+    QString qmlfile = testFile("mouseselection_true.qml");
 
     QDeclarativeView *canvas = createView(qmlfile);
 
@@ -1569,9 +1582,9 @@ void tst_qdeclarativetextedit::mouseSelectionMode_data()
     QTest::addColumn<bool>("selectWords");
 
     // import installed
-    QTest::newRow("SelectWords") << SRCDIR "/data/mouseselectionmode_words.qml" << true;
-    QTest::newRow("SelectCharacters") << SRCDIR "/data/mouseselectionmode_characters.qml" << false;
-    QTest::newRow("default") << SRCDIR "/data/mouseselectionmode_default.qml" << false;
+    QTest::newRow("SelectWords") << testFile("mouseselectionmode_words.qml") << true;
+    QTest::newRow("SelectCharacters") << testFile("mouseselectionmode_characters.qml") << false;
+    QTest::newRow("default") << testFile("mouseselectionmode_default.qml") << false;
 }
 
 void tst_qdeclarativetextedit::mouseSelectionMode()
@@ -1620,7 +1633,8 @@ void tst_qdeclarativetextedit::mouseSelectionMode()
 
 void tst_qdeclarativetextedit::inputMethodHints()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/inputmethodhints.qml");
+    QDeclarativeView *canvas = createView(testFile("inputmethodhints.qml"));
+    setFrameless(canvas);
     canvas->show();
     canvas->setFocus();
 
@@ -1636,8 +1650,9 @@ void tst_qdeclarativetextedit::inputMethodHints()
 
 void tst_qdeclarativetextedit::positionAt()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/positionAt.qml");
+    QDeclarativeView *canvas = createView(testFile("positionAt.qml"));
     QVERIFY(canvas->rootObject() != 0);
+    setFrameless(canvas);
     canvas->show();
     canvas->setFocus();
     QApplication::setActiveWindow(canvas);
@@ -1676,8 +1691,9 @@ void tst_qdeclarativetextedit::positionAt()
     int widthBegin = floor(line.cursorToX(pos - 1));
     int widthEnd = ceil(line.cursorToX(pos + 1));
 
-    QVERIFY(widthBegin <= texteditObject->width() / 2);
-    QVERIFY(widthEnd >= texteditObject->width() / 2);
+    const int halfObjectWidth = texteditObject->width() / 2;
+    QVERIFY2(widthBegin <= halfObjectWidth, msgComparison(widthBegin, halfObjectWidth).constData());
+    QVERIFY2(widthEnd >= halfObjectWidth, msgComparison(widthEnd, halfObjectWidth).constData());
 
     const qreal x0 = texteditObject->positionToRectangle(pos).x();
     const qreal x1 = texteditObject->positionToRectangle(pos + 1).x();
@@ -1705,7 +1721,7 @@ void tst_qdeclarativetextedit::positionAt()
 
 void tst_qdeclarativetextedit::cursorDelegate()
 {
-    QDeclarativeView* view = createView(SRCDIR "/data/cursorTest.qml");
+    QDeclarativeView* view = createView(testFile("cursorTest.qml"));
     view->show();
     view->setFocus();
     QDeclarativeTextEdit *textEditObject = view->rootObject()->findChild<QDeclarativeTextEdit*>("textEditObject");
@@ -1877,9 +1893,9 @@ void tst_qdeclarativetextedit::delegateLoading()
     QFETCH(QString, error);
 
     TestHTTPServer server(42332);
-    server.serveDirectory(SRCDIR "/data/httpfail", TestHTTPServer::Disconnect);
-    server.serveDirectory(SRCDIR "/data/httpslow", TestHTTPServer::Delay);
-    server.serveDirectory(SRCDIR "/data/http");
+    server.serveDirectory(testFile("httpfail"), TestHTTPServer::Disconnect);
+    server.serveDirectory(testFile("httpslow"), TestHTTPServer::Delay);
+    server.serveDirectory(testFile("http"));
 
     QDeclarativeView* view = new QDeclarativeView(0);
 
@@ -1922,7 +1938,7 @@ the extent of the text, then they should ignore the keys.
 */
 void tst_qdeclarativetextedit::navigation()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/navigation.qml");
+    QDeclarativeView *canvas = createView(testFile("navigation.qml"));
     canvas->show();
     canvas->setFocus();
 
@@ -2054,7 +2070,7 @@ void tst_qdeclarativetextedit::canPasteEmpty() {
 
 void tst_qdeclarativetextedit::readOnly()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/readOnly.qml");
+    QDeclarativeView *canvas = createView(testFile("readOnly.qml"));
     canvas->show();
     canvas->setFocus();
 
@@ -2297,7 +2313,7 @@ void tst_qdeclarativetextedit::openInputPanelOnFocus()
 
 void tst_qdeclarativetextedit::geometrySignals()
 {
-    QDeclarativeComponent component(&engine, SRCDIR "/data/geometrySignals.qml");
+    QDeclarativeComponent component(&engine, testFile("geometrySignals.qml"));
     QObject *o = component.create();
     QVERIFY(o);
     QCOMPARE(o->property("bindingWidth").toInt(), 400);
@@ -2385,8 +2401,10 @@ void tst_qdeclarativetextedit::implicitSizePreedit()
     QInputMethodEvent event(text, QList<QInputMethodEvent::Attribute>());
     QCoreApplication::sendEvent(&view, &event);
 
-    QVERIFY(textObject->width() < textObject->implicitWidth());
-    QVERIFY(textObject->height() == textObject->implicitHeight());
+    QVERIFY2(textObject->width() < textObject->implicitWidth(),
+             msgComparison(textObject->width(), textObject->implicitWidth()).constData());
+    QVERIFY2(textObject->height() == textObject->implicitHeight(),
+             msgComparison(textObject->height(), textObject->implicitHeight()).constData());
     qreal wrappedHeight = textObject->height();
 
     textObject->resetWidth();
@@ -2484,7 +2502,8 @@ void tst_qdeclarativetextedit::preeditMicroFocus()
         ic.clear();
         sendPreeditText(preeditText, i);
         currentRect = edit.inputMethodQuery(Qt::ImMicroFocus).toRect();
-        QVERIFY(previousRect.left() < currentRect.left());
+        QVERIFY2(previousRect.left() < currentRect.left(),
+                 msgComparison(previousRect.left(), currentRect.left()).constData());
 #if defined(Q_WS_X11)
         QVERIFY(ic.updateCallCount > 0);
 #endif
@@ -2592,7 +2611,8 @@ void tst_qdeclarativetextedit::inputMethodComposing()
 
 void tst_qdeclarativetextedit::cursorRectangleSize()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/CursorRect.qml");
+    QDeclarativeView *canvas = createView(testFile("CursorRect.qml"));
+    setFrameless(canvas);
     QVERIFY(canvas->rootObject() != 0);
     canvas->show();
     canvas->setFocus();
@@ -2601,7 +2621,7 @@ void tst_qdeclarativetextedit::cursorRectangleSize()
 
     QDeclarativeTextEdit *textEdit = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
     QVERIFY(textEdit != 0);
-    textEdit->setFocus(Qt::OtherFocusReason);
+    textEdit->setFocus(true);
     QRectF cursorRect = textEdit->positionToRectangle(textEdit->cursorPosition());
     QRectF microFocusFromScene = canvas->scene()->inputMethodQuery(Qt::ImMicroFocus).toRectF();
     QRectF microFocusFromApp= QApplication::focusWidget()->inputMethodQuery(Qt::ImMicroFocus).toRectF();
@@ -2612,7 +2632,8 @@ void tst_qdeclarativetextedit::cursorRectangleSize()
 
 void tst_qdeclarativetextedit::deselect()
 {
-    QDeclarativeView *canvas = createView(SRCDIR "/data/CursorRect.qml");
+    QDeclarativeView *canvas = createView(testFile("CursorRect.qml"));
+    setFrameless(canvas);
     QVERIFY(canvas->rootObject() != 0);
     canvas->show();
     canvas->setFocus();

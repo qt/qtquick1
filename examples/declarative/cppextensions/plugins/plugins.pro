@@ -1,5 +1,5 @@
 TEMPLATE = lib
-CONFIG += qt plugin
+CONFIG += plugin
 QT += widgets declarative
 
 DESTDIR = com/nokia/TimeExample
@@ -7,7 +7,7 @@ TARGET  = qmlqtimeexampleplugin
 
 SOURCES += plugin.cpp
 
-OTHER_FILES += "plugin.json"
+target.path += $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/plugins/com/nokia/TimeExample
 
 qdeclarativesources.files += \
     com/nokia/TimeExample/qmldir \
@@ -16,12 +16,10 @@ qdeclarativesources.files += \
     com/nokia/TimeExample/Clock.qml \
     com/nokia/TimeExample/hour.png \
     com/nokia/TimeExample/minute.png
+qdeclarativesources.path += $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/plugins/com/nokia/TimeExample
 
-qdeclarativesources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins/com/nokia/TimeExample
+qml.files += plugins.qml
+qml.path += $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/plugins
 
-sources.files += plugins.pro plugin.cpp plugins.qml README
-sources.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins
-target.path += $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/plugins/com/nokia/TimeExample
-
-INSTALLS += qdeclarativesources sources target
+INSTALLS += target qdeclarativesources qml
 

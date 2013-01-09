@@ -9,7 +9,5 @@ HEADERS += person.h \
            happybirthdaysong.h
 RESOURCES += binding.qrc
 
-target.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/referenceexamples/binding
-sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS binding.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/cppextensions/referenceexamples/binding
-INSTALLS += target sources
+target.path = $$[QT_INSTALL_EXAMPLES]/declarative/cppextensions/referenceexamples/binding
+INSTALLS += target

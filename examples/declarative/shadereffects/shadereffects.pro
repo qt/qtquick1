@@ -19,13 +19,9 @@ QT += declarative opengl
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp
 
-symbian {
-    DEFINES += SHADEREFFECTS_USE_OPENGL_GRAPHICSSYSTEM
-}
-
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/shadereffects
+desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/shadereffects
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
 else:exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+else:include(../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

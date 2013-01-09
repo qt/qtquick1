@@ -16,3 +16,5 @@ DEFINES += SRCDIR=\\\"$$PWD\\\"
 
 CONFIG += parallel_test
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
+
+CONFIG += insignificant_test # QTBUG-21015

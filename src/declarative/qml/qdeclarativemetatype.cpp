@@ -449,7 +449,7 @@ QObject *QDeclarativeType::create() const
     d->m_newFunc(rv);
 
     if (rv && !d->m_metaObjects.isEmpty())
-        (void *)new QDeclarativeProxyMetaObject(rv, &d->m_metaObjects);
+        (void)new QDeclarativeProxyMetaObject(rv, &d->m_metaObjects);
 
     return rv;
 }
@@ -462,7 +462,7 @@ void QDeclarativeType::create(QObject **out, void **memory, size_t additionalMem
     d->m_newFunc(rv);
 
     if (rv && !d->m_metaObjects.isEmpty())
-        (void *)new QDeclarativeProxyMetaObject(rv, &d->m_metaObjects);
+        (void)new QDeclarativeProxyMetaObject(rv, &d->m_metaObjects);
 
     *out = rv;
     *memory = ((char *)rv) + d->m_allocationSize;

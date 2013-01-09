@@ -4,10 +4,5 @@ SUBDIRS += \
     clocks \
     corkboards \
     dynamicscene \
-    tic-tac-toe/tictactoe.pro \
+    tic-tac-toe \
     tvtennis
-
-# install
-sources.files = toys.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/toys
-INSTALLS += sources

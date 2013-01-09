@@ -10,8 +10,3 @@ SUBDIRS += \
     pathview \
     stringlistmodel \
     visualitemmodel
-
-# install
-sources.files = modelviews.pro
-sources.path = $$[QT_INSTALL_EXAMPLES]/qtquick1/declarative/modelviews
-INSTALLS += sources
