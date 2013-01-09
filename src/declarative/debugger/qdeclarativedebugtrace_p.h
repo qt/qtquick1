@@ -45,7 +45,7 @@
 #include "qtdeclarativeglobal.h"
 
 #include <private/qdeclarativedebugservice_p.h>
-#include <private/qperformancetimer_p.h>
+#include <qelapsedtimer.h>
 
 QT_BEGIN_HEADER
 
@@ -135,7 +135,7 @@ private:
 #endif
     void processMessage(const QDeclarativeDebugData &);
     void sendMessages();
-    QPerformanceTimer m_timer;
+    QElapsedTimer m_timer;
     bool m_enabled;
     bool m_deferredSend;
     bool m_messageReceived;
