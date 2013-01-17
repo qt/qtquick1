@@ -72,8 +72,7 @@ contains(QT_CONFIG, private_tests) {
            qdeclarativevisualdatamodel \
            qdeclarativeworkerscript \
            qdeclarativexmllistmodel \
-           qpacketprotocol \
-           qperformancetimer
+           qpacketprotocol
 
     # This test requires the xmlpatterns module
     !contains(QT_CONFIG,xmlpatterns): SUBDIRS -= qdeclarativexmllistmodel
