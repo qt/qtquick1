@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeborderimage
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private widgets network
+QT += testlib declarative declarative-private widgets network
 macx:CONFIG -= app_bundle
 
 HEADERS += ../shared/testhttpserver.h

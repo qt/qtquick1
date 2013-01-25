@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeerror
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative
+QT += testlib declarative
 SOURCES += tst_qdeclarativeerror.cpp
 macx:CONFIG -= app_bundle
 

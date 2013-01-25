@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeimageprovider
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private
+QT += testlib declarative declarative-private
 QT += network
 macx:CONFIG -= app_bundle
 

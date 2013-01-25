@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeengine
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative network
+QT += testlib declarative network
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeengine.cpp 

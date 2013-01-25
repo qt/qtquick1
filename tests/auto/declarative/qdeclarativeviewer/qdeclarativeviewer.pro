@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeviewer
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative gui
+QT += testlib declarative gui
 macx:CONFIG -= app_bundle
 
 include(../../../../tools/qml/qml.pri)

@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativelistmodel
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private script-private core-private gui-private widgets-private
+QT += testlib declarative declarative-private script-private core-private gui-private widgets-private
 QT += script
 macx:CONFIG -= app_bundle
 

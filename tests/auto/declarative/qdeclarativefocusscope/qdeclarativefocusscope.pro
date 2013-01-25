@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativefocusscope
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private widgets
+QT += testlib declarative declarative-private widgets
 SOURCES += tst_qdeclarativefocusscope.cpp
 macx:CONFIG -= app_bundle
 

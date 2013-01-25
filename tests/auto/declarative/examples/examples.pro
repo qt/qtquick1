@@ -5,8 +5,7 @@ TARGET = tst_examples
 !qtHaveModule(webkit): DEFINES += QT_NO_WEBKIT
 !qtHaveModule(xmlpatterns): DEFINES += QT_NO_XMLPATTERNS
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative
+QT += testlib declarative
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_examples.cpp 

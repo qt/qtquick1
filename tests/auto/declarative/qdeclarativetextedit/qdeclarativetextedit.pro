@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativetextedit
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private gui gui-private widgets widgets-private network core-private
+QT += testlib declarative declarative-private gui gui-private widgets widgets-private network core-private
 macx:CONFIG -= app_bundle
 
 include(../shared/qdeclarativedatatest.pri)

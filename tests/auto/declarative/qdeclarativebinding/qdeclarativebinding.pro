@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativebinding
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private widgets
+QT += testlib declarative declarative-private widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativebinding.cpp
