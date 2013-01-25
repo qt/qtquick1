@@ -391,7 +391,7 @@ int qmlRegisterCustomType(const char *uri, int versionMajor, int versionMinor,
     return QDeclarativePrivate::qmlregister(QDeclarativePrivate::TypeRegistration, &type);
 }
 
-inline int Q_DECLARATIVE_EXPORT qmlRegisterType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+inline int qmlRegisterType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
 {
     QDeclarativePrivate::RegisterComponent type = {
         url,
