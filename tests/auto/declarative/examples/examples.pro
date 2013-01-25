@@ -2,8 +2,8 @@ CONFIG += testcase
 testcase.timeout = 400 # this test is slow
 TARGET = tst_examples
 
-!contains(QT_CONFIG, webkit): DEFINES += QT_NO_WEBKIT
-!contains(QT_CONFIG, xmlpatterns): DEFINES += QT_NO_XMLPATTERNS
+!qtHaveModule(webkit): DEFINES += QT_NO_WEBKIT
+!qtHaveModule(xmlpatterns): DEFINES += QT_NO_XMLPATTERNS
 
 QT += testlib
 contains(QT_CONFIG,declarative): QT += declarative

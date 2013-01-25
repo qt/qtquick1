@@ -65,7 +65,7 @@ HEADERS += \
     $$PWD/qdeclarativelistmodelworkeragent_p.h \
     $$PWD/qlistmodelinterface_p.h
 
-contains(QT_CONFIG, xmlpatterns) {
+qtHaveModule(xmlpatterns) {
     QT+=xmlpatterns
     SOURCES += $$PWD/qdeclarativexmllistmodel.cpp
     HEADERS += $$PWD/qdeclarativexmllistmodel_p.h

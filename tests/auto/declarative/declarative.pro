@@ -75,12 +75,12 @@ contains(QT_CONFIG, private_tests) {
            qpacketprotocol
 
     # This test requires the xmlpatterns module
-    !contains(QT_CONFIG,xmlpatterns): SUBDIRS -= qdeclarativexmllistmodel
+    !qtHaveModule(xmlpatterns): SUBDIRS -= qdeclarativexmllistmodel
 }
 
-contains(QT_CONFIG, opengl): SUBDIRS += qmlshadersplugin
+qtHaveModule(opengl): SUBDIRS += qmlshadersplugin
 
-!isEmpty(QT.webkit.name): SUBDIRS += qdeclarativewebview
+qtHaveModule(webkit): SUBDIRS += qdeclarativewebview
 
 # Tests which should run in Pulse
 PULSE_TESTS = $$SUBDIRS

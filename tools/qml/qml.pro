@@ -14,16 +14,16 @@ INSTALLS += target
 wince* {
     QT += xml
 
-    contains(QT_CONFIG, scripttools) {
+    qtHaveModule(scripttools) {
         QT += scripttools
     }
     contains(QT_CONFIG, phonon) {
         QT += phonon
     }
-    contains(QT_CONFIG, xmlpatterns) {
+    qtHaveModule(xmlpatterns) {
         QT += xmlpatterns
     }
-    contains(QT_CONFIG, webkitwidgets) {
+    qtHaveModule(webkitwidgets) {
         QT += webkitwidgets
     }
 }

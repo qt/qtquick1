@@ -1,6 +1,6 @@
 TARGET     = QtDeclarative
 QT         = core-private gui-private widgets-private script-private
-!isEmpty(QT.xmlpatterns.name): QT_PRIVATE = xmlpatterns
+qtHaveModule(xmlpatterns): QT_PRIVATE = xmlpatterns
 else: DEFINES += QT_NO_XMLPATTERNS
 
 MODULE=declarative
