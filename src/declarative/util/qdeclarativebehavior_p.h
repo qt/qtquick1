@@ -49,8 +49,6 @@
 #include <qdeclarative.h>
 #include <QtCore/QAbstractAnimation>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -92,7 +90,5 @@ private Q_SLOTS:
 QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeBehavior)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEBEHAVIOR_H

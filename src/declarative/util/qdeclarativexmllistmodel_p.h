@@ -51,8 +51,6 @@
 
 #include <private/qlistmodelinterface_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -207,7 +205,5 @@ QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeXmlListModel)
 QML_DECLARE_TYPE(QDeclarativeXmlListModelRole)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEXMLLISTMODEL_H

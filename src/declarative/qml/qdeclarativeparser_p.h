@@ -65,8 +65,6 @@
 #include <private/qdeclarativerefcount_p.h>
 #include <private/qdeclarativeglobal_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -375,7 +373,5 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(QDeclarativeParser::Object::ScriptBlock::Pragmas);
 QT_END_NAMESPACE
 
 Q_DECLARE_METATYPE(QDeclarativeParser::Variant)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEPARSER_P_H

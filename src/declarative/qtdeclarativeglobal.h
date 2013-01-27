@@ -44,8 +44,6 @@
 
 #include <QtCore/qglobal.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 // This definition is in the process of being removed from qtbase - once it
@@ -65,7 +63,5 @@ QT_BEGIN_NAMESPACE
 #endif
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QTDECLARATIVEGLOBAL_H

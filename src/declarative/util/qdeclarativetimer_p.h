@@ -49,8 +49,6 @@
 
 #include <private/qtdeclarativeglobal_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -109,7 +107,5 @@ private Q_SLOTS:
 QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeTimer)
-
-QT_END_HEADER
 
 #endif

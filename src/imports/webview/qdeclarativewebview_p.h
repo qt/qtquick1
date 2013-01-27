@@ -51,8 +51,6 @@
 #include <QWebPage>
 
 
-QT_BEGIN_HEADER
-
 class QWebHistory;
 class QWebSettings;
 
@@ -393,7 +391,5 @@ QT_END_NAMESPACE
 QML_DECLARE_TYPE(QDeclarativeWebView)
 QML_DECLARE_TYPE(QDeclarativeWebSettings)
 QML_DECLARE_TYPEINFO(QDeclarativeWebView, QML_HAS_ATTACHED_PROPERTIES)
-
-QT_END_HEADER
 
 #endif

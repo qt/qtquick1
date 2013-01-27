@@ -45,8 +45,6 @@
 #include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qmetaobject.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -138,7 +136,5 @@ inline uint qHash (const QDeclarativeProperty &key)
 }
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEPROPERTY_H

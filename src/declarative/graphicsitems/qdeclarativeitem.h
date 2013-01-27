@@ -52,8 +52,6 @@
 #include <QtGui/qfont.h>
 #include <QtWidgets/qaction.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -230,7 +228,5 @@ QML_DECLARE_TYPE(QGraphicsWidget)
 #ifndef QT_NO_ACTION
 QML_DECLARE_TYPE(QAction)
 #endif
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEITEM_H

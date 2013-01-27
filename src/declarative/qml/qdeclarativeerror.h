@@ -46,8 +46,6 @@
 #include <QtCore/qurl.h>
 #include <QtCore/qstring.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -81,7 +79,5 @@ private:
 QDebug Q_DECLARATIVE_EXPORT operator<<(QDebug debug, const QDeclarativeError &error);
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEERROR_H
