@@ -1,7 +1,6 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-           examples \
            parserstress \
            qdeclarativecomponent \
            qdeclarativecontext \
@@ -24,6 +23,7 @@ SUBDIRS += \
 
 contains(QT_CONFIG, private_tests) {
     SUBDIRS += \
+           examples \
            qdeclarativeanchors \
            qdeclarativeanimatedimage \
            qdeclarativeanimations \
