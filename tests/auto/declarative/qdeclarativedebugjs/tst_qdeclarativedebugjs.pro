@@ -2,8 +2,7 @@ CONFIG += testcase
 testcase.timeout = 600 # this test is slow
 TARGET = tst_qdeclarativedebugjs
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private network script core-private gui-private widgets-private
+QT += testlib declarative declarative-private network script core-private gui-private widgets-private
 macx:CONFIG -= app_bundle
 
 HEADERS += ../shared/debugutil_p.h

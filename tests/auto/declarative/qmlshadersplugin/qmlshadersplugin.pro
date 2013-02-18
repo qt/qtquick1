@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qmlshadersplugin
 
-QT += testlib
-QT += opengl declarative gui widgets
+QT += testlib opengl declarative gui widgets
 SOURCES += tst_qmlshadersplugin.cpp
 
 SOURCES += \

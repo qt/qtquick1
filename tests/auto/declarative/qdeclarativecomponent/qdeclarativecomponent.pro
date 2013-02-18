@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativecomponent
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative
+QT += testlib declarative
 QT += script network widgets
 macx:CONFIG -= app_bundle
 

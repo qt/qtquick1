@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativelistview
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private widgets widgets-private gui-private core-private script-private
+QT += testlib declarative declarative-private widgets widgets-private gui-private core-private script-private
 macx:CONFIG -= app_bundle
 
 HEADERS += incrementalmodel.h

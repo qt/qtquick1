@@ -391,8 +391,8 @@ say you have a custom element \c PushButton with a \c buttonText property that i
 the value of a \c m_buttonText member variable. Modifying the member variable directly like this is
 not a good idea:
 
-\badcode
-// BAD!
+\code
+//bad code
 QDeclarativeComponent component(engine, "MyButton.qml");
 PushButton *button = qobject_cast<PushButton*>(component.create());
 button->m_buttonText = "Click me";
@@ -665,5 +665,3 @@ be used to build the application resources:
 See \l {The Qt Resource System} for more information.
 
 */
-
-

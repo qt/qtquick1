@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeimportorder
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative widgets
+QT += testlib declarative widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeimportorder.cpp

@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativepixmapcache
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += concurrent declarative declarative-private network
+QT += testlib concurrent declarative declarative-private network
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativepixmapcache.cpp

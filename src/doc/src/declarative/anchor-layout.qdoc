@@ -124,7 +124,8 @@ edge, the margin is not applied.
 For performance reasons, you can only anchor an item to its siblings and direct parent. For example,
 the following anchor is invalid and would produce a warning:
 
-\badcode
+\code
+//bad code
 Item {
     id: group1
     Rectangle { id: rect1; ... }

@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeflickable
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private gui widgets script-private core-private
+QT += testlib declarative declarative-private gui widgets script-private core-private
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeflickable.cpp

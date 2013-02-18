@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativefolderlistmodel
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative
+QT += testlib declarative
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativefolderlistmodel.cpp

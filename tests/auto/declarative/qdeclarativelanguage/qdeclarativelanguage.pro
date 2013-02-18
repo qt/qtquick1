@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativelanguage
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private script-private core-private
+QT += testlib declarative declarative-private script-private core-private
 QT += script network
 macx:CONFIG -= app_bundle
 

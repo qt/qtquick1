@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeparticles
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative widgets
+QT += testlib declarative widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativeparticles.cpp
