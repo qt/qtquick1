@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeanimatedimage
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private network widgets
+QT += testlib declarative declarative-private network widgets
 HEADERS += ../shared/testhttpserver.h
 SOURCES += tst_qdeclarativeanimatedimage.cpp ../shared/testhttpserver.cpp
 macx:CONFIG -= app_bundle

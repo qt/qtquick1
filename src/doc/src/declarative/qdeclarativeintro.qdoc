@@ -212,7 +212,8 @@ QML properties are what is known as \e type-safe. That is, they only allow you t
 matches the property type. For example, the \c x property of item is a real, and if you try to assign
 a string to it you will get an error.
 
-\badcode
+\code
+//bad code
 Item {
     x: "hello"  // illegal!
 }

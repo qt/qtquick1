@@ -1,5 +1,5 @@
 QT += declarative declarative-private script network sql core-private gui-private widgets-private
-contains(QT_CONFIG, opengl) {
+qtHaveModule(opengl) {
     QT += opengl
     DEFINES += GL_SUPPORTED
 }

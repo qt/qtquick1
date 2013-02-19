@@ -2,8 +2,7 @@ CONFIG += testcase
 testcase.timeout = 600 # this test is slow
 TARGET = tst_qmlvisual
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative gui widgets
+QT += testlib declarative gui widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qmlvisual.cpp

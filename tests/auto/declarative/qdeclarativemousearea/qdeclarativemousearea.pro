@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativemousearea
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private widgets gui network
+QT += testlib declarative declarative-private widgets gui network
 macx:CONFIG -= app_bundle
 
 HEADERS += ../shared/testhttpserver.h

@@ -109,7 +109,8 @@ properties only allow you to assign a value that matches the property type. For
 example, if a property is a real, and if you try to assign a string to it you
 will get an error.
 
-\badcode
+\code
+//bad code
 property real volume: "four"  //generates an error
 \endcode
 
