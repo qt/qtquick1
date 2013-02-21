@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativerepeater
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private gui widgets
+QT += testlib declarative declarative-private gui widgets
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativerepeater.cpp

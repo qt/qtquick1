@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the documentation of the Qt Toolkit.
@@ -95,7 +95,7 @@
     This simple rectangle has a unique identifier, \c simplebutton, which is bound to the
     id property. The \c Rectangle element's properties are bound to values by listing the
     property, followed by a colon, then the value. In the code sample, the color \c grey
-    is bound to the the Rectangle's \c color property. Similarly, we bind the \c width
+    is bound to the Rectangle's \c color property. Similarly, we bind the \c width
     and \c height of the Rectangle.
 
     The \l {Text}{Text} element is a non-editable text field. We name this \c Text element

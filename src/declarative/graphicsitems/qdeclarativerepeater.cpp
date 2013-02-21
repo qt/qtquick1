@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2012 Digia Plc and/or its subsidiary(-ies).
+** Copyright (C) 2013 Digia Plc and/or its subsidiary(-ies).
 ** Contact: http://www.qt-project.org/legal
 **
 ** This file is part of the QtDeclarative module of the Qt Toolkit.
@@ -110,15 +110,16 @@ QDeclarativeRepeaterPrivate::~QDeclarativeRepeaterPrivate()
     The Repeater element creates all of its delegate items when the repeater is first
     created. This can be inefficient if there are a large number of delegate items and
     not all of the items are required to be visible at the same time. If this is the case,
-    consider using other view elements like ListView (which only creates delegate items 
-    when they are scrolled into view) or use the \l {Dynamic Object Creation} methods to 
+    consider using other view elements like ListView (which only creates delegate items
+    when they are scrolled into view) or use the \l {Dynamic Object Creation} methods to
     create items as they are required.
 
-    Also, note that Repeater is \l {Item}-based, and can only repeat \l {Item}-derived objects. 
+    Also, note that Repeater is \l {Item}-based, and can only repeat \l {Item}-derived objects.
     For example, it cannot be used to repeat QtObjects:
-    \badcode
+    \code
+    //bad code
     Item {
-        //XXX does not work! Can't repeat QtObject as it doesn't derive from Item.
+        //Can't repeat QtObject as it doesn't derive from Item.
         Repeater {
             model: 10
             QtObject {}

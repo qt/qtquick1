@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativedebugservice
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += network declarative declarative-private core-private gui-private widgets-private
+QT += testlib network declarative declarative-private core-private gui-private widgets-private
 macx:CONFIG -= app_bundle
 
 HEADERS += ../shared/debugutil_p.h

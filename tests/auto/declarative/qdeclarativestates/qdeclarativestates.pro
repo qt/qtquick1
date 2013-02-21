@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativestates
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private core-private script-private widgets-private gui-private
+QT += testlib declarative declarative-private core-private script-private widgets-private gui-private
 macx:CONFIG -= app_bundle
 
 SOURCES += tst_qdeclarativestates.cpp

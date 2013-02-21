@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativeanimations
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private core-private gui-private widgets-private
+QT += testlib declarative declarative-private core-private gui-private widgets-private
 SOURCES += tst_qdeclarativeanimations.cpp
 macx:CONFIG -= app_bundle
 

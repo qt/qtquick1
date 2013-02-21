@@ -1,8 +1,7 @@
 CONFIG += testcase
 TARGET = tst_qdeclarativefontloader
 
-QT += testlib
-contains(QT_CONFIG,declarative): QT += declarative declarative-private gui network
+QT += testlib declarative declarative-private gui network
 macx:CONFIG -= app_bundle
 
 HEADERS += ../shared/testhttpserver.h
