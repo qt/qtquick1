@@ -518,7 +518,7 @@ void QDeclarativeEngineDebugService::messageReceived(const QByteArray &message)
         QVariant expr;
         bool isLiteralValue;
         QString filename;
-        int line;
+        int line = 0;
         ds >> objectId >> propertyName >> expr >> isLiteralValue;
         if (!ds.atEnd()) { // backward compatibility from 2.1, 2.2
             ds >> filename >> line;
