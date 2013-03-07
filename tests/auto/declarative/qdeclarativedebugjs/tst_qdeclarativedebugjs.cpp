@@ -133,10 +133,6 @@ private:
 class tst_QDeclarativeDebugJS : public QDeclarativeDataTest
 {
     Q_OBJECT
-private:
-    QDeclarativeDebugConnection *m_conn;
-    QDeclarativeEngine *m_engine;
-    QJSDebugClient *m_client;
 
 private slots:
     void initTestCase();
