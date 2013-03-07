@@ -520,7 +520,7 @@ void tst_qdeclarativevisualdatamodel::qaimRowsMoved()
     SingleRoleModel model;
     model.list.clear();
     for (int i=0; i<30; i++)
-        model.list << ("item " + i);
+        model.list << (QStringLiteral("item ") + QString::number(i));
     engine.rootContext()->setContextProperty("myModel", &model);
 
     QDeclarativeVisualDataModel *obj = qobject_cast<QDeclarativeVisualDataModel*>(c.create());
