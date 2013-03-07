@@ -65,7 +65,7 @@ public:
     QDeclarativeListProperty<QObject> events() { return QDeclarativeListProperty<QObject>(this, m_events); }
 
     int count() const { return m_events.count(); }
-    QObject *event(int idx) { return m_events.at(idx); }
+    QObject *eventAt(int idx) const { return m_events.at(idx); }
 
 private:
     QList<QObject *> m_events;
