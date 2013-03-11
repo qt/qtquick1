@@ -58,6 +58,7 @@ private slots:
     void simpleAnimation();
     void valueSource();
     void behavior();
+    void zeroDuration();
 
 private:
     QDeclarativeEngine engine;
@@ -199,6 +200,26 @@ void tst_qdeclarativesmoothedanimation::behavior()
 
     QTRY_COMPARE(theRect->x(), qreal(200));
     QTRY_COMPARE(theRect->y(), qreal(200));
+}
+
+void tst_qdeclarativesmoothedanimation::zeroDuration()
+{
+    QDeclarativeEngine engine;
+
+    QDeclarativeComponent c(&engine, QUrl::fromLocalFile(SRCDIR "/data/smoothedanimationZeroDuration.qml"));
+
+    QDeclarativeRectangle *rect = qobject_cast<QDeclarativeRectangle*>(c.create());
+    QVERIFY(rect);
+
+    QDeclarativeRectangle *theRect = rect->findChild<QDeclarativeRectangle*>("theRect");
+    QVERIFY(theRect);
+
+    QDeclarativeSmoothedAnimation *easeX = rect->findChild<QDeclarativeSmoothedAnimation*>("easeX");
+    QVERIFY(easeX);
+    QVERIFY(easeX->isRunning());
+
+    QTRY_VERIFY(!easeX->isRunning());
+    QTRY_COMPARE(theRect->x(), qreal(200));
 }
 
 QTEST_MAIN(tst_qdeclarativesmoothedanimation)

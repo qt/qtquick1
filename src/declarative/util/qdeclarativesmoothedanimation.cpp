@@ -100,10 +100,10 @@ bool QSmoothedAnimation::recalc()
 
     s = (invert? qreal(-1.0): qreal(1.0)) * s;
 
-    if (userDuration > 0 && velocity > 0) {
+    if (userDuration >= 0 && velocity > 0) {
         tf = s / velocity;
         if (tf > (userDuration / qreal(1000.))) tf = (userDuration / qreal(1000.));
-    } else if (userDuration > 0) {
+    } else if (userDuration >= 0) {
         tf = userDuration / qreal(1000.);
     } else if (velocity > 0) {
         tf = s / velocity;
