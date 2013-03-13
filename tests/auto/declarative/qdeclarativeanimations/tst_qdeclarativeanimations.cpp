@@ -47,6 +47,7 @@
 #include <private/qdeclarativeitem_p.h>
 #include <QVariantAnimation>
 #include <QEasingCurve>
+#include <QSignalSpy>
 
 class tst_qdeclarativeanimations : public QObject
 {
@@ -82,6 +83,7 @@ private slots:
     void doubleRegistrationBug();
     void alwaysRunToEndRestartBug();
     void transitionAssignmentBug();
+    void zeroDurationTwoCompletedEmittedBug();
 };
 
 #define QTIMED_COMPARE(lhs, rhs) do { \
@@ -849,6 +851,24 @@ void tst_qdeclarativeanimations::transitionAssignmentBug()
 
     QCOMPARE(rect->property("nullObject").toBool(), false);
 }
+
+void tst_qdeclarativeanimations::zeroDurationTwoCompletedEmittedBug()
+{
+    QDeclarativeRectangle rect;
+    QDeclarativePropertyAnimation animation;
+    animation.setTarget(&rect);
+    animation.setProperty("x");
+    animation.setFrom(1);
+    animation.setTo(200);
+    animation.setDuration(0);
+    QVERIFY(animation.from() == 1);
+    QSignalSpy spy(&animation, SIGNAL(completed(void)));
+    animation.start();
+    QVERIFY(!animation.isRunning());
+    QCOMPARE(rect.x(), qreal(200));
+    QCOMPARE(spy.size(), 1);
+}
+
 
 QTEST_MAIN(tst_qdeclarativeanimations)
 
