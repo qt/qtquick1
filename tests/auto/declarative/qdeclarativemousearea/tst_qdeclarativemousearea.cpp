@@ -239,18 +239,18 @@ void tst_QDeclarativeMouseArea::dragging()
     QApplication::sendEvent(scene, &moveEvent);
 
     QVERIFY(drag->active());
-    QCOMPARE(blackRect->x(), 72.0);
-    QCOMPARE(blackRect->y(), 72.0);
+    QCOMPARE(blackRect->x(), 61.0);
+    QCOMPARE(blackRect->y(), 61.0);
 
     QGraphicsSceneMouseEvent releaseEvent(QEvent::GraphicsSceneMouseRelease);
-    releaseEvent.setScenePos(QPointF(110, 110));
+    releaseEvent.setScenePos(QPointF(122, 122));
     releaseEvent.setButton(Qt::LeftButton);
     releaseEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &releaseEvent);
 
     QVERIFY(!drag->active());
-    QCOMPARE(blackRect->x(), 72.0);
-    QCOMPARE(blackRect->y(), 72.0);
+    QCOMPARE(blackRect->x(), 61.0);
+    QCOMPARE(blackRect->y(), 61.0);
 
     delete canvas;
 }
@@ -741,14 +741,14 @@ void tst_QDeclarativeMouseArea::changeAxis()
     QApplication::sendEvent(scene, &moveEvent);
 
     QVERIFY(drag->active());
-    QCOMPARE(blackRect->x(), 72.0);
-    QCOMPARE(blackRect->y(), 72.0);
+    QCOMPARE(blackRect->x(), 61.0);
+    QCOMPARE(blackRect->y(), 61.0);
     QCOMPARE(drag->axis(), QDeclarativeDrag::XandYAxis);
 
     /* When blackRect.x becomes bigger than 75, the drag axis is change to
      * Drag.YAxis by the QML code. Verify that this happens, and that the drag
      * movement is effectively constrained to the Y axis. */
-    moveEvent.setScenePos(QPointF(133, 133));
+    moveEvent.setScenePos(QPointF(144, 144));
     moveEvent.setButton(Qt::LeftButton);
     moveEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &moveEvent);
@@ -757,7 +757,7 @@ void tst_QDeclarativeMouseArea::changeAxis()
     QCOMPARE(blackRect->y(), 83.0);
     QCOMPARE(drag->axis(), QDeclarativeDrag::YAxis);
 
-    moveEvent.setScenePos(QPointF(144, 144));
+    moveEvent.setScenePos(QPointF(155, 155));
     moveEvent.setButton(Qt::LeftButton);
     moveEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &moveEvent);
@@ -766,7 +766,7 @@ void tst_QDeclarativeMouseArea::changeAxis()
     QCOMPARE(blackRect->y(), 94.0);
 
     QGraphicsSceneMouseEvent releaseEvent(QEvent::GraphicsSceneMouseRelease);
-    releaseEvent.setScenePos(QPointF(144, 144));
+    releaseEvent.setScenePos(QPointF(155, 155));
     releaseEvent.setButton(Qt::LeftButton);
     releaseEvent.setButtons(Qt::LeftButton);
     QApplication::sendEvent(scene, &releaseEvent);
