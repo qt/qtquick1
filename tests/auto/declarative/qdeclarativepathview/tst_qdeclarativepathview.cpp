@@ -615,45 +615,44 @@ void tst_QDeclarativePathView::moveModel_data()
     QTest::addColumn<int>("from");
     QTest::addColumn<int>("to");
     QTest::addColumn<int>("count");
-    QTest::addColumn<qreal>("offset");
     QTest::addColumn<int>("currentIndex");
 
     // We have 8 items, with currentIndex == 4
     QTest::newRow("move after current")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 5 << 6 << 1 << 4. << 4;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 5 << 6 << 1 << 4;
     QTest::newRow("move before current")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 2 << 3 << 1 << 4. << 4;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 2 << 3 << 1 << 4;
     QTest::newRow("move before current to after")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 2 << 6 << 1 << 5. << 3;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 2 << 6 << 1 << 3;
     QTest::newRow("move multiple after current")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 5 << 6 << 2 << 4. << 4;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 5 << 6 << 2 << 4;
     QTest::newRow("move multiple before current")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 0 << 1 << 2 << 4. << 4;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 0 << 1 << 2 << 4;
     QTest::newRow("move before current to end")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 2 << 7 << 1 << 5. << 3;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 2 << 7 << 1 << 3;
     QTest::newRow("move last to beginning")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 7 << 0 << 1 << 3. << 5;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 7 << 0 << 1 << 5;
     QTest::newRow("move current")
-        << int(QDeclarativePathView::StrictlyEnforceRange) << 4 << 6 << 1 << 2. << 6;
+        << int(QDeclarativePathView::StrictlyEnforceRange) << 4 << 6 << 1 << 6;
 
     QTest::newRow("no range - move after current")
-        << int(QDeclarativePathView::NoHighlightRange) << 5 << 6 << 1 << 4. << 4;
+        << int(QDeclarativePathView::NoHighlightRange) << 5 << 6 << 1 << 4;
     QTest::newRow("no range - move before current")
-        << int(QDeclarativePathView::NoHighlightRange) << 2 << 3 << 1 << 4. << 4;
+        << int(QDeclarativePathView::NoHighlightRange) << 2 << 3 << 1 << 4;
     QTest::newRow("no range - move before current to after")
-        << int(QDeclarativePathView::NoHighlightRange) << 2 << 6 << 1 << 5. << 3;
+        << int(QDeclarativePathView::NoHighlightRange) << 2 << 6 << 1 << 3;
     QTest::newRow("no range - move multiple after current")
-        << int(QDeclarativePathView::NoHighlightRange) << 5 << 6 << 2 << 4. << 4;
+        << int(QDeclarativePathView::NoHighlightRange) << 5 << 6 << 2 << 4;
     QTest::newRow("no range - move multiple before current")
-        << int(QDeclarativePathView::NoHighlightRange) << 0 << 1 << 2 << 4. << 4;
+        << int(QDeclarativePathView::NoHighlightRange) << 0 << 1 << 2 << 4;
     QTest::newRow("no range - move before current to end")
-        << int(QDeclarativePathView::NoHighlightRange) << 2 << 7 << 1 << 5. << 3;
+        << int(QDeclarativePathView::NoHighlightRange) << 2 << 7 << 1 << 3;
     QTest::newRow("no range - move last to beginning")
-        << int(QDeclarativePathView::NoHighlightRange) << 7 << 0 << 1 << 3. << 5;
+        << int(QDeclarativePathView::NoHighlightRange) << 7 << 0 << 1 << 5;
     QTest::newRow("no range - move current")
-        << int(QDeclarativePathView::NoHighlightRange) << 4 << 6 << 1 << 4. << 6;
+        << int(QDeclarativePathView::NoHighlightRange) << 4 << 6 << 1 << 6;
     QTest::newRow("no range - move multiple incl. current")
-        << int(QDeclarativePathView::NoHighlightRange) << 0 << 1 << 5 << 4. << 5;
+        << int(QDeclarativePathView::NoHighlightRange) << 0 << 1 << 5 << 5;
 }
 
 void tst_QDeclarativePathView::moveModel()
@@ -662,7 +661,6 @@ void tst_QDeclarativePathView::moveModel()
     QFETCH(int, from);
     QFETCH(int, to);
     QFETCH(int, count);
-    QFETCH(qreal, offset);
     QFETCH(int, currentIndex);
 
     QDeclarativeView *window = createView();

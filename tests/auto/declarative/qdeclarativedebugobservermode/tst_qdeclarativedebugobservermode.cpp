@@ -117,10 +117,6 @@ private:
 class tst_QDeclarativeDebugObserverMode : public QDeclarativeDataTest
 {
     Q_OBJECT
-private:
-    QDeclarativeDebugConnection *m_conn;
-    QDeclarativeEngine *m_engine;
-    QDeclarativeObserverModeClient *m_client;
 
 private slots:
     void initTestCase();

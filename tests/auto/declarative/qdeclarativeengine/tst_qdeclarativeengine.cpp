@@ -334,6 +334,8 @@ public:
         setFinished(true);
     }
     virtual qint64 readData(char* buffer, qint64 number) {
+        Q_UNUSED(buffer)
+        Q_UNUSED(number)
         return 0;
     }
     virtual void abort() { }
@@ -348,6 +350,9 @@ public:
     }
 
     QNetworkReply *createRequest(Operation op, const QNetworkRequest & req, QIODevice * outgoingData = 0) {
+        Q_UNUSED(op)
+        Q_UNUSED(req)
+        Q_UNUSED(outgoingData)
         return new MyReply;
     }
 };
@@ -356,7 +361,7 @@ class MyFactory : public QDeclarativeNetworkAccessManagerFactory {
 
 public:
     QNetworkAccessManager *create(QObject *parent) {
-        return new MyManager;
+        return new MyManager(parent);
     }
 };
 
