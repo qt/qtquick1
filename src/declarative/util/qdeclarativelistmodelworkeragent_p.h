@@ -60,8 +60,6 @@
 #include <QMutex>
 #include <QWaitCondition>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -156,8 +154,6 @@ private:
 QT_END_NAMESPACE
 
 Q_DECLARE_METATYPE(QDeclarativeListModelWorkerAgent::VariantRef)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEWORKERSCRIPT_P_H
 

@@ -96,8 +96,6 @@ private:
     QDeclarativeTypeNameCache::Data *lastData;
     int lastPropertyIndex;
     QScriptValue lastFunction;
-
-    uint m_id;
 };
 
 QT_END_NAMESPACE

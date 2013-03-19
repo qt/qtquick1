@@ -44,8 +44,6 @@
 
 #include <QGLFramebufferObject>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 class ShaderEffectBuffer : public QGLFramebufferObject
@@ -54,8 +52,6 @@ public:
     ShaderEffectBuffer(const QSize &size, const QGLFramebufferObjectFormat &format);
     ~ShaderEffectBuffer();
 };
-
-QT_END_HEADER
 
 QT_END_NAMESPACE
 

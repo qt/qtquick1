@@ -99,6 +99,7 @@ private slots:
     void assignLiteralToVariant();
     void customParserTypes();
     void rootAsQmlComponent();
+    void qmlComponentType();
     void inlineQmlComponents();
     void idProperty();
     void autoNotifyConnection();
@@ -132,6 +133,7 @@ private slots:
     void reservedWords();
     void inlineAssignmentsOverrideBindings();
     void nestedComponentRoots();
+    void implicitImportsLast();
 
     void basicRemote_data();
     void basicRemote();
@@ -403,7 +405,9 @@ void tst_qdeclarativelanguage::errors_data()
     QTest::newRow("invalidOn") << "invalidOn.qml" << "invalidOn.errors.txt" << false;
     QTest::newRow("invalidProperty") << "invalidProperty.qml" << "invalidProperty.errors.txt" << false;
     QTest::newRow("nonScriptableProperty") << "nonScriptableProperty.qml" << "nonScriptableProperty.errors.txt" << false;
+#ifdef QT_BUILD_INTERNAL
     QTest::newRow("notAvailable") << "notAvailable.qml" << "notAvailable.errors.txt" << false;
+#endif
     QTest::newRow("singularProperty") << "singularProperty.qml" << "singularProperty.errors.txt" << false;
     QTest::newRow("singularProperty.2") << "singularProperty.2.qml" << "singularProperty.2.errors.txt" << false;
     QTest::newRow("incorrectCase") << "incorrectCase.qml" 
@@ -625,6 +629,16 @@ void tst_qdeclarativelanguage::rootAsQmlComponent()
     QVERIFY(object != 0);
     QCOMPARE(object->property("x"), QVariant(11));
     QCOMPARE(object->getChildren()->count(), 2);
+}
+
+// Tests that types can be specified from a QML only component
+void tst_qdeclarativelanguage::qmlComponentType()
+{
+    QDeclarativeComponent component(&engine, testFileUrl("qmlComponentType.qml"));
+    VERIFY_ERRORS(0);
+    QObject *object = qobject_cast<QObject *>(component.create());
+    QVERIFY(object != 0);
+    QCOMPARE(object->property("test"), QVariant(11));
 }
 
 // Tests that components can be specified inline
@@ -1806,6 +1820,11 @@ void tst_qdeclarativelanguage::importsOrder_data()
            "LocalLast {}"
            << (!qmlCheckTypes()?"QDeclarativeRectangle":"")// i.e. from org.qtproject.installedtest, not data/LocalLast.qml
            << (!qmlCheckTypes()?"":"LocalLast is ambiguous. Found in lib/org/qtproject/installedtest and in local directory");
+    QTest::newRow("local last 3") <<
+           "import org.qtproject.installedtest 1.0\n"
+           "LocalLast {LocalLast2{}}"
+           << (!qmlCheckTypes()?"QDeclarativeRectangle":"")// i.e. from org.qtproject.installedtest, not data/LocalLast.qml
+           << (!qmlCheckTypes()?"":"LocalLast is ambiguous. Found in lib/org/qtproject/installedtest and in local directory");
 }
 
 void tst_qdeclarativelanguage::importsOrder()
@@ -1959,6 +1978,8 @@ void tst_qdeclarativelanguage::initTestCase()
 {
     QDeclarativeDataTest::initTestCase();
     registerTypes();
+    // Registered here because it uses testFileUrl
+    qmlRegisterType(testFileUrl("MyComponentType.qml"), "Test", 1, 0, "MyComponentType");
 
     // Registering the TestType class in other modules should have no adverse effects
     qmlRegisterType<TestType>("org.qtproject.TestPre", 1, 0, "Test");
@@ -2019,6 +2040,23 @@ void tst_qdeclarativelanguage::compatibilitySemicolon()
     VERIFY_ERRORS(0);
     QObject *o = component.create();
     QVERIFY(o != 0);
+}
+
+// Tests that the implicit import has lowest precedence, in the case where
+// there are conflicting types and types only found in the local import.
+// Tests that just check one (or the root) type are in ::importsOrder
+void tst_qdeclarativelanguage::implicitImportsLast()
+{
+    if (qmlCheckTypes())
+        QSKIP("This test is about maintaining the same choice when type is ambiguous.");
+    QDeclarativeComponent component(&engine, testFileUrl("localOrderTest.qml"));
+    VERIFY_ERRORS(0);
+    QObject *object = qobject_cast<QObject *>(component.create());
+    QVERIFY(object != 0);
+    QVERIFY(QString(object->metaObject()->className()).startsWith(QLatin1String("QDeclarativeMouseArea")));
+    QObject* object2 = object->property("item").value<QObject*>();
+    QVERIFY(object2 != 0);
+    QCOMPARE(QString(object2->metaObject()->className()), QLatin1String("QDeclarativeRectangle"));
 }
 
 QTEST_MAIN(tst_qdeclarativelanguage)

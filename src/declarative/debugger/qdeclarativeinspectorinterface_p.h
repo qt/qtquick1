@@ -44,8 +44,6 @@
 
 #include <QtDeclarative/private/qtdeclarativeglobal_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -65,7 +63,5 @@ public:
 Q_DECLARE_INTERFACE(QDeclarativeInspectorInterface, QDeclarativeInspectorInterface_iid)
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEOBSERVERINTERFACE_H

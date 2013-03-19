@@ -53,8 +53,6 @@
 #include <private/qlistmodelinterface_p.h>
 #include <QtScript/qscriptvalue.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -152,7 +150,5 @@ QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeListModel)
 QML_DECLARE_TYPE(QDeclarativeListElement)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVELISTMODEL_H

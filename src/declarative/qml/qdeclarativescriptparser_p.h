@@ -58,8 +58,6 @@
 #include <QtCore/QList>
 #include <QtCore/QUrl>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -75,7 +73,7 @@ public:
     public:
         Import() : type(Library) {}
 
-        enum Type { Library, File, Script };
+        enum Type { Library, File, Script, Implicit }; //Implicit is only used internally
         Type type;
 
         QString uri;
@@ -142,7 +140,5 @@ public:
 };
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QDECLARATIVESCRIPTPARSER_P_H

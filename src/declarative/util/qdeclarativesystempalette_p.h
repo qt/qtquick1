@@ -47,8 +47,6 @@
 #include <QtCore/qobject.h>
 #include <QPalette>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -116,7 +114,5 @@ private:
 QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeSystemPalette)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVESYSTEMPALETTE_H

@@ -50,8 +50,6 @@
 
 #include <private/qtdeclarativeglobal_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -198,7 +196,5 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(QDeclarativeAnchors::Anchors)
 QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeAnchors)
-
-QT_END_HEADER
 
 #endif

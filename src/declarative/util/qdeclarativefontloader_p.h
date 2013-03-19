@@ -47,8 +47,6 @@
 #include <QtCore/qobject.h>
 #include <QtCore/qurl.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -90,8 +88,6 @@ Q_SIGNALS:
 QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeFontLoader)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEFONTLOADER_H
 

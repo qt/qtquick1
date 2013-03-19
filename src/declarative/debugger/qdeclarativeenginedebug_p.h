@@ -47,8 +47,6 @@
 
 #include <private/qtdeclarativeglobal_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -388,7 +386,5 @@ Q_DECLARE_METATYPE(QDeclarativeDebugEngineReference)
 Q_DECLARE_METATYPE(QDeclarativeDebugObjectReference)
 Q_DECLARE_METATYPE(QDeclarativeDebugContextReference)
 Q_DECLARE_METATYPE(QDeclarativeDebugPropertyReference)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEENGINEDEBUG_H

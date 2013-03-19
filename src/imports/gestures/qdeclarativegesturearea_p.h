@@ -52,8 +52,6 @@
 
 #ifndef QT_NO_GESTURES
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -96,8 +94,6 @@ public:
 QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativeGestureArea)
-
-QT_END_HEADER
 
 #endif // QT_NO_GESTURES
 

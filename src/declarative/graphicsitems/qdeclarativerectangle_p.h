@@ -48,8 +48,6 @@
 
 #include <private/qtdeclarativeglobal_p.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -182,7 +180,5 @@ QML_DECLARE_TYPE(QDeclarativePen)
 QML_DECLARE_TYPE(QDeclarativeGradientStop)
 QML_DECLARE_TYPE(QDeclarativeGradient)
 QML_DECLARE_TYPE(QDeclarativeRectangle)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVERECT_H

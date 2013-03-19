@@ -44,8 +44,6 @@
 
 #include <qdeclarativeitem.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -307,7 +305,5 @@ QT_END_NAMESPACE
 QML_DECLARE_TYPE(QDeclarativePinch)
 QML_DECLARE_TYPE(QDeclarativePinchEvent)
 QML_DECLARE_TYPE(QDeclarativePinchArea)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEPINCHAREA_H

@@ -45,8 +45,6 @@
 #include <QtCore/qglobal.h>
 #include <QtCore/QObject>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -104,7 +102,5 @@ inline void QDeclarative_setParent_noEvent(QObject *object, QObject *parent)
 }
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEGLOBAL_H

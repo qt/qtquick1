@@ -355,7 +355,7 @@ void QDeclarativeTester::updateCurrentTime(int msec)
     // Advance test script
     while (testscript && testscript->count() > testscriptidx) {
 
-        QObject *event = testscript->event(testscriptidx);
+        QObject *event = testscript->eventAt(testscriptidx);
 
         if (QDeclarativeVisualTestFrame *frame = qobject_cast<QDeclarativeVisualTestFrame *>(event)) {
             if (frame->msec() < msec) {

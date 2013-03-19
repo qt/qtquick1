@@ -46,8 +46,6 @@
 #include <QGLFunctions>
 #include <QPointer>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 class ShaderEffectBuffer;
@@ -151,8 +149,6 @@ private:
     bool m_hideSource : 1;
     bool m_mirrored : 1;
 };
-
-QT_END_HEADER
 
 QT_END_NAMESPACE
 

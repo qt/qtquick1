@@ -44,8 +44,6 @@
 
 #include <QGraphicsEffect>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 class ShaderEffectSource;
@@ -73,8 +71,6 @@ public:
     QVector<ShaderEffectSource*> m_renderTargets;
     bool m_changed : 1;
 };
-
-QT_END_HEADER
 
 QT_END_NAMESPACE
 

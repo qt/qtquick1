@@ -44,8 +44,6 @@
 
 #include <qdeclarative.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -92,7 +90,5 @@ QT_END_NAMESPACE
 
 QML_DECLARE_TYPE(QDeclarativePackage)
 QML_DECLARE_TYPEINFO(QDeclarativePackage, QML_HAS_ATTACHED_PROPERTIES)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEPACKAGE_H

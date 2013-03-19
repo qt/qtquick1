@@ -69,7 +69,9 @@ void registerTypes()
 
     qmlRegisterCustomType<MyCustomParserType>("Test", 1, 0, "MyCustomParserType", new MyCustomParserTypeParser);
 
+#ifdef QT_BUILD_INTERNAL
     qmlRegisterTypeNotAvailable("Test",1,0,"UnavailableType", "UnavailableType is unavailable for testing");
+#endif
 }
 
 QVariant myCustomVariantTypeConverter(const QString &data)

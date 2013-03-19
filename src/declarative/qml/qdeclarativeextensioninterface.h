@@ -45,8 +45,6 @@
 #include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qobject.h>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -65,7 +63,5 @@ struct Q_DECLARATIVE_EXPORT QDeclarativeExtensionInterface
 Q_DECLARE_INTERFACE(QDeclarativeExtensionInterface, QDeclarativeExtensionInterface_iid)
 
 QT_END_NAMESPACE
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEEXTENSIONINTERFACE_H

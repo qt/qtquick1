@@ -438,15 +438,14 @@ void QDeclarativeCompiler::genLiteralAssignment(const QMetaProperty &prop,
         case QVariant::DateTime:
             {
             QDateTime dateTime = QDeclarativeStringConverters::dateTimeFromString(string);
-#ifdef Q_CC_GNU
-# warning "QDateTime range has extended in Qt 5, please fix me"
-#endif
-            int data[] = { int(dateTime.date().toJulianDay()),
+            // Stuff the qint64 julianDay into an array of int.
+            const qint64 julianDay = dateTime.date().toJulianDay();
+            int data[] = { int(julianDay & 0xFFFFFFFF), int(julianDay >> 32),
                            dateTime.time().hour(),
                            dateTime.time().minute(),
                            dateTime.time().second(),
                            dateTime.time().msec() };
-            int index = output->indexForInt(data, 5);
+            const int index = output->indexForInt(data, 6);
             instr.type = QDeclarativeInstruction::StoreDateTime;
             instr.storeDateTime.propertyIndex = prop.propertyIndex();
             instr.storeDateTime.valueIndex = index;

@@ -49,8 +49,6 @@
 #include <QtCore/QObject>
 #include <QtGui/QPainterPath>
 
-QT_BEGIN_HEADER
-
 QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
@@ -280,7 +278,5 @@ QML_DECLARE_TYPE(QDeclarativePathQuad)
 QML_DECLARE_TYPE(QDeclarativePathCubic)
 QML_DECLARE_TYPE(QDeclarativePathPercent)
 QML_DECLARE_TYPE(QDeclarativePath)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEPATH_H

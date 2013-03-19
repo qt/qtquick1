@@ -534,12 +534,13 @@ QObject *QDeclarativeVME::run(QDeclarativeVMEObjectStack &stack,
                 QObject *target = stack.top();
                 CLEAN_PROPERTY(target, instr.storeDateTime.propertyIndex);
 
-                QTime t;
-                t.setHMS(intData.at(instr.storeDateTime.valueIndex+1),
-                         intData.at(instr.storeDateTime.valueIndex+2),
-                         intData.at(instr.storeDateTime.valueIndex+3),
-                         intData.at(instr.storeDateTime.valueIndex+4));
-                QDateTime dt(QDate::fromJulianDay(intData.at(instr.storeDateTime.valueIndex)), t);
+                const qint64 julianDay = qint64((quint64)(uint)(intData.at(instr.storeDateTime.valueIndex)))
+                    + (qint64(intData.at(instr.storeDateTime.valueIndex + 1)) << 32);
+                QDateTime dt(QDate::fromJulianDay(julianDay),
+                             QTime(intData.at(instr.storeDateTime.valueIndex + 2),
+                                   intData.at(instr.storeDateTime.valueIndex + 3),
+                                   intData.at(instr.storeDateTime.valueIndex + 4),
+                                   intData.at(instr.storeDateTime.valueIndex + 5)));
                 void *a[] = { &dt, 0, &status, &flags };
                 QMetaObject::metacall(target, QMetaObject::WriteProperty,
                                       instr.storeDateTime.propertyIndex, a);

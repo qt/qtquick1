@@ -47,8 +47,6 @@
 #include <QtCore/qobject.h>
 #include <QtCore/qabstractitemmodel.h>
 
-QT_BEGIN_HEADER
-
 Q_DECLARE_METATYPE(QModelIndex)
 
 QT_BEGIN_NAMESPACE
@@ -251,7 +249,5 @@ QML_DECLARE_TYPE(QDeclarativeVisualModel)
 QML_DECLARE_TYPE(QDeclarativeVisualItemModel)
 QML_DECLARE_TYPEINFO(QDeclarativeVisualItemModel, QML_HAS_ATTACHED_PROPERTIES)
 QML_DECLARE_TYPE(QDeclarativeVisualDataModel)
-
-QT_END_HEADER
 
 #endif // QDECLARATIVEVISUALDATAMODEL_H
