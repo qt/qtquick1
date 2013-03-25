@@ -327,10 +327,7 @@ void tst_qdeclarativeimage::mirror()
             p_e.drawPixmap(QRect(0, 0, width, height), srcPixmap, QRect(0, 0, srcPixmap.width(), srcPixmap.height()));
             break;
         case QDeclarativeImage::PreserveAspectFit:
-#if defined(UBUNTU_LUCID)
-            QEXPECT_FAIL("", "QTBUG-26787", Continue);
-#endif
-            p_e.drawPixmap(QRect(25, 0, width / (width/height), height), srcPixmap, QRect(0, 0, srcPixmap.width(), srcPixmap.height()));
+            p_e.drawPixmap(QRect(25, 0, height, height), srcPixmap, QRect(0, 0, srcPixmap.width(), srcPixmap.height()));
             break;
         case QDeclarativeImage::PreserveAspectCrop:
         {
