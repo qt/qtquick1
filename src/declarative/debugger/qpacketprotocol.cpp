@@ -300,6 +300,7 @@ void QPacketProtocol::send(const QPacket & p)
     Q_ASSERT(writeBytes == sizeof(qint32));
     writeBytes = d->dev->write(p.b);
     Q_ASSERT(writeBytes == p.b.size());
+    Q_UNUSED(writeBytes);
 }
 
 /*!
