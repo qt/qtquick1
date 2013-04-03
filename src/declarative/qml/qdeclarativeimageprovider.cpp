@@ -115,8 +115,10 @@ public:
     {
         ...
 
-        QDeclarativeEngine engine;
-        engine->addImageProvider(QLatin1String("colors"), new ColorPixmapProvider);
+        QDeclarativeView *view = new QDeclarativeView;
+        view->engine()->addImageProvider(QLatin1String("colors"),
+                                         new ColorPixmapProvider);
+        view->setSource(QUrl::fromLocalFile("main.qml"));
 
         ...
     }

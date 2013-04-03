@@ -160,10 +160,6 @@ void QDeclarativeAbstractAnimationPrivate::commence()
     q->transition(actions, properties, QDeclarativeAbstractAnimation::Forward);
 
     q->qtAnimation()->start();
-    if (q->qtAnimation()->state() != QAbstractAnimation::Running) {
-        running = false;
-        emit q->completed();
-    }
 }
 
 QDeclarativeProperty QDeclarativeAbstractAnimationPrivate::createProperty(QObject *obj, const QString &str, QObject *infoObj)
