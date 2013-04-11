@@ -14,6 +14,4 @@ include(../../../../tools/qml/qml.pri)
 
 DEFINES += SRCDIR=\\\"$$PWD\\\"
 
-CONFIG += parallel_test
-
 DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0
