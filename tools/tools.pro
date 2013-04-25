@@ -1,2 +1,7 @@
 TEMPLATE = subdirs
-!ios: SUBDIRS += qml qmlplugindump
+SUBDIRS += qml qmlplugindump
+
+qtNomakeTools( \
+    qml \
+    qmlplugindump \
+)
