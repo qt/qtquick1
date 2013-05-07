@@ -124,7 +124,7 @@ QDeclarativeInspectorInterface *QDeclarativeInspectorService::loadInspectorPlugi
     QStringList pluginCandidates;
     const QStringList paths = QCoreApplication::libraryPaths();
     foreach (const QString &libPath, paths) {
-        const QDir dir(libPath + QLatin1String("/qmltooling"));
+        const QDir dir(libPath + QLatin1String("/qml1tooling"));
         if (dir.exists())
             foreach (const QString &pluginPath, dir.entryList(QDir::Files))
                 pluginCandidates << dir.absoluteFilePath(pluginPath);
