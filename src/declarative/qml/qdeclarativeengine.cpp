@@ -1020,6 +1020,8 @@ QDeclarativeEngine::ObjectOwnership QDeclarativeEngine::objectOwnership(QObject 
         return ddata->indestructible?CppOwnership:JavaScriptOwnership;
 }
 
+namespace QtDeclarative {
+
 void qmlExecuteDeferred(QObject *object)
 {
     QDeclarativeData *data = QDeclarativeData::get(object);
@@ -1088,8 +1090,44 @@ QObject *qmlAttachedPropertiesObject(int *idCache, const QObject *object,
     if (*idCache == -1 || !object)
         return 0;
 
-    return qmlAttachedPropertiesObjectById(*idCache, object, create);
+    return QtDeclarative::qmlAttachedPropertiesObjectById(*idCache, object, create);
 }
+
+} // namespace QtDeclarative
+
+#if QT_DEPRECATED_SINCE(5, 1)
+
+// Also define symbols outside namespace to keep binary compatibility with 5.0
+
+Q_DECLARATIVE_EXPORT void qmlExecuteDeferred(QObject *obj)
+{
+    QtDeclarative::qmlExecuteDeferred(obj);
+}
+
+Q_DECLARATIVE_EXPORT QDeclarativeContext *qmlContext(const QObject *obj)
+{
+    return QtDeclarative::qmlContext(obj);
+}
+
+Q_DECLARATIVE_EXPORT QDeclarativeEngine *qmlEngine(const QObject *obj)
+{
+    return QtDeclarative::qmlEngine(obj);
+}
+
+Q_DECLARATIVE_EXPORT QObject *qmlAttachedPropertiesObjectById(int id, const QObject * obj,
+                                                              bool create)
+{
+    return QtDeclarative::qmlAttachedPropertiesObjectById(id, obj, create);
+}
+
+Q_DECLARATIVE_EXPORT QObject *qmlAttachedPropertiesObject(int *idCache, const QObject *object,
+                                                          const QMetaObject *attachedMetaObject,
+                                                          bool create)
+{
+    return QtDeclarative::qmlAttachedPropertiesObject(idCache, object, attachedMetaObject, create);
+}
+
+#endif // QT_DEPRECATED_SINCE(5, 1)
 
 QDeclarativeDebuggingEnabler::QDeclarativeDebuggingEnabler()
 {
