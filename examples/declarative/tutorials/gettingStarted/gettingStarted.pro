@@ -1,6 +1,7 @@
 TEMPLATE      = subdirs
 SUBDIRS       = \
-                filedialog\
+                filedialog \
+                parts/part5/filedialog
 
 
 EXAMPLE_FILES = \

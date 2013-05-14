@@ -38,36 +38,71 @@
 **
 ****************************************************************************/
 
+
 import QtQuick 1.0
 
 Rectangle {
-
     //identifier of the item
-    id: simplebutton
+    id: button
 
-    //the rectangle's fill color
-    color: "grey"
+    //these properties act as constants, useable outside this QML file
+    property int buttonHeight: 75
+    property int buttonWidth: 150
 
-    //dimensions of the button
-    width: 150; height: 75
+    //attaches to the Text element's text content
+    property string label
+    property color textColor: buttonLabel.color
 
-    //A text element contains functionalities for creating texts
+    //the color highlight when the mouse hovers on the rectangle
+    property color onHoverColor: "lightsteelblue"
+    property color borderColor: "transparent"
+
+    //buttonColor is set to the button's main color
+    property color buttonColor: "lightblue"
+
+    property real labelSize: 14
+
+    //set appearance properties
+    radius: 6
+    smooth: true
+    border { width: 2; color: borderColor }
+    width: buttonWidth; height: buttonHeight
+
     Text {
         id: buttonLabel
-
-        //center the text inside the parent
         anchors.centerIn: parent
-
-        //text property binds to the label displayed on the button
-        text: "button label"
+        text: label     //bind the text to the parent's text
+        color: "#DCDCCC"
+        font.pointSize: labelSize
     }
+
+    //buttonClick() is callable and a signal handler, onButtonClick is automatically created
+    signal buttonClick()
 
     //define the clickable area to be the whole rectangle
-    MouseArea {
+    MouseArea { 
         id: buttonMouseArea
-        anchors.fill: parent    //anchor all sides of the mouse area to the rectangle's anchors
+        anchors.fill: parent    //stretch the area to the parent's dimension
+        onClicked: buttonClick()
 
-        //onClicked handles valid mouse button clicks
-        onClicked: console.log(buttonLabel.text + " clicked" )
+        //if true, then onEntered and onExited called if mouse hovers in the mouse area
+        //if false, a button must be clicked to detect the mouse hover
+        hoverEnabled: true
+
+        //display a border if the mouse hovers on the button mouse area
+        onEntered: parent.border.color = onHoverColor
+        //remove the border if the mouse exits the button mouse area
+        onExited:  parent.border.color = borderColor
     }
+
+    //change the color of the button when pressed
+    color: buttonMouseArea.pressed ? Qt.darker(buttonColor, 1.5) : buttonColor
+    //animate the color whenever the color property changes
+    Behavior on color { ColorAnimation{ duration: 55 } }
+
+    //scale the button when pressed
+    scale: buttonMouseArea.pressed ? 1.1 : 1.00
+    //Animate the scale property change
+    Behavior on scale { NumberAnimation{ duration: 55 } }
+
 }
