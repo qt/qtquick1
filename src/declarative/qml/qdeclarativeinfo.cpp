@@ -152,6 +152,8 @@ QDeclarativeInfo::~QDeclarativeInfo()
     }
 }
 
+namespace QtDeclarative {
+
 QDeclarativeInfo qmlInfo(const QObject *me)
 {
     QDeclarativeInfoPrivate *d = new QDeclarativeInfoPrivate;
@@ -175,5 +177,29 @@ QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &erro
     return QDeclarativeInfo(d);
 }
 
+} // namespace QtDeclarative
+
+#if QT_DEPRECATED_SINCE(5, 1)
+
+// Also define symbols outside namespace to keep binary compatibility with 5.0
+
+Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me)
+{
+    return QtDeclarative::qmlInfo(me);
+}
+
+Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me,
+                                              const QDeclarativeError &error)
+{
+    return QtDeclarative::qmlInfo(me, error);
+}
+
+Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me,
+                                              const QList<QDeclarativeError> &errors)
+{
+    return QtDeclarative::qmlInfo(me, errors);
+}
+
+#endif // QT_DEPRECATED_SINCE(5, 1)
 
 QT_END_NAMESPACE

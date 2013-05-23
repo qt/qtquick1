@@ -38,59 +38,68 @@
 **
 ****************************************************************************/
 
+
 import QtQuick 1.0
 
 Rectangle {
-    id: fileMenu
-
-    //the menuName is accessible from outside this QML file
-    property string menuName: "File"
-
-    //generous amount of screen space that will allow the buttons to fit
+    id: editMenu
     height: 480; width:1000
+    color: "powderblue"
+    property color buttonBorderColor: "#7A8182"
+    property color buttonFillColor: "#61BDCACD"
+    property string menuName:"Edit"
+    gradient: Gradient {
+        GradientStop { position: 0.0; color: "#6A7570" }
+        GradientStop { position: 1.0; color: Qt.darker("#6A7570") }
+    }
 
-    color: "#6C646A" 
-        gradient: Gradient{
-                        GradientStop { position: 0.0; color: "#6C646A" }
-                        GradientStop { position: 1.0; color: Qt.darker("#6A6D6A") }
-        }
-
-    //a sub-rectangle allows the flexibility of setting the row area 
-    Rectangle{
+    Rectangle {
         id:actionContainer
-
-        //make this rectangle invisible
-        color:"transparent"
+         color:"transparent"
         anchors.centerIn: parent
-
-        //the height is a good proportion that creates more space at the top of the row of buttons
         width: parent.width; height: parent.height / 5
-
-        Row{
+        Row {
             anchors.centerIn: parent
-            spacing: parent.width/6
-            Button{
+            spacing: parent.width/9
+            Button {
                 id: loadButton
-                buttonColor: "lightgrey"
-                label: "Load"
+                buttonColor: buttonFillColor
+                label: "Copy"
+                labelSize: 16
+                borderColor: buttonBorderColor
+                height: actionContainer.height; width: actionContainer.width/6
+                onButtonClick: textArea.copy()
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: Qt.lighter(buttonFillColor,1.25) }
+                    GradientStop { position: 0.67; color: Qt.darker(buttonFillColor,1.3) }
+                }
             }
-            
-            Button{
-                buttonColor: "grey"
+            Button {
                 id: saveButton
-                label: "Save"
+                height: actionContainer.height; width: actionContainer.width/6
+                buttonColor: buttonFillColor
+                label: "Paste"
+                borderColor: buttonBorderColor
+                labelSize: 16
+                onButtonClick: textArea.paste()
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: Qt.lighter(buttonFillColor,1.25) }
+                    GradientStop { position: 0.67; color: Qt.darker(buttonFillColor,1.3) }
+                }
             }
-            Button{
+            Button {
                 id: exitButton
-                label: "Exit"
-                buttonColor: "darkgrey"
-
-                //exit the application if the exitButton is clicked
-                onButtonClick:{
-                    Qt.quit()
+                label: "Select All"
+                height: actionContainer.height; width: actionContainer.width/6
+                labelSize: 16
+                buttonColor: buttonFillColor
+                borderColor:buttonBorderColor
+                onButtonClick: textArea.selectAll()
+                gradient: Gradient {
+                    GradientStop { position: 0.0; color: Qt.lighter(buttonFillColor,1.25) }
+                    GradientStop { position: 0.67; color: Qt.darker(buttonFillColor,1.3) }
                 }
             }
         }
     }
-
 }

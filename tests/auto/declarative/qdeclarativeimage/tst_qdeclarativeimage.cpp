@@ -572,7 +572,7 @@ void tst_qdeclarativeimage::noLoading()
     QTRY_VERIFY(obj->status() == QDeclarativeImage::Ready);
     QTRY_VERIFY(obj->progress() == 1.0);
     QTRY_COMPARE(sourceSpy.count(), 2);
-    QTRY_COMPARE(progressSpy.count(), 2);
+    QTRY_VERIFY(progressSpy.count() > 1);
     QTRY_COMPARE(statusSpy.count(), 2);
 
     // Loading remote file again - should not go through 'Loading' state.
@@ -581,7 +581,7 @@ void tst_qdeclarativeimage::noLoading()
     QTRY_VERIFY(obj->status() == QDeclarativeImage::Ready);
     QTRY_VERIFY(obj->progress() == 1.0);
     QTRY_COMPARE(sourceSpy.count(), 4);
-    QTRY_COMPARE(progressSpy.count(), 2);
+    QTRY_VERIFY(progressSpy.count() > 1);
     QTRY_COMPARE(statusSpy.count(), 2);
 }
 

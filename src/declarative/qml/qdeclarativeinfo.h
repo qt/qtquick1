@@ -50,6 +50,18 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
+class QDeclarativeInfo;
+
+namespace QtDeclarative {
+    // declared in namespace to avoid symbol conflicts with QtQml
+    Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
+    Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me,
+                                                  const QDeclarativeError &error);
+    Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me,
+                                                  const QList<QDeclarativeError> &errors);
+}
+using namespace QtDeclarative;
+
 class QDeclarativeInfoPrivate;
 class Q_DECLARATIVE_EXPORT QDeclarativeInfo : public QDebug
 {
@@ -83,17 +95,14 @@ public:
 #endif
 
 private:
-    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
-    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QDeclarativeError &error);
-    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &errors);
-
+    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo QtDeclarative::qmlInfo(const QObject *me);
+    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo QtDeclarative::qmlInfo(const QObject *me,
+                                                                        const QDeclarativeError &error);
+    friend Q_DECLARATIVE_EXPORT QDeclarativeInfo QtDeclarative::qmlInfo(const QObject *me,
+                                                                        const QList<QDeclarativeError> &errors);
     QDeclarativeInfo(QDeclarativeInfoPrivate *);
     QDeclarativeInfoPrivate *d;
 };
-
-Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me);
-Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QDeclarativeError &error);
-Q_DECLARATIVE_EXPORT QDeclarativeInfo qmlInfo(const QObject *me, const QList<QDeclarativeError> &errors);
 
 QT_END_NAMESPACE
 

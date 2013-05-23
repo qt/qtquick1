@@ -1,2 +1,2 @@
 TEMPLATE = subdirs
-SUBDIRS += qml qmlplugindump
+!ios: SUBDIRS += qml qmlplugindump

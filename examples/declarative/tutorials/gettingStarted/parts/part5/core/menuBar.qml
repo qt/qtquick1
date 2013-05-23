@@ -49,11 +49,11 @@ Rectangle {
 
     property real partition: 1/10
 
-    Column{
+    Column {
         anchors.fill: parent
         //container for the header and the buttons
         z: 1
-        Rectangle{
+        Rectangle {
             id: labelList
             height:menuBar.height*partition
             width: menuBar.width
@@ -64,21 +64,20 @@ Rectangle {
                 GradientStop { position: 0.98;color: "#3F3F3F" }
                 GradientStop { position: 1.0; color: "#0e1B20" }
             }
-            Text{
+            Text {
                 height: parent.height
-                anchors {right: labelRow.left ; verticalCenter: parent.bottom}
+                anchors { right: labelRow.left ; verticalCenter: parent.bottom }
                 text: "menu:    " 
                 color: "lightblue"
-                font {weight: Font.Light; italic: true}
+                font { weight: Font.Light; italic: true }
                 smooth: true
             }
-            
             //row displays its children in a vertical row
-            Row{
+            Row {
                 id: labelRow
                 anchors.centerIn: parent
                 spacing:40
-                Button{
+                Button {
                     id: fileButton
                     height: 20; width: 50
                     label: "File"
@@ -89,15 +88,15 @@ Rectangle {
                     smooth:true
                     //on a button click, change the list's currently selected item to FileMenu
                     onButtonClick: menuListView.currentIndex = 0
-                    gradient: Gradient{
+                    gradient: Gradient {
                         GradientStop { position: 0.0; color: fileColor }
                         GradientStop { position: 1.0; color: "#136F6F6F" }
                     }
                 }
-                Button{
+                Button {
                     id: editButton
                     height: 20; width: 50
-                    buttonColor : menuListView.currentIndex == 1?  Qt.darker(editColor, 1.5) : Qt.darker(editColor, 1.9)
+                    buttonColor : menuListView.currentIndex == 1? Qt.darker(editColor, 1.5) : Qt.darker(editColor, 1.9)
                     scale: menuListView.currentIndex == 1? 1.25: 1    
                     label: "Edit"
                     radius: 1
@@ -105,22 +104,22 @@ Rectangle {
                     smooth:true
                     //on a button click, change the list's currently selected item to EditMenu
                     onButtonClick: menuListView.currentIndex = 1    
-                    gradient: Gradient{
+                    gradient: Gradient {
                         GradientStop { position: 0.0; color: editColor }
                         GradientStop { position: 1.0; color: "#136F6F6F" }
                     }
                 }
             }
-        }    
+        }
 
         //list view will display a model according to a delegate
-        ListView{
+        ListView {
             id: menuListView
             width:menuBar.width; height: 9*menuBar.height*partition
-    
+
             //the model contains the data
             model: menuListModel
-    
+
             //control the movement of the menu switching
             snapMode: ListView.SnapOneItem
             orientation: ListView.Horizontal
@@ -132,15 +131,15 @@ Rectangle {
         }
     }
     //a list of visual items already have delegates handling their display
-    VisualItemModel{
+    VisualItemModel {
         id: menuListModel
 
-        FileMenu{
+        FileMenu {
             id:fileMenu
             width: menuListView.width; height: menuListView.height
             color: fileColor
         }
-        EditMenu{
+        EditMenu {
             color: editColor
             width:  menuListView.width; height: menuListView.height
         }
