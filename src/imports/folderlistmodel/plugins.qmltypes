@@ -9,6 +9,14 @@ Module {
     Component {
         name: "QAbstractItemModel"
         prototype: "QObject"
+        Enum {
+            name: "LayoutChangeHint"
+            values: {
+                "NoLayoutChangeHint": 0,
+                "VerticalSortHint": 1,
+                "HorizontalSortHint": 2
+            }
+        }
         Signal {
             name: "dataChanged"
             Parameter { name: "topLeft"; type: "QModelIndex" }
