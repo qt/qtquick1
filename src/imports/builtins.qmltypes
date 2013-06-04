@@ -2720,9 +2720,11 @@ Module {
                 "SplashScreen": 15,
                 "Desktop": 17,
                 "SubWindow": 18,
+                "ForeignWindow": 33,
                 "WindowType_Mask": 255,
                 "MSWindowsFixedSizeDialogHint": 256,
                 "MSWindowsOwnDC": 512,
+                "BypassWindowManagerHint": 1024,
                 "X11BypassWindowManagerHint": 1024,
                 "FramelessWindowHint": 2048,
                 "WindowTitleHint": 4096,
@@ -2761,9 +2763,11 @@ Module {
                 "SplashScreen": 15,
                 "Desktop": 17,
                 "SubWindow": 18,
+                "ForeignWindow": 33,
                 "WindowType_Mask": 255,
                 "MSWindowsFixedSizeDialogHint": 256,
                 "MSWindowsOwnDC": 512,
+                "BypassWindowManagerHint": 1024,
                 "X11BypassWindowManagerHint": 1024,
                 "FramelessWindowHint": 2048,
                 "WindowTitleHint": 4096,
@@ -2959,7 +2963,8 @@ Module {
                 "AA_X11InitThreads": 10,
                 "AA_SynthesizeTouchForUnhandledMouseEvents": 11,
                 "AA_SynthesizeMouseForUnhandledTouchEvents": 12,
-                "AA_AttributeCount": 13
+                "AA_UseHighDpiPixmaps": 13,
+                "AA_AttributeCount": 14
             }
         }
         Enum {
@@ -3644,6 +3649,15 @@ Module {
             }
         }
         Enum {
+            name: "Edge"
+            values: {
+                "TopEdge": 1,
+                "LeftEdge": 2,
+                "RightEdge": 4,
+                "BottomEdge": 8
+            }
+        }
+        Enum {
             name: "ConnectionType"
             values: {
                 "AutoConnection": 0,
@@ -3770,6 +3784,7 @@ Module {
                 "ImhDate": 128,
                 "ImhTime": 256,
                 "ImhPreferLatin": 512,
+                "ImhMultiLine": 1024,
                 "ImhDigitsOnly": 65536,
                 "ImhFormattedNumbersOnly": 131072,
                 "ImhUppercaseOnly": 262144,
@@ -3795,6 +3810,7 @@ Module {
                 "ImhDate": 128,
                 "ImhTime": 256,
                 "ImhPreferLatin": 512,
+                "ImhMultiLine": 1024,
                 "ImhDigitsOnly": 65536,
                 "ImhFormattedNumbersOnly": 131072,
                 "ImhUppercaseOnly": 262144,
@@ -3864,7 +3880,8 @@ Module {
                 "ItemIsDropEnabled": 8,
                 "ItemIsUserCheckable": 16,
                 "ItemIsEnabled": 32,
-                "ItemIsTristate": 64
+                "ItemIsTristate": 64,
+                "ItemNeverHasChildren": 128
             }
         }
         Enum {

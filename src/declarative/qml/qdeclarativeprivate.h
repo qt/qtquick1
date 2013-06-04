@@ -55,6 +55,7 @@
 
 #include <QtDeclarative/qtdeclarativeglobal.h>
 #include <QtCore/qvariant.h>
+#include <QtCore/qurl.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -232,7 +233,7 @@ namespace QDeclarativePrivate
     };
 
     struct RegisterComponent {
-        const QUrl &url;
+        QUrl url;
         const char *uri;
         const char *typeName;
         int majorVersion;
