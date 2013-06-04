@@ -136,8 +136,6 @@ private:
     void recursiveDisable(QDeclarativeAbstractBinding *);
 
     friend class QDeclarativeAbstractBinding;
-    QObject *m_object;
-    int m_index;
     QDeclarativeAbstractBinding *m_bindings;
 };
 
