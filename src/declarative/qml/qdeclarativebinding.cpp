@@ -486,8 +486,10 @@ QString QDeclarativeBinding::expression() const
 }
 
 QDeclarativeValueTypeProxyBinding::QDeclarativeValueTypeProxyBinding(QObject *o, int index)
-: m_object(o), m_index(index), m_bindings(0)
+: m_bindings(0)
 {
+    Q_UNUSED(o);
+    Q_UNUSED(index);
 }
 
 QDeclarativeValueTypeProxyBinding::~QDeclarativeValueTypeProxyBinding()

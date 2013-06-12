@@ -94,6 +94,8 @@ QSGGeometry::QSGGeometry(const QSGGeometry::AttributeSet &attributes,
 {
     Q_ASSERT(m_attributes.count > 0);
     Q_ASSERT(m_attributes.stride > 0);
+    Q_UNUSED(m_reserved_pointer);
+    Q_UNUSED(m_reserved_bits);
 
     // Because allocate reads m_vertex_count, m_index_count and m_owns_data, these
     // need to be set before calling allocate...
