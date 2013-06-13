@@ -1,5 +1,5 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/twitter
+folder_01.source = qml/snake
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
@@ -18,7 +18,7 @@ QML_IMPORT_PATH =
 SOURCES += main.cpp
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/twitter
+desktopInstallPrefix = $$[QT_INSTALL_EXAMPLES]/declarative/demos/snake
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

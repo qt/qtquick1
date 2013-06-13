@@ -1,5 +1,5 @@
 # Add more folders to ship with the application, here
-folder_01.source = qml/snake
+folder_01.source = qml/minehunt
 folder_01.target = qml
 DEPLOYMENTFOLDERS = folder_01
 
@@ -14,11 +14,12 @@ QML_IMPORT_PATH =
 # Speed up launching on MeeGo/Harmattan when using applauncherd daemon
 # CONFIG += qdeclarative-boostable
 
-# The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+HEADERS += minehunt.h
+SOURCES += main.cpp minehunt.cpp
+RESOURCES = minehunt.qrc
 
 # Please do not modify the following two lines. Required for deployment.
-desktopInstallPrefix=$$[QT_INSTALL_EXAMPLES]/declarative/snake
+desktopInstallPrefix = $$[QT_INSTALL_EXAMPLES]/declarative/demos/minehunt
 exists(qmlapplicationviewer/qmlapplicationviewer.pri):include(qmlapplicationviewer/qmlapplicationviewer.pri)
-else:include(../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
+else:include(../../helper/qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()

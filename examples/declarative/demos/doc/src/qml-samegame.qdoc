@@ -26,13 +26,13 @@
 ****************************************************************************/
 
 /*!
-    \title Snake
-    \example declarative/snake
-    \brief Shows how to write a Snake game in QML
+    \title Same Game
+    \example declarative/demos/samegame
+    \brief Shows how to write a Same Game in QML
     \ingroup qmldemos
 
-    This example shows how to write a Snake game in QML, controlled by the
-    keyboard as well as the mouse.
+    This example shows how to write a 'Same Game' game in QML, using Javascript
+    for all the game logic.
 
-    \image qml-snake-demo.png
+    \image qml-samegame-demo.png
 */
