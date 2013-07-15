@@ -71,9 +71,9 @@ void tst_qdeclarativeerror::url()
 
     QCOMPARE(error2.url(), QUrl("http://www.qt-project.org/main.qml"));
 
-    error.setUrl(QUrl("http://qt.nokia.com/main.qml"));
+    error.setUrl(QUrl("http://www.qt-project.org/main.qml"));
 
-    QCOMPARE(error.url(), QUrl("http://qt.nokia.com/main.qml"));
+    QCOMPARE(error.url(), QUrl("http://www.qt-project.org/main.qml"));
     QCOMPARE(error2.url(), QUrl("http://www.qt-project.org/main.qml"));
 }
 
@@ -171,12 +171,12 @@ void tst_qdeclarativeerror::copy()
     QDeclarativeError error3;
     error3 = error;
 
-    error.setUrl(QUrl("http://qt.nokia.com/main.qml"));
+    error.setUrl(QUrl("http://www.qt-project.org/main.qml"));
     error.setDescription("Another Error");
     error.setLine(2);
     error.setColumn(33);
 
-    QCOMPARE(error.url(), QUrl("http://qt.nokia.com/main.qml"));
+    QCOMPARE(error.url(), QUrl("http://www.qt-project.org/main.qml"));
     QCOMPARE(error.description(), QString("Another Error"));
     QCOMPARE(error.line(), 2);
     QCOMPARE(error.column(), 33);

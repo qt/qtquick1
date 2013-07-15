@@ -1101,7 +1101,7 @@ public slots:
 void tst_qdeclarativetext::clickLink()
 {
     {
-        QString componentStr = "import QtQuick 1.0\nText { text: \"<a href=\\\"http://qt.nokia.com\\\">Hello world!</a>\" }";
+        QString componentStr = "import QtQuick 1.0\nText { text: \"<a href=\\\"http://www.qt-project.org\\\">Hello world!</a>\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
         QDeclarativeText *textObject = qobject_cast<QDeclarativeText*>(textComponent.create());
@@ -1125,7 +1125,7 @@ void tst_qdeclarativetext::clickLink()
             static_cast<EventSender*>(static_cast<QGraphicsItem*>(textObject))->sendEvent(&me);
         }
 
-        QCOMPARE(test.link, QLatin1String("http://qt.nokia.com"));
+        QCOMPARE(test.link, QLatin1String("http://www.qt-project.org"));
     }
 }
 
