@@ -56,8 +56,8 @@ is delivered to it. Otherwise, regular Qt key handling continues.
 stops. Otherwise the event is "bubbled up", by recursively passing it to each
 Item's parent until either the event is accepted, or the root Item is reached.
 
-If the \c {Rectangle} element in the following example has active focus and the \c A key is pressed,
-it will bubble up to its parent. However, pressing the \c B key will bubble up to the root
+If the \c {Rectangle} type in the following example has active focus and the \c A key is pressed,
+the event will not be propagated further. Pressing the \c B key the event will propagate to the root
 item and thus subsequently be ignored.
 
 \snippet doc/src/snippets/declarative/focus/rectangle.qml simple key event
