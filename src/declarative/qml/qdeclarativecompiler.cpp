@@ -1147,7 +1147,7 @@ void QDeclarativeCompiler::genValueTypeProperty(QDeclarativeParser::Object *obj,
     fetch.fetchValue.bindingSkipList = 0;
     fetch.line = prop->location.start.line;
 
-    if (obj->type == QMetaType::QVariant || output->types.at(obj->type).component) {
+    if (obj->type == -1 || output->types.at(obj->type).component) {
         // We only have to do this if this is a composite type.  If it is a builtin
         // type it can't possibly already have bindings that need to be cleared.
         foreach(Property *vprop, prop->value->valueProperties) {
