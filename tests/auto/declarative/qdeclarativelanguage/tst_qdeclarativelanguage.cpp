@@ -162,6 +162,8 @@ private slots:
 
     void compatibilitySemicolon();
 
+    void deepProperty();
+
 private:
     QDeclarativeEngine engine;
     void testType(const QString& qml, const QString& type, const QString& error);
@@ -2057,6 +2059,16 @@ void tst_qdeclarativelanguage::implicitImportsLast()
     QObject* object2 = object->property("item").value<QObject*>();
     QVERIFY(object2 != 0);
     QCOMPARE(QString(object2->metaObject()->className()), QLatin1String("QDeclarativeRectangle"));
+}
+
+void tst_qdeclarativelanguage::deepProperty()
+{
+    QDeclarativeComponent component(&engine, testFileUrl("deepProperty.qml"));
+    VERIFY_ERRORS(0);
+    QObject *o = component.create();
+    QVERIFY(o != 0);
+    QFont font = qvariant_cast<QFont>(qvariant_cast<QObject*>(o->property("someObject"))->property("font"));
+    QCOMPARE(font.family(), QStringLiteral("test"));
 }
 
 QTEST_MAIN(tst_qdeclarativelanguage)

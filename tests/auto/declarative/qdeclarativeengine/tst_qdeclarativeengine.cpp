@@ -172,8 +172,8 @@ void tst_qdeclarativeengine::offlineStoragePath()
     // Without these set, QDesktopServices::storageLocation returns
     // strings with extra "//" at the end. We set them to ignore this problem.
     qApp->setApplicationName("tst_qdeclarativeengine");
-    qApp->setOrganizationName("Nokia");
-    qApp->setOrganizationDomain("nokia.com");
+    qApp->setOrganizationName("QtProject");
+    qApp->setOrganizationDomain("www.qt-project.org");
 
     QDeclarativeEngine engine;
 

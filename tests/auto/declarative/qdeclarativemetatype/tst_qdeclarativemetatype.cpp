@@ -173,7 +173,7 @@ void tst_qdeclarativemetatype::copy()
     QT_COPY_TEST(QTime, ct);
     QDateTime cdt = QDateTime::currentDateTime();
     QT_COPY_TEST(QDateTime, cdt);
-    QT_COPY_TEST(QUrl, QUrl("http://www.nokia.com"));
+    QT_COPY_TEST(QUrl, QUrl("http://www.qt-project.org"));
     QT_COPY_TEST(QLocale, QLocale(QLocale::English, QLocale::Australia));
     QT_COPY_TEST(QRect, QRect(-10, 10, 102, 99));
     QT_COPY_TEST(QRectF, QRectF(-10.2, 1.2, 102, 99.6));
