@@ -219,7 +219,11 @@ void tst_qdeclarativeborderimage::smooth()
 
 void tst_qdeclarativeborderimage::mirror()
 {
-    QString componentStr = "import QtQuick 1.0\nBorderImage { source: \"" SRCDIR "/data/heart200.png\"; smooth: true; width: 300; height: 300; border { top: 50; right: 50; bottom: 50; left: 50 } }";
+    const QString imagePath = QLatin1String(SRCDIR) + QStringLiteral("/data/heart200.png");
+    QVERIFY(QFileInfo(imagePath).exists());
+    const QString componentStr = QStringLiteral("import QtQuick 1.0\nBorderImage { source: \"")
+            + QUrl::fromLocalFile(imagePath).toString()
+            + QStringLiteral("\"; smooth: true; width: 300; height: 300; border { top: 50; right: 50; bottom: 50; left: 50 } }");
     QDeclarativeComponent component(&engine);
     component.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
     QDeclarativeBorderImage *obj = qobject_cast<QDeclarativeBorderImage*>(component.create());
