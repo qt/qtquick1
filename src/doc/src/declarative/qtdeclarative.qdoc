@@ -29,6 +29,7 @@
   \module QtDeclarative
   \title Qt Declarative Module
   \ingroup modules
+  \qtvariable declarative
 
   \brief The Qt Declarative module provides a declarative framework
   for building highly dynamic, custom user interfaces.
@@ -67,7 +68,7 @@
 
   Declares additional properties of the given \a Type as described by the
   specified \a Flags.
-  
+
   Current the only supported type info is \c QML_HAS_ATTACHED_PROPERTIES which
   declares that the \a Type supports \l {Attached Properties}.
 
@@ -112,7 +113,7 @@
   qmlRegisterType<MySliderItem>("com.mycompany.qmlcomponents", 1, 0, "Slider");
   \endcode
 
-  Once this is registered, the type can be used in QML by importing the 
+  Once this is registered, the type can be used in QML by importing the
   specified module name and version number:
 
   \qml
