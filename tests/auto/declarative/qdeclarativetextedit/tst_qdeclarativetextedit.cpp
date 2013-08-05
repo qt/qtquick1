@@ -90,6 +90,13 @@ void sendPreeditText(const QString &text, int cursor)
         QApplication::sendEvent(qApp->focusObject(), &event);
 }
 
+// A QScopedPointer which provides operator QDeclarativeView *, removing the
+// need to write canvas.data() where a QDeclarativeView * is required.
+class DeclarativeViewScopedPointer : public QScopedPointer<QDeclarativeView> {
+public:
+    explicit inline DeclarativeViewScopedPointer(QDeclarativeView *v = 0) : QScopedPointer<QDeclarativeView>(v) {}
+    inline operator QDeclarativeView *() const { return data(); }
+};
 
 class tst_qdeclarativetextedit : public QDeclarativeDataTest
 
@@ -416,7 +423,7 @@ void tst_qdeclarativetextedit::alignments()
                          + QDir::toNativeSeparators(referenceImage)
                          + QStringLiteral("' does not exist.")));
 
-    QDeclarativeView *canvas = createView(testFile("alignments.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("alignments.qml")));
     setFrameless(canvas);
 
     canvas->show();
@@ -438,8 +445,6 @@ void tst_qdeclarativetextedit::alignments()
     QVERIFY(!expect.isNull());
 
     QCOMPARE(actual,expect);
-
-    delete canvas;
 }
 
 
@@ -480,7 +485,7 @@ void tst_qdeclarativetextedit::hAlign()
 
 void tst_qdeclarativetextedit::hAlign_RightToLeft()
 {
-    QDeclarativeView *canvas = createView(testFile("horizontalAlignment_RightToLeft.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("horizontalAlignment_RightToLeft.qml")));
     QDeclarativeTextEdit *textEdit = canvas->rootObject()->findChild<QDeclarativeTextEdit*>("text");
     QVERIFY(textEdit != 0);
     canvas->show();
@@ -588,7 +593,7 @@ void tst_qdeclarativetextedit::hAlign_RightToLeft()
     QVERIFY(textEdit->positionToRectangle(0).x() > canvas->width()/2);
 #endif
 
-    delete canvas;
+    canvas.reset();
 
 #ifndef Q_OS_MAC    // QTBUG-18040
     // alignment of TextEdit with no text set to it
@@ -971,7 +976,7 @@ void tst_qdeclarativetextedit::isRightToLeft()
 
 void tst_qdeclarativetextedit::keySelection()
 {
-    QDeclarativeView *canvas = createView(testFile("navigation.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("navigation.qml")));
     canvas->show();
     QApplication::setActiveWindow(canvas);
     QVERIFY(QTest::qWaitForWindowActive(canvas));
@@ -1015,8 +1020,6 @@ void tst_qdeclarativetextedit::keySelection()
     QVERIFY(input->hasActiveFocus() == false);
     QCOMPARE(input->selectedText(), QString());
     QCOMPARE(spy.count(), 4);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::moveCursorSelection_data()
@@ -1385,7 +1388,7 @@ void tst_qdeclarativetextedit::mouseSelection()
     QFETCH(int, to);
     QFETCH(QString, selectedText);
 
-    QDeclarativeView *canvas = createView(qmlfile);
+    DeclarativeViewScopedPointer canvas(createView(qmlfile));
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
@@ -1411,13 +1414,11 @@ void tst_qdeclarativetextedit::mouseSelection()
     QTest::mouseClick(canvas->viewport(), Qt::LeftButton, Qt::NoModifier, p1);
     QTest::mouseClick(canvas->viewport(), Qt::LeftButton, Qt::ShiftModifier, p2);
     QCOMPARE(textEditObject->selectedText(), selectedText);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::multilineMouseSelection()
 {
-    QDeclarativeView *canvas = createView(testFile("mouseselection_multiline.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("mouseselection_multiline.qml")));
     canvas->show();
     QApplication::setActiveWindow(canvas);
     QVERIFY(QTest::qWaitForWindowActive(canvas));
@@ -1445,8 +1446,6 @@ void tst_qdeclarativetextedit::multilineMouseSelection()
     QString str2 = textEditObject->selectedText();
     QVERIFY(str1 != str2);
     QVERIFY(str2.length() > 3);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::deferEnableSelectByMouse_data()
@@ -1462,7 +1461,7 @@ void tst_qdeclarativetextedit::deferEnableSelectByMouse()
     // Verify text isn't selected if selectByMouse is enabled after the mouse button has been pressed.
     QFETCH(QString, qmlfile);
 
-    QDeclarativeView *canvas = createView(qmlfile);
+    DeclarativeViewScopedPointer canvas(createView(qmlfile));
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
@@ -1485,8 +1484,6 @@ void tst_qdeclarativetextedit::deferEnableSelectByMouse()
     QApplication::sendEvent(canvas->viewport(), &mv);
     QTest::mouseRelease(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(x2,y)));
     QVERIFY(textEditObject->selectedText().isEmpty());
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::deferDisableSelectByMouse_data()
@@ -1502,7 +1499,7 @@ void tst_qdeclarativetextedit::deferDisableSelectByMouse()
     // Verify text isn't selected if selectByMouse is enabled after the mouse button has been pressed.
     QFETCH(QString, qmlfile);
 
-    QDeclarativeView *canvas = createView(qmlfile);
+    DeclarativeViewScopedPointer canvas(createView(qmlfile));
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
@@ -1525,15 +1522,13 @@ void tst_qdeclarativetextedit::deferDisableSelectByMouse()
     QApplication::sendEvent(canvas->viewport(), &mv);
     QTest::mouseRelease(canvas->viewport(), Qt::LeftButton, 0, canvas->mapFromScene(QPoint(x2,y)));
     QVERIFY(textEditObject->selectedText().length() > 3);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::dragMouseSelection()
 {
     QString qmlfile = testFile("mouseselection_true.qml");
 
-    QDeclarativeView *canvas = createView(qmlfile);
+    DeclarativeViewScopedPointer canvas(createView(qmlfile));
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
@@ -1572,8 +1567,6 @@ void tst_qdeclarativetextedit::dragMouseSelection()
     QVERIFY(str2.length() > 3);
 
     QVERIFY(str1 != str2); // Verify the second press and drag is a new selection and doesn't not the first moved.
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::mouseSelectionMode_data()
@@ -1594,7 +1587,7 @@ void tst_qdeclarativetextedit::mouseSelectionMode()
 
     QString text = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    QDeclarativeView *canvas = createView(qmlfile);
+    DeclarativeViewScopedPointer canvas(createView(qmlfile));
 
     canvas->show();
     QApplication::setActiveWindow(canvas);
@@ -1627,13 +1620,11 @@ void tst_qdeclarativetextedit::mouseSelectionMode()
     QTest::mouseClick(canvas->viewport(), Qt::LeftButton, Qt::NoModifier, canvas->mapFromScene(QPoint(x1,y)));
     QTest::mouseClick(canvas->viewport(), Qt::LeftButton, Qt::ShiftModifier, canvas->mapFromScene(QPoint(x2,y)));
     QCOMPARE(textEditObject->selectedText(), str);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::inputMethodHints()
 {
-    QDeclarativeView *canvas = createView(testFile("inputmethodhints.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("inputmethodhints.qml")));
     setFrameless(canvas);
     canvas->show();
     canvas->setFocus();
@@ -1644,25 +1635,30 @@ void tst_qdeclarativetextedit::inputMethodHints()
     QVERIFY(textEditObject->inputMethodHints() & Qt::ImhNoPredictiveText);
     textEditObject->setInputMethodHints(Qt::ImhUppercaseOnly);
     QVERIFY(textEditObject->inputMethodHints() & Qt::ImhUppercaseOnly);
+}
 
-    delete canvas;
+static QByteArray msgFont(const QFont &f)
+{
+    QString s;
+    QDebug(&s) << f;
+    return s.toLocal8Bit();
 }
 
 void tst_qdeclarativetextedit::positionAt()
 {
-    QDeclarativeView *canvas = createView(testFile("positionAt.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("positionAt.qml")));
     QVERIFY(canvas->rootObject() != 0);
     setFrameless(canvas);
     canvas->show();
-    canvas->setFocus();
     QApplication::setActiveWindow(canvas);
     QVERIFY(QTest::qWaitForWindowActive(canvas));
+    canvas->setFocus();
 
     QDeclarativeTextEdit *texteditObject = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
     QVERIFY(texteditObject != 0);
 
     /*
-    QFontMetrics fm(texteditObject->font());
+    QFontMetrics fm(texteditObject->font(), canvas);
     const int y0 = fm.height() / 2;
     const int y1 = fm.height() * 3 / 2;
 
@@ -1676,11 +1672,13 @@ void tst_qdeclarativetextedit::positionAt()
     QVERIFY(diff < 5);
 #endif
     */
-    QTextLayout layout(texteditObject->text());
-    layout.setFont(texteditObject->font());
+    const QFont font = texteditObject->font();
+    const QString text = texteditObject->text();
+    QTextLayout layout(text.left(text.indexOf('\n')), font, canvas);
 
     layout.beginLayout();
     QTextLine line = layout.createLine();
+    QVERIFY(line.isValid());
     layout.endLayout();
 
     const int y0 = line.height() / 2;
@@ -1692,8 +1690,10 @@ void tst_qdeclarativetextedit::positionAt()
     int widthEnd = ceil(line.cursorToX(pos + 1));
 
     const int halfObjectWidth = texteditObject->width() / 2;
-    QVERIFY2(widthBegin <= halfObjectWidth, msgComparison(widthBegin, halfObjectWidth).constData());
-    QVERIFY2(widthEnd >= halfObjectWidth, msgComparison(widthEnd, halfObjectWidth).constData());
+    QVERIFY2(widthBegin <= halfObjectWidth,
+             (msgComparison(widthBegin, halfObjectWidth) + ' ' + msgFont(font)).constData());
+    QVERIFY2(widthEnd >= halfObjectWidth,
+             (msgComparison(widthEnd, halfObjectWidth) + ' ' + msgFont(font)).constData());
 
     const qreal x0 = texteditObject->positionToRectangle(pos).x();
     const qreal x1 = texteditObject->positionToRectangle(pos + 1).x();
@@ -1715,8 +1715,6 @@ void tst_qdeclarativetextedit::positionAt()
     QCOMPARE(texteditObject->positionToRectangle(1).x(), x1);
 
     QVERIFY(texteditObject->positionAt(x0 / 2, y1) > 0);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::cursorDelegate()
@@ -1897,7 +1895,7 @@ void tst_qdeclarativetextedit::delegateLoading()
     server.serveDirectory(testFile("httpslow"), TestHTTPServer::Delay);
     server.serveDirectory(testFile("http"));
 
-    QDeclarativeView* view = new QDeclarativeView(0);
+    QScopedPointer<QDeclarativeView> view(new QDeclarativeView(0));
 
     view->setSource(QUrl(QLatin1String("http://localhost:42332/") + qmlfile));
     view->show();
@@ -1928,8 +1926,6 @@ void tst_qdeclarativetextedit::delegateLoading()
     //###This was only needed for code coverage, and could be a case of overzealous defensive programming
     //delegate = view->rootObject()->findChild<QDeclarativeItem*>("delegateErrorB");
     //QVERIFY(!delegate);
-
-    delete view;
 }
 
 /*
@@ -1938,7 +1934,7 @@ the extent of the text, then they should ignore the keys.
 */
 void tst_qdeclarativetextedit::navigation()
 {
-    QDeclarativeView *canvas = createView(testFile("navigation.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("navigation.qml")));
     canvas->show();
     canvas->setFocus();
 
@@ -1968,8 +1964,6 @@ void tst_qdeclarativetextedit::navigation()
     QCOMPARE(input->hasActiveFocus(), true);
     simulateKey(canvas, Qt::Key_Left);
     QCOMPARE(input->hasActiveFocus(), false);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::copyAndPaste() {
@@ -2070,7 +2064,7 @@ void tst_qdeclarativetextedit::canPasteEmpty() {
 
 void tst_qdeclarativetextedit::readOnly()
 {
-    QDeclarativeView *canvas = createView(testFile("readOnly.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("readOnly.qml")));
     canvas->show();
     canvas->setFocus();
 
@@ -2088,8 +2082,6 @@ void tst_qdeclarativetextedit::readOnly()
     simulateKey(canvas, Qt::Key_Space);
     simulateKey(canvas, Qt::Key_Escape);
     QCOMPARE(edit->text(), initial);
-
-    delete canvas;
 }
 
 void tst_qdeclarativetextedit::simulateKey(QDeclarativeView *view, int key, Qt::KeyboardModifiers modifiers)
@@ -2611,7 +2603,7 @@ void tst_qdeclarativetextedit::inputMethodComposing()
 
 void tst_qdeclarativetextedit::cursorRectangleSize()
 {
-    QDeclarativeView *canvas = createView(testFile("CursorRect.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("CursorRect.qml")));
     setFrameless(canvas);
     QVERIFY(canvas->rootObject() != 0);
     canvas->show();
@@ -2632,13 +2624,13 @@ void tst_qdeclarativetextedit::cursorRectangleSize()
 
 void tst_qdeclarativetextedit::deselect()
 {
-    QDeclarativeView *canvas = createView(testFile("CursorRect.qml"));
+    DeclarativeViewScopedPointer canvas(createView(testFile("CursorRect.qml")));
     setFrameless(canvas);
     QVERIFY(canvas->rootObject() != 0);
     canvas->show();
-    canvas->setFocus();
     QApplication::setActiveWindow(canvas);
     QVERIFY(QTest::qWaitForWindowActive(canvas));
+    canvas->setFocus();
 
     QDeclarativeTextEdit *textEdit = qobject_cast<QDeclarativeTextEdit *>(canvas->rootObject());
     QVERIFY(textEdit != 0);
