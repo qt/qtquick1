@@ -13,7 +13,6 @@
     "qtscript" => "",
     "qtxmlpatterns" => "",
     "qtdeclarative" => "",
-    "qtjsbackend" => "",
     "qtactiveqt" => "",
     "qttools" => "",
     "qtwebkit" => "",
