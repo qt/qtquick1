@@ -179,7 +179,7 @@ public:
     inline DiagnosticMessage diagnosticMessage() const
     {
         foreach (const DiagnosticMessage &d, diagnostic_messages) {
-            if (! d.kind == DiagnosticMessage::Warning)
+            if (d.kind != DiagnosticMessage::Warning)
                 return d;
         }
 
