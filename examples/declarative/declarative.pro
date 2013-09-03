@@ -16,7 +16,6 @@ SUBDIRS = \
     righttoleft \
     rssnews \
     samegame \
-    shadereffects \
     snake \
     sqllocalstorage \
     text \
