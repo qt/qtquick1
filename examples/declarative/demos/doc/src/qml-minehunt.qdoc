@@ -26,12 +26,13 @@
 ****************************************************************************/
 
 /*!
-    \title RSS News
-    \example declarative/rssnews
-    \brief Shows how to write an RSS news reader in QML
+    \title Minehunt
+    \example declarative/demos/minehunt
+    \brief Shows how to write a Minehunt game in QML
     \ingroup qmldemos
 
-    This example shows how to write an RSS news reader in QML.
+    This example shows how to create a simple Minehunt game, using QML for the
+    UI and C++ for the game logic.
 
-    \image qml-rssnews-demo.png
+    \image qml-minehunt-demo.png
 */

@@ -26,13 +26,12 @@
 ****************************************************************************/
 
 /*!
-    \title Minehunt
-    \example declarative/minehunt
-    \brief Shows how to write a Minehunt game in QML
+    \title Photo Viewer
+    \example declarative/demos/photoviewer
+    \brief Shows how to write a Flickr photo viewer in QML
     \ingroup qmldemos
 
-    This example shows how to create a simple Minehunt game, using QML for the
-    UI and C++ for the game logic.
+    This example shows how to write a Flickr photo viewer application in QML.
 
-    \image qml-minehunt-demo.png
+    \image qml-photoviewer-demo.png
 */

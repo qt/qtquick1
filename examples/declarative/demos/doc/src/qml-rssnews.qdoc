@@ -26,13 +26,12 @@
 ****************************************************************************/
 
 /*!
-    \title Same Game
-    \example declarative/samegame
-    \brief Shows how to write a Same Game in QML
+    \title RSS News
+    \example declarative/demos/rssnews
+    \brief Shows how to write an RSS news reader in QML
     \ingroup qmldemos
 
-    This example shows how to write a 'Same Game' game in QML, using Javascript
-    for all the game logic.
+    This example shows how to write an RSS news reader in QML.
 
-    \image qml-samegame-demo.png
+    \image qml-rssnews-demo.png
 */

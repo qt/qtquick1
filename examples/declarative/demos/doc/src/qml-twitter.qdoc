@@ -26,12 +26,13 @@
 ****************************************************************************/
 
 /*!
-    \title Calculator
-    \example declarative/calculator
-    \brief Shows how to write a calculator in QML
+    \title Twitter Mobile
+    \example declarative/demos/twitter
+    \brief Shows how to write a Twitter client in QML
     \ingroup qmldemos
 
-    This example shows how to write a simple calculator application in QML and JavaScript.
+    This example shows how to write a mobile Twitter search client in QML. Use it to
+    see what people think about Qt Quick!
 
-    \image qml-calculator-example.png
+    \image qml-twitter-demo.png
 */

@@ -26,12 +26,13 @@
 ****************************************************************************/
 
 /*!
-    \title Photo Viewer
-    \example declarative/photoviewer
-    \brief Shows how to write a Flickr photo viewer in QML
+    \title Snake
+    \example declarative/demos/snake
+    \brief Shows how to write a Snake game in QML
     \ingroup qmldemos
 
-    This example shows how to write a Flickr photo viewer application in QML.
+    This example shows how to write a Snake game in QML, controlled by the
+    keyboard as well as the mouse.
 
-    \image qml-photoviewer-demo.png
+    \image qml-snake-demo.png
 */
