@@ -52,6 +52,8 @@
 #include <private/qdeclarativetypenamecache_p.h>
 #include <private/qdeclarativeengine_p.h>
 
+#include <algorithm>
+
 QT_BEGIN_NAMESPACE
 
 DEFINE_BOOL_CONFIG_OPTION(qmlImportTrace, QML_IMPORT_TRACE)
@@ -400,7 +402,7 @@ QString QDeclarativeImportsPrivate::resolvedUri(const QString &dir_arg, QDeclara
         dir.chop(1);
 
     QStringList paths = database->fileImportPath;
-    qSort(paths.begin(), paths.end(), greaterThan); // Ensure subdirs preceed their parents.
+    std::sort(paths.begin(), paths.end(), greaterThan); // Ensure subdirs preceed their parents.
 
     QString stableRelativePath = dir;
     foreach(const QString &path, paths) {

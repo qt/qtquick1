@@ -52,6 +52,8 @@
 #include <QDebug>
 #include <QCoreApplication>
 
+#include <algorithm>
+
 QT_BEGIN_NAMESPACE
 
 static const QDeclarativeItemPrivate::ChangeTypes watchedChanges
@@ -230,7 +232,7 @@ void QDeclarativeBasePositioner::prePositioning()
     d->doingPositioning = true;
     //Need to order children by creation order modified by stacking order
     QList<QGraphicsItem *> children = d->QGraphicsItemPrivate::children;
-    qSort(children.begin(), children.end(), d->insertionOrder);
+    std::sort(children.begin(), children.end(), QGraphicsItemPrivate::insertionOrder);
 
     QPODVector<PositionedItem,8> oldItems;
     positionedItems.copyAndClear(oldItems);

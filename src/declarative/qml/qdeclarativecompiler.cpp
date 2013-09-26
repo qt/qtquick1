@@ -75,6 +75,8 @@
 #include <QtCore/qdebug.h>
 #include <QtCore/qdatetime.h>
 
+#include <algorithm>
+
 QT_BEGIN_NAMESPACE
 
 DEFINE_BOOL_CONFIG_OPTION(compilerDump, QML_COMPILER_DUMP);
@@ -808,7 +810,7 @@ bool QDeclarativeCompiler::buildObject(QDeclarativeParser::Object *obj, const Bi
                 defaultProperty->values += explicitProperty->values;
                 foreach(QDeclarativeParser::Value *value, defaultProperty->values)
                     value->addref();
-                qSort(defaultProperty->values.begin(), defaultProperty->values.end(), ValuePtrLessThan);
+                std::sort(defaultProperty->values.begin(), defaultProperty->values.end(), ValuePtrLessThan);
 
             } else {
                 defaultProperty = obj->defaultProperty;
