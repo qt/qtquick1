@@ -12,9 +12,6 @@ wince* {
     qtHaveModule(scripttools) {
         QT += scripttools
     }
-    contains(QT_CONFIG, phonon) {
-        QT += phonon
-    }
     qtHaveModule(xmlpatterns) {
         QT += xmlpatterns
     }
