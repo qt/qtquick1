@@ -170,7 +170,7 @@ QString tst_qmlvisual::toTestScript(const QString &file, Mode mode)
         return QString();
 
     const char* platformsuffix=0; // platforms with different fonts
-#if defined(Q_OS_MACX)
+#if defined(Q_OS_OSX)
     platformsuffix = "-MAC";
 #elif defined(Q_OS_WIN)
     platformsuffix = "-WIN";
