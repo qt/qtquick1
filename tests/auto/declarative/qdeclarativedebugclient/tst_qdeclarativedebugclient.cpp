@@ -113,7 +113,7 @@ void tst_QDeclarativeDebugClient::status()
     QTRY_COMPARE(client.status(), QDeclarativeDebugClient::Unavailable);
 
     // duplicate plugin name
-    QTest::ignoreMessage(QtWarningMsg, "QDeclarativeDebugClient: Conflicting plugin name \"tst_QDeclarativeDebugClient::status()\" ");
+    QTest::ignoreMessage(QtWarningMsg, "QDeclarativeDebugClient: Conflicting plugin name \"tst_QDeclarativeDebugClient::status()\"");
     QDeclarativeDebugClient client2("tst_QDeclarativeDebugClient::status()", m_conn);
     QCOMPARE(client2.status(), QDeclarativeDebugClient::NotConnected);
 

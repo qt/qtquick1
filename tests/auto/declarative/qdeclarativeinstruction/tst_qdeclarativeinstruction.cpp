@@ -544,7 +544,7 @@ void tst_qdeclarativeinstruction::dump()
         << "8\t\t8\tSTORE_INTEGER\t\t5\t9"
         << "9\t\t9\tSTORE_BOOL\t\t6\ttrue"
         << "10\t\t10\tSTORE_STRING\t\t7\t1\t\t\"Test String\""
-        << "11\t\t11\tSTORE_URL\t\t8\t0\t\tQUrl(\"http://www.qt-project.org\") "
+        << "11\t\t11\tSTORE_URL\t\t8\t0\t\tQUrl(\"http://www.qt-project.org\")"
         << "12\t\t12\tSTORE_COLOR\t\t9\t\t\t\"ff00ff00\""
         << "13\t\t13\tSTORE_DATE\t\t10\t9"
         << "14\t\t14\tSTORE_TIME\t\t11\t33"

@@ -202,7 +202,7 @@ void tst_qdeclarativeerror::debug()
         error.setLine(92);
         error.setColumn(13);
 
-        QTest::ignoreMessage(QtWarningMsg, "http://www.qt-project.org/main.qml:92:13: An Error ");
+        QTest::ignoreMessage(QtWarningMsg, "http://www.qt-project.org/main.qml:92:13: An Error");
         qWarning() << error;
     }
 
@@ -214,7 +214,7 @@ void tst_qdeclarativeerror::debug()
         error.setLine(2);
         error.setColumn(5);
 
-        QString out = url.toString() + ":2:5: An Error \n     Line2 Content \n         ^ ";
+        QString out = url.toString() + ":2:5: An Error \n     Line2 Content \n         ^";
         QTest::ignoreMessage(QtWarningMsg, qPrintable(out));
 
         qWarning() << error;
@@ -228,7 +228,7 @@ void tst_qdeclarativeerror::debug()
         error.setLine(2);
         error.setColumn(5);
 
-        QString out = url.toString() + ":2:5: An Error ";
+        QString out = url.toString() + ":2:5: An Error";
         QTest::ignoreMessage(QtWarningMsg, qPrintable(out));
 
         qWarning() << error;
