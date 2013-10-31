@@ -173,9 +173,9 @@ void tst_qdeclarativemoduleplugin::incorrectPluginCase()
 #elif defined(Q_OS_WIN32)
     QString libname = "PluGin.dll";
 #endif
-    QString expectedError = QLatin1String("plugin cannot be loaded for module \"com.nokia.WrongCase\": File name case mismatch for \"") + QFileInfo(__FILE__).absoluteDir().filePath("imports/com/nokia/WrongCase/" + libname) + QLatin1String("\"");
+    QString expectedError = QLatin1String("plugin cannot be loaded for module \"org.qtproject.WrongCase\": File name case mismatch for \"") + QFileInfo(__FILE__).absoluteDir().filePath("imports/org/qtproject/WrongCase/" + libname) + QLatin1String("\"");
 #else
-    QString expectedError = QLatin1String("module \"com.nokia.WrongCase\" plugin \"PluGin\" not found");
+    QString expectedError = QLatin1String("module \"org.qtproject.WrongCase\" plugin \"PluGin\" not found");
 #endif
 
     QCOMPARE(errors.at(0).description(), expectedError);
@@ -212,7 +212,7 @@ void tst_qdeclarativemoduleplugin::remoteImportWithQuotedUrl()
 
     QDeclarativeEngine engine;
     QDeclarativeComponent component(&engine);
-    component.setData("import \"http://127.0.0.1:14450/com/nokia/PureQmlModule\" \nComponentA { width: 300; ComponentB{} }", QUrl());
+    component.setData("import \"http://127.0.0.1:14450/org/qtproject/PureQmlModule\" \nComponentA { width: 300; ComponentB{} }", QUrl());
 
     QTRY_COMPARE(component.status(), QDeclarativeComponent::Ready);
     QObject *object = component.create();
@@ -234,7 +234,7 @@ void tst_qdeclarativemoduleplugin::remoteImportWithUnquotedUri()
     QDeclarativeEngine engine;
     engine.addImportPath(importsDirectory());
     QDeclarativeComponent component(&engine);
-    component.setData("import com.nokia.PureQmlModule 1.0 \nComponentA { width: 300; ComponentB{} }", QUrl());
+    component.setData("import org.qtproject.PureQmlModule 1.0 \nComponentA { width: 300; ComponentB{} }", QUrl());
 
 
     QTRY_COMPARE(component.status(), QDeclarativeComponent::Ready);
