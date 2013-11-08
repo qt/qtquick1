@@ -2,7 +2,7 @@ TEMPLATE = lib
 CONFIG += plugin
 SOURCES = plugin.cpp
 QT = core declarative
-DESTDIR = ../imports/com/nokia/AutoTestPluginWithQmlFile
+DESTDIR = ../imports/org/qtproject/AutoTestPluginWithQmlFile
 
 include(../qmldir_copier.pri)
 

@@ -17,7 +17,7 @@ solaris-cc*:QMAKE_CXXFLAGS_RELEASE -= -O2
 
 exists("qdeclarative_enable_gcov") {
     QMAKE_CXXFLAGS = -fprofile-arcs -ftest-coverage -fno-elide-constructors
-    LIBS += -lgcov
+    LIBS_PRIVATE += -lgcov
 }
 
 #modules

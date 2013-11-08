@@ -2,7 +2,7 @@ TEMPLATE = lib
 CONFIG += plugin
 SOURCES = plugin.cpp
 QT = core declarative
-DESTDIR = ../imports/com/nokia/PureQmlModule
+DESTDIR = ../imports/org/qtproject/PureQmlModule
 
 include(../qmldir_copier.pri)
 

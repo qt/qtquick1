@@ -3,7 +3,7 @@ CONFIG += plugin
 SOURCES = plugin.cpp
 QT = core declarative
 TARGET = Plugin
-DESTDIR = ../imports/com/nokia/WrongCase
+DESTDIR = ../imports/org/qtproject/WrongCase
 
 include(../qmldir_copier.pri)
 
