@@ -266,7 +266,12 @@ void QDeclarativeDebugServer::receiveMessage(const QByteArray &message)
         QByteArray helloAnswer;
         {
             QDataStream out(&helloAnswer, QIODevice::WriteOnly);
-            out << QString(QLatin1String("QDeclarativeDebugClient")) << 0 << protocolVersion << d->plugins.keys();
+            QList<float> fakeVersions;
+            for (int i = 0; i < d->plugins.size(); ++i)
+                fakeVersions << 1.0;
+            out << QString(QLatin1String("QDeclarativeDebugClient")) << 0
+                << protocolVersion << d->plugins.keys()
+                << fakeVersions << QDataStream().version();
         }
         d->connection->send(QList<QByteArray>() << helloAnswer);
 
