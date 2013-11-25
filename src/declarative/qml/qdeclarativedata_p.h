@@ -74,7 +74,7 @@ class Q_AUTOTEST_EXPORT QDeclarativeData : public QAbstractDeclarativeData
 {
 public:
     QDeclarativeData()
-        : ownMemory(true), ownContext(false), indestructible(true), explicitIndestructibleSet(false), 
+        : ownedByQml1(true), ownMemory(true), ownContext(false), indestructible(true), explicitIndestructibleSet(false),
           context(0), outerContext(0), bindings(0), nextContextObject(0), prevContextObject(0), bindingBitsSize(0), 
           bindingBits(0), lineNumber(0), columnNumber(0), deferredComponent(0), deferredIdx(0), 
           scriptValue(0), objectDataRefCount(0), propertyCache(0), guards(0), extendedData(0) {
@@ -82,12 +82,10 @@ public:
       }
 
     static inline void init() {
-        QAbstractDeclarativeData::destroyed = destroyed;
-        QAbstractDeclarativeData::parentChanged = parentChanged;
+        QAbstractDeclarativeData::destroyed_qml1 = destroyed;
     }
 
     static void destroyed(QAbstractDeclarativeData *, QObject *);
-    static void parentChanged(QAbstractDeclarativeData *, QObject *, QObject *);
 
     void destroyed(QObject *);
 
@@ -95,11 +93,12 @@ public:
         if (!explicitIndestructibleSet) indestructible = false;
     }
 
+    quint32 ownedByQml1:1; // This bit is shared with QML2's QQmlData.
     quint32 ownMemory:1;
     quint32 ownContext:1;
     quint32 indestructible:1;
     quint32 explicitIndestructibleSet:1;
-    quint32 dummy:28;
+    quint32 dummy:27;
 
     // The context that created the C++ object
     QDeclarativeContextData *context; 
