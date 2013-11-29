@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
 
     QmlApplicationViewer viewer;
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
-    viewer.setMainQmlFile(QLatin1String("qml/behaviours/behavior-example.qml"));
+    viewer.setMainQmlFile(QLatin1String("qml/wigglytext/wigglytext.qml"));
     viewer.showExpanded();
 
     return app.exec();
