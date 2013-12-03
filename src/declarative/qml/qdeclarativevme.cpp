@@ -287,6 +287,7 @@ QObject *QDeclarativeVME::run(QDeclarativeVMEObjectStack &stack,
                 instr.createSimple.create(o);
 
                 QDeclarativeData *ddata = (QDeclarativeData *)(((const char *)o) + instr.createSimple.typeSize);
+                ddata->ownedByQml1 = true;
                 const QDeclarativeCompiledData::TypeReference &ref = types.at(instr.createSimple.type);
                 if (!ddata->propertyCache && ref.typePropertyCache) {
                     ddata->propertyCache = ref.typePropertyCache;
