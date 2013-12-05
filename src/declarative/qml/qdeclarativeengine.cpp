@@ -556,14 +556,10 @@ void QDeclarativePrivate::qdeclarativeelement_destructor(QObject *o)
 
 void QDeclarativeData::destroyed(QAbstractDeclarativeData *d, QObject *o)
 {
-    static_cast<QDeclarativeData *>(d)->destroyed(o);
-}
-
-void QDeclarativeData::parentChanged(QAbstractDeclarativeData *d, QObject *o, QObject *p)
-{
-    Q_UNUSED(d)
-    Q_UNUSED(o)
-    Q_UNUSED(p)
+    QDeclarativeData *ddata = static_cast<QDeclarativeData *>(d);
+    if (!ddata->ownedByQml1)
+        return;
+    ddata->destroyed(o);
 }
 
 void QDeclarativeEnginePrivate::init()
