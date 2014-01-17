@@ -88,7 +88,7 @@ private:
     Value callMethod(QObject *, int index, int returnType, int argCount, int *argTypes, QScriptContext *ctxt);
 
     int matchScore(const QScriptValue &, int, const QByteArray &);
-    QDeclarativePropertyCache::Data *relatedMethod(QObject *, QDeclarativePropertyCache::Data *current, 
+    QDeclarativePropertyCache::Data *relatedMethod(QObject *, QDeclarativePropertyCache::Data *current,
                                                    QDeclarativePropertyCache::Data &dummy);
 
     PersistentIdentifier m_connectId;
@@ -119,8 +119,8 @@ public:
     };
     Q_DECLARE_FLAGS(QueryHints, QueryHint)
 
-    QScriptClass::QueryFlags queryProperty(QObject *, const Identifier &, 
-                                           QScriptClass::QueryFlags flags, 
+    QScriptClass::QueryFlags queryProperty(QObject *, const Identifier &,
+                                           QScriptClass::QueryFlags flags,
                                            QDeclarativeContextData *evalContext,
                                            QueryHints hints = 0);
 
@@ -132,7 +132,7 @@ public:
     virtual bool compare(Object *, Object *);
 
 protected:
-    virtual QScriptClass::QueryFlags queryProperty(Object *, const Identifier &, 
+    virtual QScriptClass::QueryFlags queryProperty(Object *, const Identifier &,
                                                    QScriptClass::QueryFlags flags);
 
     virtual Value property(Object *, const Identifier &);

@@ -94,13 +94,13 @@ QDeclarativeDebugService::Status QDeclarativeDebugService::status() const
 
 namespace {
 
-    struct ObjectReference 
+    struct ObjectReference
     {
         QPointer<QObject> object;
         int id;
     };
 
-    struct ObjectReferenceHash 
+    struct ObjectReferenceHash
     {
         ObjectReferenceHash() : nextId(0) {}
 
@@ -124,7 +124,7 @@ int QDeclarativeDebugService::idForObject(QObject *object)
         return -1;
 
     ObjectReferenceHash *hash = objectReferenceHash();
-    QHash<QObject *, ObjectReference>::Iterator iter = 
+    QHash<QObject *, ObjectReference>::Iterator iter =
         hash->objects.find(object);
 
     if (iter == hash->objects.end()) {
@@ -142,7 +142,7 @@ int QDeclarativeDebugService::idForObject(QObject *object)
         hash->ids.insert(id, object);
         iter->object = object;
         iter->id = id;
-    } 
+    }
     return iter->id;
 }
 
@@ -160,7 +160,7 @@ QObject *QDeclarativeDebugService::objectForId(int id)
         return 0;
 
 
-    QHash<QObject *, ObjectReference>::Iterator objIter = 
+    QHash<QObject *, ObjectReference>::Iterator objIter =
         hash->objects.find(*iter);
     Q_ASSERT(objIter != hash->objects.end());
 
@@ -193,7 +193,7 @@ QString QDeclarativeDebugService::objectToString(QObject *obj)
     if(objectName.isEmpty())
         objectName = QLatin1String("<unnamed>");
 
-    QString rv = QString::fromUtf8(obj->metaObject()->className()) + 
+    QString rv = QString::fromUtf8(obj->metaObject()->className()) +
                  QLatin1String(": ") + objectName;
 
     return rv;

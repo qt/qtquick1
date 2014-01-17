@@ -94,7 +94,7 @@ QDeclarativeGlobalScriptClass::QDeclarativeGlobalScriptClass(QScriptEngine *engi
     engine->setGlobalObject(newGlobalObject);
 }
 
-QScriptClass::QueryFlags 
+QScriptClass::QueryFlags
 QDeclarativeGlobalScriptClass::queryProperty(const QScriptValue &object,
                                     const QScriptString &name,
                                     QueryFlags flags, uint *id)
@@ -106,14 +106,14 @@ QDeclarativeGlobalScriptClass::queryProperty(const QScriptValue &object,
     return HandlesWriteAccess;
 }
 
-void QDeclarativeGlobalScriptClass::setProperty(QScriptValue &object, 
+void QDeclarativeGlobalScriptClass::setProperty(QScriptValue &object,
                                        const QScriptString &name,
                                        uint id, const QScriptValue &value)
 {
     Q_UNUSED(object);
     Q_UNUSED(id);
     Q_UNUSED(value);
-    QString error = QLatin1String("Invalid write to global property \"") + 
+    QString error = QLatin1String("Invalid write to global property \"") +
                     name.toString() + QLatin1Char('\"');
     engine()->currentContext()->throwError(error);
 }

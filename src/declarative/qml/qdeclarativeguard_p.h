@@ -59,7 +59,7 @@
 
 QT_BEGIN_NAMESPACE
 
-class QDeclarativeGuardImpl 
+class QDeclarativeGuardImpl
 {
 public:
     inline QDeclarativeGuardImpl();
@@ -91,7 +91,7 @@ public:
 
     inline T *object() const;
     inline void setObject(T *g);
-    
+
     inline bool isNull() const
         { return !o; }
 
@@ -135,7 +135,7 @@ void QDeclarativeGuardImpl::addGuard()
 {
     Q_ASSERT(!prev);
 
-    if (QObjectPrivate::get(o)->wasDeleted) 
+    if (QObjectPrivate::get(o)->wasDeleted)
         return;
 
     QDeclarativeData *data = QDeclarativeData::get(o, true);
@@ -192,13 +192,13 @@ QDeclarativeGuard<T> &QDeclarativeGuard<T>::operator=(T *g)
 }
 
 template<class T>
-T *QDeclarativeGuard<T>::object() const 
-{ 
-    return static_cast<T *>(o); 
+T *QDeclarativeGuard<T>::object() const
+{
+    return static_cast<T *>(o);
 };
 
 template<class T>
-void QDeclarativeGuard<T>::setObject(T *g) 
+void QDeclarativeGuard<T>::setObject(T *g)
 {
     if (g != o) {
         if (prev) remGuard();

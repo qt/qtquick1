@@ -75,17 +75,17 @@ namespace QDeclarativeJS { namespace AST { class Node; } }
 /*
     XXX
 
-    These types are created (and owned) by the QDeclarativeXmlParser and consumed by the 
+    These types are created (and owned) by the QDeclarativeXmlParser and consumed by the
     QDeclarativeCompiler.  During the compilation phase the compiler will update some of
     the fields for both its own use and for the use of the upcoming QDeclarativeDom API.
 
-    The types are part of the generic sounding "QDeclarativeParser" namespace for legacy 
+    The types are part of the generic sounding "QDeclarativeParser" namespace for legacy
     reasons (there used to be more in this namespace) and will be cleaned up and
     migrated into a more appropriate location shortly.
 */
 namespace QDeclarativeParser
 {
-    struct Location 
+    struct Location
     {
         Location() : line(-1), column(-1) {}
         int line;
@@ -116,9 +116,9 @@ namespace QDeclarativeParser
     {
     public:
         Object();
-        virtual ~Object(); 
+        virtual ~Object();
 
-        // Type of the object.  The integer is an index into the 
+        // Type of the object.  The integer is an index into the
         // QDeclarativeCompiledData::types array, or -1 if the object is a property
         // group.
         int type;
@@ -140,9 +140,9 @@ namespace QDeclarativeParser
         // Custom parsed data
         QByteArray custom;
         // Bit mask of the properties assigned bindings
-        QByteArray bindingBitmask; 
+        QByteArray bindingBitmask;
         void setBindingBit(int);
-        // Returns the metaobject for this type, or 0 if not available.  
+        // Returns the metaobject for this type, or 0 if not available.
         // Internally selectd between the metatype and extObject variables
         const QMetaObject *metaObject() const;
 
@@ -178,7 +178,7 @@ namespace QDeclarativeParser
 
         // Script blocks that were nested under this object
         struct ScriptBlock {
-            enum Pragma { 
+            enum Pragma {
                 None   = 0x00000000,
                 Shared = 0x00000001
             };
@@ -189,7 +189,7 @@ namespace QDeclarativeParser
             Pragmas pragmas;
         };
 
-        // The bytes to cast instances by to get to the QDeclarativeParserStatus 
+        // The bytes to cast instances by to get to the QDeclarativeParserStatus
         // interface.  -1 indicates the type doesn't support this interface.
         // Set by the QDeclarativeCompiler.
         int parserStatusCast;
@@ -332,7 +332,7 @@ namespace QDeclarativeParser
         void addValue(Value *v);
         void addOnValue(Value *v);
 
-        // The QVariant::Type of the property, or 0 (QVariant::Invalid) if 
+        // The QVariant::Type of the property, or 0 (QVariant::Invalid) if
         // unknown.
         int type;
         // The metaobject index of this property, or -1 if unknown.
@@ -351,14 +351,14 @@ namespace QDeclarativeParser
         Object *value;
         // The property name
         QByteArray name;
-        // True if this property was accessed as the default property.  
+        // True if this property was accessed as the default property.
         bool isDefault;
         // True if the setting of this property will be deferred.  Set by the
         // QDeclarativeCompiler
         bool isDeferred;
         // True if this property is a value-type pseudo-property
         bool isValueTypeSubProperty;
-        // True if this property is a property alias.  Set by the 
+        // True if this property is a property alias.  Set by the
         // QDeclarativeCompiler
         bool isAlias;
 

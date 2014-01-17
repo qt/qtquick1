@@ -77,7 +77,7 @@ class QDeclarativeComponentAttached;
 class Q_AUTOTEST_EXPORT QDeclarativeComponentPrivate : public QObjectPrivate, public QDeclarativeTypeData::TypeDataCallback
 {
     Q_DECLARE_PUBLIC(QDeclarativeComponent)
-        
+
 public:
     QDeclarativeComponentPrivate() : typeData(0), progress(0.), start(-1), count(-1), cc(0), engine(0), creationContext(0) {}
 
@@ -87,7 +87,7 @@ public:
     QDeclarativeTypeData *typeData;
     virtual void typeDataReady(QDeclarativeTypeData *);
     virtual void typeDataProgress(QDeclarativeTypeData *, qreal);
-    
+
     void fromTypeData(QDeclarativeTypeData *data);
 
     QUrl url;
@@ -109,10 +109,10 @@ public:
     ConstructionState state;
 
     static QObject *begin(QDeclarativeContextData *parentContext, QDeclarativeContextData *componentCreationContext,
-                          QDeclarativeCompiledData *component, int start, int count, 
-                          ConstructionState *state, QList<QDeclarativeError> *errors, 
+                          QDeclarativeCompiledData *component, int start, int count,
+                          ConstructionState *state, QList<QDeclarativeError> *errors,
                           const QBitField &bindings = QBitField());
-    static void beginDeferred(QDeclarativeEnginePrivate *enginePriv, QObject *object, 
+    static void beginDeferred(QDeclarativeEnginePrivate *enginePriv, QObject *object,
                               ConstructionState *state);
     static void complete(QDeclarativeEnginePrivate *enginePriv, ConstructionState *state);
 

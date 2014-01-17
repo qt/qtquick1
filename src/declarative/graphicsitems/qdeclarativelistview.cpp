@@ -1597,7 +1597,7 @@ void QDeclarativeListViewPrivate::flick(AxisData &data, qreal minExtent, qreal m
     for its delegate. The view will create a new \l Text component for each item in the model. Notice
     the delegate is able to access the model's \c name and \c number data directly.
 
-    An improved list view is shown below. The delegate is visually improved and is moved 
+    An improved list view is shown below. The delegate is visually improved and is moved
     into a separate \c contactDelegate component.
 
     \snippet doc/src/snippets/declarative/listview/listview.qml classdocs advanced
@@ -1871,10 +1871,10 @@ void QDeclarativeListView::setDelegate(QDeclarativeComponent *delegate)
     \c currentItem holds the current item.   Setting the currentIndex to -1
     will clear the highlight and set currentItem to null.
 
-    If highlightFollowsCurrentItem is \c true, setting either of these 
-    properties will smoothly scroll the ListView so that the current 
+    If highlightFollowsCurrentItem is \c true, setting either of these
+    properties will smoothly scroll the ListView so that the current
     item becomes visible.
-    
+
     Note that the position of the current item
     may only be approximate until it becomes visible in the view.
 */
@@ -1977,8 +1977,8 @@ void QDeclarativeListView::setHighlight(QDeclarativeComponent *highlight)
     If this property is true (the default value), the highlight is moved smoothly
     to follow the current item.  Otherwise, the
     highlight is not moved by the view, and any movement must be implemented
-    by the highlight.  
-    
+    by the highlight.
+
     Here is a highlight with its motion defined by a \l {SpringAnimation} item:
 
     \snippet doc/src/snippets/declarative/listview/listview.qml highlightFollowsCurrentItem
@@ -2020,12 +2020,12 @@ void QDeclarativeListView::setHighlightFollowsCurrentItem(bool autoHighlight)
 
     These properties define the preferred range of the highlight (for the current item)
     within the view. The \c preferredHighlightBegin value must be less than the
-    \c preferredHighlightEnd value. 
+    \c preferredHighlightEnd value.
 
     These properties affect the position of the current item when the list is scrolled.
     For example, if the currently selected item should stay in the middle of the
-    list when the view is scrolled, set the \c preferredHighlightBegin and 
-    \c preferredHighlightEnd values to the top and bottom coordinates of where the middle 
+    list when the view is scrolled, set the \c preferredHighlightBegin and
+    \c preferredHighlightEnd values to the top and bottom coordinates of where the middle
     item would be. If the \c currentItem is changed programmatically, the list will
     automatically scroll so that the current item is in the middle of the view.
     Furthermore, the behavior of the current item index will occur whether or not a
@@ -2228,7 +2228,7 @@ Qt::LayoutDirection QDeclarativeListView::effectiveLayoutDirection() const
 
 /*!
     \qmlproperty bool ListView::keyNavigationWraps
-    This property holds whether the list wraps key navigation. 
+    This property holds whether the list wraps key navigation.
 
     If this is true, key navigation that would move the current item selection
     past the end of the list instead wraps around and moves the selection to
@@ -2299,7 +2299,7 @@ void QDeclarativeListView::setCacheBuffer(int b)
     The \l section attached property enables a ListView to be visually
     separated into different parts. These properties determine how sections
     are created.
-    
+
     \c section.property holds the name of the property that is the basis
     of each section.
 
@@ -2310,7 +2310,7 @@ void QDeclarativeListView::setCacheBuffer(int b)
     \li ViewSection.FullString (default) - sections are created based on the
     \c section.property value.
     \li ViewSection.FirstCharacter - sections are created based on the first
-    character of the \c section.property value (for example, 'A', 'B', 'C' 
+    character of the \c section.property value (for example, 'A', 'B', 'C'
     sections, etc. for an address book)
     \endlist
 
@@ -2320,13 +2320,13 @@ void QDeclarativeListView::setCacheBuffer(int b)
     \c ListView.previousSection and \c ListView.nextSection.  These may be
     used to place a section header for related items.
 
-    For example, here is a ListView that displays a list of animals, separated 
-    into sections. Each item in the ListView is placed in a different section 
+    For example, here is a ListView that displays a list of animals, separated
+    into sections. Each item in the ListView is placed in a different section
     depending on the "size" property of the model item. The \c sectionHeading
     delegate component provides the light blue bar that marks the beginning of
     each section.
 
-       
+
     \snippet examples/declarative/modelviews/listview/sections.qml 0
 
     \image qml-listview-sections-example.png

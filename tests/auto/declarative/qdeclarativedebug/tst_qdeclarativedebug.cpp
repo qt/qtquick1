@@ -229,7 +229,7 @@ void tst_QDeclarativeDebug::recursiveObjectTest(QObject *o, const QDeclarativeDe
         else
             QCOMPARE(p.valueTypeName(), QString::fromUtf8(pmeta.typeName()));
 
-        QDeclarativeAbstractBinding *binding = 
+        QDeclarativeAbstractBinding *binding =
             QDeclarativePropertyPrivate::binding(QDeclarativeProperty(o, p.name()));
         if (binding)
             QCOMPARE(binding->expression(), p.binding());

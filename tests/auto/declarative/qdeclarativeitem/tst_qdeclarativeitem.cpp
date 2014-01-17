@@ -519,7 +519,7 @@ void tst_QDeclarativeItem::layoutMirroring()
     QCOMPARE(childPrivate(rootItem, "inheritedMirror2")->inheritedLayoutMirror, true);
     QCOMPARE(childPrivate(rootItem, "mirrored1")->inheritedLayoutMirror, true);
     QCOMPARE(childPrivate(rootItem, "notMirrored1")->inheritedLayoutMirror, true);
-    
+
     //
     // dynamic parenting
     //
@@ -549,7 +549,7 @@ void tst_QDeclarativeItem::layoutMirroring()
     childItem2->setParentItem(parentItem2);
     QCOMPARE(QDeclarativeItemPrivate::get(childItem2)->effectiveLayoutMirror, false);
     QCOMPARE(QDeclarativeItemPrivate::get(childItem2)->inheritMirrorFromParent, false);
-    
+
     delete parentItem1;
     delete parentItem2;
 }
@@ -922,7 +922,7 @@ void tst_QDeclarativeItem::transforms()
 void tst_QDeclarativeItem::childrenProperty()
 {
     QDeclarativeComponent component(&engine, SRCDIR "/data/childrenProperty.qml");
-    
+
     QObject *o = component.create();
     QVERIFY(o != 0);
 
@@ -937,7 +937,7 @@ void tst_QDeclarativeItem::childrenProperty()
 void tst_QDeclarativeItem::resourcesProperty()
 {
     QDeclarativeComponent component(&engine, SRCDIR "/data/resourcesProperty.qml");
-    
+
     QObject *o = component.create();
     QVERIFY(o != 0);
 

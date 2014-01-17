@@ -81,8 +81,8 @@ namespace QDeclarativePrivate
     class QDeclarativeElement : public T
     {
     public:
-        virtual ~QDeclarativeElement() { 
-            QDeclarativePrivate::qdeclarativeelement_destructor(this); 
+        virtual ~QDeclarativeElement() {
+            QDeclarativePrivate::qdeclarativeelement_destructor(this);
         }
     };
 
@@ -126,7 +126,7 @@ namespace QDeclarativePrivate
     };
 
     template <typename T, bool hasMember>
-    class has_attachedPropertiesMethod 
+    class has_attachedPropertiesMethod
     {
     public:
         typedef int yes_type;
@@ -137,7 +137,7 @@ namespace QDeclarativePrivate
         static no_type check(...);
 
         static bool const value = sizeof(check(&T::qmlAttachedProperties)) == sizeof(yes_type);
-    }; 
+    };
 
     template <typename T>
     class has_attachedPropertiesMethod<T, false>
@@ -241,7 +241,7 @@ namespace QDeclarativePrivate
     };
 
     enum RegistrationType {
-        TypeRegistration       = 0, 
+        TypeRegistration       = 0,
         InterfaceRegistration  = 1,
         AutoParentRegistration = 2,
         ComponentRegistration  = 3

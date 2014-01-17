@@ -101,10 +101,10 @@ void tst_QDeclarativeViewer::runtimeContextProperty()
     QVERIFY(rootItem);
     QObject *runtimeObject = qvariant_cast<QObject*>(viewer->view()->engine()->rootContext()->contextProperty("runtime"));
     QVERIFY(runtimeObject);
-    
+
     // test isActiveWindow property
     QVERIFY(!runtimeObject->property("isActiveWindow").toBool());
-    
+
     viewer->show();
     QApplication::setActiveWindow(viewer);
     //viewer->requestActivateWindow();
@@ -113,7 +113,7 @@ void tst_QDeclarativeViewer::runtimeContextProperty()
     //QTRY_VERIFY(viewer == qGuiApp->focusWindow());
 
     QVERIFY(runtimeObject->property("isActiveWindow").toBool());
-    
+
     TEST_INITIAL_SIZES(viewer);
 
     // test orientation property

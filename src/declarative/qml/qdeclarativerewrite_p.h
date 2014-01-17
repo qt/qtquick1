@@ -69,7 +69,7 @@ class SharedBindingTester : protected AST::Visitor
 public:
     bool isSharable(const QString &code);
     bool isSharable(AST::Node *Node);
-    
+
     virtual bool visit(AST::FunctionDeclaration *) { _sharable = false; return false; }
     virtual bool visit(AST::FunctionExpression *) { _sharable = false; return false; }
     virtual bool visit(AST::CallExpression *) { _sharable = false; return false; }

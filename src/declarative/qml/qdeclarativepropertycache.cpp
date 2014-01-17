@@ -49,7 +49,7 @@ Q_DECLARE_METATYPE(QScriptValue)
 
 QT_BEGIN_NAMESPACE
 
-QDeclarativePropertyCache::Data::Flags QDeclarativePropertyCache::Data::flagsForProperty(const QMetaProperty &p, QDeclarativeEngine *engine) 
+QDeclarativePropertyCache::Data::Flags QDeclarativePropertyCache::Data::flagsForProperty(const QMetaProperty &p, QDeclarativeEngine *engine)
 {
     int propType = p.userType();
 
@@ -139,19 +139,19 @@ void QDeclarativePropertyCache::clear()
 
     for (int ii = 0; ii < methodIndexCache.count(); ++ii) {
         RData *data = methodIndexCache.at(ii);
-        if (data) data->release(); 
+        if (data) data->release();
     }
 
-    for (StringCache::ConstIterator iter = stringCache.begin(); 
+    for (StringCache::ConstIterator iter = stringCache.begin();
             iter != stringCache.end(); ++iter) {
         RData *data = (*iter);
-        data->release(); 
+        data->release();
     }
 
-    for (IdentifierCache::ConstIterator iter = identifierCache.begin(); 
+    for (IdentifierCache::ConstIterator iter = identifierCache.begin();
             iter != identifierCache.end(); ++iter) {
         RData *data = (*iter);
-        data->release(); 
+        data->release();
     }
 
     indexCache.clear();
@@ -160,7 +160,7 @@ void QDeclarativePropertyCache::clear()
     identifierCache.clear();
 }
 
-QDeclarativePropertyCache::Data QDeclarativePropertyCache::create(const QMetaObject *metaObject, 
+QDeclarativePropertyCache::Data QDeclarativePropertyCache::create(const QMetaObject *metaObject,
                                                                   const QString &property)
 {
     Q_ASSERT(metaObject);
@@ -230,14 +230,14 @@ QDeclarativePropertyCache *QDeclarativePropertyCache::copy() const
     return cache;
 }
 
-void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaObject *metaObject, 
+void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaObject *metaObject,
                                        Data::Flag propertyFlags, Data::Flag methodFlags, Data::Flag signalFlags)
 {
     append(engine, metaObject, -1, propertyFlags, methodFlags, signalFlags);
 }
 
-void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaObject *metaObject, 
-                                       int revision, 
+void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaObject *metaObject,
+                                       int revision,
                                        Data::Flag propertyFlags, Data::Flag methodFlags, Data::Flag signalFlags)
 {
     Q_UNUSED(revision);
@@ -252,7 +252,7 @@ void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaOb
     methodIndexCache.resize(methodCount);
     for (int ii = methodOffset; ii < methodCount; ++ii) {
         QMetaMethod m = metaObject->method(ii);
-        if (m.access() == QMetaMethod::Private) 
+        if (m.access() == QMetaMethod::Private)
             continue;
         QString methodName = QString::fromUtf8(m.methodSignature());
 
@@ -262,10 +262,10 @@ void QDeclarativePropertyCache::append(QDeclarativeEngine *engine, const QMetaOb
 
         RData *data = new RData;
         data->identifier = enginePriv->objectClass->createPersistentIdentifier(methodName);
-        methodIndexCache[ii] = data;  
+        methodIndexCache[ii] = data;
 
         data->load(m);
-        if (m.methodType() == QMetaMethod::Slot || m.methodType() == QMetaMethod::Method) 
+        if (m.methodType() == QMetaMethod::Slot || m.methodType() == QMetaMethod::Method)
             data->flags |= methodFlags;
         else if (m.methodType() == QMetaMethod::Signal)
             data->flags |= signalFlags;
@@ -404,7 +404,7 @@ QStringList QDeclarativePropertyCache::propertyNames() const
     return stringCache.keys();
 }
 
-QDeclarativePropertyCache::Data *QDeclarativePropertyCache::property(QDeclarativeEngine *engine, QObject *obj, 
+QDeclarativePropertyCache::Data *QDeclarativePropertyCache::property(QDeclarativeEngine *engine, QObject *obj,
                                                    const QScriptDeclarativeClass::Identifier &name, Data &local)
 {
     QDeclarativePropertyCache::Data *rv = 0;
@@ -431,7 +431,7 @@ QDeclarativePropertyCache::Data *QDeclarativePropertyCache::property(QDeclarativ
     return rv;
 }
 
-QDeclarativePropertyCache::Data *QDeclarativePropertyCache::property(QDeclarativeEngine *engine, QObject *obj, 
+QDeclarativePropertyCache::Data *QDeclarativePropertyCache::property(QDeclarativeEngine *engine, QObject *obj,
                                                    const QString &name, Data &local)
 {
     QDeclarativePropertyCache::Data *rv = 0;

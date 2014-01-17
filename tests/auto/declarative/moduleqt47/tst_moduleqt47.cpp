@@ -88,7 +88,7 @@ QStringList tst_moduleqt47::findFiles(const QDir &d)
         QString absFile = d.absoluteFilePath(file);
 
         bool skip = false;
-        for (int ii = 0; !skip && ii < excludedFiles.count(); ++ii) 
+        for (int ii = 0; !skip && ii < excludedFiles.count(); ++ii)
             skip = (absFile.endsWith(excludedFiles.at(ii)));
 
         if (!skip)
@@ -110,7 +110,7 @@ void tst_moduleqt47::accidentalImport_data()
     QTest::addColumn<QString>("file");
     QStringList files = findFiles(QDir(SRCDIR "/../../../../"));
 
-    foreach(const QString &file, files) 
+    foreach (const QString &file, files)
         QTest::newRow(qPrintable(file)) << file;
 }
 

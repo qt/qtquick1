@@ -163,7 +163,7 @@ void tst_qdeclarativexmlhttprequest::callbackException()
 
     QFETCH(QString, which);
     QFETCH(int, line);
-    
+
     QString expect = testFileUrl("callbackException.qml").toString() + ":"+QString::number(line)+": Error: Exception from Callback";
     QTest::ignoreMessage(QtWarningMsg, expect.toLatin1());
 
@@ -212,7 +212,7 @@ void tst_qdeclarativexmlhttprequest::instanceStateValues()
     delete object;
 }
 
-// Test calling constructor 
+// Test calling constructor
 void tst_qdeclarativexmlhttprequest::constructor()
 {
     QDeclarativeComponent component(&engine, testFileUrl("constructor.qml"));
@@ -443,7 +443,7 @@ void tst_qdeclarativexmlhttprequest::setRequestHeader_sent()
     component.completeCreate();
 
     QCOMPARE(object->property("test").toBool(), true);
-    
+
     QTRY_VERIFY(object->property("dataOK").toBool() == true);
 
     delete object;
@@ -823,7 +823,7 @@ void tst_qdeclarativexmlhttprequest::statusText()
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
     QVERIFY(server.wait(testFileUrl("status.expect"),
-                        replyUrl, 
+                        replyUrl,
                         testFileUrl("testdocument.html")));
 
     QDeclarativeComponent component(&engine, testFileUrl("statusText.qml"));
@@ -864,7 +864,7 @@ void tst_qdeclarativexmlhttprequest::responseText()
     TestHTTPServer server(SERVER_PORT);
     QVERIFY(server.isValid());
     QVERIFY(server.wait(testFileUrl("status.expect"),
-                        replyUrl, 
+                        replyUrl,
                         bodyUrl));
 
     QDeclarativeComponent component(&engine, testFileUrl("responseText.qml"));
@@ -912,7 +912,7 @@ void tst_qdeclarativexmlhttprequest::nonUtf8()
     QMetaObject::invokeMethod(object, "startRequest");
 
     QTRY_VERIFY(object->property("dataOK").toBool() == true);
-    
+
     QCOMPARE(object->property("responseText").toString(), responseText);
 
     if (!xmlRootNodeValue.isEmpty()) {
@@ -1018,10 +1018,10 @@ void tst_qdeclarativexmlhttprequest::redirects()
         object->setProperty("expectedText", "");
         component.completeCreate();
 
-        for (int ii = 0; ii < 60; ++ii) { 
-            if (object->property("done").toBool()) break; 
-            QTest::qWait(50); 
-        } 
+        for (int ii = 0; ii < 60; ++ii) {
+            if (object->property("done").toBool()) break;
+            QTest::qWait(50);
+        }
         QVERIFY(object->property("done").toBool() == true);
 
         QCOMPARE(object->property("dataOK").toBool(), true);

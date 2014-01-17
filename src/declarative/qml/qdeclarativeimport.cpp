@@ -67,7 +67,7 @@ static bool greaterThan(const QString &s1, const QString &s2)
 typedef QMap<QString, QString> StringStringMap;
 Q_GLOBAL_STATIC(StringStringMap, qmlEnginePluginsWithRegisteredTypes); // stores the uri
 
-class QDeclarativeImportedNamespace 
+class QDeclarativeImportedNamespace
 {
 public:
     QStringList uris;
@@ -90,16 +90,16 @@ public:
     QDeclarativeImportsPrivate(QDeclarativeTypeLoader *loader);
     ~QDeclarativeImportsPrivate();
 
-    bool importExtension(const QString &absoluteFilePath, const QString &uri, 
-                         QDeclarativeImportDatabase *database, QDeclarativeDirComponents* components, 
+    bool importExtension(const QString &absoluteFilePath, const QString &uri,
+                         QDeclarativeImportDatabase *database, QDeclarativeDirComponents* components,
                          QString *errorString);
 
     QString resolvedUri(const QString &dir_arg, QDeclarativeImportDatabase *database);
-    bool add(const QDeclarativeDirComponents &qmldircomponentsnetwork, 
-             const QString& uri_arg, const QString& prefix, 
-             int vmaj, int vmin, QDeclarativeScriptParser::Import::Type importType, 
+    bool add(const QDeclarativeDirComponents &qmldircomponentsnetwork,
+             const QString& uri_arg, const QString& prefix,
+             int vmaj, int vmin, QDeclarativeScriptParser::Import::Type importType,
              QDeclarativeImportDatabase *database, QString *errorString);
-    bool find(const QByteArray& type, int *vmajor, int *vminor, 
+    bool find(const QByteArray& type, int *vmajor, int *vminor,
               QDeclarativeType** type_return, QUrl* url_return, QString *errorString);
 
     QDeclarativeImportedNamespace *findNamespace(const QString& type);
@@ -118,7 +118,7 @@ public:
 \brief The QDeclarativeImports class encapsulates one QML document's import statements.
 \internal
 */
-QDeclarativeImports::QDeclarativeImports(const QDeclarativeImports &copy) 
+QDeclarativeImports::QDeclarativeImports(const QDeclarativeImports &copy)
 : d(copy.d)
 {
     ++d->ref;
@@ -165,7 +165,7 @@ QUrl QDeclarativeImports::baseUrl() const
 }
 
 static QDeclarativeTypeNameCache *
-cacheForNamespace(QDeclarativeEngine *engine, const QDeclarativeImportedNamespace &set, 
+cacheForNamespace(QDeclarativeEngine *engine, const QDeclarativeImportedNamespace &set,
                   QDeclarativeTypeNameCache *cache)
 {
     if (!cache)
@@ -228,7 +228,7 @@ void QDeclarativeImports::populateCache(QDeclarativeTypeNameCache *cache, QDecla
 
   \sa addImport()
 */
-bool QDeclarativeImports::resolveType(const QByteArray& type, 
+bool QDeclarativeImports::resolveType(const QByteArray& type,
                                       QDeclarativeType** type_return, QUrl* url_return, int *vmaj, int *vmin,
                                       QDeclarativeImportedNamespace** ns_return, QString *errorString) const
 {
@@ -242,13 +242,13 @@ bool QDeclarativeImports::resolveType(const QByteArray& type,
         if (d->find(type,vmaj,vmin,type_return,url_return, errorString)) {
             if (qmlImportTrace()) {
                 if (type_return && *type_return && url_return && !url_return->isEmpty())
-                    qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::resolveType: " 
+                    qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::resolveType: "
                                        << type << " => " << (*type_return)->typeName() << " " << *url_return;
                 if (type_return && *type_return)
-                    qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::resolveType: " 
+                    qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::resolveType: "
                                        << type << " => " << (*type_return)->typeName();
                 if (url_return && !url_return->isEmpty())
-                    qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::resolveType: " 
+                    qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::resolveType: "
                                        << type << " => " << *url_return;
             }
             return true;
@@ -267,8 +267,8 @@ bool QDeclarativeImports::resolveType(const QByteArray& type,
 
   If either return pointer is 0, the corresponding search is not done.
 */
-bool QDeclarativeImports::resolveType(QDeclarativeImportedNamespace* ns, const QByteArray& type, 
-                                      QDeclarativeType** type_return, QUrl* url_return, 
+bool QDeclarativeImports::resolveType(QDeclarativeImportedNamespace* ns, const QByteArray& type,
+                                      QDeclarativeType** type_return, QUrl* url_return,
                                       int *vmaj, int *vmin) const
 {
     Q_ASSERT(d->typeLoader);
@@ -353,9 +353,9 @@ QDeclarativeImportsPrivate::~QDeclarativeImportsPrivate()
         delete s;
 }
 
-bool QDeclarativeImportsPrivate::importExtension(const QString &absoluteFilePath, const QString &uri, 
-                                                 QDeclarativeImportDatabase *database, 
-                                                 QDeclarativeDirComponents* components, QString *errorString) 
+bool QDeclarativeImportsPrivate::importExtension(const QString &absoluteFilePath, const QString &uri,
+                                                 QDeclarativeImportDatabase *database,
+                                                 QDeclarativeDirComponents* components, QString *errorString)
 {
     Q_ASSERT(typeLoader);
     const QDeclarativeDirParser *qmldirParser = typeLoader->qmlDirParser(absoluteFilePath);
@@ -426,9 +426,9 @@ QString QDeclarativeImportsPrivate::resolvedUri(const QString &dir_arg, QDeclara
     return stableRelativePath;
 }
 
-bool QDeclarativeImportsPrivate::add(const QDeclarativeDirComponents &qmldircomponentsnetwork, 
-                                     const QString& uri_arg, const QString& prefix, int vmaj, int vmin, 
-                                     QDeclarativeScriptParser::Import::Type importType, 
+bool QDeclarativeImportsPrivate::add(const QDeclarativeDirComponents &qmldircomponentsnetwork,
+                                     const QString& uri_arg, const QString& prefix, int vmaj, int vmin,
+                                     QDeclarativeScriptParser::Import::Type importType,
                                      QDeclarativeImportDatabase *database, QString *errorString)
 {
     Q_ASSERT(typeLoader);
@@ -767,16 +767,16 @@ QDeclarativeImportDatabase::~QDeclarativeImportDatabase()
 
   The base URL must already have been set with Import::setBaseUrl().
 */
-bool QDeclarativeImports::addImport(QDeclarativeImportDatabase *importDb, 
-                                    const QString& uri, const QString& prefix, int vmaj, int vmin, 
-                                    QDeclarativeScriptParser::Import::Type importType, 
-                                    const QDeclarativeDirComponents &qmldircomponentsnetwork, 
-                                    QString *errorString) 
+bool QDeclarativeImports::addImport(QDeclarativeImportDatabase *importDb,
+                                    const QString& uri, const QString& prefix, int vmaj, int vmin,
+                                    QDeclarativeScriptParser::Import::Type importType,
+                                    const QDeclarativeDirComponents &qmldircomponentsnetwork,
+                                    QString *errorString)
 {
     if (qmlImportTrace())
-        qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::addImport: " 
-                           << uri << " " << vmaj << '.' << vmin << " " 
-                           << (importType==QDeclarativeScriptParser::Import::Library? "Library" : "File") 
+        qDebug().nospace() << "QDeclarativeImports(" << qPrintable(baseUrl().toString()) << ")" << "::addImport: "
+                           << uri << " " << vmaj << '.' << vmin << " "
+                           << (importType==QDeclarativeScriptParser::Import::Library? "Library" : "File")
                            << " as " << prefix;
 
     return d->add(qmldircomponentsnetwork, uri, prefix, vmaj, vmin, importType, importDb, errorString);
@@ -790,7 +790,7 @@ bool QDeclarativeImports::addImport(QDeclarativeImportDatabase *importDb,
 
   \a qmldirPath is the location of the qmldir file.
  */
-QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath, 
+QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath,
                                                   const QString &baseName, const QStringList &suffixes,
                                                   const QString &prefix)
 {
@@ -831,7 +831,7 @@ QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const 
     }
 
     if (qmlImportTrace())
-        qDebug() << "QDeclarativeImportDatabase::resolvePlugin: Could not resolve plugin" << baseName 
+        qDebug() << "QDeclarativeImportDatabase::resolvePlugin: Could not resolve plugin" << baseName
                  << "in" << qmldirPath.absolutePath();
 
     return QString();
@@ -853,7 +853,7 @@ QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const 
 
   Version number on unix are ignored.
 */
-QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath, 
+QString QDeclarativeImportDatabase::resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath,
                                                   const QString &baseName)
 {
 #if defined(Q_OS_WIN32) || defined(Q_OS_WINCE)
@@ -1008,7 +1008,7 @@ bool QDeclarativeImportDatabase::importPlugin(const QString &filePath, const QSt
 
     if (!engineInitialized || !typesRegistered) {
         if (!QDeclarative_isFileCaseCorrect(absoluteFilePath)) {
-            if (errorString) 
+            if (errorString)
                 *errorString = tr("File name case mismatch for \"%1\"").arg(absoluteFilePath);
             return false;
         }

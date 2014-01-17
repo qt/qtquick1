@@ -277,7 +277,7 @@ void tst_qdeclarativetextinput::width()
 void tst_qdeclarativetextinput::font()
 {
     //test size, then bold, then italic, then family
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  font.pointSize: 40; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());
@@ -291,7 +291,7 @@ void tst_qdeclarativetextinput::font()
         delete textinputObject;
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  font.bold: true; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());
@@ -304,7 +304,7 @@ void tst_qdeclarativetextinput::font()
         delete textinputObject;
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  font.italic: true; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());
@@ -316,8 +316,8 @@ void tst_qdeclarativetextinput::font()
 
         delete textinputObject;
     }
- 
-    { 
+
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  font.family: \"Helvetica\"; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());
@@ -331,7 +331,7 @@ void tst_qdeclarativetextinput::font()
         delete textinputObject;
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  font.family: \"\"; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());
@@ -348,7 +348,7 @@ void tst_qdeclarativetextinput::color()
 {
     //test color
     for (int i = 0; i < colorStrings.size(); i++)
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  color: \"" + colorStrings.at(i) + "\"; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());
@@ -374,7 +374,7 @@ void tst_qdeclarativetextinput::color()
 
     //test selected text color
     for (int i = 0; i < colorStrings.size(); i++)
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextInput {  selectedTextColor: \"" + colorStrings.at(i) + "\"; text: \"Hello World\" }";
         QDeclarativeComponent textinputComponent(&engine);
         textinputComponent.setData(componentStr.toLatin1(), QUrl());

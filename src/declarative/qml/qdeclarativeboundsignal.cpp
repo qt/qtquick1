@@ -75,7 +75,7 @@ private:
         MetaObject(QDeclarativeBoundSignalParameters *b)
             : parent(b) {}
 
-        int metaCall(QMetaObject::Call c, int id, void **a) { 
+        int metaCall(QMetaObject::Call c, int id, void **a) {
             return parent->metaCall(c, id, a);
         }
         QDeclarativeBoundSignalParameters *parent;
@@ -97,7 +97,7 @@ QDeclarativeAbstractBoundSignal::~QDeclarativeAbstractBoundSignal()
 {
 }
 
-QDeclarativeBoundSignal::QDeclarativeBoundSignal(QObject *scope, const QMetaMethod &signal, 
+QDeclarativeBoundSignal::QDeclarativeBoundSignal(QObject *scope, const QMetaMethod &signal,
                                QObject *parent)
 : m_expression(0), m_signal(signal), m_paramsValid(false), m_isEvaluating(false), m_params(0)
 {
@@ -110,7 +110,7 @@ QDeclarativeBoundSignal::QDeclarativeBoundSignal(QObject *scope, const QMetaMeth
     QDeclarativePropertyPrivate::connect(scope, m_signal.methodIndex(), this, evaluateIdx);
 }
 
-QDeclarativeBoundSignal::QDeclarativeBoundSignal(QDeclarativeContext *ctxt, const QString &val, 
+QDeclarativeBoundSignal::QDeclarativeBoundSignal(QDeclarativeContext *ctxt, const QString &val,
                                QObject *scope, const QMetaMethod &signal,
                                QObject *parent)
 : m_expression(0), m_signal(signal), m_paramsValid(false), m_isEvaluating(false), m_params(0)
@@ -132,8 +132,8 @@ QDeclarativeBoundSignal::~QDeclarativeBoundSignal()
     m_expression = 0;
 }
 
-int QDeclarativeBoundSignal::index() const 
-{ 
+int QDeclarativeBoundSignal::index() const
+{
     return m_signal.methodIndex();
 }
 
@@ -149,7 +149,7 @@ QDeclarativeExpression *QDeclarativeBoundSignal::expression() const
     Sets the signal expression to \a e.  Returns the current signal expression,
     or null if there is no signal expression.
 
-    The QDeclarativeBoundSignal instance takes ownership of \a e.  The caller is 
+    The QDeclarativeBoundSignal instance takes ownership of \a e.  The caller is
     assumes ownership of the returned QDeclarativeExpression.
 */
 QDeclarativeExpression *QDeclarativeBoundSignal::setExpression(QDeclarativeExpression *e)
@@ -198,7 +198,7 @@ int QDeclarativeBoundSignal::qt_metacall(QMetaObject::Call c, int id, void **a)
     }
 }
 
-QDeclarativeBoundSignalParameters::QDeclarativeBoundSignalParameters(const QMetaMethod &method, 
+QDeclarativeBoundSignalParameters::QDeclarativeBoundSignalParameters(const QMetaMethod &method,
                                                                      QObject *parent)
 : QObject(parent), types(0), values(0)
 {

@@ -111,7 +111,7 @@ public:
 
     class JavaScriptMetaData {
     public:
-        JavaScriptMetaData() 
+        JavaScriptMetaData()
         : pragmas(QDeclarativeParser::Object::ScriptBlock::None) {}
 
         QDeclarativeParser::Object::ScriptBlock::Pragmas pragmas;

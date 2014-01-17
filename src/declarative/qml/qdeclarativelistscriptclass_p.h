@@ -69,7 +69,7 @@ public:
     QScriptValue newList(const QDeclarativeListProperty<QObject> &, int);
 
 protected:
-    virtual QScriptClass::QueryFlags queryProperty(Object *, const Identifier &, 
+    virtual QScriptClass::QueryFlags queryProperty(Object *, const Identifier &,
                                                    QScriptClass::QueryFlags flags);
     virtual Value property(Object *, const Identifier &);
     virtual QVariant toVariant(Object *, bool *ok);

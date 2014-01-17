@@ -360,7 +360,7 @@ void QDeclarativePathViewPrivate::regenerate()
     QAbstractListModel.
 
     The view has a \l model, which defines the data to be displayed, and
-    a \l delegate, which defines how the data should be displayed.  
+    a \l delegate, which defines how the data should be displayed.
     The \l delegate is instantiated for each item on the \l path.
     The items may be flicked to move them along the path.
 

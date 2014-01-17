@@ -210,7 +210,7 @@ QDeclarativeListModelParser::ListInstruction *QDeclarativeListModelParser::ListM
     when retrieved from get() is accessible as a list model within the list
     model) whereas a FlatListModel cannot.
 
-    ListModel uses a NestedListModel to begin with, and if the model is later 
+    ListModel uses a NestedListModel to begin with, and if the model is later
     used from a WorkerScript, it changes to use a FlatListModel instead. This
     is because ModelNode (which abstracts the nested list model data) needs
     access to the declarative engine and script engine, which cannot be
@@ -351,7 +351,7 @@ void QDeclarativeListModel::clear()
 
 QDeclarativeListModel *ModelNode::model(const NestedListModel *model)
 {
-    if (!modelCache) { 
+    if (!modelCache) {
         modelCache = new QDeclarativeListModel;
         QDeclarativeEngine::setContextForObject(modelCache,QDeclarativeEngine::contextForObject(model->m_listModel));
         modelCache->m_nested->_root = this;  // ListModel defaults to nestable model
@@ -368,8 +368,8 @@ QDeclarativeListModel *ModelNode::model(const NestedListModel *model)
 ModelObject *ModelNode::object(const NestedListModel *model)
 {
     if (!objectCache) {
-        objectCache = new ModelObject(this, 
-                const_cast<NestedListModel*>(model), 
+        objectCache = new ModelObject(this,
+                const_cast<NestedListModel*>(model),
                 QDeclarativeEnginePrivate::getScriptEngine(qmlEngine(model->m_listModel)));
         QHash<QString, ModelNode *>::iterator it;
         for (it = properties.begin(); it != properties.end(); ++it) {
@@ -984,7 +984,7 @@ QScriptValue FlatListModel::get(int index) const
 {
     QScriptEngine *scriptEngine = m_scriptEngine ? m_scriptEngine : QDeclarativeEnginePrivate::getScriptEngine(qmlEngine(m_listModel));
 
-    if (!scriptEngine) 
+    if (!scriptEngine)
         return 0;
 
     if (index < 0 || index >= m_values.count())
@@ -1101,7 +1101,7 @@ void FlatListModel::moveNodes(int from, int to, int n)
     qdeclarativelistmodel_move<QList<FlatNodeData *> >(from, to, n, &m_nodeData);
 
     for (int i=from; i<from + (to-from); i++)  {
-        if (m_nodeData[i]) 
+        if (m_nodeData[i])
             m_nodeData[i]->index = i;
     }
 }
@@ -1116,7 +1116,7 @@ FlatNodeData::~FlatNodeData()
     }
 }
 
-void FlatNodeData::addData(FlatNodeObjectData *data) 
+void FlatNodeData::addData(FlatNodeObjectData *data)
 {
     objects.insert(data);
 }
@@ -1343,9 +1343,9 @@ void NestedListModel::move(int from, int to, int n)
 }
 
 QScriptValue NestedListModel::get(int index) const
-{   
+{
     QDeclarativeEngine *eng = qmlEngine(m_listModel);
-    if (!eng) 
+    if (!eng)
         return 0;
 
     if (index < 0 || index >= count()) {
@@ -1358,7 +1358,7 @@ QScriptValue NestedListModel::get(int index) const
     ModelNode *node = qvariant_cast<ModelNode *>(_root->values.at(index));
     if (!node)
         return 0;
-    
+
     return QDeclarativeEnginePrivate::qmlScriptObject(node->object(this), eng);
 }
 

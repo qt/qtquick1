@@ -71,7 +71,7 @@ QDeclarativeAbstractBinding::~QDeclarativeAbstractBinding()
 /*!
 Destroy the binding.  Use this instead of calling delete.
 
-Bindings are free to implement their own memory management, so the delete operator is not 
+Bindings are free to implement their own memory management, so the delete operator is not
 necessarily safe.  The default implementation clears the binding, removes it from the object
 and calls delete.
 */
@@ -87,7 +87,7 @@ void QDeclarativeAbstractBinding::destroy()
 Add this binding to \a object.
 
 This transfers ownership of the binding to the object, marks the object's property as
-being bound.  
+being bound.
 
 However, it does not enable the binding itself or call update() on it.
 */
@@ -227,8 +227,8 @@ QDeclarativeBindingPrivate::~QDeclarativeBindingPrivate()
     if (deleted) *deleted = true;
 }
 
-QDeclarativeBinding::QDeclarativeBinding(void *data, QDeclarativeRefCount *rc, QObject *obj, 
-                                         QDeclarativeContextData *ctxt, const QString &url, int lineNumber, 
+QDeclarativeBinding::QDeclarativeBinding(void *data, QDeclarativeRefCount *rc, QObject *obj,
+                                         QDeclarativeContextData *ctxt, const QString &url, int lineNumber,
                                          QObject *parent)
 : QDeclarativeExpression(ctxt, data, rc, obj, url, lineNumber, *new QDeclarativeBindingPrivate)
 {
@@ -261,7 +261,7 @@ QDeclarativeBinding::createBinding(Identifier id, QObject *obj, QDeclarativeCont
     return rv;
 }
 
-QDeclarativeBinding::QDeclarativeBinding(const QString &str, QObject *obj, QDeclarativeContext *ctxt, 
+QDeclarativeBinding::QDeclarativeBinding(const QString &str, QObject *obj, QDeclarativeContext *ctxt,
                                          QObject *parent)
 : QDeclarativeExpression(QDeclarativeContextData::get(ctxt), obj, str, *new QDeclarativeBindingPrivate)
 {
@@ -269,7 +269,7 @@ QDeclarativeBinding::QDeclarativeBinding(const QString &str, QObject *obj, QDecl
     setNotifyOnValueChanged(true);
 }
 
-QDeclarativeBinding::QDeclarativeBinding(const QString &str, QObject *obj, QDeclarativeContextData *ctxt, 
+QDeclarativeBinding::QDeclarativeBinding(const QString &str, QObject *obj, QDeclarativeContextData *ctxt,
                                          QObject *parent)
 : QDeclarativeExpression(ctxt, obj, str, *new QDeclarativeBindingPrivate)
 {
@@ -296,10 +296,10 @@ void QDeclarativeBinding::setTarget(const QDeclarativeProperty &prop)
     update();
 }
 
-QDeclarativeProperty QDeclarativeBinding::property() const 
+QDeclarativeProperty QDeclarativeBinding::property() const
 {
    Q_D(const QDeclarativeBinding);
-   return d->property; 
+   return d->property;
 }
 
 void QDeclarativeBinding::setEvaluateFlags(EvaluateFlags flags)
@@ -334,7 +334,7 @@ void QDeclarativeBinding::update(QDeclarativePropertyPrivate::WriteFlags flags)
 {
     Q_D(QDeclarativeBinding);
 
-    if (!d->enabled || !d->context() || !d->context()->isValid()) 
+    if (!d->enabled || !d->context() || !d->context()->isValid())
         return;
 
     if (!d->updating) {
@@ -370,7 +370,7 @@ void QDeclarativeBinding::update(QDeclarativePropertyPrivate::WriteFlags flags)
 
             if (d->property.propertyTypeCategory() == QDeclarativeProperty::List) {
                 value = ep->scriptValueToVariant(scriptValue, qMetaTypeId<QList<QObject *> >());
-            } else if (scriptValue.isNull() && 
+            } else if (scriptValue.isNull() &&
                        d->property.propertyTypeCategory() == QDeclarativeProperty::Object) {
                 value = QVariant::fromValue((QObject *)0);
             } else {
@@ -469,7 +469,7 @@ void QDeclarativeBinding::setEnabled(bool e, QDeclarativePropertyPrivate::WriteF
     d->enabled = e;
     setNotifyOnValueChanged(e);
 
-    if (e) 
+    if (e)
         update(flags);
 }
 
@@ -541,8 +541,8 @@ void QDeclarativeValueTypeProxyBinding::update(QDeclarativePropertyPrivate::Writ
 QDeclarativeAbstractBinding *QDeclarativeValueTypeProxyBinding::binding(int propertyIndex)
 {
     QDeclarativeAbstractBinding *binding = m_bindings;
-    
-    while (binding && binding->propertyIndex() != propertyIndex) 
+
+    while (binding && binding->propertyIndex() != propertyIndex)
         binding = binding->m_nextBinding;
 
     return binding;

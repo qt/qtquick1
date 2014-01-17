@@ -74,8 +74,8 @@ class QDeclarativeVME
 public:
     QDeclarativeVME();
 
-    QObject *run(QDeclarativeContextData *, QDeclarativeCompiledData *, 
-                 int start = -1, int count = -1, 
+    QObject *run(QDeclarativeContextData *, QDeclarativeCompiledData *,
+                 int start = -1, int count = -1,
                  const QBitField & = QBitField());
     void runDeferred(QObject *);
 
@@ -83,9 +83,9 @@ public:
     QList<QDeclarativeError> errors() const;
 
 private:
-    QObject *run(QDeclarativeVMEObjectStack &, 
-                 QDeclarativeContextData *, QDeclarativeCompiledData *, 
-                 int start, int count, 
+    QObject *run(QDeclarativeVMEObjectStack &,
+                 QDeclarativeContextData *, QDeclarativeCompiledData *,
+                 int start, int count,
                  const QBitField &);
     QList<QDeclarativeError> vmeErrors;
 };

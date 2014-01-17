@@ -51,7 +51,7 @@ QT_BEGIN_NAMESPACE
 
 struct ContextData : public QScriptDeclarativeClass::Object {
     ContextData() : overrideObject(0), isSharedContext(true) {}
-    ContextData(QDeclarativeContextData *c, QObject *o) 
+    ContextData(QDeclarativeContextData *c, QObject *o)
     : context(c), scopeObject(o), overrideObject(0), isSharedContext(false), isUrlContext(false) {}
     QDeclarativeGuardedContextData context;
     QDeclarativeGuard<QObject> scopeObject;
@@ -77,11 +77,11 @@ struct ContextData : public QScriptDeclarativeClass::Object {
 };
 
 struct UrlContextData : public ContextData {
-    UrlContextData(QDeclarativeContextData *c, QObject *o, const QString &u) 
+    UrlContextData(QDeclarativeContextData *c, QObject *o, const QString &u)
     : ContextData(c, o), url(u) {
         isUrlContext = true;
     }
-    UrlContextData(const QString &u) 
+    UrlContextData(const QString &u)
     : ContextData(0, 0), url(u) {
         isUrlContext = true;
     }
@@ -109,7 +109,7 @@ QScriptValue QDeclarativeContextScriptClass::newContext(QDeclarativeContextData 
     return newObject(scriptEngine, this, new ContextData(context, scopeObject));
 }
 
-QScriptValue QDeclarativeContextScriptClass::newUrlContext(QDeclarativeContextData *context, QObject *scopeObject, 
+QScriptValue QDeclarativeContextScriptClass::newUrlContext(QDeclarativeContextData *context, QObject *scopeObject,
                                                            const QString &url)
 {
     QScriptEngine *scriptEngine = QDeclarativeEnginePrivate::getScriptEngine(engine);
@@ -164,12 +164,12 @@ QObject *QDeclarativeContextScriptClass::setOverrideObject(QScriptValue &v, QObj
     return rv;
 }
 
-QScriptClass::QueryFlags 
-QDeclarativeContextScriptClass::queryProperty(Object *object, const Identifier &name, 
+QScriptClass::QueryFlags
+QDeclarativeContextScriptClass::queryProperty(Object *object, const Identifier &name,
                                      QScriptClass::QueryFlags flags)
 {
     Q_UNUSED(flags);
-    
+
     lastScopeObject = 0;
     lastContext = 0;
     lastData = 0;
@@ -183,9 +183,9 @@ QDeclarativeContextScriptClass::queryProperty(Object *object, const Identifier &
     QObject *overrideObject = ((ContextData *)object)->overrideObject;
     if (overrideObject) {
         QDeclarativeEnginePrivate *ep = QDeclarativeEnginePrivate::get(engine);
-        QScriptClass::QueryFlags rv = 
-            ep->objectClass->queryProperty(overrideObject, name, flags, bindContext, 
-                                           QDeclarativeObjectScriptClass::ImplicitObject | 
+        QScriptClass::QueryFlags rv =
+            ep->objectClass->queryProperty(overrideObject, name, flags, bindContext,
+                                           QDeclarativeObjectScriptClass::ImplicitObject |
                                            QDeclarativeObjectScriptClass::SkipAttachedProperties);
         if (rv) {
             lastScopeObject = overrideObject;
@@ -196,7 +196,7 @@ QDeclarativeContextScriptClass::queryProperty(Object *object, const Identifier &
 
     bool includeTypes = true;
     while (bindContext) {
-        QScriptClass::QueryFlags rv = 
+        QScriptClass::QueryFlags rv =
             queryProperty(bindContext, scopeObject, name, flags, includeTypes);
         scopeObject = 0; // Only applies to the first context
         includeTypes = false; // Only applies to the first context
@@ -207,10 +207,10 @@ QDeclarativeContextScriptClass::queryProperty(Object *object, const Identifier &
     return 0;
 }
 
-QScriptClass::QueryFlags 
+QScriptClass::QueryFlags
 QDeclarativeContextScriptClass::queryProperty(QDeclarativeContextData *bindContext, QObject *scopeObject,
                                               const Identifier &name,
-                                              QScriptClass::QueryFlags flags, 
+                                              QScriptClass::QueryFlags flags,
                                               bool includeTypes)
 {
     QDeclarativeEnginePrivate *ep = QDeclarativeEnginePrivate::get(engine);
@@ -221,7 +221,7 @@ QDeclarativeContextScriptClass::queryProperty(QDeclarativeContextData *bindConte
         return QScriptClass::HandlesReadAccess;
     }
 
-    if (includeTypes && bindContext->imports) { 
+    if (includeTypes && bindContext->imports) {
         QDeclarativeTypeNameCache::Data *data = bindContext->imports->data(name);
 
         if (data)  {
@@ -233,8 +233,8 @@ QDeclarativeContextScriptClass::queryProperty(QDeclarativeContextData *bindConte
     }
 
     if (scopeObject) {
-        QScriptClass::QueryFlags rv = 
-            ep->objectClass->queryProperty(scopeObject, name, flags, bindContext, 
+        QScriptClass::QueryFlags rv =
+            ep->objectClass->queryProperty(scopeObject, name, flags, bindContext,
                                            QDeclarativeObjectScriptClass::ImplicitObject | QDeclarativeObjectScriptClass::SkipAttachedProperties);
         if (rv) {
             lastScopeObject = scopeObject;
@@ -244,8 +244,8 @@ QDeclarativeContextScriptClass::queryProperty(QDeclarativeContextData *bindConte
     }
 
     if (bindContext->contextObject) {
-        QScriptClass::QueryFlags rv = 
-            ep->objectClass->queryProperty(bindContext->contextObject, name, flags, bindContext, 
+        QScriptClass::QueryFlags rv =
+            ep->objectClass->queryProperty(bindContext->contextObject, name, flags, bindContext,
                                            QDeclarativeObjectScriptClass::ImplicitObject | QDeclarativeObjectScriptClass::SkipAttachedProperties);
 
         if (rv) {
@@ -294,7 +294,7 @@ QDeclarativeContextScriptClass::property(Object *object, const Identifier &name)
         if (lastPropertyIndex < bindContext->idValueCount) {
             rv =  ep->objectClass->newQObject(bindContext->idValues[lastPropertyIndex].data());
 
-            if (ep->captureProperties) 
+            if (ep->captureProperties)
                 ep->capturedProperties << QDeclarativeEnginePrivate::CapturedProperty(&bindContext->idValues[lastPropertyIndex].bindings);
         } else {
             QDeclarativeContextPrivate *cp = bindContext->asQDeclarativeContextPrivate();
@@ -305,7 +305,7 @@ QDeclarativeContextScriptClass::property(Object *object, const Identifier &name)
                 rv = ep->scriptValueFromVariant(value);
             }
 
-            if (ep->captureProperties) 
+            if (ep->captureProperties)
                 ep->capturedProperties << QDeclarativeEnginePrivate::CapturedProperty(bindContext->asQDeclarativeContext(), -1, lastPropertyIndex + cp->notifyIndex);
         }
 
@@ -318,7 +318,7 @@ QDeclarativeContextScriptClass::property(Object *object, const Identifier &name)
     }
 }
 
-void QDeclarativeContextScriptClass::setProperty(Object *object, const Identifier &name, 
+void QDeclarativeContextScriptClass::setProperty(Object *object, const Identifier &name,
                                         const QScriptValue &value)
 {
     Q_UNUSED(object);

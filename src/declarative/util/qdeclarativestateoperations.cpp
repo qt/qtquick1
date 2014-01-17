@@ -183,8 +183,8 @@ void QDeclarativeParentChangePrivate::doChange(QDeclarativeItem *targetParent, Q
     items involved in the reparenting (i.e. items in the common ancestor tree
     for the original and new parent).
 
-    The example below displays a large red rectangle and a small blue rectangle, side by side. 
-    When the \c blueRect is clicked, it changes to the "reparented" state: its parent is changed to \c redRect and it is 
+    The example below displays a large red rectangle and a small blue rectangle, side by side.
+    When the \c blueRect is clicked, it changes to the "reparented" state: its parent is changed to \c redRect and it is
     positioned at (10, 10) within the red rectangle, as specified in the ParentChange.
 
     \snippet doc/src/snippets/declarative/parentchange.qml 0

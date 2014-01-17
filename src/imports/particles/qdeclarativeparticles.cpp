@@ -741,7 +741,7 @@ void QDeclarativeParticles::setSource(const QUrl &name)
         if (d->image.isLoading()) {
             d->image.connectFinished(this, SLOT(imageLoaded()));
         } else {
-            if (d->image.isError()) 
+            if (d->image.isError())
                 qmlInfo(this) << d->image.error();
             //### unify with imageLoaded
             d->paintItem->updateSize();

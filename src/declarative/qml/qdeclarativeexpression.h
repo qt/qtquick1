@@ -95,7 +95,7 @@ protected:
                            QDeclarativeExpressionPrivate &dd);
     QDeclarativeExpression(QDeclarativeContextData *, QObject *, const QScriptValue &,
                            QDeclarativeExpressionPrivate &dd);
-    QDeclarativeExpression(QDeclarativeContextData *, void *, QDeclarativeRefCount *rc, 
+    QDeclarativeExpression(QDeclarativeContextData *, void *, QDeclarativeRefCount *rc,
                            QObject *me, const QString &, int, QDeclarativeExpressionPrivate &dd);
 
 private:

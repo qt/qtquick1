@@ -61,11 +61,11 @@ class QDeclarativeCompiledData;
 class Q_AUTOTEST_EXPORT QDeclarativeInstruction
 {
 public:
-    enum Type { 
+    enum Type {
         //
         // Object Creation
         //
-        //    CreateObject - Create a new object instance and push it on the 
+        //    CreateObject - Create a new object instance and push it on the
         //                   object stack
         //    SetId - Set the id of the object on the top of the object stack
         //    SetDefault - Sets the instance on the top of the object stack to
@@ -149,14 +149,14 @@ public:
 
         //
         // Stack manipulation
-        // 
+        //
         //    PopFetchedObject - Remove an object from the object stack
         //    PopQList - Remove a list from the list stack
         PopFetchedObject,
         PopQList,
         PopValueType,            /* fetchValue */
 
-        // 
+        //
         // Deferred creation
         //
         Defer                    /* defer */
@@ -224,7 +224,7 @@ public:
     };
     struct BeginInstruction {
         int castValue;
-    }; 
+    };
     struct StoreFloatInstruction {
         int propertyIndex;
         float value;
@@ -249,7 +249,7 @@ public:
         int propertyIndex;
         int value;
         int scope;
-    }; 
+    };
     struct StoreScriptInstruction {
         int value;
     };

@@ -73,10 +73,10 @@ public:
     virtual ~QDeclarativePropertyCache();
 
     struct Data {
-        inline Data(); 
+        inline Data();
         inline bool operator==(const Data &);
 
-        enum Flag { 
+        enum Flag {
                     NoFlags           = 0x00000000,
 
                     // Can apply to all properties, except IsFunction
@@ -101,7 +101,7 @@ public:
         };
         Q_DECLARE_FLAGS(Flags, Flag)
 
-        bool isValid() const { return coreIndex != -1; } 
+        bool isValid() const { return coreIndex != -1; }
 
         Flags flags;
         int propType;
@@ -112,7 +112,7 @@ public:
         };
         uint overrideIndexIsProperty : 1;
         signed int overrideIndex : 31;
-        int revision; 
+        int revision;
         int metaObjectOffset;
 
         static Flags flagsForProperty(const QMetaProperty &, QDeclarativeEngine *engine = 0);
@@ -159,7 +159,7 @@ protected:
 private:
     friend class QDeclarativeEnginePrivate;
 
-    struct RData : public Data, public QDeclarativeRefCount { 
+    struct RData : public Data, public QDeclarativeRefCount {
         QScriptDeclarativeClass::PersistentIdentifier identifier;
     };
 
@@ -178,7 +178,7 @@ private:
     AllowedRevisionCache allowedRevisionCache;
 };
 Q_DECLARE_OPERATORS_FOR_FLAGS(QDeclarativePropertyCache::Data::Flags);
-  
+
 QDeclarativePropertyCache::Data::Data()
 : flags(0), propType(0), coreIndex(-1), notifyIndex(-1), overrideIndexIsProperty(false), overrideIndex(-1),
   revision(0), metaObjectOffset(-1)
@@ -207,21 +207,21 @@ QDeclarativePropertyCache::overrideData(Data *data) const
 }
 
 QDeclarativePropertyCache::Data *
-QDeclarativePropertyCache::property(const QScriptDeclarativeClass::Identifier &id) const 
+QDeclarativePropertyCache::property(const QScriptDeclarativeClass::Identifier &id) const
 {
     return identifierCache.value(id);
 }
 
 QDeclarativePropertyCache::ValueTypeData::ValueTypeData()
-: flags(QDeclarativePropertyCache::Data::NoFlags), valueTypeCoreIdx(-1), valueTypePropType(0) 
+: flags(QDeclarativePropertyCache::Data::NoFlags), valueTypeCoreIdx(-1), valueTypePropType(0)
 {
 }
 
-bool QDeclarativePropertyCache::ValueTypeData::operator==(const ValueTypeData &o) 
-{ 
+bool QDeclarativePropertyCache::ValueTypeData::operator==(const ValueTypeData &o)
+{
     return flags == o.flags &&
            valueTypeCoreIdx == o.valueTypeCoreIdx &&
-           valueTypePropType == o.valueTypePropType; 
+           valueTypePropType == o.valueTypePropType;
 }
 
 bool QDeclarativePropertyCache::isAllowedInRevision(Data *data) const

@@ -178,7 +178,7 @@ void tst_qdeclarativemetatype::copy()
     QT_COPY_TEST(QRect, QRect(-10, 10, 102, 99));
     QT_COPY_TEST(QRectF, QRectF(-10.2, 1.2, 102, 99.6));
     QT_COPY_TEST(QSize, QSize(100, 2));
-    QT_COPY_TEST(QSizeF, QSizeF(20.2, -100234.2)); 
+    QT_COPY_TEST(QSizeF, QSizeF(20.2, -100234.2));
     QT_COPY_TEST(QLine, QLine(0, 0, 100, 100));
     QT_COPY_TEST(QLineF, QLineF(-10.2, 0, 103, 1));
     QT_COPY_TEST(QPoint, QPoint(-1912, 1613));
@@ -197,32 +197,32 @@ void tst_qdeclarativemetatype::copy()
 
     {
         QPixmap v = QPixmap(100, 100); QPixmap v2 = QPixmap(100, 100);
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QPixmap, &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QPixmap, &v, 0));
         QVERIFY(v.size() == QPixmap().size());
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QPixmap , &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QPixmap , &v, &v2));
         QVERIFY(v.size() == QPixmap(100,100).size());
     }
 
     QT_COPY_TEST(QBrush, QBrush(Qt::blue));
     QT_COPY_TEST(QColor, QColor("lightsteelblue"));
     QT_COPY_TEST(QPalette, QPalette(Qt::green));
-    
+
     {
         QPixmap icon(100, 100);
 
         QIcon v = QIcon(icon); QIcon v2 = QIcon(icon);
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QIcon, &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QIcon, &v, 0));
         QVERIFY(v.isNull() == QIcon().isNull());
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QIcon , &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QIcon , &v, &v2));
         QVERIFY(v.isNull() == QIcon(icon).isNull());
     }
 
     {
-        QImage v = QImage(100, 100, QImage::Format_RGB32); 
+        QImage v = QImage(100, 100, QImage::Format_RGB32);
         QImage v2 = QImage(100, 100, QImage::Format_RGB32);
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QImage, &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QImage, &v, 0));
         QVERIFY(v.size() == QImage().size());
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QImage , &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QImage , &v, &v2));
         QVERIFY(v.size() == QImage(100,100, QImage::Format_RGB32).size());
     }
 
@@ -231,17 +231,17 @@ void tst_qdeclarativemetatype::copy()
 
     {
         QBitmap v = QBitmap(100, 100); QBitmap v2 = QBitmap(100, 100);
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QBitmap, &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QBitmap, &v, 0));
         QVERIFY(v.size() == QBitmap().size());
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QBitmap , &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QBitmap , &v, &v2));
         QVERIFY(v.size() == QBitmap(100,100).size());
     }
 
     {
         QCursor v = QCursor(Qt::SizeFDiagCursor); QCursor v2 = QCursor(Qt::SizeFDiagCursor);
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QCursor, &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QCursor, &v, 0));
         QVERIFY(v.shape() == QCursor().shape());
-        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QCursor , &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(QMetaType::QCursor , &v, &v2));
         QVERIFY(v.shape() == QCursor(Qt::SizeFDiagCursor).shape());
     }
 
@@ -275,9 +275,9 @@ void tst_qdeclarativemetatype::copy()
     {
         QVariant tv = QVariant::fromValue(QVariant(10));
         QVariant v(tv); QVariant v2(tv);
-        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<QVariant>(), &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<QVariant>(), &v, 0));
         QVERIFY(v == QVariant());
-        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<QVariant>(), &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<QVariant>(), &v, &v2));
         QVERIFY(v == tv);
     }
 
@@ -285,9 +285,9 @@ void tst_qdeclarativemetatype::copy()
         TestType t;  QVariant tv = QVariant::fromValue(&t);
 
         QVariant v(tv); QVariant v2(tv);
-        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<TestType *>(), &v, 0)); 
+        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<TestType *>(), &v, 0));
         QVERIFY(v == QVariant::fromValue((TestType *)0));
-        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<TestType *>(), &v, &v2)); 
+        QVERIFY(QDeclarativeMetaType::copy(qMetaTypeId<TestType *>(), &v, &v2));
         QVERIFY(v == tv);
     }
 }
@@ -299,7 +299,7 @@ void tst_qdeclarativemetatype::qmlParserStatusCast()
     QCOMPARE(QDeclarativeMetaType::qmlType(qMetaTypeId<TestType *>())->parserStatusCast(), -1);
     QVERIFY(QDeclarativeMetaType::qmlType(qMetaTypeId<ValueSourceTestType *>()) != 0);
     QCOMPARE(QDeclarativeMetaType::qmlType(qMetaTypeId<ValueSourceTestType *>())->parserStatusCast(), -1);
-            
+
     QVERIFY(QDeclarativeMetaType::qmlType(qMetaTypeId<ParserStatusTestType *>()) != 0);
     int cast = QDeclarativeMetaType::qmlType(qMetaTypeId<ParserStatusTestType *>())->parserStatusCast();
     QVERIFY(cast != -1);
@@ -319,7 +319,7 @@ void tst_qdeclarativemetatype::qmlPropertyValueSourceCast()
     QCOMPARE(QDeclarativeMetaType::qmlType(qMetaTypeId<TestType *>())->propertyValueSourceCast(), -1);
     QVERIFY(QDeclarativeMetaType::qmlType(qMetaTypeId<ParserStatusTestType *>()) != 0);
     QCOMPARE(QDeclarativeMetaType::qmlType(qMetaTypeId<ParserStatusTestType *>())->propertyValueSourceCast(), -1);
-            
+
     QVERIFY(QDeclarativeMetaType::qmlType(qMetaTypeId<ValueSourceTestType *>()) != 0);
     int cast = QDeclarativeMetaType::qmlType(qMetaTypeId<ValueSourceTestType *>())->propertyValueSourceCast();
     QVERIFY(cast != -1);
@@ -339,7 +339,7 @@ void tst_qdeclarativemetatype::qmlPropertyValueInterceptorCast()
     QCOMPARE(QDeclarativeMetaType::qmlType(qMetaTypeId<TestType *>())->propertyValueInterceptorCast(), -1);
     QVERIFY(QDeclarativeMetaType::qmlType(qMetaTypeId<ParserStatusTestType *>()) != 0);
     QCOMPARE(QDeclarativeMetaType::qmlType(qMetaTypeId<ParserStatusTestType *>())->propertyValueInterceptorCast(), -1);
-            
+
     QVERIFY(QDeclarativeMetaType::qmlType(qMetaTypeId<ValueInterceptorTestType *>()) != 0);
     int cast = QDeclarativeMetaType::qmlType(qMetaTypeId<ValueInterceptorTestType *>())->propertyValueInterceptorCast();
     QVERIFY(cast != -1);

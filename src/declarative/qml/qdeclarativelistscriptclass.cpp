@@ -94,8 +94,8 @@ QScriptValue QDeclarativeListScriptClass::newList(const QDeclarativeListProperty
     return newObject(scriptEngine, this, data);
 }
 
-QScriptClass::QueryFlags 
-QDeclarativeListScriptClass::queryProperty(Object *object, const Identifier &name, 
+QScriptClass::QueryFlags
+QDeclarativeListScriptClass::queryProperty(Object *object, const Identifier &name,
                                   QScriptClass::QueryFlags flags)
 {
     Q_UNUSED(object);
@@ -120,7 +120,7 @@ QDeclarativeListScriptClass::Value QDeclarativeListScriptClass::property(Object 
     QDeclarativeEnginePrivate *enginePriv = QDeclarativeEnginePrivate::get(engine);
 
     ListData *data = (ListData *)obj;
-    if (!data->object) 
+    if (!data->object)
         return Value();
 
     quint32 count = data->property.count?data->property.count(&data->property):0;

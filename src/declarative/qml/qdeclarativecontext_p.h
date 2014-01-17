@@ -131,7 +131,7 @@ public:
 
     QUrl resolvedUrl(const QUrl &);
 
-    // My containing QDeclarativeContext.  If isInternal is true this owns publicContext.  
+    // My containing QDeclarativeContext.  If isInternal is true this owns publicContext.
     // If internal is false publicContext owns this.
     QDeclarativeContext *asQDeclarativeContext();
     QDeclarativeContextPrivate *asQDeclarativeContextPrivate();
@@ -176,8 +176,8 @@ public:
         ContextGuard() : context(0) {}
         inline ContextGuard &operator=(QObject *obj)
         { QDeclarativeGuard<QObject>::operator=(obj); return *this; }
-        virtual void objectDestroyed(QObject *) { 
-            if (context->contextObject && !QObjectPrivate::get(context->contextObject)->wasDeleted) bindings.notify(); 
+        virtual void objectDestroyed(QObject *) {
+            if (context->contextObject && !QObjectPrivate::get(context->contextObject)->wasDeleted) bindings.notify();
         }
         QDeclarativeContextData *context;
         QDeclarativeNotifier bindings;

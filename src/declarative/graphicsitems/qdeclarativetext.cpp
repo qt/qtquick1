@@ -100,14 +100,14 @@ QDeclarativeTextPrivate::QDeclarativeTextPrivate()
     QGraphicsItemPrivate::flags = QGraphicsItemPrivate::flags & ~QGraphicsItem::ItemHasNoContents;
 }
 
-QTextDocumentWithImageResources::QTextDocumentWithImageResources(QDeclarativeText *parent) 
+QTextDocumentWithImageResources::QTextDocumentWithImageResources(QDeclarativeText *parent)
 : QTextDocument(parent), outstanding(0)
 {
 }
 
 QTextDocumentWithImageResources::~QTextDocumentWithImageResources()
 {
-    if (!m_resources.isEmpty()) 
+    if (!m_resources.isEmpty())
         qDeleteAll(m_resources);
 }
 
@@ -489,7 +489,7 @@ QPixmap QDeclarativeTextPrivate::textLayoutImage(bool drawStyle)
 }
 
 /*!
-    Paints the QDeclarativeTextPrivate::layout QTextLayout into \a painter at \a pos.  If 
+    Paints the QDeclarativeTextPrivate::layout QTextLayout into \a painter at \a pos.  If
     \a drawStyle is true, the style color overrides all colors in the document.
 */
 void QDeclarativeTextPrivate::drawTextLayout(QPainter *painter, const QPointF &pos, bool drawStyle)
@@ -544,7 +544,7 @@ QPixmap QDeclarativeTextPrivate::textDocumentImage(bool drawStyle)
 /*!
     Mark the image cache as dirty.
 */
-void QDeclarativeTextPrivate::invalidateImageCache() 
+void QDeclarativeTextPrivate::invalidateImageCache()
 {
     Q_Q(QDeclarativeText);
 
@@ -601,13 +601,13 @@ void QDeclarativeTextPrivate::checkImageCache()
             break;
         }
 
-    } 
+    }
 
     imageCacheDirty = false;
 }
 
-/*! 
-    Ensures the QDeclarativeTextPrivate::doc variable is set to a valid text document 
+/*!
+    Ensures the QDeclarativeTextPrivate::doc variable is set to a valid text document
 */
 void QDeclarativeTextPrivate::ensureDoc()
 {
@@ -743,15 +743,15 @@ QDeclarativeText::~QDeclarativeText()
     \qmlsignal Text::onLinkActivated(string link)
 
     This handler is called when the user clicks on a link embedded in the text.
-    The link must be in rich text or HTML format and the 
-    \a link string provides access to the particular link. 
+    The link must be in rich text or HTML format and the
+    \a link string provides access to the particular link.
 
     \snippet doc/src/snippets/declarative/text/onLinkActivated.qml 0
 
-    The example code will display the text 
+    The example code will display the text
     "The main website is at \l{http://qt.nokia.com}{Nokia Qt DF}."
 
-    Clicking on the highlighted link will output 
+    Clicking on the highlighted link will output
     \tt{http://qt.nokia.com link activated} to the console.
 */
 
@@ -1053,7 +1053,7 @@ void QDeclarativeText::setStyleColor(const QColor &color)
 
     Note that for a single line of text, the size of the text is the area of the text. In this common case,
     all alignments are equivalent. If you want the text to be, say, centered in its parent, then you will
-    need to either modify the Item::anchors, or set horizontalAlignment to Text.AlignHCenter and bind the width to 
+    need to either modify the Item::anchors, or set horizontalAlignment to Text.AlignHCenter and bind the width to
     that of the parent.
 
     When using the attached property \l {LayoutMirroring::enabled} to mirror application
@@ -1185,7 +1185,7 @@ void QDeclarativeText::setWrapMode(WrapMode mode)
 
     d->wrapMode = mode;
     d->updateLayout();
-    
+
     emit wrapModeChanged();
 }
 
@@ -1269,7 +1269,7 @@ void QDeclarativeText::resetMaximumLineCount()
     The way the text property should be displayed.
 
     Supported text formats are:
-    
+
     \list
     \li Text.AutoText (default)
     \li Text.PlainText
@@ -1382,7 +1382,7 @@ void QDeclarativeText::setElideMode(QDeclarativeText::TextElideMode mode)
 
     d->elideMode = mode;
     d->updateLayout();
-    
+
     emit elideModeChanged(d->elideMode);
 }
 

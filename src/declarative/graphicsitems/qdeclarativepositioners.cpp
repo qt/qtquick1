@@ -497,7 +497,7 @@ void QDeclarativeColumn::reportConflictingAnchors()
   \inherits Item
 
   The Row item positions its child items so that they are horizontally
-  aligned and not overlapping. 
+  aligned and not overlapping.
 
   Use \l spacing to set the spacing between items in a Row, and use the
   \l add and \l move properties to set the transitions that should be applied
@@ -712,7 +712,7 @@ void QDeclarativeRow::reportConflictingAnchors()
   \inherits Item
 
   The Grid item positions its child items so that they are
-  aligned in a grid and are not overlapping. 
+  aligned in a grid and are not overlapping.
 
   The grid positioner calculates a grid of rectangular cells of sufficient
   size to hold all items, placing the items in the cells, from left to right

@@ -128,7 +128,7 @@ class QDeclarativeDomBasicValuePrivate : public QSharedData
 {
 public:
     QDeclarativeDomBasicValuePrivate();
-    QDeclarativeDomBasicValuePrivate(const QDeclarativeDomBasicValuePrivate &o) 
+    QDeclarativeDomBasicValuePrivate(const QDeclarativeDomBasicValuePrivate &o)
     : QSharedData(o) { qFatal("Not impl"); }
     ~QDeclarativeDomBasicValuePrivate();
 
@@ -139,7 +139,7 @@ class QDeclarativeDomImportPrivate : public QSharedData
 {
 public:
     QDeclarativeDomImportPrivate();
-    QDeclarativeDomImportPrivate(const QDeclarativeDomImportPrivate &o) 
+    QDeclarativeDomImportPrivate(const QDeclarativeDomImportPrivate &o)
     : QSharedData(o) { qFatal("Not impl"); }
     ~QDeclarativeDomImportPrivate();
 

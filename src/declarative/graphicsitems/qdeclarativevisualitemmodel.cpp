@@ -651,9 +651,9 @@ QDeclarativeVisualDataModelData *QDeclarativeVisualDataModelPrivate::data(QObjec
     be instantiated for items in the model.
 
     It is usually not necessary to create VisualDataModel elements.
-    However, it can be useful for manipulating and accessing the \l modelIndex 
-    when a QAbstractItemModel subclass is used as the 
-    model. Also, VisualDataModel is used together with \l Package to 
+    However, it can be useful for manipulating and accessing the \l modelIndex
+    when a QAbstractItemModel subclass is used as the
+    model. Also, VisualDataModel is used together with \l Package to
     provide delegates to multiple views.
 
     The example below illustrates using a VisualDataModel with a ListView.
@@ -843,7 +843,7 @@ void QDeclarativeVisualDataModel::setDelegate(QDeclarativeComponent *delegate)
     any node in a QAbstractItemModel to be provided by this model.
 
     This property only affects models of type QAbstractItemModel that
-    are hierarchical (e.g, a tree model). 
+    are hierarchical (e.g, a tree model).
 
     For example, here is a simple interactive file system browser.
     When a directory name is clicked, the view's \c rootIndex is set to the
@@ -852,13 +852,13 @@ void QDeclarativeVisualDataModel::setDelegate(QDeclarativeComponent *delegate)
 
     \c main.cpp:
     \snippet doc/src/snippets/declarative/visualdatamodel_rootindex/main.cpp 0
-   
+
     \c view.qml:
     \snippet doc/src/snippets/declarative/visualdatamodel_rootindex/view.qml 0
 
     If the \l model is a QAbstractItemModel subclass, the delegate can also
     reference a \c hasModelChildren property (optionally qualified by a
-    \e model. prefix) that indicates whether the delegate's model item has 
+    \e model. prefix) that indicates whether the delegate's model item has
     any child nodes.
 
 

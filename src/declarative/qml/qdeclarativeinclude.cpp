@@ -51,8 +51,8 @@
 
 QT_BEGIN_NAMESPACE
 
-QDeclarativeInclude::QDeclarativeInclude(const QUrl &url, 
-                                                       QDeclarativeEngine *engine, 
+QDeclarativeInclude::QDeclarativeInclude(const QUrl &url,
+                                                       QDeclarativeEngine *engine,
                                                        QScriptContext *ctxt)
 : QObject(engine), m_engine(engine), m_network(0), m_reply(0), m_url(url), m_redirectCount(0)
 {
@@ -115,8 +115,8 @@ void QDeclarativeInclude::finished()
         QVariant redirect = m_reply->attribute(QNetworkRequest::RedirectionTargetAttribute);
         if (redirect.isValid()) {
             m_url = m_url.resolved(redirect.toUrl());
-            delete m_reply; 
-            
+            delete m_reply;
+
             QNetworkRequest request;
             request.setUrl(m_url);
 
@@ -183,7 +183,7 @@ QScriptValue QDeclarativeInclude::include(QScriptContext *ctxt, QScriptEngine *e
     QDeclarativeEnginePrivate *ep = QDeclarativeEnginePrivate::get(engine);
 
     QUrl contextUrl = ep->contextClass->urlFromValue(QScriptDeclarativeClass::scopeChainValue(ctxt, -3));
-    if (contextUrl.isEmpty()) 
+    if (contextUrl.isEmpty())
         return ctxt->throwError(QLatin1String("Qt.include(): Can only be called from JavaScript files"));
 
     QString urlString = ctxt->argument(0).toString();
@@ -201,7 +201,7 @@ QScriptValue QDeclarativeInclude::include(QScriptContext *ctxt, QScriptEngine *e
 
     QScriptValue result;
     if (localFile.isEmpty()) {
-        QDeclarativeInclude *i = 
+        QDeclarativeInclude *i =
             new QDeclarativeInclude(url, QDeclarativeEnginePrivate::getEngine(engine), ctxt);
 
         if (func.isValid())
@@ -215,7 +215,7 @@ QScriptValue QDeclarativeInclude::include(QScriptContext *ctxt, QScriptEngine *e
             QByteArray data = f.readAll();
             QString code = QString::fromUtf8(data);
 
-            QDeclarativeContextData *context = 
+            QDeclarativeContextData *context =
                 ep->contextClass->contextFromValue(QScriptDeclarativeClass::scopeChainValue(ctxt, -3));
 
             QScriptContext *scriptContext = QScriptDeclarativeClass::pushCleanContext(engine);

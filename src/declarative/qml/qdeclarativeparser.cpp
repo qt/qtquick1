@@ -70,8 +70,8 @@ QDeclarativeParser::Object::Object()
 {
 }
 
-QDeclarativeParser::Object::~Object() 
-{ 
+QDeclarativeParser::Object::~Object()
+{
     if (defaultProperty) defaultProperty->release();
     if (synthCache) synthCache->release();
     foreach(Property *prop, properties)
@@ -190,7 +190,7 @@ QDeclarativeParser::Object::DynamicSignal::DynamicSignal()
 }
 
 QDeclarativeParser::Object::DynamicSignal::DynamicSignal(const DynamicSignal &o)
-: name(o.name), parameterTypes(o.parameterTypes), 
+: name(o.name), parameterTypes(o.parameterTypes),
   parameterNames(o.parameterNames)
 {
 }
@@ -205,24 +205,24 @@ QDeclarativeParser::Object::DynamicSlot::DynamicSlot(const DynamicSlot &o)
 }
 
 QDeclarativeParser::Property::Property()
-: parent(0), type(0), index(-1), value(0), isDefault(true), isDeferred(false), 
+: parent(0), type(0), index(-1), value(0), isDefault(true), isDeferred(false),
   isValueTypeSubProperty(false), isAlias(false)
 {
 }
 
 QDeclarativeParser::Property::Property(const QByteArray &n)
-: parent(0), type(0), index(-1), value(0), name(n), isDefault(false), 
+: parent(0), type(0), index(-1), value(0), name(n), isDefault(false),
   isDeferred(false), isValueTypeSubProperty(false), isAlias(false)
 {
 }
 
-QDeclarativeParser::Property::~Property() 
-{ 
+QDeclarativeParser::Property::~Property()
+{
     foreach(Value *value, values)
         value->release();
     foreach(Value *value, onValues)
         value->release();
-    if (value) value->release(); 
+    if (value) value->release();
 }
 
 QDeclarativeParser::Object *QDeclarativeParser::Property::getValue(const LocationSpan &l)
@@ -251,8 +251,8 @@ QDeclarativeParser::Value::Value()
 {
 }
 
-QDeclarativeParser::Value::~Value() 
-{ 
+QDeclarativeParser::Value::~Value()
+{
     if (object) object->release();
 }
 
@@ -357,7 +357,7 @@ QString escapedString(const QString &string)
 
 QString QDeclarativeParser::Variant::asScript() const
 {
-    switch(type()) { 
+    switch (type()) {
     default:
     case Invalid:
         return QString();

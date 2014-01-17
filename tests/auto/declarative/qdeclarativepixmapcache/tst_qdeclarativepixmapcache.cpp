@@ -269,7 +269,7 @@ void tst_qdeclarativepixmapcache::parallel()
         if (i == cancel) {
             QVERIFY(!getters[i]->gotslot);
         } else {
-            if (pending[i]) 
+            if (pending[i])
                 QVERIFY(getters[i]->gotslot);
 
             QVERIFY(pixmap->isReady());

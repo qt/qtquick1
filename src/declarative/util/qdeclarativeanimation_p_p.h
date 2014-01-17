@@ -172,7 +172,7 @@ protected:
             animValue->setValue(value.toReal());
     }
     virtual void updateState(State newState, State oldState)
-    {   
+    {
         QVariantAnimation::updateState(newState, oldState);
         if (newState == Running) {
             //check for new from every loop

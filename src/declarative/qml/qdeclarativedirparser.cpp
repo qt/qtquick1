@@ -227,7 +227,7 @@ bool QDeclarativeDirParser::parse()
                 }
             }
         } else {
-            reportError(lineNumber, -1, 
+            reportError(lineNumber, -1,
                         QString::fromUtf8("a component declaration requires 3 arguments, but %1 were provided").arg(sectionCount + 1));
         }
     }

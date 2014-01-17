@@ -91,11 +91,11 @@ public:
     QDeclarativeDebugEnginesQuery *queryAvailableEngines(QObject *parent = 0);
     QDeclarativeDebugRootContextQuery *queryRootContexts(const QDeclarativeDebugEngineReference &,
                                                 QObject *parent = 0);
-    QDeclarativeDebugObjectQuery *queryObject(const QDeclarativeDebugObjectReference &, 
+    QDeclarativeDebugObjectQuery *queryObject(const QDeclarativeDebugObjectReference &,
                                      QObject *parent = 0);
-    QDeclarativeDebugObjectQuery *queryObjectRecursive(const QDeclarativeDebugObjectReference &, 
+    QDeclarativeDebugObjectQuery *queryObjectRecursive(const QDeclarativeDebugObjectReference &,
                                               QObject *parent = 0);
-    QDeclarativeDebugExpressionQuery *queryExpressionResult(int objectDebugId, 
+    QDeclarativeDebugExpressionQuery *queryExpressionResult(int objectDebugId,
                                                    const QString &expr,
                                                    QObject *parent = 0);
     bool setBindingForObject(int objectDebugId, const QString &propertyName,

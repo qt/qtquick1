@@ -87,7 +87,7 @@
     QScriptValue errorValue = context->throwError(QLatin1String(desc)); \
     errorValue.setProperty(QLatin1String("code"), error); \
     return errorValue; \
-} 
+}
 
 #define THROW_SYNTAX(desc) \
     return context->throwError(QScriptContext::SyntaxError, QLatin1String(desc));
@@ -102,11 +102,11 @@ QT_BEGIN_NAMESPACE
 DEFINE_BOOL_CONFIG_OPTION(xhrDump, QML_XHR_DUMP);
 
 class DocumentImpl;
-class NodeImpl 
+class NodeImpl
 {
 public:
     NodeImpl() : type(Element), document(0), parent(0) {}
-    virtual ~NodeImpl() { 
+    virtual ~NodeImpl() {
         for (int ii = 0; ii < children.count(); ++ii)
             delete children.at(ii);
         for (int ii = 0; ii < attributes.count(); ++ii)
@@ -114,18 +114,18 @@ public:
     }
 
     // These numbers are copied from the Node IDL definition
-    enum Type { 
-        Attr = 2, 
-        CDATA = 4, 
-        Comment = 8, 
-        Document = 9, 
-        DocumentFragment = 11, 
+    enum Type {
+        Attr = 2,
+        CDATA = 4,
+        Comment = 8,
+        Document = 9,
+        DocumentFragment = 11,
         DocumentType = 10,
-        Element = 1, 
-        Entity = 6, 
+        Element = 1,
+        Entity = 6,
         EntityReference = 5,
-        Notation = 12, 
-        ProcessingInstruction = 7, 
+        Notation = 12,
+        ProcessingInstruction = 7,
         Text = 3
     };
     Type type;
@@ -193,7 +193,7 @@ public:
     virtual QScriptValue property(const QScriptValue &object, const QScriptString &name, uint id);
 };
 
-class NodeList 
+class NodeList
 {
 public:
     // JS API
@@ -331,7 +331,7 @@ Q_DECLARE_METATYPE(NamedNodeMap)
 
 QT_BEGIN_NAMESPACE
 
-void NodeImpl::addref() 
+void NodeImpl::addref()
 {
     A(document);
 }
@@ -444,7 +444,7 @@ QScriptValue Node::nextSibling(QScriptContext *context, QScriptEngine *engine)
     for (int ii = 0; ii < node.d->parent->children.count(); ++ii) {
         if (node.d->parent->children.at(ii) == node.d) {
             if ((ii + 1) == node.d->parent->children.count()) return engine->nullValue();
-            else return Node::create(engine, node.d->parent->children.at(ii + 1)); 
+            else return Node::create(engine, node.d->parent->children.at(ii + 1));
         }
     }
 
@@ -652,7 +652,7 @@ QScriptValue Document::load(QScriptEngine *engine, const QByteArray &data)
             break;
         case QXmlStreamReader::EndDocument:
             break;
-        case QXmlStreamReader::StartElement: 
+        case QXmlStreamReader::StartElement:
         {
             Q_ASSERT(document);
             NodeImpl *node = new NodeImpl;
@@ -677,7 +677,7 @@ QScriptValue Document::load(QScriptEngine *engine, const QByteArray &data)
                 attr->parent = node;
                 node->attributes.append(attr);
             }
-        } 
+        }
             break;
         case QXmlStreamReader::EndElement:
             nodeStack.pop();
@@ -946,7 +946,7 @@ class QDeclarativeXMLHttpRequest : public QObject
 {
 Q_OBJECT
 public:
-    enum State { Unsent = 0, 
+    enum State { Unsent = 0,
                  Opened = 1, HeadersReceived = 2,
                  Loading = 3, Done = 4 };
 
@@ -1142,7 +1142,7 @@ void QDeclarativeXMLHttpRequest::requestFromUrl(const QUrl &url)
             }
             request.setHeader(QNetworkRequest::ContentTypeHeader, str);
         } else {
-            request.setHeader(QNetworkRequest::ContentTypeHeader, 
+            request.setHeader(QNetworkRequest::ContentTypeHeader,
                               QLatin1String("text/plain;charset=UTF-8"));
         }
     }
@@ -1150,7 +1150,7 @@ void QDeclarativeXMLHttpRequest::requestFromUrl(const QUrl &url)
     if (xhrDump()) {
         qWarning().nospace() << "XMLHttpRequest: " << qPrintable(m_method) << " " << qPrintable(url.toString());
         if (!m_data.isEmpty()) {
-            qWarning().nospace() << "                " 
+            qWarning().nospace() << "                "
                                  << qPrintable(QString::fromUtf8(m_data));
         }
     }
@@ -1192,7 +1192,7 @@ QScriptValue QDeclarativeXMLHttpRequest::abort(QScriptValue *me)
     m_errorFlag = true;
     m_request = QNetworkRequest();
 
-    if (!(m_state == Unsent || 
+    if (!(m_state == Unsent ||
           (m_state == Opened && !m_sendFlag) ||
           m_state == Done)) {
 
@@ -1208,7 +1208,7 @@ QScriptValue QDeclarativeXMLHttpRequest::abort(QScriptValue *me)
 
 void QDeclarativeXMLHttpRequest::readyRead()
 {
-    m_status = 
+    m_status =
         m_network->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
     m_statusText =
         QString::fromUtf8(m_network->attribute(QNetworkRequest::HttpReasonPhraseAttribute).toByteArray());
@@ -1254,7 +1254,7 @@ void QDeclarativeXMLHttpRequest::error(QNetworkReply::NetworkError error)
         if (cbv.isError()) printError(cbv);
     } else {
         m_errorFlag = true;
-    } 
+    }
 
     m_state = Done;
     QScriptValue cbv = dispatchCallback(&m_me);
@@ -1299,7 +1299,7 @@ void QDeclarativeXMLHttpRequest::finished()
     if (xhrDump()) {
         qWarning().nospace() << "XMLHttpRequest: RESPONSE " << qPrintable(m_url.toString());
         if (!m_responseEntityBody.isEmpty()) {
-            qWarning().nospace() << "                " 
+            qWarning().nospace() << "                "
                                  << qPrintable(QString::fromUtf8(m_responseEntityBody));
         }
     }
@@ -1340,7 +1340,7 @@ void QDeclarativeXMLHttpRequest::readEncoding()
         }
     }
 
-    if (m_mime.isEmpty() || m_mime == "text/xml" || m_mime == "application/xml" || m_mime.endsWith("+xml")) 
+    if (m_mime.isEmpty() || m_mime == "text/xml" || m_mime == "application/xml" || m_mime.endsWith("+xml"))
         m_gotXml = true;
 }
 
@@ -1355,7 +1355,7 @@ QTextCodec* QDeclarativeXMLHttpRequest::findTextCodec() const
 {
     QTextCodec *codec = 0;
 
-    if (!m_charset.isEmpty()) 
+    if (!m_charset.isEmpty())
         codec = QTextCodec::codecForName(m_charset);
 
     if (!codec && m_gotXml) {
@@ -1364,7 +1364,7 @@ QTextCodec* QDeclarativeXMLHttpRequest::findTextCodec() const
         codec = QTextCodec::codecForName(reader.documentEncoding().toString().toUtf8());
     }
 
-    if (!codec && m_mime == "text/html") 
+    if (!codec && m_mime == "text/html")
         codec = QTextCodec::codecForHtml(m_responseEntityBody, 0);
 
     if (!codec)
@@ -1421,7 +1421,7 @@ static QScriptValue qmlxmlhttprequest_open(QScriptContext *context, QScriptEngin
 {
     QScriptValue dataObject = context->thisObject().data();
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(dataObject.toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (context->argumentCount() < 2 || context->argumentCount() > 5)
@@ -1429,7 +1429,7 @@ static QScriptValue qmlxmlhttprequest_open(QScriptContext *context, QScriptEngin
 
     // Argument 0 - Method
     QString method = context->argument(0).toString().toUpper();
-    if (method != QLatin1String("GET") && 
+    if (method != QLatin1String("GET") &&
         method != QLatin1String("PUT") &&
         method != QLatin1String("HEAD") &&
         method != QLatin1String("POST"))
@@ -1468,7 +1468,7 @@ static QScriptValue qmlxmlhttprequest_open(QScriptContext *context, QScriptEngin
 static QScriptValue qmlxmlhttprequest_setRequestHeader(QScriptContext *context, QScriptEngine *engine)
 {
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (context->argumentCount() != 2)
@@ -1505,7 +1505,7 @@ static QScriptValue qmlxmlhttprequest_setRequestHeader(QScriptContext *context, 
         nameUpper == QLatin1String("USER-AGENT") ||
         nameUpper == QLatin1String("VIA") ||
         nameUpper.startsWith(QLatin1String("PROXY-")) ||
-        nameUpper.startsWith(QLatin1String("SEC-"))) 
+        nameUpper.startsWith(QLatin1String("SEC-")))
         return engine->undefinedValue();
 
     request->addHeader(nameUpper, value);
@@ -1517,7 +1517,7 @@ static QScriptValue qmlxmlhttprequest_send(QScriptContext *context, QScriptEngin
 {
     QScriptValue dataObject = context->thisObject().data();
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(dataObject.toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (request->readyState() != QDeclarativeXMLHttpRequest::Opened)
@@ -1537,7 +1537,7 @@ static QScriptValue qmlxmlhttprequest_abort(QScriptContext *context, QScriptEngi
 {
     QScriptValue dataObject = context->thisObject().data();
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(dataObject.toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     return request->abort(&dataObject);
@@ -1547,7 +1547,7 @@ static QScriptValue qmlxmlhttprequest_getResponseHeader(QScriptContext *context,
 {
     Q_UNUSED(engine)
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (context->argumentCount() != 1)
@@ -1567,7 +1567,7 @@ static QScriptValue qmlxmlhttprequest_getAllResponseHeaders(QScriptContext *cont
 {
     Q_UNUSED(engine)
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (context->argumentCount() != 0)
@@ -1586,7 +1586,7 @@ static QScriptValue qmlxmlhttprequest_readyState(QScriptContext *context, QScrip
 {
     Q_UNUSED(engine)
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     return QScriptValue(request->readyState());
@@ -1596,7 +1596,7 @@ static QScriptValue qmlxmlhttprequest_status(QScriptContext *context, QScriptEng
 {
     Q_UNUSED(engine)
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (request->readyState() == QDeclarativeXMLHttpRequest::Unsent ||
@@ -1613,7 +1613,7 @@ static QScriptValue qmlxmlhttprequest_statusText(QScriptContext *context, QScrip
 {
     Q_UNUSED(engine)
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (request->readyState() == QDeclarativeXMLHttpRequest::Unsent ||
@@ -1630,27 +1630,27 @@ static QScriptValue qmlxmlhttprequest_responseText(QScriptContext *context, QScr
 {
     Q_UNUSED(engine)
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (request->readyState() != QDeclarativeXMLHttpRequest::Loading &&
         request->readyState() != QDeclarativeXMLHttpRequest::Done)
         return QScriptValue(QString());
-    else 
+    else
         return QScriptValue(request->responseBody());
 }
 
 static QScriptValue qmlxmlhttprequest_responseXML(QScriptContext *context, QScriptEngine *engine)
 {
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(context->thisObject().data().toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (!request->receivedXml() ||
         (request->readyState() != QDeclarativeXMLHttpRequest::Loading &&
          request->readyState() != QDeclarativeXMLHttpRequest::Done))
         return engine->nullValue();
-    else  
+    else
         return Document::load(engine, request->rawResponseBody());
 }
 
@@ -1659,7 +1659,7 @@ static QScriptValue qmlxmlhttprequest_onreadystatechange(QScriptContext *context
     Q_UNUSED(engine);
     QScriptValue dataObject = context->thisObject().data();
     QDeclarativeXMLHttpRequest *request = qobject_cast<QDeclarativeXMLHttpRequest *>(dataObject.toQObject());
-    if (!request) 
+    if (!request)
         THROW_REFERENCE("Not an XMLHttpRequest object");
 
     if (context->argumentCount()) {

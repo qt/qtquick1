@@ -126,7 +126,7 @@ void tst_parserstress::ecmascript()
     QByteArray qmlData = qml.toUtf8();
 
     QDeclarativeComponent component(&engine);
-    
+
     component.setData(qmlData, QUrl::fromLocalFile(SRCDIR + QString("/dummy.qml")));
 
     QFileInfo info(file);

@@ -71,7 +71,7 @@ class Q_DECLARATIVE_PRIVATE_EXPORT QListModelInterface : public QObject
     void itemsChanged(int index, int count, const QList<int> &roles);
 
  protected:
-    QListModelInterface(QObjectPrivate &dd, QObject *parent) 
+    QListModelInterface(QObjectPrivate &dd, QObject *parent)
         : QObject(dd, parent) {}
 };
 

@@ -91,7 +91,7 @@ public:
     void setProperty(int index, const QString& property, const QVariant& value, QList<int> *roles);
     void move(int from, int to, int count);
 
-private:    
+private:
     friend class QDeclarativeListModelWorkerAgent;
     friend class QDeclarativeListModel;
     friend class FlatListScriptClass;

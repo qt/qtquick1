@@ -172,7 +172,7 @@ void QDeclarativeEngineDebugPrivate::remove(QDeclarativeEngineDebug *c, QDeclara
     }
 }
 
-void QDeclarativeEngineDebugPrivate::remove(QDeclarativeEngineDebug *c, 
+void QDeclarativeEngineDebugPrivate::remove(QDeclarativeEngineDebug *c,
                                    QDeclarativeDebugRootContextQuery *q)
 {
     if (c && q) {
@@ -336,7 +336,7 @@ void QDeclarativeEngineDebugPrivate::message(const QByteArray &data)
             return;
         rootContextQuery.remove(queryId);
 
-        if (!ds.atEnd()) 
+        if (!ds.atEnd())
             decode(ds, query->m_context);
 
         query->m_client = 0;
@@ -516,7 +516,7 @@ void QDeclarativeEngineDebug::removeWatch(QDeclarativeDebugWatch *watch)
 
     watch->m_client = 0;
     watch->setState(QDeclarativeDebugWatch::Inactive);
-    
+
     d->watched.remove(watch->queryId());
 
     if (d->client && d->client->status() == QDeclarativeDebugClient::Enabled) {
@@ -584,7 +584,7 @@ QDeclarativeDebugObjectQuery *QDeclarativeEngineDebug::queryObject(const QDeclar
 
         QByteArray message;
         QDataStream ds(&message, QIODevice::WriteOnly);
-        ds << QByteArray("FETCH_OBJECT") << queryId << object.debugId() 
+        ds << QByteArray("FETCH_OBJECT") << queryId << object.debugId()
            << false << true;
         d->client->sendMessage(message);
     } else {
@@ -607,7 +607,7 @@ QDeclarativeDebugObjectQuery *QDeclarativeEngineDebug::queryObjectRecursive(cons
 
         QByteArray message;
         QDataStream ds(&message, QIODevice::WriteOnly);
-        ds << QByteArray("FETCH_OBJECT") << queryId << object.debugId() 
+        ds << QByteArray("FETCH_OBJECT") << queryId << object.debugId()
            << true << true;
         d->client->sendMessage(message);
     } else {
@@ -777,7 +777,7 @@ QDeclarativeDebugEnginesQuery::QDeclarativeDebugEnginesQuery(QObject *parent)
 
 QDeclarativeDebugEnginesQuery::~QDeclarativeDebugEnginesQuery()
 {
-    if (m_client && m_queryId != -1) 
+    if (m_client && m_queryId != -1)
         QDeclarativeEngineDebugPrivate::remove(m_client, this);
 }
 
@@ -793,7 +793,7 @@ QDeclarativeDebugRootContextQuery::QDeclarativeDebugRootContextQuery(QObject *pa
 
 QDeclarativeDebugRootContextQuery::~QDeclarativeDebugRootContextQuery()
 {
-    if (m_client && m_queryId != -1) 
+    if (m_client && m_queryId != -1)
         QDeclarativeEngineDebugPrivate::remove(m_client, this);
 }
 
@@ -809,7 +809,7 @@ QDeclarativeDebugObjectQuery::QDeclarativeDebugObjectQuery(QObject *parent)
 
 QDeclarativeDebugObjectQuery::~QDeclarativeDebugObjectQuery()
 {
-    if (m_client && m_queryId != -1) 
+    if (m_client && m_queryId != -1)
         QDeclarativeEngineDebugPrivate::remove(m_client, this);
 }
 
@@ -825,7 +825,7 @@ QDeclarativeDebugExpressionQuery::QDeclarativeDebugExpressionQuery(QObject *pare
 
 QDeclarativeDebugExpressionQuery::~QDeclarativeDebugExpressionQuery()
 {
-    if (m_client && m_queryId != -1) 
+    if (m_client && m_queryId != -1)
         QDeclarativeEngineDebugPrivate::remove(m_client, this);
 }
 
@@ -974,7 +974,7 @@ QDeclarativeDebugContextReference::QDeclarativeDebugContextReference(const QDecl
 
 QDeclarativeDebugContextReference &QDeclarativeDebugContextReference::operator=(const QDeclarativeDebugContextReference &o)
 {
-    m_debugId = o.m_debugId; m_name = o.m_name; m_objects = o.m_objects; 
+    m_debugId = o.m_debugId; m_name = o.m_name; m_objects = o.m_objects;
     m_contexts = o.m_contexts;
     return *this;
 }

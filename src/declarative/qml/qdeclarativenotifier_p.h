@@ -122,7 +122,7 @@ QDeclarativeNotifier::QDeclarativeNotifier()
 }
 
 QDeclarativeNotifier::~QDeclarativeNotifier()
-{    
+{
     QDeclarativeNotifierEndpoint *endpoint = endpoints;
     while (endpoint) {
         QDeclarativeNotifierEndpoint::Notifier *n = endpoint->asNotifier();
@@ -143,12 +143,12 @@ void QDeclarativeNotifier::notify()
 }
 
 QDeclarativeNotifierEndpoint::QDeclarativeNotifierEndpoint()
-: target(0), targetMethod(0), type(InvalidType) 
+: target(0), targetMethod(0), type(InvalidType)
 {
 }
 
 QDeclarativeNotifierEndpoint::QDeclarativeNotifierEndpoint(QObject *t, int m)
-: target(t), targetMethod(m), type(InvalidType) 
+: target(t), targetMethod(m), type(InvalidType)
 {
 }
 
@@ -185,7 +185,7 @@ bool QDeclarativeNotifierEndpoint::isConnected(QDeclarativeNotifier *notifier)
 void QDeclarativeNotifierEndpoint::connect(QDeclarativeNotifier *notifier)
 {
     Notifier *n = toNotifier();
-    
+
     if (n->notifier == notifier)
         return;
 
@@ -221,7 +221,7 @@ void QDeclarativeNotifierEndpoint::disconnect()
 
 QDeclarativeNotifierEndpoint::Notifier *QDeclarativeNotifierEndpoint::toNotifier()
 {
-    if (NotifierType == type) 
+    if (NotifierType == type)
         return asNotifier();
 
     if (SignalType == type) {
@@ -239,15 +239,15 @@ QDeclarativeNotifierEndpoint::Notifier *QDeclarativeNotifierEndpoint::toNotifier
     return n;
 }
 
-QDeclarativeNotifierEndpoint::Notifier *QDeclarativeNotifierEndpoint::asNotifier() 
-{ 
+QDeclarativeNotifierEndpoint::Notifier *QDeclarativeNotifierEndpoint::asNotifier()
+{
     Q_ASSERT(type == NotifierType);
     return &notifier;
 }
 
 QDeclarativeNotifierEndpoint::Signal *QDeclarativeNotifierEndpoint::toSignal()
 {
-    if (SignalType == type) 
+    if (SignalType == type)
         return asSignal();
 
     disconnect();
@@ -256,8 +256,8 @@ QDeclarativeNotifierEndpoint::Signal *QDeclarativeNotifierEndpoint::toSignal()
     return signal.signal;
 }
 
-QDeclarativeNotifierEndpoint::Signal *QDeclarativeNotifierEndpoint::asSignal() 
-{ 
+QDeclarativeNotifierEndpoint::Signal *QDeclarativeNotifierEndpoint::asSignal()
+{
     Q_ASSERT(type == SignalType);
     return signal.signal;
 }

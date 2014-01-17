@@ -84,7 +84,7 @@ private:
     QDeclarativeAbstractExpression  *m_nextExpression;
 };
 
-class QDeclarativeDelayedError 
+class QDeclarativeDelayedError
 {
 public:
     inline QDeclarativeDelayedError() : nextError(0), prevError(0) {}
@@ -107,7 +107,7 @@ private:
     QDeclarativeDelayedError **prevError;
 };
 
-class QDeclarativeQtScriptExpression : public QDeclarativeAbstractExpression, 
+class QDeclarativeQtScriptExpression : public QDeclarativeAbstractExpression,
                                        public QDeclarativeDelayedError
 {
 public:
@@ -199,7 +199,7 @@ public:
     static void exceptionToError(QScriptEngine *, QDeclarativeError &);
     static QScriptValue evalInObjectScope(QDeclarativeContextData *, QObject *, const QString &, const QString &,
                                           int, QScriptValue *);
-    static QScriptValue evalInObjectScope(QDeclarativeContextData *, QObject *, const QScriptProgram &, 
+    static QScriptValue evalInObjectScope(QDeclarativeContextData *, QObject *, const QScriptProgram &,
                                           QScriptValue *);
 
     bool expressionFunctionValid:1;
@@ -210,22 +210,22 @@ public:
 };
 
 QDeclarativeQtScriptExpression::DeleteWatcher::DeleteWatcher(QDeclarativeQtScriptExpression *data)
-: m_wasDeletedStorage(false), m_d(data) 
+: m_wasDeletedStorage(false), m_d(data)
 {
-    if (!m_d->deleted) 
-        m_d->deleted = &m_wasDeletedStorage; 
+    if (!m_d->deleted)
+        m_d->deleted = &m_wasDeletedStorage;
     m_wasDeleted = m_d->deleted;
 }
 
-QDeclarativeQtScriptExpression::DeleteWatcher::~DeleteWatcher() 
+QDeclarativeQtScriptExpression::DeleteWatcher::~DeleteWatcher()
 {
     if (false == *m_wasDeleted && m_wasDeleted == m_d->deleted)
         m_d->deleted = 0;
 }
 
-bool QDeclarativeQtScriptExpression::DeleteWatcher::wasDeleted() const 
-{ 
-    return *m_wasDeleted; 
+bool QDeclarativeQtScriptExpression::DeleteWatcher::wasDeleted() const
+{
+    return *m_wasDeleted;
 }
 
 QT_END_NAMESPACE

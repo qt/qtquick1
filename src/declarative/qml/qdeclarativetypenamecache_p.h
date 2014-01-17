@@ -87,7 +87,7 @@ protected:
     virtual void clear();
 
 private:
-    struct RData : public Data { 
+    struct RData : public Data {
         QScriptDeclarativeClass::PersistentIdentifier identifier;
     };
     typedef QHash<QString, RData *> StringCache;

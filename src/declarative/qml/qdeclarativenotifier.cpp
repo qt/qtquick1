@@ -57,12 +57,12 @@ void QDeclarativeNotifier::emitNotify(QDeclarativeNotifierEndpoint *endpoint)
     if (endpoint) {
         void *args[] = { 0 };
 
-        QMetaObject::metacall(endpoint->target, QMetaObject::InvokeMetaMethod, 
+        QMetaObject::metacall(endpoint->target, QMetaObject::InvokeMetaMethod,
                               endpoint->targetMethod, args);
 
         if (endpoint)
             endpoint->asNotifier()->disconnected = oldDisconnected;
-    } 
+    }
 
     if (oldDisconnected) *oldDisconnected = endpoint;
 }
@@ -70,7 +70,7 @@ void QDeclarativeNotifier::emitNotify(QDeclarativeNotifierEndpoint *endpoint)
 void QDeclarativeNotifierEndpoint::connect(QObject *source, int sourceSignal)
 {
     Signal *s = toSignal();
-    
+
     if (s->source == source && s->sourceSignal == sourceSignal)
         return;
 
@@ -118,7 +118,7 @@ void QDeclarativeNotifierEndpoint::copyAndClear(QDeclarativeNotifierEndpoint &ot
         n->next = 0;
         n->disconnected = 0;
         n->notifier = 0;
-    } 
+    }
 }
 
 

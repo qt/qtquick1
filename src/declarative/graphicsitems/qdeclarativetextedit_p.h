@@ -273,7 +273,7 @@ private:
     void updateTotalLines();
 
 protected:
-    virtual void geometryChanged(const QRectF &newGeometry, 
+    virtual void geometryChanged(const QRectF &newGeometry,
                                  const QRectF &oldGeometry);
 
     bool event(QEvent *);

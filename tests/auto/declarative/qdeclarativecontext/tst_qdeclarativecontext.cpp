@@ -235,7 +235,7 @@ private:
     QCOMPARE(obj->property("test"), value); \
 \
     delete obj; \
-} 
+}
 
 void tst_qdeclarativecontext::setContextProperty()
 {
@@ -277,56 +277,56 @@ void tst_qdeclarativecontext::setContextProperty()
 
     // Changes in context properties
     {
-        QDeclarativeComponent component(&engine); 
+        QDeclarativeComponent component(&engine);
         component.setData("import QtQuick 1.0; QtObject { property variant test: a }", QUrl());
 
-        QObject *obj = component.create(&ctxt2); 
+        QObject *obj = component.create(&ctxt2);
 
-        QCOMPARE(obj->property("test"), QVariant(13)); 
+        QCOMPARE(obj->property("test"), QVariant(13));
         ctxt.setContextProperty("a", QVariant(19));
-        QCOMPARE(obj->property("test"), QVariant(19)); 
+        QCOMPARE(obj->property("test"), QVariant(19));
 
-        delete obj; 
+        delete obj;
     }
     {
-        QDeclarativeComponent component(&engine); 
+        QDeclarativeComponent component(&engine);
         component.setData("import QtQuick 1.0; QtObject { property variant test: b }", QUrl());
 
-        QObject *obj = component.create(&ctxt2); 
+        QObject *obj = component.create(&ctxt2);
 
-        QCOMPARE(obj->property("test"), QVariant(8)); 
+        QCOMPARE(obj->property("test"), QVariant(8));
         ctxt.setContextProperty("b", QVariant(5));
-        QCOMPARE(obj->property("test"), QVariant(8)); 
+        QCOMPARE(obj->property("test"), QVariant(8));
         ctxt2.setContextProperty("b", QVariant(1912));
-        QCOMPARE(obj->property("test"), QVariant(1912)); 
+        QCOMPARE(obj->property("test"), QVariant(1912));
 
-        delete obj; 
+        delete obj;
     }
     {
-        QDeclarativeComponent component(&engine); 
+        QDeclarativeComponent component(&engine);
         component.setData("import QtQuick 1.0; QtObject { property variant test: e.a }", QUrl());
 
-        QObject *obj = component.create(&ctxt2); 
+        QObject *obj = component.create(&ctxt2);
 
-        QCOMPARE(obj->property("test"), QVariant(12)); 
+        QCOMPARE(obj->property("test"), QVariant(12));
         obj1.setA(13);
-        QCOMPARE(obj->property("test"), QVariant(13)); 
+        QCOMPARE(obj->property("test"), QVariant(13));
 
-        delete obj; 
+        delete obj;
     }
 
     // New context properties
     {
-        QDeclarativeComponent component(&engine); 
+        QDeclarativeComponent component(&engine);
         component.setData("import QtQuick 1.0; QtObject { property variant test: a }", QUrl());
 
-        QObject *obj = component.create(&ctxt2); 
+        QObject *obj = component.create(&ctxt2);
 
-        QCOMPARE(obj->property("test"), QVariant(19)); 
+        QCOMPARE(obj->property("test"), QVariant(19));
         ctxt2.setContextProperty("a", QVariant(1945));
-        QCOMPARE(obj->property("test"), QVariant(1945)); 
+        QCOMPARE(obj->property("test"), QVariant(1945));
 
-        delete obj; 
+        delete obj;
     }
 
     // Setting an object-variant context property
@@ -379,16 +379,16 @@ void tst_qdeclarativecontext::setContextObject()
 
     // Changes in context properties
     {
-        QDeclarativeComponent component(&engine); 
+        QDeclarativeComponent component(&engine);
         component.setData("import QtQuick 1.0; QtObject { property variant test: a }", QUrl());
 
-        QObject *obj = component.create(&ctxt); 
+        QObject *obj = component.create(&ctxt);
 
-        QCOMPARE(obj->property("test"), QVariant(12)); 
+        QCOMPARE(obj->property("test"), QVariant(12));
         to.setA(14);
-        QCOMPARE(obj->property("test"), QVariant(14)); 
+        QCOMPARE(obj->property("test"), QVariant(14));
 
-        delete obj; 
+        delete obj;
     }
 }
 

@@ -286,7 +286,7 @@ ProcessAST::defineObjectBinding(AST::UiQualifiedId *propertyName,
         if (lastTypeDot >= 0)
             resolvableObjectType.replace(QLatin1Char('.'),QLatin1Char('/'));
 
-	QDeclarativeParser::Object *obj = new QDeclarativeParser::Object;
+        QDeclarativeParser::Object *obj = new QDeclarativeParser::Object;
 
         QDeclarativeScriptParser::TypeReference *typeRef = _parser->findOrCreateType(resolvableObjectType);
         obj->type = typeRef->id;
@@ -505,7 +505,7 @@ bool ProcessAST::visit(AST::UiPublicMember *node)
                 _parser->_errors << error;
                 return false;
             }
-            
+
             signal.parameterTypes << qtType;
             signal.parameterNames << p->name->asString().toUtf8();
             p = p->finish();
@@ -636,7 +636,7 @@ bool ProcessAST::visit(AST::UiObjectBinding *node)
     const QString objectType = asString(node->qualifiedTypeNameId);
     const AST::SourceLocation typeLocation = node->qualifiedTypeNameId->identifierToken;
 
-    defineObjectBinding(node->qualifiedId, node->hasOnToken, objectType, 
+    defineObjectBinding(node->qualifiedId, node->hasOnToken, objectType,
                         typeLocation, l, node->initializer);
 
     return false;
@@ -888,7 +888,7 @@ QList<QDeclarativeError> QDeclarativeScriptParser::errors() const
     return _errors;
 }
 
-static void replaceWithSpace(QString &str, int idx, int n) 
+static void replaceWithSpace(QString &str, int idx, int n)
 {
     QChar *data = str.data() + idx;
     const QChar space(QLatin1Char(' '));
@@ -954,42 +954,42 @@ QDeclarativeParser::Object::ScriptBlock::Pragmas QDeclarativeScriptParser::extra
 #define CHECK_TOKEN(t) if (token != QDeclarativeJSGrammar:: t) return rv;
 
 static const int uriTokens[] = {
-    QDeclarativeJSGrammar::T_IDENTIFIER, 
-    QDeclarativeJSGrammar::T_PROPERTY, 
-    QDeclarativeJSGrammar::T_SIGNAL, 
-    QDeclarativeJSGrammar::T_READONLY, 
-    QDeclarativeJSGrammar::T_ON, 
-    QDeclarativeJSGrammar::T_BREAK, 
-    QDeclarativeJSGrammar::T_CASE, 
-    QDeclarativeJSGrammar::T_CATCH, 
-    QDeclarativeJSGrammar::T_CONTINUE, 
-    QDeclarativeJSGrammar::T_DEFAULT, 
-    QDeclarativeJSGrammar::T_DELETE, 
-    QDeclarativeJSGrammar::T_DO, 
-    QDeclarativeJSGrammar::T_ELSE, 
-    QDeclarativeJSGrammar::T_FALSE, 
-    QDeclarativeJSGrammar::T_FINALLY, 
-    QDeclarativeJSGrammar::T_FOR, 
-    QDeclarativeJSGrammar::T_FUNCTION, 
-    QDeclarativeJSGrammar::T_IF, 
-    QDeclarativeJSGrammar::T_IN, 
-    QDeclarativeJSGrammar::T_INSTANCEOF, 
-    QDeclarativeJSGrammar::T_NEW, 
-    QDeclarativeJSGrammar::T_NULL, 
-    QDeclarativeJSGrammar::T_RETURN, 
-    QDeclarativeJSGrammar::T_SWITCH, 
-    QDeclarativeJSGrammar::T_THIS, 
-    QDeclarativeJSGrammar::T_THROW, 
-    QDeclarativeJSGrammar::T_TRUE, 
-    QDeclarativeJSGrammar::T_TRY, 
-    QDeclarativeJSGrammar::T_TYPEOF, 
-    QDeclarativeJSGrammar::T_VAR, 
-    QDeclarativeJSGrammar::T_VOID, 
-    QDeclarativeJSGrammar::T_WHILE, 
-    QDeclarativeJSGrammar::T_CONST, 
-    QDeclarativeJSGrammar::T_DEBUGGER, 
-    QDeclarativeJSGrammar::T_RESERVED_WORD, 
-    QDeclarativeJSGrammar::T_WITH, 
+    QDeclarativeJSGrammar::T_IDENTIFIER,
+    QDeclarativeJSGrammar::T_PROPERTY,
+    QDeclarativeJSGrammar::T_SIGNAL,
+    QDeclarativeJSGrammar::T_READONLY,
+    QDeclarativeJSGrammar::T_ON,
+    QDeclarativeJSGrammar::T_BREAK,
+    QDeclarativeJSGrammar::T_CASE,
+    QDeclarativeJSGrammar::T_CATCH,
+    QDeclarativeJSGrammar::T_CONTINUE,
+    QDeclarativeJSGrammar::T_DEFAULT,
+    QDeclarativeJSGrammar::T_DELETE,
+    QDeclarativeJSGrammar::T_DO,
+    QDeclarativeJSGrammar::T_ELSE,
+    QDeclarativeJSGrammar::T_FALSE,
+    QDeclarativeJSGrammar::T_FINALLY,
+    QDeclarativeJSGrammar::T_FOR,
+    QDeclarativeJSGrammar::T_FUNCTION,
+    QDeclarativeJSGrammar::T_IF,
+    QDeclarativeJSGrammar::T_IN,
+    QDeclarativeJSGrammar::T_INSTANCEOF,
+    QDeclarativeJSGrammar::T_NEW,
+    QDeclarativeJSGrammar::T_NULL,
+    QDeclarativeJSGrammar::T_RETURN,
+    QDeclarativeJSGrammar::T_SWITCH,
+    QDeclarativeJSGrammar::T_THIS,
+    QDeclarativeJSGrammar::T_THROW,
+    QDeclarativeJSGrammar::T_TRUE,
+    QDeclarativeJSGrammar::T_TRY,
+    QDeclarativeJSGrammar::T_TYPEOF,
+    QDeclarativeJSGrammar::T_VAR,
+    QDeclarativeJSGrammar::T_VOID,
+    QDeclarativeJSGrammar::T_WHILE,
+    QDeclarativeJSGrammar::T_CONST,
+    QDeclarativeJSGrammar::T_DEBUGGER,
+    QDeclarativeJSGrammar::T_RESERVED_WORD,
+    QDeclarativeJSGrammar::T_WITH,
 
     QDeclarativeJSGrammar::EOF_SYMBOL
 };

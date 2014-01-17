@@ -152,7 +152,7 @@ public:
     QByteArray m_name;
     int m_version_maj;
     int m_version_min;
-    int m_typeId; int m_listId; 
+    int m_typeId; int m_listId;
     int m_revision;
     mutable bool m_containsRevisionedAttributes;
     mutable QDeclarativeType *m_superType;
@@ -183,9 +183,9 @@ QHash<const QMetaObject *, int> QDeclarativeTypePrivate::m_attachedPropertyIds;
 
 QDeclarativeTypePrivate::QDeclarativeTypePrivate()
 : m_isInterface(false), m_iid(0), m_typeId(0), m_listId(0), m_revision(0), m_containsRevisionedAttributes(false),
-  m_superType(0), m_allocationSize(0), m_newFunc(0), m_baseMetaObject(0), m_attachedPropertiesFunc(0), 
-  m_attachedPropertiesType(0), m_parserStatusCast(-1), m_propertyValueSourceCast(-1), 
-  m_propertyValueInterceptorCast(-1), m_extFunc(0), m_extMetaObject(0), m_index(-1), m_customParser(0), 
+  m_superType(0), m_allocationSize(0), m_newFunc(0), m_baseMetaObject(0), m_attachedPropertiesFunc(0),
+  m_attachedPropertiesType(0), m_parserStatusCast(-1), m_propertyValueSourceCast(-1),
+  m_propertyValueInterceptorCast(-1), m_extFunc(0), m_extMetaObject(0), m_index(-1), m_customParser(0),
   m_isSetup(false), m_haveSuperType(false)
 {
 }
@@ -291,7 +291,7 @@ QDeclarativeType *QDeclarativeType::superType() const
     return d->m_superType;
 }
 
-static void clone(QMetaObjectBuilder &builder, const QMetaObject *mo, 
+static void clone(QMetaObjectBuilder &builder, const QMetaObject *mo,
                   const QMetaObject *ignoreStart, const QMetaObject *ignoreEnd)
 {
     // Clone Q_CLASSINFO
@@ -300,7 +300,7 @@ static void clone(QMetaObjectBuilder &builder, const QMetaObject *mo,
 
         int otherIndex = ignoreEnd->indexOfClassInfo(info.name());
         if (otherIndex >= ignoreStart->classInfoOffset() + ignoreStart->classInfoCount()) {
-            // Skip 
+            // Skip
         } else {
             builder.addClassInfo(info.name(), info.value());
         }
@@ -313,7 +313,7 @@ static void clone(QMetaObjectBuilder &builder, const QMetaObject *mo,
         int otherIndex = ignoreEnd->indexOfProperty(property.name());
         if (otherIndex >= ignoreStart->propertyOffset() + ignoreStart->propertyCount()) {
             builder.addProperty(QByteArray("__qml_ignore__") + property.name(), QByteArray("void"));
-            // Skip 
+            // Skip
         } else {
             builder.addProperty(property);
         }
@@ -331,7 +331,7 @@ static void clone(QMetaObjectBuilder &builder, const QMetaObject *mo,
 
         bool found = false;
 
-        for (int ii = ignoreStart->methodOffset() + ignoreStart->methodCount(); 
+        for (int ii = ignoreStart->methodOffset() + ignoreStart->methodCount();
              !found && ii < ignoreEnd->methodOffset() + ignoreEnd->methodCount();
              ++ii) {
 
@@ -354,7 +354,7 @@ static void clone(QMetaObjectBuilder &builder, const QMetaObject *mo,
 
         int otherIndex = ignoreEnd->indexOfEnumerator(enumerator.name());
         if (otherIndex >= ignoreStart->enumeratorOffset() + ignoreStart->enumeratorCount()) {
-            // Skip 
+            // Skip
         } else {
             builder.addEnumerator(enumerator);
         }
@@ -404,7 +404,7 @@ void QDeclarativeTypePrivate::init() const
         m_metaObjects[ii].methodOffset =
             m_metaObjects.at(ii).metaObject->methodOffset();
     }
-    
+
     // Check for revisioned details
     {
         const QMetaObject *mo = 0;
@@ -555,7 +555,7 @@ const QMetaObject *QDeclarativeType::attachedPropertiesType() const
 
 /*
 This is the id passed to qmlAttachedPropertiesById().  This is different from the index
-for the case that a single class is registered under two or more names (eg. Item in 
+for the case that a single class is registered under two or more names (eg. Item in
 Qt 4.7 and QtQuick 1.0).
 */
 int QDeclarativeType::attachedPropertiesId() const
@@ -600,7 +600,7 @@ int registerAutoParentFunction(QDeclarativePrivate::RegisterAutoParent &autopare
 
 int registerInterface(const QDeclarativePrivate::RegisterInterface &interface)
 {
-    if (interface.version > 0) 
+    if (interface.version > 0)
         qFatal("qmlRegisterType(): Cannot mix incompatible QML versions.");
 
     QWriteLocker lock(metaTypeDataLock());
@@ -1020,7 +1020,7 @@ QDeclarativeType *QDeclarativeMetaType::qmlType(const QMetaObject *metaObject, c
 }
 
 /*!
-    Returns the type (if any) that corresponds to the QVariant::Type \a userType.  
+    Returns the type (if any) that corresponds to the QVariant::Type \a userType.
     Returns null if no type is registered.
 */
 QDeclarativeType *QDeclarativeMetaType::qmlType(int userType)

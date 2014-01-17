@@ -45,10 +45,10 @@
 
 QT_BEGIN_NAMESPACE
 
-// Adding entries to the QDeclarativeFastProperties class allows the QML 
-// binding optimizer to bypass Qt's meta system and read and, more 
+// Adding entries to the QDeclarativeFastProperties class allows the QML
+// binding optimizer to bypass Qt's meta system and read and, more
 // importantly, subscribe to properties directly.  Any property that is
-// primarily read from bindings is a candidate for inclusion as a fast 
+// primarily read from bindings is a candidate for inclusion as a fast
 // property.
 
 QDeclarativeFastProperties::QDeclarativeFastProperties()
@@ -63,10 +63,10 @@ int QDeclarativeFastProperties::accessorIndexForProperty(const QMetaObject *meta
     Q_ASSERT(propertyIndex >= 0);
 
     // Find the "real" metaObject
-    while (metaObject->propertyOffset() > propertyIndex) 
+    while (metaObject->propertyOffset() > propertyIndex)
         metaObject = metaObject->superClass();
 
-    QHash<QPair<const QMetaObject *, int>, int>::Iterator iter = 
+    QHash<QPair<const QMetaObject *, int>, int>::Iterator iter =
         m_index.find(qMakePair(metaObject, propertyIndex));
     if (iter != m_index.end())
         return *iter;
@@ -80,7 +80,7 @@ void QDeclarativeFastProperties::add(const QMetaObject *metaObject, int property
     Q_ASSERT(propertyIndex >= 0);
 
     // Find the "real" metaObject
-    while (metaObject->propertyOffset() > propertyIndex) 
+    while (metaObject->propertyOffset() > propertyIndex)
         metaObject = metaObject->superClass();
 
     QPair<const QMetaObject *, int> data = qMakePair(metaObject, propertyIndex);

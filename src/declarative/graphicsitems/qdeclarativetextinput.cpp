@@ -78,7 +78,7 @@ QT_BEGIN_NAMESPACE
 
     On Mac OS X, the Up/Down key bindings for Home/End are explicitly disabled.
     If you want such bindings (on any platform), you will need to construct them in QML.
-    
+
     \sa TextEdit, Text, {declarative/text/textselection}{Text Selection example}
 */
 QDeclarativeTextInput::QDeclarativeTextInput(QDeclarativeItem* parent)
@@ -740,7 +740,7 @@ void QDeclarativeTextInput::setAutoScroll(bool b)
     This property holds the notation of how a string can describe a number.
 
     The possible values for this property are:
-    
+
     \list
     \li DoubleValidator.StandardNotation
     \li DoubleValidator.ScientificNotation (default)

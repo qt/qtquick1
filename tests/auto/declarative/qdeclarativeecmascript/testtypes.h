@@ -114,7 +114,7 @@ public:
     }
 
     QObject *objectProperty() const { return m_object; }
-    void setObjectProperty(QObject *obj) { 
+    void setObjectProperty(QObject *obj) {
         if (obj == m_object)
             return;
         m_object = obj;
@@ -157,7 +157,7 @@ public:
         int value;
     };
     QVariant variant() const { return m_variant; }
-    
+
 signals:
     void basicSignal();
     void argumentSignal(int a, QString b, qreal c, MyEnum2 d, Qt::MouseButtons e);
@@ -624,7 +624,7 @@ public:
     Q_INVOKABLE void method_QObject(QObject *a) { invoke(13); m_actuals << qVariantFromValue(a); }
     Q_INVOKABLE void method_QScriptValue(QScriptValue a) { invoke(14); m_actuals << qVariantFromValue(a); }
     Q_INVOKABLE void method_intQScriptValue(int a, QScriptValue b) { invoke(15); m_actuals << a << qVariantFromValue(b); }
-    
+
     Q_INVOKABLE void method_overload(int a) { invoke(16); m_actuals << a; }
     Q_INVOKABLE void method_overload(int a, int b) { invoke(17); m_actuals << a << b; }
     Q_INVOKABLE void method_overload(QString a) { invoke(18); m_actuals << a; }

@@ -271,14 +271,14 @@ public:
 class Q_DECLARATIVE_PRIVATE_EXPORT QDeclarativeDomValue
 {
 public:
-    enum Type { 
+    enum Type {
         Invalid,
-        Literal, 
-        PropertyBinding, 
+        Literal,
+        PropertyBinding,
         ValueSource,
         ValueInterceptor,
         Object,
-        List 
+        List
     };
 
     QDeclarativeDomValue();

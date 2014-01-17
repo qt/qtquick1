@@ -58,7 +58,7 @@ QT_BEGIN_NAMESPACE
    \inherits Item
 
     Focus panels assist in keyboard focus handling when building QML
-    applications.  All the details are covered in the 
+    applications.  All the details are covered in the
     \l {qmlfocus}{keyboard focus documentation}.
 */
 

@@ -44,7 +44,7 @@
 
 #include <QtCore/qglobal.h>
 
-// 
+//
 //  W A R N I N G
 //  -------------
 //

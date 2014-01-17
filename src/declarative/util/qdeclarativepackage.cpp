@@ -128,14 +128,14 @@ QDeclarativePackageAttached::~QDeclarativePackageAttached()
     attached.remove(parent());
 }
 
-QString QDeclarativePackageAttached::name() const 
-{ 
-    return _name; 
+QString QDeclarativePackageAttached::name() const
+{
+    return _name;
 }
 
-void QDeclarativePackageAttached::setName(const QString &n) 
-{ 
-    _name = n; 
+void QDeclarativePackageAttached::setName(const QString &n)
+{
+    _name = n;
 }
 
 QDeclarativePackage::QDeclarativePackage(QObject *parent)
@@ -155,9 +155,9 @@ QDeclarativePackage::~QDeclarativePackage()
 QDeclarativeListProperty<QObject> QDeclarativePackage::data()
 {
     Q_D(QDeclarativePackage);
-    return QDeclarativeListProperty<QObject>(this, &d->dataList, QDeclarativePackagePrivate::data_append, 
-                                                        QDeclarativePackagePrivate::data_count, 
-                                                        QDeclarativePackagePrivate::data_at, 
+    return QDeclarativeListProperty<QObject>(this, &d->dataList, QDeclarativePackagePrivate::data_append,
+                                                        QDeclarativePackagePrivate::data_count,
+                                                        QDeclarativePackagePrivate::data_at,
                                                         QDeclarativePackagePrivate::data_clear);
 }
 

@@ -96,8 +96,8 @@ QScriptValue QDeclarativeValueTypeScriptClass::newObject(const QVariant &v, QDec
     return QScriptDeclarativeClass::newObject(scriptEngine, this, copy);
 }
 
-QScriptClass::QueryFlags 
-QDeclarativeValueTypeScriptClass::queryProperty(Object *obj, const Identifier &name, 
+QScriptClass::QueryFlags
+QDeclarativeValueTypeScriptClass::queryProperty(Object *obj, const Identifier &name,
                                                 QScriptClass::QueryFlags)
 {
     QDeclarativeValueTypeObject *o = static_cast<QDeclarativeValueTypeObject *>(obj);
@@ -153,7 +153,7 @@ QDeclarativeValueTypeScriptClass::Value QDeclarativeValueTypeScriptClass::proper
     return Value(scriptEngine, static_cast<QDeclarativeEnginePrivate *>(QObjectPrivate::get(engine))->scriptValueFromVariant(rv));
 }
 
-void QDeclarativeValueTypeScriptClass::setProperty(Object *obj, const Identifier &, 
+void QDeclarativeValueTypeScriptClass::setProperty(Object *obj, const Identifier &,
                                                    const QScriptValue &value)
 {
     QDeclarativeValueTypeObject *o = static_cast<QDeclarativeValueTypeObject *>(obj);
@@ -188,12 +188,12 @@ void QDeclarativeValueTypeScriptClass::setProperty(Object *obj, const Identifier
                 newBinding->setEvaluateFlags(newBinding->evaluateFlags() | QDeclarativeBinding::RequiresThisObject);
         }
 
-        QDeclarativeAbstractBinding *delBinding = 
+        QDeclarativeAbstractBinding *delBinding =
             QDeclarativePropertyPrivate::setBinding(ref->object, ref->property, m_lastIndex, newBinding);
-        if (delBinding) 
+        if (delBinding)
             delBinding->destroy();
 
-        if (p.isEnumType() && (QMetaType::Type)v.type() == QMetaType::Double) 
+        if (p.isEnumType() && (QMetaType::Type)v.type() == QMetaType::Double)
             v = v.toInt();
         p.write(ref->type, v);
         ref->type->write(ref->object, ref->property, 0);
@@ -222,7 +222,7 @@ QVariant QDeclarativeValueTypeScriptClass::toVariant(Object *obj, bool *ok)
         }
     } else {
         QDeclarativeValueTypeCopy *copy = static_cast<QDeclarativeValueTypeCopy *>(obj);
-        
+
         if (ok) *ok = true;
 
         return copy->value;

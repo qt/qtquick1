@@ -59,7 +59,7 @@ bool SharedBindingTester::isSharable(const QString &code)
     Parser parser(&engine);
     lexer.setCode(code, 0);
     parser.parseStatement();
-    if (!parser.statement()) 
+    if (!parser.statement())
         return false;
 
     return isSharable(parser.statement());

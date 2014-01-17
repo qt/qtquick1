@@ -77,7 +77,7 @@ private slots:
     void lineCount();
     void lineHeight();
 
-    // ### these tests may be trivial    
+    // ### these tests may be trivial
     void horizontalAlignment();
     void horizontalAlignment_RightToLeft();
     void verticalAlignment();
@@ -704,7 +704,7 @@ void tst_qdeclarativetext::font()
         QCOMPARE(textObject->font().italic(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { font.bold: true; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -714,7 +714,7 @@ void tst_qdeclarativetext::font()
         QCOMPARE(textObject->font().italic(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { font.italic: true; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -724,7 +724,7 @@ void tst_qdeclarativetext::font()
         QCOMPARE(textObject->font().bold(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { font.family: \"Helvetica\"; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -735,7 +735,7 @@ void tst_qdeclarativetext::font()
         QCOMPARE(textObject->font().italic(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { font.family: \"\"; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -749,7 +749,7 @@ void tst_qdeclarativetext::style()
 {
     //test style
     for (int i = 0; i < styles.size(); i++)
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { style: \"" + styleStrings.at(i) + "\"; styleColor: \"white\"; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -775,7 +775,7 @@ void tst_qdeclarativetext::color()
 {
     //test style
     for (int i = 0; i < colorStrings.size(); i++)
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { color: \"" + colorStrings.at(i) + "\"; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -786,7 +786,7 @@ void tst_qdeclarativetext::color()
     }
 
     for (int i = 0; i < colorStrings.size(); i++)
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nText { styleColor: \"" + colorStrings.at(i) + "\"; text: \"Hello World\" }";
         QDeclarativeComponent textComponent(&engine);
         textComponent.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
@@ -796,9 +796,9 @@ void tst_qdeclarativetext::color()
         // default color to black?
         QCOMPARE(textObject->color(), QColor("black"));
     }
-    
+
     for (int i = 0; i < colorStrings.size(); i++)
-    { 
+    {
         for (int j = 0; j < colorStrings.size(); j++)
         {
             QString componentStr = "import QtQuick 1.0\nText { color: \"" + colorStrings.at(i) + "\"; styleColor: \"" + colorStrings.at(j) + "\"; text: \"Hello World\" }";
@@ -1153,7 +1153,7 @@ void tst_qdeclarativetext::embeddedImages()
 
     if (!error.isEmpty())
         QTest::ignoreMessage(QtWarningMsg, error.toLatin1());
-    
+
     QDeclarativeComponent textComponent(&engine, qmlfile);
     QDeclarativeText *textObject = qobject_cast<QDeclarativeText*>(textComponent.create());
 

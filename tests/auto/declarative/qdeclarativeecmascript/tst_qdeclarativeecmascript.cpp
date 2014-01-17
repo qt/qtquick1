@@ -453,7 +453,7 @@ void tst_qdeclarativeecmascript::contextPropertiesTriggerReeval()
     context.setContextProperty("testObj", &object1);
     context.setContextProperty("testObj2", object3);
 
-    { 
+    {
         MyExpression expr(&context, "testProp + 1");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant(2));
@@ -463,7 +463,7 @@ void tst_qdeclarativeecmascript::contextPropertiesTriggerReeval()
         QCOMPARE(expr.evaluate(), QVariant(3));
     }
 
-    { 
+    {
         MyExpression expr(&context, "testProp + testProp + testProp");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant(6));
@@ -473,7 +473,7 @@ void tst_qdeclarativeecmascript::contextPropertiesTriggerReeval()
         QCOMPARE(expr.evaluate(), QVariant(12));
     }
 
-    { 
+    {
         MyExpression expr(&context, "testObj.stringProperty");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant("Hello"));
@@ -483,7 +483,7 @@ void tst_qdeclarativeecmascript::contextPropertiesTriggerReeval()
         QCOMPARE(expr.evaluate(), QVariant("World"));
     }
 
-    { 
+    {
         MyExpression expr(&context, "testObj.stringProperty /**/");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant("World"));
@@ -493,7 +493,7 @@ void tst_qdeclarativeecmascript::contextPropertiesTriggerReeval()
         QCOMPARE(expr.evaluate(), QVariant("Hello"));
     }
 
-    { 
+    {
         MyExpression expr(&context, "testObj2");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant::fromValue((QObject *)object3));
@@ -513,7 +513,7 @@ void tst_qdeclarativeecmascript::objectPropertiesTriggerReeval()
     object2.setStringProperty(QLatin1String("Dog"));
     object3.setStringProperty(QLatin1String("Cat"));
 
-    { 
+    {
         MyExpression expr(&context, "testObj.stringProperty");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant("Hello"));
@@ -523,7 +523,7 @@ void tst_qdeclarativeecmascript::objectPropertiesTriggerReeval()
         QCOMPARE(expr.evaluate(), QVariant("World"));
     }
 
-    { 
+    {
         MyExpression expr(&context, "testObj.objectProperty.stringProperty");
         QCOMPARE(expr.changed, false);
         QCOMPARE(expr.evaluate(), QVariant());
@@ -558,7 +558,7 @@ void tst_qdeclarativeecmascript::objectPropertiesTriggerReeval()
 void tst_qdeclarativeecmascript::deferredProperties()
 {
     QDeclarativeComponent component(&engine, testFileUrl("deferredProperties.qml"));
-    MyDeferredObject *object = 
+    MyDeferredObject *object =
         qobject_cast<MyDeferredObject *>(component.create());
     QVERIFY(object != 0);
     QCOMPARE(object->value(), 0);
@@ -567,7 +567,7 @@ void tst_qdeclarativeecmascript::deferredProperties()
     qmlExecuteDeferred(object);
     QCOMPARE(object->value(), 10);
     QVERIFY(object->objectProperty() != 0);
-    MyQmlObject *qmlObject = 
+    MyQmlObject *qmlObject =
         qobject_cast<MyQmlObject *>(object->objectProperty());
     QVERIFY(qmlObject != 0);
     QCOMPARE(qmlObject->value(), 10);
@@ -579,7 +579,7 @@ void tst_qdeclarativeecmascript::deferredProperties()
 void tst_qdeclarativeecmascript::deferredPropertiesErrors()
 {
     QDeclarativeComponent component(&engine, testFileUrl("deferredPropertiesErrors.qml"));
-    MyDeferredObject *object = 
+    MyDeferredObject *object =
         qobject_cast<MyDeferredObject *>(component.create());
     QVERIFY(object != 0);
     QCOMPARE(object->value(), 0);
@@ -597,7 +597,7 @@ void tst_qdeclarativeecmascript::deferredPropertiesErrors()
 void tst_qdeclarativeecmascript::extensionObjects()
 {
     QDeclarativeComponent component(&engine, testFileUrl("extensionObjects.qml"));
-    MyExtendedObject *object = 
+    MyExtendedObject *object =
         qobject_cast<MyExtendedObject *>(component.create());
     QVERIFY(object != 0);
     QCOMPARE(object->baseProperty(), 13);
@@ -709,7 +709,7 @@ void tst_qdeclarativeecmascript::valueTypeFunctions()
     QCOMPARE(obj->rectFProperty(), QRectF(0,0.5,100,99.5));
 }
 
-/* 
+/*
 Tests that writing a constant to a property with a binding on it disables the
 binding.
 */
@@ -784,7 +784,7 @@ the original binding to be disabled.
 */
 void tst_qdeclarativeecmascript::outerBindingOverridesInnerBinding()
 {
-    QDeclarativeComponent component(&engine, 
+    QDeclarativeComponent component(&engine,
                            testFileUrl("outerBindingOverridesInnerBinding.qml"));
     MyQmlObject *object = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(object != 0);
@@ -805,7 +805,7 @@ void tst_qdeclarativeecmascript::outerBindingOverridesInnerBinding()
 }
 
 /*
-Access a non-existent attached object.  
+Access a non-existent attached object.
 
 Tests for a regression where this used to crash.
 */
@@ -1121,7 +1121,7 @@ void tst_qdeclarativeecmascript::propertyAssignmentErrors()
 
     delete object;
 }
-    
+
 /*
 Test bindings still work when the reeval is triggered from within
 a signal script.
@@ -1921,7 +1921,7 @@ void tst_qdeclarativeecmascript::attachedPropertyScope()
     QObject *object = component.create();
     QVERIFY(object != 0);
 
-    MyQmlAttachedObject *attached = 
+    MyQmlAttachedObject *attached =
         qobject_cast<MyQmlAttachedObject *>(qmlAttachedPropertiesObject<MyQmlObject>(object));
     QVERIFY(attached != 0);
 
@@ -2166,7 +2166,7 @@ public:
     QPointer<QObject> value;
 };
 
-// QTBUG-15695.  
+// QTBUG-15695.
 // Test setObjectOwnership(CppOwnership) works even when there is no QDeclarativeData
 void tst_qdeclarativeecmascript::cppOwnershipReturnValue()
 {
@@ -2376,7 +2376,7 @@ void tst_qdeclarativeecmascript::signalWithUnknownTypes()
     delete object;
 }
 
-// Test that assigning a null object works 
+// Test that assigning a null object works
 // Regressed with: df1788b4dbbb2826ae63f26bdf166342595343f4
 void tst_qdeclarativeecmascript::nullObjectBinding()
 {
@@ -2460,7 +2460,7 @@ void tst_qdeclarativeecmascript::qtbug_9792()
     QtMessageHandler old = qInstallMessageHandler(transientErrorsMsgHandler);
 
     object->basicSignal();
-    
+
     qInstallMessageHandler(old);
 
     QCOMPARE(transientErrorsMsgCount, 0);
@@ -2560,7 +2560,7 @@ void tst_qdeclarativeecmascript::functionAssignment_fromBinding()
     QString url = component.url().toString();
     QString warning = url + ":4: Unable to assign a function to a property.";
     QTest::ignoreMessage(QtWarningMsg, warning.toLatin1().constData());
-    
+
     MyQmlObject *o = qobject_cast<MyQmlObject *>(component.create());
     QVERIFY(o != 0);
 
@@ -2877,7 +2877,7 @@ void tst_qdeclarativeecmascript::aliasBindingsAssignCorrectly()
 // Test bindings assigned to alias properties override a binding on the target (QTBUG-13719)
 void tst_qdeclarativeecmascript::aliasBindingsOverrideTarget()
 {
-    { 
+    {
     QDeclarativeComponent component(&engine, testFileUrl("aliasBindingsOverrideTarget.qml"));
     QObject *o = component.create();
     QVERIFY(o != 0);

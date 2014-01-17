@@ -94,7 +94,7 @@ using namespace QDeclarativeParser;
     The \a object will be an instance of the TypeClass specified by QML_REGISTER_CUSTOM_TYPE.
 */
 
-QDeclarativeCustomParserNode 
+QDeclarativeCustomParserNode
 QDeclarativeCustomParserNodePrivate::fromObject(QDeclarativeParser::Object *root)
 {
     QDeclarativeCustomParserNode rootNode;
@@ -116,7 +116,7 @@ QDeclarativeCustomParserNodePrivate::fromObject(QDeclarativeParser::Object *root
     return rootNode;
 }
 
-QDeclarativeCustomParserProperty 
+QDeclarativeCustomParserProperty
 QDeclarativeCustomParserNodePrivate::fromProperty(QDeclarativeParser::Property *p)
 {
     QDeclarativeCustomParserProperty prop;

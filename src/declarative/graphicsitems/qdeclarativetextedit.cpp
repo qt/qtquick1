@@ -473,7 +473,7 @@ void QDeclarativeTextEdit::setSelectedTextColor(const QColor &color)
     \li TextEdit.AlignHCenter
     \li TextEdit.AlignJustify
     \endlist
-    
+
     Valid values for \c verticalAlignment are:
     \list
     \li TextEdit.AlignTop (default)

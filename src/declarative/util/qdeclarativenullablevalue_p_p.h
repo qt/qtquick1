@@ -56,7 +56,7 @@
 QT_BEGIN_NAMESPACE
 
 template<typename T>
-struct QDeclarativeNullableValue 
+struct QDeclarativeNullableValue
 {
     QDeclarativeNullableValue()
     : isNull(true), value(T()) {}

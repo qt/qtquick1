@@ -693,7 +693,7 @@ void tst_qdeclarativeimage::nullPixmapPaint()
     QDeclarativeImage *image = qobject_cast<QDeclarativeImage*>(component.create());
 
     QTRY_VERIFY(image != 0);
-    
+
     QtMessageHandler previousMsgHandler = qInstallMessageHandler(checkWarnings);
 
     QPixmap pm(100, 100);

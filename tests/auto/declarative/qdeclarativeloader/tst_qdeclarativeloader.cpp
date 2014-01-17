@@ -195,7 +195,7 @@ void tst_QDeclarativeLoader::clear()
         QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
         QVERIFY(item);
 
-        QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1)); 
+        QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1));
         QVERIFY(loader);
         QVERIFY(loader->item());
         QCOMPARE(loader->progress(), 1.0);
@@ -215,7 +215,7 @@ void tst_QDeclarativeLoader::clear()
         QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
         QVERIFY(item);
 
-        QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1)); 
+        QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1));
         QVERIFY(loader);
         QVERIFY(loader->item());
         QCOMPARE(loader->progress(), 1.0);
@@ -261,7 +261,7 @@ void tst_QDeclarativeLoader::componentToUrl()
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 
-    QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1)); 
+    QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1));
     QVERIFY(loader);
     QVERIFY(loader->item());
     QCOMPARE(loader->progress(), 1.0);
@@ -496,7 +496,7 @@ void tst_QDeclarativeLoader::networkComponent()
     QDeclarativeItem *item = qobject_cast<QDeclarativeItem*>(component.create());
     QVERIFY(item);
 
-    QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1)); 
+    QDeclarativeLoader *loader = qobject_cast<QDeclarativeLoader*>(item->QGraphicsObject::children().at(1));
     QVERIFY(loader);
     QTRY_VERIFY(loader->status() == QDeclarativeLoader::Ready);
 

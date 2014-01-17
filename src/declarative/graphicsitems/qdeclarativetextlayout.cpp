@@ -53,7 +53,7 @@ QT_BEGIN_NAMESPACE
 class QDeclarativeTextLayoutPrivate
 {
 public:
-    QDeclarativeTextLayoutPrivate() 
+    QDeclarativeTextLayoutPrivate()
     : cached(false) {}
 
     QPointF position;
@@ -103,7 +103,7 @@ class DrawTextItemRecorder: public QPaintEngine
                     last.numChars += ti.num_chars;
 
                 }
-            } 
+            }
 
             if (needFreshCurrentItem) {
                 QStaticTextItem currentItem;
@@ -257,10 +257,10 @@ Q_GLOBAL_STATIC(InertTextPainter, inertTextPainter);
 This class is basically a copy of the QStaticText code, but it is adapted to source its text from
 QTextLayout.
 
-It is also considerably faster to create a QDeclarativeTextLayout than a QStaticText because it uses 
+It is also considerably faster to create a QDeclarativeTextLayout than a QStaticText because it uses
 a single, shared QPainter instance.  QStaticText by comparison creates a new QPainter per instance.
-As a consequence this means that QDeclarativeTextLayout is not re-enterant.  Adding a lock around 
-the shared painter solves this, and only introduces a minor performance penalty, but is unnecessary 
+As a consequence this means that QDeclarativeTextLayout is not re-enterant.  Adding a lock around
+the shared painter solves this, and only introduces a minor performance penalty, but is unnecessary
 for QDeclarativeTextLayout's current use (QDeclarativeText is already tied to the GUI thread).
 */
 
@@ -309,7 +309,7 @@ void QDeclarativeTextLayout::prepare()
 {
     if (!d || !d->cached) {
 
-        if (!d)  
+        if (!d)
             d = new QDeclarativeTextLayoutPrivate;
 
         InertTextPainter *itp = inertTextPainter();

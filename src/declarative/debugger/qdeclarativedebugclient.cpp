@@ -217,7 +217,7 @@ QDeclarativeDebugClientPrivate::QDeclarativeDebugClientPrivate()
 {
 }
 
-QDeclarativeDebugClient::QDeclarativeDebugClient(const QString &name, 
+QDeclarativeDebugClient::QDeclarativeDebugClient(const QString &name,
                                            QDeclarativeDebugConnection *parent)
 : QObject(*(new QDeclarativeDebugClientPrivate), parent)
 {

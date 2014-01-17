@@ -101,10 +101,10 @@ public:
         VariantRef(QDeclarativeListModelWorkerAgent *_a) : a(_a) { if (a) a->addref(); }
         ~VariantRef() { if (a) a->release(); }
 
-        VariantRef &operator=(const VariantRef &o) { 
-            if (o.a) o.a->addref(); 
-            if (a) a->release(); a = o.a; 
-            return *this; 
+        VariantRef &operator=(const VariantRef &o) {
+            if (o.a) o.a->addref();
+            if (a) a->release(); a = o.a;
+            return *this;
         }
 
         QDeclarativeListModelWorkerAgent *a;

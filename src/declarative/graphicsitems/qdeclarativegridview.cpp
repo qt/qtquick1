@@ -1283,7 +1283,7 @@ void QDeclarativeGridViewPrivate::flick(AxisData &data, qreal minExtent, qreal m
     QAbstractListModel.
 
     A GridView has a \l model, which defines the data to be displayed, and
-    a \l delegate, which defines how the data should be displayed. Items in a 
+    a \l delegate, which defines how the data should be displayed. Items in a
     GridView are laid out horizontally or vertically. Grid views are inherently flickable
     as GridView inherits from \l Flickable.
 
@@ -1317,7 +1317,7 @@ void QDeclarativeGridViewPrivate::flick(AxisData &data, qreal minExtent, qreal m
     The view will create a new delegate for each item in the model. Note that the delegate
     is able to access the model's \c name and \c portrait data directly.
 
-    An improved grid view is shown below. The delegate is visually improved and is moved 
+    An improved grid view is shown below. The delegate is visually improved and is moved
     into a separate \c contactDelegate component.
 
     \clearfloat
@@ -1558,10 +1558,10 @@ void QDeclarativeGridView::setDelegate(QDeclarativeComponent *delegate)
     \c currentItem holds the current item.  Setting the currentIndex to -1
     will clear the highlight and set currentItem to null.
 
-    If highlightFollowsCurrentItem is \c true, setting either of these 
-    properties will smoothly scroll the GridView so that the current 
+    If highlightFollowsCurrentItem is \c true, setting either of these
+    properties will smoothly scroll the GridView so that the current
     item becomes visible.
-    
+
     Note that the position of the current item
     may only be approximate until it becomes visible in the view.
 */
@@ -1661,8 +1661,8 @@ void QDeclarativeGridView::setHighlight(QDeclarativeComponent *highlight)
     If this property is true (the default value), the highlight is moved smoothly
     to follow the current item.  Otherwise, the
     highlight is not moved by the view, and any movement must be implemented
-    by the highlight.  
-    
+    by the highlight.
+
     Here is a highlight with its motion defined by a \l {SpringAnimation} item:
 
     \snippet doc/src/snippets/declarative/gridview/gridview.qml highlightFollowsCurrentItem
@@ -1725,12 +1725,12 @@ void QDeclarativeGridView::setHighlightMoveDuration(int duration)
 
     These properties define the preferred range of the highlight (for the current item)
     within the view. The \c preferredHighlightBegin value must be less than the
-    \c preferredHighlightEnd value. 
+    \c preferredHighlightEnd value.
 
     These properties affect the position of the current item when the view is scrolled.
     For example, if the currently selected item should stay in the middle of the
-    view when it is scrolled, set the \c preferredHighlightBegin and 
-    \c preferredHighlightEnd values to the top and bottom coordinates of where the middle 
+    view when it is scrolled, set the \c preferredHighlightBegin and
+    \c preferredHighlightEnd values to the top and bottom coordinates of where the middle
     item would be. If the \c currentItem is changed programmatically, the view will
     automatically scroll so that the current item is in the middle of the view.
     Furthermore, the behavior of the current item index will occur whether or not a

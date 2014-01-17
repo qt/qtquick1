@@ -87,15 +87,15 @@ public:
                      int *version_major, int *version_minor,
                      QDeclarativeImportedNamespace** ns_return,
                      QString *errorString = 0) const;
-    bool resolveType(QDeclarativeImportedNamespace*, 
+    bool resolveType(QDeclarativeImportedNamespace*,
                      const QByteArray& type,
                      QDeclarativeType** type_return, QUrl* url_return,
                      int *version_major, int *version_minor) const;
 
-    bool addImport(QDeclarativeImportDatabase *, 
-                   const QString& uri, const QString& prefix, int vmaj, int vmin, 
+    bool addImport(QDeclarativeImportDatabase *,
+                   const QString& uri, const QString& prefix, int vmaj, int vmin,
                    QDeclarativeScriptParser::Import::Type importType,
-                   const QDeclarativeDirComponents &qmldircomponentsnetwork, 
+                   const QDeclarativeDirComponents &qmldircomponentsnetwork,
                    QString *errorString);
 
     void populateCache(QDeclarativeTypeNameCache *cache, QDeclarativeEngine *) const;
@@ -124,10 +124,10 @@ public:
 
 private:
     friend class QDeclarativeImportsPrivate;
-    QString resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath, 
+    QString resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath,
                           const QString &baseName, const QStringList &suffixes,
                           const QString &prefix = QString());
-    QString resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath, 
+    QString resolvePlugin(const QDir &qmldirPath, const QString &qmldirPluginPath,
                           const QString &baseName);
 
 

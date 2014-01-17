@@ -80,7 +80,7 @@ struct QDeclarativeTimeLinePrivate
             Execute
         };
         Op() {}
-        Op(Type t, int l, qreal v, qreal v2, int o, 
+        Op(Type t, int l, qreal v, qreal v2, int o,
            const QDeclarativeTimeLineCallback &ev = QDeclarativeTimeLineCallback(), const QEasingCurve &es = QEasingCurve())
             : type(t), length(l), value(v), value2(v2), order(o), event(ev),
               easing(es) {}
@@ -88,8 +88,8 @@ struct QDeclarativeTimeLinePrivate
             : type(o.type), length(o.length), value(o.value), value2(o.value2),
               order(o.order), event(o.event), easing(o.easing) {}
         Op &operator=(const Op &o) {
-            type = o.type; length = o.length; value = o.value; 
-            value2 = o.value2; order = o.order; event = o.event; 
+            type = o.type; length = o.length; value = o.value;
+            value2 = o.value2; order = o.order; event = o.event;
             easing = o.easing;
             return *this;
         }
@@ -603,8 +603,8 @@ void QDeclarativeTimeLine::sync(QDeclarativeTimeLineValue &timeLineValue)
     d->syncPoint = d->length;
 }*/
 
-/*! 
-    \internal 
+/*!
+    \internal
 
     Temporary hack.
  */
@@ -613,9 +613,9 @@ void QDeclarativeTimeLine::setSyncPoint(int sp)
     d->syncPoint = sp;
 }
 
-/*! 
-    \internal 
- 
+/*!
+    \internal
+
     Temporary hack.
  */
 int QDeclarativeTimeLine::syncPoint() const
@@ -738,7 +738,7 @@ int QDeclarativeTimeLinePrivate::advance(int t)
             TimeLine &tl = *iter;
             Op &op = tl.ops.first();
             int length = op.length - tl.consumedOpLength;
-                
+
             if (length < advanceTime) {
                 advanceTime = length;
                 if (advanceTime == 0)
@@ -747,7 +747,7 @@ int QDeclarativeTimeLinePrivate::advance(int t)
         }
         t -= advanceTime;
 
-        // Process until then.  A zero length advance time will only process 
+        // Process until then.  A zero length advance time will only process
         // sets.
         QList<QPair<int, Update> > updates;
 
@@ -761,8 +761,8 @@ int QDeclarativeTimeLinePrivate::advance(int t)
                 if (advanceTime == 0 && op.length != 0)
                     continue;
 
-                if (tl.consumedOpLength == 0 && 
-                   op.type != Op::Pause && 
+                if (tl.consumedOpLength == 0 &&
+                   op.type != Op::Pause &&
                    op.type != Op::Execute)
                     tl.base = v->value();
 

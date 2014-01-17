@@ -127,13 +127,13 @@ void QDeclarativeLoaderPrivate::initResize()
     subtree from a URL or Component.
 
     Loader is used to dynamically load visual QML components. It can load a
-    QML file (using the \l source property) or a \l Component object (using 
-    the \l sourceComponent property). It is useful for delaying the creation 
-    of a component until it is required: for example, when a component should 
-    be created on demand, or when a component should not be created 
+    QML file (using the \l source property) or a \l Component object (using
+    the \l sourceComponent property). It is useful for delaying the creation
+    of a component until it is required: for example, when a component should
+    be created on demand, or when a component should not be created
     unnecessarily for performance reasons.
 
-    Here is a Loader that loads "Page1.qml" as a component when the 
+    Here is a Loader that loads "Page1.qml" as a component when the
     \l MouseArea is clicked:
 
     \snippet doc/src/snippets/declarative/loader/simple.qml 0
@@ -178,13 +178,13 @@ void QDeclarativeLoaderPrivate::initResize()
 
     \section2 Receiving signals from loaded items
 
-    Any signals emitted from the loaded item can be received using the 
+    Any signals emitted from the loaded item can be received using the
     \l Connections element. For example, the following \c application.qml
     loads \c MyItem.qml, and is able to receive the \c message signal from
     the loaded item through a \l Connections object:
 
     \table
-    \row 
+    \row
     \li application.qml
     \li MyItem.qml
     \row
@@ -199,19 +199,19 @@ void QDeclarativeLoaderPrivate::initResize()
 
     \section2 Focus and key events
 
-    Loader is a focus scope. Its \l {Item::}{focus} property must be set to 
-    \c true for any of its children to get the \e {active focus}. (See 
-    \l{qmlfocus#Acquiring Focus and Focus Scopes}{the focus documentation page} 
+    Loader is a focus scope. Its \l {Item::}{focus} property must be set to
+    \c true for any of its children to get the \e {active focus}. (See
+    \l{qmlfocus#Acquiring Focus and Focus Scopes}{the focus documentation page}
     for more details.) Any key events received in the loaded item should likely
     also be \l {KeyEvent::}{accepted} so they are not propagated to the Loader.
 
     For example, the following \c application.qml loads \c KeyReader.qml when
-    the \l MouseArea is clicked.  Notice the \l {Item::}{focus} property is 
-    set to \c true for the Loader as well as the \l Item in the dynamically 
+    the \l MouseArea is clicked.  Notice the \l {Item::}{focus} property is
+    set to \c true for the Loader as well as the \l Item in the dynamically
     loaded object:
 
     \table
-    \row 
+    \row
     \li application.qml
     \li KeyReader.qml
     \row
@@ -219,7 +219,7 @@ void QDeclarativeLoaderPrivate::initResize()
     \li \snippet doc/src/snippets/declarative/loader/KeyReader.qml 0
     \endtable
 
-    Once \c KeyReader.qml is loaded, it accepts key events and sets 
+    Once \c KeyReader.qml is loaded, it accepts key events and sets
     \c event.accepted to \c true so that the event is not propagated to the
     parent \l Rectangle.
 

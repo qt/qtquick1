@@ -75,10 +75,10 @@ class Q_AUTOTEST_EXPORT QDeclarativeData : public QAbstractDeclarativeData
 public:
     QDeclarativeData()
         : ownedByQml1(true), ownMemory(true), ownContext(false), indestructible(true), explicitIndestructibleSet(false),
-          context(0), outerContext(0), bindings(0), nextContextObject(0), prevContextObject(0), bindingBitsSize(0), 
-          bindingBits(0), lineNumber(0), columnNumber(0), deferredComponent(0), deferredIdx(0), 
+          context(0), outerContext(0), bindings(0), nextContextObject(0), prevContextObject(0), bindingBitsSize(0),
+          bindingBits(0), lineNumber(0), columnNumber(0), deferredComponent(0), deferredIdx(0),
           scriptValue(0), objectDataRefCount(0), propertyCache(0), guards(0), extendedData(0) {
-          init(); 
+          init();
       }
 
     static inline void init() {
@@ -101,7 +101,7 @@ public:
     quint32 dummy:27;
 
     // The context that created the C++ object
-    QDeclarativeContextData *context; 
+    QDeclarativeContextData *context;
     // The outermost context in which this object lives
     QDeclarativeContextData *outerContext;
 
@@ -112,7 +112,7 @@ public:
     QDeclarativeData**prevContextObject;
 
     int bindingBitsSize;
-    quint32 *bindingBits; 
+    quint32 *bindingBits;
     bool hasBindingBit(int) const;
     void clearBindingBit(int);
     void setBindingBit(QObject *obj, int);

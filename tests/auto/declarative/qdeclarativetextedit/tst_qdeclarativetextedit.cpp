@@ -115,7 +115,7 @@ private slots:
     void alignments();
     void alignments_data();
 
-    // ### these tests may be trivial    
+    // ### these tests may be trivial
     void hAlign();
     void hAlign_RightToLeft();
     void vAlign();
@@ -234,7 +234,7 @@ tst_qdeclarativetextedit::tst_qdeclarativetextedit()
                  // need a different test to do alpha channel test
                  // << "#AA0011DD"
                  // << "#00F16B11";
-                 // 
+                 //
 }
 
 void tst_qdeclarativetextedit::cleanup()
@@ -644,7 +644,7 @@ void tst_qdeclarativetextedit::vAlign()
 void tst_qdeclarativetextedit::font()
 {
     //test size, then bold, then italic, then family
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextEdit {  font.pointSize: 40; text: \"Hello World\" }";
         QDeclarativeComponent texteditComponent(&engine);
         texteditComponent.setData(componentStr.toLatin1(), QUrl());
@@ -656,7 +656,7 @@ void tst_qdeclarativetextedit::font()
         QCOMPARE(textEditObject->font().italic(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextEdit {  font.bold: true; text: \"Hello World\" }";
         QDeclarativeComponent texteditComponent(&engine);
         texteditComponent.setData(componentStr.toLatin1(), QUrl());
@@ -667,7 +667,7 @@ void tst_qdeclarativetextedit::font()
         QCOMPARE(textEditObject->font().italic(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextEdit {  font.italic: true; text: \"Hello World\" }";
         QDeclarativeComponent texteditComponent(&engine);
         texteditComponent.setData(componentStr.toLatin1(), QUrl());
@@ -677,8 +677,8 @@ void tst_qdeclarativetextedit::font()
         QCOMPARE(textEditObject->font().italic(), true);
         QCOMPARE(textEditObject->font().bold(), false);
     }
- 
-    { 
+
+    {
         QString componentStr = "import QtQuick 1.0\nTextEdit {  font.family: \"Helvetica\"; text: \"Hello World\" }";
         QDeclarativeComponent texteditComponent(&engine);
         texteditComponent.setData(componentStr.toLatin1(), QUrl());
@@ -690,7 +690,7 @@ void tst_qdeclarativetextedit::font()
         QCOMPARE(textEditObject->font().italic(), false);
     }
 
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextEdit {  font.family: \"\"; text: \"Hello World\" }";
         QDeclarativeComponent texteditComponent(&engine);
         texteditComponent.setData(componentStr.toLatin1(), QUrl());
@@ -722,7 +722,7 @@ void tst_qdeclarativetextedit::color()
     }
     //test normal
     for (int i = 0; i < colorStrings.size(); i++)
-    { 
+    {
         QString componentStr = "import QtQuick 1.0\nTextEdit {  color: \"" + colorStrings.at(i) + "\"; text: \"Hello World\" }";
         QDeclarativeComponent texteditComponent(&engine);
         texteditComponent.setData(componentStr.toLatin1(), QUrl());

@@ -87,7 +87,7 @@ void QmlApplicationViewer::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
 }
 
 const QMetaObjectExtraData QmlApplicationViewer::staticMetaObjectExtraData = {
-    0,  qt_static_metacall 
+    0,  qt_static_metacall
 };
 
 const QMetaObject QmlApplicationViewer::staticMetaObject = {

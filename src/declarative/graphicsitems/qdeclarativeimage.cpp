@@ -159,7 +159,7 @@ void QDeclarativeImagePrivate::setPixmap(const QPixmap &pixmap)
     \endlist
 
     \table
-    
+
     \row
     \li \image declarative-qtlogo-stretch.png
     \li Stretch (default)
@@ -261,9 +261,9 @@ void QDeclarativeImage::setFillMode(FillMode mode)
     \qmlproperty real Image::paintedHeight
 
     These properties hold the size of the image that is actually painted.
-    In most cases it is the same as \c width and \c height, but when using a 
-    \c fillMode \c PreserveAspectFit or \c fillMode \c PreserveAspectCrop 
-    \c paintedWidth or \c paintedHeight can be smaller or larger than 
+    In most cases it is the same as \c width and \c height, but when using a
+    \c fillMode \c PreserveAspectFit or \c fillMode \c PreserveAspectCrop
+    \c paintedWidth or \c paintedHeight can be smaller or larger than
     \c width and \c height of the Image element.
 */
 qreal QDeclarativeImage::paintedWidth() const
@@ -346,7 +346,7 @@ qreal QDeclarativeImage::paintedHeight() const
     the painting of the image, this property sets the actual number of pixels
     stored for the loaded image so that large images do not use more
     memory than necessary. For example, this ensures the image in memory is no
-    larger than 1024x1024 pixels, regardless of the Image's \l {Item::}{width} and 
+    larger than 1024x1024 pixels, regardless of the Image's \l {Item::}{width} and
     \l {Item::}{height} values:
 
     \code
@@ -379,7 +379,7 @@ qreal QDeclarativeImage::paintedHeight() const
 
     Since QtQuick 1.1 the sourceSize can be cleared to the natural size of the image
     by setting sourceSize to \c undefined.
- 
+
     \note \e {Changing this property dynamically causes the image source to be reloaded,
     potentially even from the network, if it is not in the disk cache.}
 */

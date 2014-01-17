@@ -965,10 +965,10 @@ QDeclarativeDrag *QDeclarativeMouseArea::drag()
 
     \snippet doc/src/snippets/declarative/mousearea/mousearea.qml drag
 
-    \note Items cannot be dragged if they are anchored for the requested 
+    \note Items cannot be dragged if they are anchored for the requested
     \c drag.axis. For example, if \c anchors.left or \c anchors.right was set
     for \c rect in the above example, it cannot be dragged along the X-axis.
-    This can be avoided by settng the anchor value to \c undefined in 
+    This can be avoided by settng the anchor value to \c undefined in
     an \l onPressed handler.
 
     If \c drag.filterChildren is set to true, a drag can override descendant MouseAreas.  This

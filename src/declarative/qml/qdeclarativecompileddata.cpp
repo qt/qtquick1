@@ -175,7 +175,7 @@ QDeclarativeCompiledData::~QDeclarativeCompiledData()
             types.at(ii).typePropertyCache->release();
     }
 
-    for (int ii = 0; ii < propertyCaches.count(); ++ii) 
+    for (int ii = 0; ii < propertyCaches.count(); ++ii)
         propertyCaches.at(ii)->release();
 
     for (int ii = 0; ii < contextCaches.count(); ++ii)
@@ -225,7 +225,7 @@ QDeclarativePropertyCache *QDeclarativeCompiledData::TypeReference::propertyCach
 /*!
 Returns the property cache, creating one if it doesn't already exist.  The cache is not referenced.
 */
-QDeclarativePropertyCache *QDeclarativeCompiledData::TypeReference::createPropertyCache(QDeclarativeEngine *engine) 
+QDeclarativePropertyCache *QDeclarativeCompiledData::TypeReference::createPropertyCache(QDeclarativeEngine *engine)
 {
     if (typePropertyCache) {
         return typePropertyCache;

@@ -123,7 +123,7 @@ QDeclarativeError &QDeclarativeError::operator=(const QDeclarativeError &other)
 }
 
 /*!
-    \internal 
+    \internal
 */
 QDeclarativeError::~QDeclarativeError()
 {
@@ -220,7 +220,7 @@ QString QDeclarativeError::toString() const
         rv = QLatin1String("<Unknown File>");
     } else if (line() != -1) {
         rv = url().toString() + QLatin1Char(':') + QString::number(line());
-        if(column() != -1) 
+        if (column() != -1)
             rv += QLatin1Char(':') + QString::number(column());
     } else {
         rv = url().toString();
@@ -262,7 +262,7 @@ QDebug operator<<(QDebug debug, const QDeclarativeError &error)
 
                 if(error.column() > 0) {
                     int column = qMax(0, error.column() - 1);
-                    column = qMin(column, line.length()); 
+                    column = qMin(column, line.length());
 
                     QByteArray ind;
                     ind.reserve(column);

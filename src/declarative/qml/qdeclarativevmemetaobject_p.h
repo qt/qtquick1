@@ -104,7 +104,7 @@ struct QDeclarativeVMEMetaData
             return ((unsigned int)propertyIdx) >> 24;
         }
     };
-    
+
     struct PropertyData {
         int propertyType;
     };

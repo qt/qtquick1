@@ -113,8 +113,8 @@ void tst_qdeclarativefolderlistmodel::basicProperties()
     QCOMPARE(flm->property("showDotAndDotDot").toBool(), false);
     QCOMPARE(flm->property("showOnlyReadable").toBool(), false);
     QCOMPARE(flm->data(flm->index(0),FileNameRole).toString(), QLatin1String("basic.qml"));
-    QCOMPARE(flm->data(flm->index(1),FileNameRole).toString(), QLatin1String("dummy.qml"));    
-    
+    QCOMPARE(flm->data(flm->index(1),FileNameRole).toString(), QLatin1String("dummy.qml"));
+
     flm->setProperty("folder",QUrl::fromLocalFile(""));
     QCOMPARE(flm->property("folder").toUrl(), QUrl::fromLocalFile(""));
 }

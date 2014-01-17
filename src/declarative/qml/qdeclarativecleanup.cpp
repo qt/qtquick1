@@ -48,7 +48,7 @@ QT_BEGIN_NAMESPACE
 /*!
 \internal
 \class QDeclarativeCleanup
-\brief The QDeclarativeCleanup provides a callback when a QDeclarativeEngine is deleted. 
+\brief The QDeclarativeCleanup provides a callback when a QDeclarativeEngine is deleted.
 
 Any object that needs cleanup to occur before the QDeclarativeEngine's QScriptEngine is
 destroyed should inherit from QDeclarativeCleanup.  The clear() virtual method will be
@@ -81,7 +81,7 @@ QDeclarativeCleanup::~QDeclarativeCleanup()
 {
     if (prev) *prev = next;
     if (next) next->prev = prev;
-    prev = 0; 
+    prev = 0;
     next = 0;
 }
 QT_END_NAMESPACE

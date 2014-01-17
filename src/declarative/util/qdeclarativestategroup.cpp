@@ -340,8 +340,8 @@ bool QDeclarativeStateGroupPrivate::updateAutoState()
         if (state->isWhenKnown()) {
             if (state->isNamed()) {
                 if (state->when() && state->when()->evaluate().toBool()) {
-                    if (stateChangeDebug()) 
-                        qWarning() << "Setting auto state due to:" 
+                    if (stateChangeDebug())
+                        qWarning() << "Setting auto state due to:"
                                    << state->when()->expression();
                     if (currentState != state->name()) {
                         q->setState(state->name());
@@ -376,7 +376,7 @@ QDeclarativeTransition *QDeclarativeStateGroupPrivate::findTransition(const QStr
         for (int ii = 0; ii < 2; ++ii)
         {
             if (ii && (!t->reversible() ||
-                      (t->fromState() == QLatin1String("*") && 
+                      (t->fromState() == QLatin1String("*") &&
                        t->toState() == QLatin1String("*"))))
                 break;
             QStringList fromState;
@@ -423,7 +423,7 @@ QDeclarativeTransition *QDeclarativeStateGroupPrivate::findTransition(const QStr
     return highest;
 }
 
-void QDeclarativeStateGroupPrivate::setCurrentStateInternal(const QString &state, 
+void QDeclarativeStateGroupPrivate::setCurrentStateInternal(const QString &state,
                                                    bool ignoreTrans)
 {
     Q_Q(QDeclarativeStateGroup);
@@ -443,7 +443,7 @@ void QDeclarativeStateGroupPrivate::setCurrentStateInternal(const QString &state
     if (stateChangeDebug()) {
         qWarning() << this << "Changing state.  From" << currentState << ". To" << state;
         if (transition)
-            qWarning() << "   using transition" << transition->fromState() 
+            qWarning() << "   using transition" << transition->fromState()
                        << transition->toState();
     }
 

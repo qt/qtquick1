@@ -117,7 +117,7 @@ void tst_qdeclarativemoduleplugin::importsPlugin()
     QTest::ignoreMessage(QtWarningMsg, "import worked");
     QDeclarativeComponent component(&engine, testFileUrl("works.qml"));
     foreach (QDeclarativeError err, component.errors())
-    	qWarning() << err;
+        qWarning() << err;
     VERIFY_ERRORS(0);
     QObject *object = component.create();
     QVERIFY(object != 0);

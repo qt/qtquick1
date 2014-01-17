@@ -122,7 +122,7 @@ protected:
     virtual void dependencyError(QDeclarativeDataBlob *);
     virtual void dependencyComplete(QDeclarativeDataBlob *);
     virtual void allDependenciesDone();
-    
+
     virtual void downloadProgressChanged(qreal);
 
 private:
@@ -140,7 +140,7 @@ private:
     QUrl m_finalUrl;
 
     // List of QDeclarativeDataBlob's that are waiting for me to complete.
-    QList<QDeclarativeDataBlob *> m_waitingOnMe;     
+    QList<QDeclarativeDataBlob *> m_waitingOnMe;
 
     // List of QDeclarativeDataBlob's that I am waiting for to complete.
     QList<QDeclarativeDataBlob *> m_waitingFor;
@@ -292,7 +292,7 @@ private:
     QDeclarativeCompiledData *m_compiledData;
 
     QList<TypeDataCallback *> m_callbacks;
-   
+
     QDeclarativeTypeLoader *m_typeLoader;
 };
 

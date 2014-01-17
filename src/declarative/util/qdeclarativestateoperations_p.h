@@ -134,7 +134,7 @@ public:
 
     QDeclarativeScriptString script() const;
     void setScript(const QDeclarativeScriptString &);
-    
+
     QString name() const;
     void setName(const QString &);
 

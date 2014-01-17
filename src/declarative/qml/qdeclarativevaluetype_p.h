@@ -98,7 +98,7 @@ public:
     }
 
 private:
-    QDeclarativeValueType *valueTypes[QVariant::UserType - 1]; 
+    QDeclarativeValueType *valueTypes[QVariant::UserType - 1];
 };
 
 class Q_AUTOTEST_EXPORT QDeclarativePointFValueType : public QDeclarativeValueType
@@ -208,7 +208,7 @@ public:
     qreal y() const;
     void setX(qreal);
     void setY(qreal);
-    
+
     qreal width() const;
     qreal height() const;
     void setWidth(qreal);
@@ -237,7 +237,7 @@ public:
     int y() const;
     void setX(int);
     void setY(int);
-    
+
     int width() const;
     int height() const;
     void setWidth(int);

@@ -88,7 +88,7 @@ public:
     }
     \endqml
 
-    However, it is not possible to connect to a signal in this way in some 
+    However, it is not possible to connect to a signal in this way in some
     cases, such as when:
 
     \list

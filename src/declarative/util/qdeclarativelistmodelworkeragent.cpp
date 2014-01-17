@@ -53,18 +53,18 @@
 QT_BEGIN_NAMESPACE
 
 
-void QDeclarativeListModelWorkerAgent::Data::clearChange() 
-{ 
-    changes.clear(); 
+void QDeclarativeListModelWorkerAgent::Data::clearChange()
+{
+    changes.clear();
 }
 
-void QDeclarativeListModelWorkerAgent::Data::insertChange(int index, int count) 
+void QDeclarativeListModelWorkerAgent::Data::insertChange(int index, int count)
 {
     Change c = { Change::Inserted, index, count, 0, QList<int>() };
     changes << c;
 }
 
-void QDeclarativeListModelWorkerAgent::Data::removeChange(int index, int count) 
+void QDeclarativeListModelWorkerAgent::Data::removeChange(int index, int count)
 {
     Change c = { Change::Removed, index, count, 0, QList<int>() };
     changes << c;
@@ -83,9 +83,9 @@ void QDeclarativeListModelWorkerAgent::Data::changedChange(int index, int count,
 }
 
 QDeclarativeListModelWorkerAgent::QDeclarativeListModelWorkerAgent(QDeclarativeListModel *model)
-    : m_engine(0), 
-      m_ref(1), 
-      m_orig(model), 
+    : m_engine(0),
+      m_ref(1),
+      m_orig(model),
       m_copy(new QDeclarativeListModel(model, this))
 {
 }

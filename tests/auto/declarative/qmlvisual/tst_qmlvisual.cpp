@@ -178,7 +178,7 @@ QString tst_qmlvisual::toTestScript(const QString &file, Mode mode)
     platformsuffix = "-X11";
 #endif
 
-    QString testdata = file.left(index + 1) + 
+    QString testdata = file.left(index + 1) +
                        QString("data");
     QString testname = file.mid(index + 1, file.length() - index - 5);
 
@@ -216,7 +216,7 @@ QStringList tst_qmlvisual::findQmlFiles(const QDir &d)
 {
     QStringList rv;
 
-    QStringList files = d.entryList(QStringList() << QLatin1String("*.qml"), 
+    QStringList files = d.entryList(QStringList() << QLatin1String("*.qml"),
                                     QDir::Files);
     foreach (const QString &file, files) {
         if (file.at(0).isLower()) {
@@ -224,7 +224,7 @@ QStringList tst_qmlvisual::findQmlFiles(const QDir &d)
         }
     }
 
-    QStringList dirs = d.entryList(QDir::Dirs | QDir::NoDotAndDotDot | 
+    QStringList dirs = d.entryList(QDir::Dirs | QDir::NoDotAndDotDot |
                                    QDir::NoSymLinks);
     foreach (const QString &dir, dirs) {
         if (dir.left(4) == "data")
@@ -389,7 +389,7 @@ int main(int argc, char **argv)
         } else {
             newArgv[newArgc++] = argv[ii];
         }
-        
+
         if (arg == "-help" || arg == "-?" || arg == "--help") {
             atexit(usage);
             showHelp = true;

@@ -530,7 +530,7 @@ void tst_qdeclarativeinstruction::dump()
     }
 
     QStringList expect;
-    expect 
+    expect
         << "Index\tLine\tOperation\t\tData1\tData2\tData3\tComments"
         << "-------------------------------------------------------------------------------"
         << "0\t\t0\tINIT\t\t\t0\t3\t-1\t-1"

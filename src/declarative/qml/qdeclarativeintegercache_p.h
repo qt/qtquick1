@@ -81,7 +81,7 @@ protected:
 
 private:
     struct Data : public QScriptDeclarativeClass::PersistentIdentifier {
-        Data(const QScriptDeclarativeClass::PersistentIdentifier &i, int v) 
+        Data(const QScriptDeclarativeClass::PersistentIdentifier &i, int v)
         : QScriptDeclarativeClass::PersistentIdentifier(i), value(v) {}
 
         int value;
@@ -101,7 +101,7 @@ int QDeclarativeIntegerCache::value(const QScriptDeclarativeClass::Identifier &i
     return d?d->value:-1;
 }
 
-int QDeclarativeIntegerCache::count() const 
+int QDeclarativeIntegerCache::count() const
 {
     return stringCache.count();
 }

@@ -74,7 +74,7 @@ class QDeclarativeBoundSignal : public QDeclarativeAbstractBoundSignal
 {
 public:
     QDeclarativeBoundSignal(QObject *scope, const QMetaMethod &signal, QObject *parent);
-    QDeclarativeBoundSignal(QDeclarativeContext *ctxt, const QString &val, QObject *scope, 
+    QDeclarativeBoundSignal(QDeclarativeContext *ctxt, const QString &val, QObject *scope,
                    const QMetaMethod &signal, QObject *parent);
     virtual ~QDeclarativeBoundSignal();
 

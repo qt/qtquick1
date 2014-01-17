@@ -88,7 +88,7 @@ Rectangle {
         z: 22;
 
         Behavior on width {
-            NumberAnimation {} 
+            NumberAnimation {}
             enabled: nameInputDialog.initialWidth != 0
         }
 
@@ -119,7 +119,7 @@ Rectangle {
             maximumLength: 24
             onTextChanged: {
                 var newWidth = nameInputText.width + dialogText.width + 40;
-                if ( (newWidth > nameInputDialog.width && newWidth < screen.width) 
+                if ( (newWidth > nameInputDialog.width && newWidth < screen.width)
                         || (nameInputDialog.width > nameInputDialog.initialWidth) )
                     nameInputDialog.width = newWidth;
             }
@@ -138,7 +138,7 @@ Rectangle {
         Button {
             id: newGameButton
             anchors { left: parent.left; leftMargin: 3; verticalCenter: parent.verticalCenter }
-            text: "New Game" 
+            text: "New Game"
             onClicked: Logic.startNewGame()
         }
 

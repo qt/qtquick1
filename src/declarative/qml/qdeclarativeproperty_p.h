@@ -82,7 +82,7 @@ public:
     QDeclarativePropertyCache::Data core;
     QString nameCache;
 
-    // Describes the "virtual" value-type sub-property.  
+    // Describes the "virtual" value-type sub-property.
     QDeclarativePropertyCache::ValueTypeData valueType;
 
     void initProperty(QObject *obj, const QString &name);
@@ -97,9 +97,9 @@ public:
     bool writeValueProperty(const QVariant &, WriteFlags);
 
     static const QMetaObject *rawMetaObjectForType(QDeclarativeEnginePrivate *, int);
-    static bool writeEnumProperty(const QMetaProperty &prop, int idx, QObject *object, 
+    static bool writeEnumProperty(const QMetaProperty &prop, int idx, QObject *object,
                                   const QVariant &value, int flags);
-    static bool write(QObject *, const QDeclarativePropertyCache::Data &, const QVariant &, 
+    static bool write(QObject *, const QDeclarativePropertyCache::Data &, const QVariant &,
                       QDeclarativeContextData *, WriteFlags flags = 0);
     static void findAliasTarget(QObject *, int, QObject **, int *);
     static QDeclarativeAbstractBinding *setBinding(QObject *, int coreIndex, int valueTypeIndex /* -1 */,
@@ -109,7 +109,7 @@ public:
                                                            QDeclarativeAbstractBinding *);
     static QDeclarativeAbstractBinding *binding(QObject *, int coreIndex, int valueTypeIndex /* -1 */);
 
-    static QByteArray saveValueType(const QMetaObject *, int, 
+    static QByteArray saveValueType(const QMetaObject *, int,
                                     const QMetaObject *, int);
     static QByteArray saveProperty(const QMetaObject *, int);
 
@@ -128,7 +128,7 @@ public:
                                                    QDeclarativeAbstractBinding *,
                                                    WriteFlags flags = DontRemoveBinding);
     static QDeclarativeExpression *signalExpression(const QDeclarativeProperty &that);
-    static QDeclarativeExpression *setSignalExpression(const QDeclarativeProperty &that, 
+    static QDeclarativeExpression *setSignalExpression(const QDeclarativeProperty &that,
                                                        QDeclarativeExpression *) ;
     static bool write(const QDeclarativeProperty &that, const QVariant &, WriteFlags);
     static int valueTypeCoreIndex(const QDeclarativeProperty &that);

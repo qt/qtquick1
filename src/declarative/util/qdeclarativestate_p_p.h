@@ -206,7 +206,7 @@ public:
 
     struct OperationGuard : public QDeclarativeGuard<QDeclarativeStateOperation>
     {
-        OperationGuard(QObject *obj, QList<OperationGuard> *l) : list(l) { 
+        OperationGuard(QObject *obj, QList<OperationGuard> *l) : list(l) {
             setObject(static_cast<QDeclarativeStateOperation *>(obj));
         }
         QList<OperationGuard> *list;

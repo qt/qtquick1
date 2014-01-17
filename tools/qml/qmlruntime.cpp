@@ -685,7 +685,7 @@ void QDeclarativeViewer::createMenu()
 
     QMenuBar *menu = menuBar();
     if (!menu)
-	return;
+        return;
 
     QMenu *fileMenu = menu->addMenu(tr("&File"));
     fileMenu->addAction(openAction);

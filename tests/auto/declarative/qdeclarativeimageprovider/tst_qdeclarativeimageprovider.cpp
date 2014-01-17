@@ -99,10 +99,10 @@ public:
         if (id == QLatin1String("no-such-file.png"))
             return QImage();
 
-        int width = 100; 
+        int width = 100;
         int height = 100;
         QImage image(width, height, QImage::Format_RGB32);
-        if (size) 
+        if (size)
             *size = QSize(width, height);
         if (requestedSize.isValid())
             image = image.scaled(requestedSize);
@@ -136,10 +136,10 @@ public:
         if (id == QLatin1String("no-such-file.png"))
             return QPixmap();
 
-        int width = 100; 
+        int width = 100;
         int height = 100;
         QPixmap image(width, height);
-        if (size) 
+        if (size)
             *size = QSize(width, height);
         if (requestedSize.isValid())
             image = image.scaled(requestedSize);
@@ -155,7 +155,7 @@ Q_DECLARE_METATYPE(TestQPixmapProvider*);
 QString tst_qdeclarativeimageprovider::newImageFileName() const
 {
     // need to generate new filenames each time or else images are loaded
-    // from cache and we won't get loading status changes when testing 
+    // from cache and we won't get loading status changes when testing
     // async loading
     static int count = 0;
     return QString("image://test/image-%1.png").arg(count++);
@@ -223,7 +223,7 @@ void tst_qdeclarativeimageprovider::runTest(bool async, QDeclarativeImageProvide
     engine.addImageProvider("test", provider);
     QVERIFY(engine.imageProvider("test") != 0);
 
-    QString componentStr = "import QtQuick 1.0\nImage { source: \"" + source + "\"; " 
+    QString componentStr = "import QtQuick 1.0\nImage { source: \"" + source + "\"; "
             + (async ? "asynchronous: true; " : "")
             + properties + " }";
     QDeclarativeComponent component(&engine);
@@ -231,7 +231,7 @@ void tst_qdeclarativeimageprovider::runTest(bool async, QDeclarativeImageProvide
     QDeclarativeImage *obj = qobject_cast<QDeclarativeImage*>(component.create());
     QVERIFY(obj != 0);
 
-    if (async) 
+    if (async)
         QTRY_VERIFY(obj->status() == QDeclarativeImage::Loading);
 
     QCOMPARE(obj->source(), QUrl(source));

@@ -71,7 +71,7 @@ public:
     MyRect() {}
 
     void doSomething() { emit didSomething(); }
-    
+
     int propertyWithNotify() const { return m_prop; }
     void setPropertyWithNotify(int i) { m_prop = i; emit oddlyNamedNotifySignal(); }
 
@@ -151,7 +151,7 @@ void tst_qdeclarativestates::initTestCase()
 
 QByteArray tst_qdeclarativestates::fullDataPath(const QString &path)
 {
-    return QUrl::fromLocalFile(SRCDIR + path).toString().toUtf8();    
+    return QUrl::fromLocalFile(SRCDIR + path).toString().toUtf8();
 }
 
 void tst_qdeclarativestates::basicChanges()

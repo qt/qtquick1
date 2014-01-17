@@ -80,7 +80,7 @@ public:
     QDeclarativeParser::Location location() const;
 
     bool isList() const;
-    // Will be one of QDeclarativeParser::Variant, QDeclarativeCustomParserProperty or 
+    // Will be one of QDeclarativeParser::Variant, QDeclarativeCustomParserProperty or
     // QDeclarativeCustomParserNode
     QList<QVariant> assignedValues() const;
 

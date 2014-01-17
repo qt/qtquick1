@@ -63,7 +63,7 @@ Rectangle {
         id: main
         state: "orientation " + runtime.orientation
 
-        property bool landscapeWindow: window.width > window.height 
+        property bool landscapeWindow: window.width > window.height
         property real baseWidth: landscapeWindow ? window.height : window.width
         property real baseHeight: landscapeWindow ? window.width : window.height
         property real rotationDelta: landscapeWindow ? -90 : 0

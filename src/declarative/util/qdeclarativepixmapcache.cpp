@@ -186,21 +186,21 @@ class QDeclarativePixmapData
 {
 public:
     QDeclarativePixmapData(const QUrl &u, const QSize &s, const QString &e)
-    : refCount(1), inCache(false), pixmapStatus(QDeclarativePixmap::Error), 
+    : refCount(1), inCache(false), pixmapStatus(QDeclarativePixmap::Error),
       url(u), errorString(e), requestSize(s), reply(0), prevUnreferenced(0),
       prevUnreferencedPtr(0), nextUnreferenced(0)
     {
     }
 
     QDeclarativePixmapData(const QUrl &u, const QSize &r)
-    : refCount(1), inCache(false), pixmapStatus(QDeclarativePixmap::Loading), 
-      url(u), requestSize(r), reply(0), prevUnreferenced(0), prevUnreferencedPtr(0), 
+    : refCount(1), inCache(false), pixmapStatus(QDeclarativePixmap::Loading),
+      url(u), requestSize(r), reply(0), prevUnreferenced(0), prevUnreferencedPtr(0),
       nextUnreferenced(0)
     {
     }
 
     QDeclarativePixmapData(const QUrl &u, const QPixmap &p, const QSize &s, const QSize &r)
-    : refCount(1), inCache(false), privatePixmap(false), pixmapStatus(QDeclarativePixmap::Ready), 
+    : refCount(1), inCache(false), privatePixmap(false), pixmapStatus(QDeclarativePixmap::Ready),
       url(u), pixmap(p), implicitSize(s), requestSize(r), reply(0), prevUnreferenced(0),
       prevUnreferencedPtr(0), nextUnreferenced(0)
     {
@@ -223,7 +223,7 @@ public:
 
     bool inCache:1;
     bool privatePixmap:1;
-    
+
     QDeclarativePixmap::Status pixmapStatus;
     QUrl url;
     QString errorString;
@@ -251,7 +251,7 @@ int QDeclarativePixmapReader::downloadProgress = -1;
 int QDeclarativePixmapReader::threadNetworkRequestDone = -1;
 
 
-void QDeclarativePixmapReply::postReply(ReadError error, const QString &errorString, 
+void QDeclarativePixmapReply::postReply(ReadError error, const QString &errorString,
                                         const QSize &implicitSize, const QImage &image)
 {
     loading = false;
@@ -272,7 +272,7 @@ QNetworkAccessManager *QDeclarativePixmapReader::networkAccessManager()
     return accessManager;
 }
 
-static bool readImage(const QUrl& url, QIODevice *dev, QImage *image, QString *errorString, QSize *impsize, 
+static bool readImage(const QUrl& url, QIODevice *dev, QImage *image, QString *errorString, QSize *impsize,
                       const QSize &requestSize)
 {
     QImageReader imgio(dev);
@@ -404,17 +404,17 @@ QDeclarativePixmapReaderThreadObject::QDeclarativePixmapReaderThreadObject(QDecl
 {
 }
 
-void QDeclarativePixmapReaderThreadObject::processJobs() 
-{ 
-    QCoreApplication::postEvent(this, new QEvent(QEvent::User)); 
+void QDeclarativePixmapReaderThreadObject::processJobs()
+{
+    QCoreApplication::postEvent(this, new QEvent(QEvent::User));
 }
 
-bool QDeclarativePixmapReaderThreadObject::event(QEvent *e) 
+bool QDeclarativePixmapReaderThreadObject::event(QEvent *e)
 {
-    if (e->type() == QEvent::User) { 
-        reader->processJobs(); 
-        return true; 
-    } else { 
+    if (e->type() == QEvent::User) {
+        reader->processJobs();
+        return true;
+    } else {
         return QObject::event(e);
     }
 }
@@ -430,7 +430,7 @@ void QDeclarativePixmapReader::processJobs()
     QMutexLocker locker(&mutex);
 
     while (true) {
-        if (cancelled.isEmpty() && (jobs.isEmpty() || replies.count() >= IMAGEREQUEST_MAX_REQUEST_COUNT)) 
+        if (cancelled.isEmpty() && (jobs.isEmpty() || replies.count() >= IMAGEREQUEST_MAX_REQUEST_COUNT))
             return; // Nothing else to do
 
         // Clean cancelled jobs
@@ -461,7 +461,7 @@ void QDeclarativePixmapReader::processJobs()
     }
 }
 
-void QDeclarativePixmapReader::processJob(QDeclarativePixmapReply *runningJob, const QUrl &url, 
+void QDeclarativePixmapReader::processJob(QDeclarativePixmapReply *runningJob, const QUrl &url,
                                           const QSize &requestSize)
 {
     // fetch
@@ -535,7 +535,7 @@ QDeclarativePixmapReply *QDeclarativePixmapReader::getImage(QDeclarativePixmapDa
     QDeclarativePixmapReply *reply = new QDeclarativePixmapReply(data);
     reply->engineForReader = engine;
     jobs.append(reply);
-    // XXX 
+    // XXX
     if (threadObject) threadObject->processJobs();
     mutex.unlock();
     return reply;
@@ -547,7 +547,7 @@ void QDeclarativePixmapReader::cancel(QDeclarativePixmapReply *reply)
     if (reply->loading) {
         cancelled.append(reply);
         reply->data = 0;
-        // XXX 
+        // XXX
         if (threadObject) threadObject->processJobs();
     } else {
         jobs.removeAll(reply);
@@ -650,7 +650,7 @@ void QDeclarativePixmapStore::unreferencePixmap(QDeclarativePixmapData *data)
 
     shrinkCache(-1); // Shrink the cache incase it has become larger than cache_limit
 
-    if (m_timerId == -1 && m_unreferencedPixmaps) 
+    if (m_timerId == -1 && m_unreferencedPixmaps)
         m_timerId = startTimer(CACHE_EXPIRE_TIME * 1000);
 }
 
@@ -659,7 +659,7 @@ void QDeclarativePixmapStore::referencePixmap(QDeclarativePixmapData *data)
     Q_ASSERT(data->prevUnreferencedPtr);
 
     *data->prevUnreferencedPtr = data->nextUnreferenced;
-    if (data->nextUnreferenced) { 
+    if (data->nextUnreferenced) {
         data->nextUnreferenced->prevUnreferencedPtr = data->prevUnreferencedPtr;
         data->nextUnreferenced->prevUnreferenced = data->prevUnreferenced;
     }
@@ -731,7 +731,7 @@ bool QDeclarativePixmapReply::event(QEvent *event)
         if (data) {
             Event *de = static_cast<Event *>(event);
             data->pixmapStatus = (de->error == NoError) ? QDeclarativePixmap::Ready : QDeclarativePixmap::Error;
-            
+
             if (data->pixmapStatus == QDeclarativePixmap::Ready) {
                 data->pixmap = QPixmap::fromImage(de->image);
                 data->implicitSize = de->implicitSize;
@@ -759,7 +759,7 @@ int QDeclarativePixmapData::cost() const
 void QDeclarativePixmapData::addref()
 {
     ++refCount;
-    if (prevUnreferencedPtr) 
+    if (prevUnreferencedPtr)
         pixmapStore()->referencePixmap(this);
 }
 
@@ -839,7 +839,7 @@ static QDeclarativePixmapData* createPixmapDataSync(QDeclarativeEngine *engine, 
     }
 
     QString localFile = QDeclarativeEnginePrivate::urlToLocalFileOrQrc(url);
-    if (localFile.isEmpty()) 
+    if (localFile.isEmpty())
         return 0;
 
     QFile f(localFile);
@@ -937,7 +937,7 @@ const QUrl &QDeclarativePixmap::url() const
 
 const QSize &QDeclarativePixmap::implicitSize() const
 {
-    if (d) 
+    if (d)
         return d->implicitSize;
     else
         return nullPixmap()->size;
@@ -953,13 +953,13 @@ const QSize &QDeclarativePixmap::requestSize() const
 
 const QPixmap &QDeclarativePixmap::pixmap() const
 {
-    if (d) 
+    if (d)
         return d->pixmap;
     else
         return nullPixmap()->pixmap;
 }
 
-void QDeclarativePixmap::setPixmap(const QPixmap &p) 
+void QDeclarativePixmap::setPixmap(const QPixmap &p)
 {
     clear();
 
@@ -969,7 +969,7 @@ void QDeclarativePixmap::setPixmap(const QPixmap &p)
 
 int QDeclarativePixmap::width() const
 {
-    if (d) 
+    if (d)
         return d->pixmap.width();
     else
         return 0;
@@ -977,7 +977,7 @@ int QDeclarativePixmap::width() const
 
 int QDeclarativePixmap::height() const
 {
-    if (d) 
+    if (d)
         return d->pixmap.height();
     else
         return 0;
@@ -1018,7 +1018,7 @@ void QDeclarativePixmap::load(QDeclarativeEngine *engine, const QUrl &url, const
     if (iter == store->m_cache.end()) {
         if (options & QDeclarativePixmap::Asynchronous) {
             // pixmaps can only be loaded synchronously
-            if (url.scheme() == QLatin1String("image") 
+            if (url.scheme() == QLatin1String("image")
                     && QDeclarativeEnginePrivate::get(engine)->getImageProviderType(url) == QDeclarativeImageProvider::Pixmap) {
                 options &= ~QDeclarativePixmap::Asynchronous;
             }
@@ -1034,7 +1034,7 @@ void QDeclarativePixmap::load(QDeclarativeEngine *engine, const QUrl &url, const
             }
             if (d)  // loadable, but encountered error while loading
                 return;
-        } 
+        }
 
         if (!engine)
             return;
@@ -1062,7 +1062,7 @@ void QDeclarativePixmap::clear()
 void QDeclarativePixmap::clear(QObject *obj)
 {
     if (d) {
-        if (d->reply) 
+        if (d->reply)
             QObject::disconnect(d->reply, 0, obj, 0);
         d->release();
         d = 0;

@@ -47,7 +47,7 @@ QT_BEGIN_NAMESPACE
     \instantiates QDeclarativeKeyEvent
     \since 4.7
     \ingroup qml-event-elements
-    
+
     \brief The KeyEvent object provides information about a key event.
 
     For example, the following changes the Item's state property when the Enter

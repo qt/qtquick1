@@ -57,7 +57,7 @@ private slots:
 };
 
 // For malformed input all we test is that we get the expected text out.
-// 
+//
 void tst_qdeclarativestyledtext::textOutput_data()
 {
     QTest::addColumn<QString>("input");

@@ -86,7 +86,7 @@ public:
     QUrl url;
     QDeclarativeTypeNameCache *importCache;
 
-    struct TypeReference 
+    struct TypeReference
     {
         TypeReference()
         : type(0), typePropertyCache(0), component(0) {}
@@ -191,23 +191,23 @@ private:
     bool buildObject(QDeclarativeParser::Object *obj, const BindingContext &);
     bool buildComponent(QDeclarativeParser::Object *obj, const BindingContext &);
     bool buildSubObject(QDeclarativeParser::Object *obj, const BindingContext &);
-    bool buildSignal(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj, 
+    bool buildSignal(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj,
                      const BindingContext &);
-    bool buildProperty(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj, 
+    bool buildProperty(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj,
                        const BindingContext &);
     bool buildPropertyInNamespace(QDeclarativeImportedNamespace *ns,
-                                  QDeclarativeParser::Property *prop, 
-                                  QDeclarativeParser::Object *obj, 
+                                  QDeclarativeParser::Property *prop,
+                                  QDeclarativeParser::Object *obj,
                                   const BindingContext &);
     bool buildIdProperty(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj);
-    bool buildAttachedProperty(QDeclarativeParser::Property *prop, 
+    bool buildAttachedProperty(QDeclarativeParser::Property *prop,
                                QDeclarativeParser::Object *obj,
                                const BindingContext &ctxt);
     bool buildGroupedProperty(QDeclarativeParser::Property *prop,
                               QDeclarativeParser::Object *obj,
                               const BindingContext &ctxt);
-    bool buildValueTypeProperty(QObject *type, 
-                                QDeclarativeParser::Object *obj, 
+    bool buildValueTypeProperty(QObject *type,
+                                QDeclarativeParser::Object *obj,
                                 QDeclarativeParser::Object *baseObj,
                                 const BindingContext &ctxt);
     bool buildListProperty(QDeclarativeParser::Property *prop,
@@ -233,7 +233,7 @@ private:
                                         QDeclarativeParser::Value *value,
                                         const BindingContext &ctxt);
     bool doesPropertyExist(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj);
-    bool testLiteralAssignment(const QMetaProperty &prop, 
+    bool testLiteralAssignment(const QMetaProperty &prop,
                                QDeclarativeParser::Value *value);
     bool testQualifiedEnumAssignment(const QMetaProperty &prop,
                                      QDeclarativeParser::Object *obj,
@@ -246,9 +246,9 @@ private:
     bool buildBinding(QDeclarativeParser::Value *, QDeclarativeParser::Property *prop,
                       const BindingContext &ctxt);
     bool buildComponentFromRoot(QDeclarativeParser::Object *obj, const BindingContext &);
-    bool compileAlias(QMetaObjectBuilder &, 
+    bool compileAlias(QMetaObjectBuilder &,
                       QByteArray &data,
-                      QDeclarativeParser::Object *obj, 
+                      QDeclarativeParser::Object *obj,
                       const QDeclarativeParser::Object::DynamicProperty &);
     bool completeComponentBuild();
     bool checkValidId(QDeclarativeParser::Value *, const QString &);
@@ -260,13 +260,13 @@ private:
     void genComponent(QDeclarativeParser::Object *obj);
     void genValueProperty(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj);
     void genListProperty(QDeclarativeParser::Property *prop, QDeclarativeParser::Object *obj);
-    void genPropertyAssignment(QDeclarativeParser::Property *prop, 
+    void genPropertyAssignment(QDeclarativeParser::Property *prop,
                                QDeclarativeParser::Object *obj,
                                QDeclarativeParser::Property *valueTypeProperty = 0);
-    void genLiteralAssignment(const QMetaProperty &prop, 
+    void genLiteralAssignment(const QMetaProperty &prop,
                               QDeclarativeParser::Value *value);
-    void genBindingAssignment(QDeclarativeParser::Value *binding, 
-                              QDeclarativeParser::Property *prop, 
+    void genBindingAssignment(QDeclarativeParser::Value *binding,
+                              QDeclarativeParser::Property *prop,
                               QDeclarativeParser::Object *obj,
                               QDeclarativeParser::Property *valueTypeProperty = 0);
     int genContextCache();
@@ -304,7 +304,7 @@ private:
 
     struct ComponentCompileState
     {
-        ComponentCompileState() 
+        ComponentCompileState()
             : parserStatusCount(0), pushedProperties(0), root(0) {}
         QHash<QString, QDeclarativeParser::Object *> ids;
         QHash<int, QDeclarativeParser::Object *> idIndexes;

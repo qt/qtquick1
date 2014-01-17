@@ -494,7 +494,7 @@ void tst_qdeclarativexmllistmodel::source_data()
 void tst_qdeclarativexmllistmodel::data()
 {
     QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/model.qml"));
-    QDeclarativeXmlListModel *model = qobject_cast<QDeclarativeXmlListModel*>(component.create());    
+    QDeclarativeXmlListModel *model = qobject_cast<QDeclarativeXmlListModel*>(component.create());
     QVERIFY(model != 0);
 
     QHash<int,QVariant> blank;
@@ -514,7 +514,7 @@ void tst_qdeclarativexmllistmodel::data()
 void tst_qdeclarativexmllistmodel::get()
 {
     QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/model.qml"));
-    QDeclarativeXmlListModel *model = qobject_cast<QDeclarativeXmlListModel*>(component.create());    
+    QDeclarativeXmlListModel *model = qobject_cast<QDeclarativeXmlListModel*>(component.create());
     QVERIFY(model != 0);
     QVERIFY(model->get(0).isUndefined());
 
@@ -563,7 +563,7 @@ void tst_qdeclarativexmllistmodel::reload()
 
     QSignalSpy spyInsert(model, SIGNAL(itemsInserted(int,int)));
     QSignalSpy spyRemove(model, SIGNAL(itemsRemoved(int,int)));
-    QSignalSpy spyCount(model, SIGNAL(countChanged())); 
+    QSignalSpy spyCount(model, SIGNAL(countChanged()));
 
     //reload multiple times to test the xml query aborting
     model->reload();
@@ -751,9 +751,9 @@ void tst_qdeclarativexmllistmodel::noKeysValueChanges()
     QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/roleKeys.qml"));
     QDeclarativeXmlListModel *model = qobject_cast<QDeclarativeXmlListModel*>(component.create());
     QVERIFY(model != 0);
-    
+
     QString xml;
-    
+
     xml = makeItemXmlAndData("name=A,age=25,sport=Football;name=B,age=35,sport=Athletics");
     model->setXml(xml);
     QTRY_COMPARE(model->count(), 2);
@@ -825,11 +825,11 @@ void tst_qdeclarativexmllistmodel::threading()
     QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/roleKeys.qml"));
 
     QDeclarativeXmlListModel *m1 = qobject_cast<QDeclarativeXmlListModel*>(component.create());
-    QVERIFY(m1 != 0); 
+    QVERIFY(m1 != 0);
     QDeclarativeXmlListModel *m2 = qobject_cast<QDeclarativeXmlListModel*>(component.create());
-    QVERIFY(m2 != 0); 
+    QVERIFY(m2 != 0);
     QDeclarativeXmlListModel *m3 = qobject_cast<QDeclarativeXmlListModel*>(component.create());
-    QVERIFY(m3 != 0); 
+    QVERIFY(m3 != 0);
 
     for (int dataCount=0; dataCount<xmlDataCount; dataCount++) {
 

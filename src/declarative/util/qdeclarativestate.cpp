@@ -65,7 +65,7 @@ QDeclarativeAction::QDeclarativeAction()
 
 QDeclarativeAction::QDeclarativeAction(QObject *target, const QString &propertyName,
                const QVariant &value)
-: restore(true), actionDone(false), reverseEvent(false), deletableToBinding(false), 
+: restore(true), actionDone(false), reverseEvent(false), deletableToBinding(false),
   property(target, propertyName, qmlEngine(target)), toValue(value),
   fromBinding(0), event(0),
   specifiedObject(target), specifiedProperty(propertyName)
@@ -682,7 +682,7 @@ void QDeclarativeState::apply(QDeclarativeStateGroup *group, QDeclarativeTransit
         }
         if (!found) {
             QVariant cur = d->revertList.at(ii).property().read();
-            QDeclarativeAbstractBinding *delBinding = 
+            QDeclarativeAbstractBinding *delBinding =
                 QDeclarativePropertyPrivate::setBinding(d->revertList.at(ii).property(), 0);
             if (delBinding)
                 delBinding->destroy();
@@ -714,7 +714,7 @@ void QDeclarativeState::apply(QDeclarativeStateGroup *group, QDeclarativeTransit
                 qWarning() << "    QDeclarativeAction event:" << action.event->typeName();
             else
                 qWarning() << "    QDeclarativeAction:" << action.property.object()
-                           << action.property.name() << "From:" << action.fromValue 
+                           << action.property.name() << "From:" << action.fromValue
                            << "To:" << action.toValue;
         }
     }

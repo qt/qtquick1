@@ -70,8 +70,8 @@ public:
     Image { source: "image://myimageprovider/image.png" }
     \endqml
 
-    This specifies that the image should be loaded by the image provider named 
-    "myimageprovider", and the image to be loaded is named "image.png". The QML engine 
+    This specifies that the image should be loaded by the image provider named
+    "myimageprovider", and the image to be loaded is named "image.png". The QML engine
     invokes the appropriate image provider according to the providers that have
     been registered through QDeclarativeEngine::addImageProvider().
 
@@ -96,11 +96,11 @@ public:
 
     When these images are loaded by QML, it looks for a matching image provider
     and calls its requestImage() or requestPixmap() method (depending on its
-    imageType()) to load the image. The method is called with the \c id 
+    imageType()) to load the image. The method is called with the \c id
     parameter set to "yellow" for the first image, and "red" for the second.
 
-    Here is an image provider implementation that can load the images 
-    requested by the above QML. This implementation dynamically 
+    Here is an image provider implementation that can load the images
+    requested by the above QML. This implementation dynamically
     generates QPixmap images that are filled with the requested color:
 
     \snippet examples/declarative/cppextensions/imageprovider/imageprovider.cpp 0
@@ -111,7 +111,7 @@ public:
     with a "colors" identifier:
 
     \code
-    int main(int argc, char *argv[]) 
+    int main(int argc, char *argv[])
     {
         ...
 
@@ -128,7 +128,7 @@ public:
 
     \image imageprovider.png
 
-    A complete example is available in Qt's 
+    A complete example is available in Qt's
     \l {declarative/cppextensions/imageprovider}{examples/declarative/cppextensions/imageprovider}
     directory. Note the example registers the provider via a \l{QDeclarativeExtensionPlugin}{plugin}
     instead of registering it in the application \c main() function as shown above.
@@ -139,14 +139,14 @@ public:
     Image providers that support QImage loading automatically include support
     for asychronous loading of images. To enable asynchronous loading for an
     image source, set the \c asynchronous property to \c true for the relevant
-    \l Image, \l BorderImage or \l AnimatedImage object. When this is enabled, 
+    \l Image, \l BorderImage or \l AnimatedImage object. When this is enabled,
     the image request to the provider is run in a low priority thread,
     allowing image loading to be executed in the background, and reducing the
     performance impact on the user interface.
 
     Asynchronous loading is not supported for image providers that provide
     QPixmap rather than QImage values, as pixmaps can only be created in the
-    main thread. In this case, if \l {Image::}{asynchronous} is set to 
+    main thread. In this case, if \l {Image::}{asynchronous} is set to
     \c true, the value is ignored and the image is loaded
     synchronously.
 
@@ -169,9 +169,9 @@ public:
 
     Defines the type of image supported by this image provider.
 
-    \value Image The Image Provider provides QImage images. The 
+    \value Image The Image Provider provides QImage images. The
         requestImage() method will be called for all image requests.
-    \value Pixmap The Image Provider provides QPixmap images. The 
+    \value Pixmap The Image Provider provides QPixmap images. The
         requestPixmap() method will be called for all image requests.
 */
 
@@ -203,7 +203,7 @@ QDeclarativeImageProvider::ImageType QDeclarativeImageProvider::imageType() cons
 }
 
 /*!
-    Implement this method to return the image with \a id. The default 
+    Implement this method to return the image with \a id. The default
     implementation returns an empty image.
 
     The \a id is the requested image source, with the "image:" scheme and

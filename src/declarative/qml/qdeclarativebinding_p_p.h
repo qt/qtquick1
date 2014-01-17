@@ -75,7 +75,7 @@ protected:
 private:
     bool updating:1;
     bool enabled:1;
-    QDeclarativeProperty property; 
+    QDeclarativeProperty property;
 
     bool *deleted;
 };
