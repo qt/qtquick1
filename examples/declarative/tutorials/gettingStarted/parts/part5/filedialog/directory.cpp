@@ -76,6 +76,8 @@ Function called to append data onto list property
 */
 void appendFiles(QDeclarativeListProperty<File> * property, File * file){
     //Do nothing. can't add to a directory using this method
+    Q_UNUSED(property)
+    Q_UNUSED(file)
 }
 
 /*
