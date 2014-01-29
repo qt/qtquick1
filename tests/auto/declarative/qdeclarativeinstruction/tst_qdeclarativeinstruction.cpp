@@ -133,7 +133,7 @@ void tst_qdeclarativeinstruction::dump()
         i.line = 6;
         i.type = QDeclarativeInstruction::StoreFloat;
         i.storeFloat.propertyIndex = 3;
-        i.storeFloat.value = 11.3;
+        i.storeFloat.value = 11.3f;
         data->bytecode << i;
     }
 

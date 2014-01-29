@@ -323,7 +323,7 @@ void tst_qdeclarativevaluetypes::vector2d()
 
         QCOMPARE((float)object->property("v_x").toDouble(), (float)32.88);
         QCOMPARE((float)object->property("v_y").toDouble(), (float)1.3);
-        QCOMPARE(object->property("copy"), QVariant(QVector2D(32.88, 1.3)));
+        QCOMPARE(object->property("copy"), QVariant(QVector2D(32.88f, 1.3f)));
 
         delete object;
     }
@@ -333,7 +333,7 @@ void tst_qdeclarativevaluetypes::vector2d()
         MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
         QVERIFY(object != 0);
 
-        QCOMPARE(object->vector2(), QVector2D(-0.3, -12.9));
+        QCOMPARE(object->vector2(), QVector2D(-0.3f, -12.9f));
 
         delete object;
     }
@@ -349,7 +349,7 @@ void tst_qdeclarativevaluetypes::vector3d()
         QCOMPARE((float)object->property("v_x").toDouble(), (float)23.88);
         QCOMPARE((float)object->property("v_y").toDouble(), (float)3.1);
         QCOMPARE((float)object->property("v_z").toDouble(), (float)4.3);
-        QCOMPARE(object->property("copy"), QVariant(QVector3D(23.88, 3.1, 4.3)));
+        QCOMPARE(object->property("copy"), QVariant(QVector3D(23.88f, 3.1f, 4.3f)));
 
         delete object;
     }
@@ -359,7 +359,7 @@ void tst_qdeclarativevaluetypes::vector3d()
         MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
         QVERIFY(object != 0);
 
-        QCOMPARE(object->vector(), QVector3D(-0.3, -12.9, 907.4));
+        QCOMPARE(object->vector(), QVector3D(-0.3f, -12.9f, 907.4f));
 
         delete object;
     }
@@ -376,7 +376,7 @@ void tst_qdeclarativevaluetypes::vector4d()
         QCOMPARE((float)object->property("v_y").toDouble(), (float)23.88);
         QCOMPARE((float)object->property("v_z").toDouble(), (float)3.1);
         QCOMPARE((float)object->property("v_w").toDouble(), (float)4.3);
-        QCOMPARE(object->property("copy"), QVariant(QVector4D(54.2, 23.88, 3.1, 4.3)));
+        QCOMPARE(object->property("copy"), QVariant(QVector4D(54.2f, 23.88f, 3.1f, 4.3f)));
 
         delete object;
     }
@@ -386,7 +386,7 @@ void tst_qdeclarativevaluetypes::vector4d()
         MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
         QVERIFY(object != 0);
 
-        QCOMPARE(object->vector4(), QVector4D(-0.3, -12.9, 907.4, 88.5));
+        QCOMPARE(object->vector4(), QVector4D(-0.3f, -12.9f, 907.4f, 88.5f));
 
         delete object;
     }
@@ -403,7 +403,7 @@ void tst_qdeclarativevaluetypes::quaternion()
         QCOMPARE((float)object->property("v_x").toDouble(), (float)54.2);
         QCOMPARE((float)object->property("v_y").toDouble(), (float)23.88);
         QCOMPARE((float)object->property("v_z").toDouble(), (float)3.1);
-        QCOMPARE(object->property("copy"), QVariant(QQuaternion(4.3, 54.2, 23.88, 3.1)));
+        QCOMPARE(object->property("copy"), QVariant(QQuaternion(4.3f, 54.2f, 23.88f, 3.1f)));
 
         delete object;
     }
@@ -413,7 +413,7 @@ void tst_qdeclarativevaluetypes::quaternion()
         MyTypeObject *object = qobject_cast<MyTypeObject *>(component.create());
         QVERIFY(object != 0);
 
-        QCOMPARE(object->quaternion(), QQuaternion(88.5, -0.3, -12.9, 907.4));
+        QCOMPARE(object->quaternion(), QQuaternion(88.5f, -0.3f, -12.9f, 907.4f));
 
         delete object;
     }
@@ -811,10 +811,10 @@ void tst_qdeclarativevaluetypes::cppClasses()
     CPP_TEST(QDeclarativeSizeFValueType, QSizeF(-100.7, 18.2));
     CPP_TEST(QDeclarativeRectValueType, QRect(13, 39, 10928, 88));
     CPP_TEST(QDeclarativeRectFValueType, QRectF(88.2, -90.1, 103.2, 118));
-    CPP_TEST(QDeclarativeVector2DValueType, QVector2D(19.7, 1002));
-    CPP_TEST(QDeclarativeVector3DValueType, QVector3D(18.2, 19.7, 1002));
-    CPP_TEST(QDeclarativeVector4DValueType, QVector4D(18.2, 19.7, 1002, 54));
-    CPP_TEST(QDeclarativeQuaternionValueType, QQuaternion(18.2, 19.7, 1002, 54));
+    CPP_TEST(QDeclarativeVector2DValueType, QVector2D(19.7f, 1002));
+    CPP_TEST(QDeclarativeVector3DValueType, QVector3D(18.2f, 19.7f, 1002));
+    CPP_TEST(QDeclarativeVector4DValueType, QVector4D(18.2f, 19.7f, 1002, 54));
+    CPP_TEST(QDeclarativeQuaternionValueType, QQuaternion(18.2f, 19.7f, 1002, 54));
     CPP_TEST(QDeclarativeMatrix4x4ValueType,
              QMatrix4x4(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16));
     CPP_TEST(QDeclarativeFontValueType, QFont("Helvetica"));

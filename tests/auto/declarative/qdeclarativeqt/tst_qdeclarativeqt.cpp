@@ -223,8 +223,8 @@ void tst_qdeclarativeqt::vector()
     QObject *object = component.create();
     QVERIFY(object != 0);
 
-    QCOMPARE(qvariant_cast<QVector3D>(object->property("test1")), QVector3D(1, 0, 0.9));
-    QCOMPARE(qvariant_cast<QVector3D>(object->property("test2")), QVector3D(102, -10, -982.1));
+    QCOMPARE(qvariant_cast<QVector3D>(object->property("test1")), QVector3D(1, 0, 0.9f));
+    QCOMPARE(qvariant_cast<QVector3D>(object->property("test2")), QVector3D(102, -10, -982.1f));
     QCOMPARE(qvariant_cast<QVector3D>(object->property("test3")), QVector3D());
     QCOMPARE(qvariant_cast<QVector3D>(object->property("test4")), QVector3D());
 

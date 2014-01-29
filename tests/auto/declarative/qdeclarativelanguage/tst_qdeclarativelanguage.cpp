@@ -549,7 +549,7 @@ void tst_qdeclarativelanguage::assignBasicTypes()
     QCOMPARE(object->rectFProperty(), QRectF((float)1000.1, (float)-10.9, (float)400, (float)90.99));
     QCOMPARE(object->boolProperty(), true);
     QCOMPARE(object->variantProperty(), QVariant("Hello World!"));
-    QCOMPARE(object->vectorProperty(), QVector3D(10, 1, 2.2));
+    QCOMPARE(object->vectorProperty(), QVector3D(10, 1, 2.2f));
     QCOMPARE(object->urlProperty(), component.url().resolved(QUrl("main.qml")));
     QVERIFY(object->objectProperty() != 0);
     MyTypeObject *child = qobject_cast<MyTypeObject *>(object->objectProperty());
