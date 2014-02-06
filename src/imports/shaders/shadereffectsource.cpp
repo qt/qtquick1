@@ -285,7 +285,8 @@ void ShaderEffectSource::bind()
     GLuint vwrap = (m_wrapMode == Repeat || m_wrapMode == RepeatVertically) ? GL_REPEAT : GL_CLAMP_TO_EDGE;
 
 #if !defined(QT_OPENGL_ES_2)
-    glEnable(GL_TEXTURE_2D);
+    if (!QOpenGLFunctions::isES())
+        glEnable(GL_TEXTURE_2D);
 #endif
 
     if (m_fbo && m_fbo->isValid()) {
