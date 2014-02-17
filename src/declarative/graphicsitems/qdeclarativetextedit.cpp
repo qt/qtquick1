@@ -1446,7 +1446,16 @@ Returns the value of the given \a property.
 QVariant QDeclarativeTextEdit::inputMethodQuery(Qt::InputMethodQuery property) const
 {
     Q_D(const QDeclarativeTextEdit);
-    return d->control->inputMethodQuery(property);
+    return d->control->inputMethodQuery(property, QVariant());
+}
+
+/*!
+\internal
+*/
+QVariant QDeclarativeTextEdit::inputMethodQuery(Qt::InputMethodQuery property, const QVariant &argument) const
+{
+    Q_D(const QDeclarativeTextEdit);
+    return d->control->inputMethodQuery(property, argument);
 }
 
 /*!

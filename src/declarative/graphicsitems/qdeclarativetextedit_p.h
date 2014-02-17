@@ -205,6 +205,7 @@ public:
     QRect cursorRectangle() const;
 
     QVariant inputMethodQuery(Qt::InputMethodQuery property) const;
+    Q_INVOKABLE QVariant inputMethodQuery(Qt::InputMethodQuery property, const QVariant &argument) const;
 
     qreal paintedWidth() const;
     qreal paintedHeight() const;
