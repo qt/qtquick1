@@ -1942,7 +1942,7 @@ void QDeclarativeEnginePrivate::sendQuit()
 
 static void dumpwarning(const QDeclarativeError &error)
 {
-    qWarning().nospace() << qPrintable(error.toString());
+    qWarning("%s", error.toString().toUtf8().constData());
 }
 
 static void dumpwarning(const QList<QDeclarativeError> &errors)

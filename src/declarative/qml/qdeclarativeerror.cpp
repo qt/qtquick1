@@ -240,7 +240,7 @@ QString QDeclarativeError::toString() const
 
 QDebug operator<<(QDebug debug, const QDeclarativeError &error)
 {
-    debug << qPrintable(error.toString());
+    debug << error.toString().toUtf8().constData();
 
     QUrl url = error.url();
 
