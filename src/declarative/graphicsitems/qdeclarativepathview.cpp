@@ -1476,8 +1476,13 @@ void QDeclarativePathView::itemsInserted(int modelIndex, int count)
 {
     //XXX support animated insertion
     Q_D(QDeclarativePathView);
-    if (!d->isValid() || !isComponentComplete())
+    if (!d->isValid())
         return;
+
+    if (!isComponentComplete()) {
+        emit countChanged();
+        return;
+    }
 
     if (d->modelCount) {
         d->itemCache += d->items;
@@ -1506,8 +1511,13 @@ void QDeclarativePathView::itemsRemoved(int modelIndex, int count)
 {
     //XXX support animated removal
     Q_D(QDeclarativePathView);
-    if (!d->model || !d->modelCount || !d->model->isValid() || !d->path || !isComponentComplete())
+    if (!d->model || !d->modelCount || !d->model->isValid() || !d->path)
         return;
+
+    if (!isComponentComplete()) {
+        emit countChanged();
+        return;
+    }
 
     // fix current
     bool currentChanged = false;
