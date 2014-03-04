@@ -1331,7 +1331,7 @@ void QDeclarativeFlickable::setBoundsBehavior(BoundsBehavior b)
 
     \snippet doc/src/snippets/declarative/flickable.qml document
 
-    In some cases, the the content dimensions can be automatically set
+    In some cases, the content dimensions can be automatically set
     using the \l {Item::childrenRect.width}{childrenRect.width}
     and \l {Item::childrenRect.height}{childrenRect.height} properties.
 */

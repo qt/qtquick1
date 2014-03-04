@@ -269,7 +269,7 @@ with models of type QAbstractItemModel:
 
 \list
 \li \e hasModelChildren role property to determine whether a node has child nodes.
-\li \l VisualDataModel::rootIndex allows the root node to be specifed
+\li \l VisualDataModel::rootIndex allows the root node to be specified
 \li \l VisualDataModel::modelIndex() returns a QModelIndex which can be assigned to VisualDataModel::rootIndex
 \li \l VisualDataModel::parentModelIndex() returns a QModelIndex which can be assigned to VisualDataModel::rootIndex
 \endlist

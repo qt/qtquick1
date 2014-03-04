@@ -60,7 +60,7 @@ aligned to the right side of the text area. The alignment of a text element with
 its alignment cue from \l QApplication::keyboardInputDirection(), which is based on the active
 system locale.
 
-This default locale-based alignment can be overriden by setting the \c horizontalAlignment
+This default locale-based alignment can be overridden by setting the \c horizontalAlignment
 property for the text element, or by enabling layout mirroring using the \l LayoutMirroring attached
 property, which causes any explicit left and right horizontal alignments to be mirrored.
 Note that when \l LayoutMirroring is set, the \c horizontalAlignment property value remains unchanged;

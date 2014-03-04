@@ -145,7 +145,7 @@ void QmlApplicationViewer::addImportPath(const QString &path)
 
 void QmlApplicationViewer::setOrientation(ScreenOrientation orientation)
 {
-    // TODO: Needs a Qt5 implmentation
+    // TODO: Needs a Qt5 implementation
     Q_UNUSED(orientation)
 }
 
