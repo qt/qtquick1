@@ -1032,7 +1032,7 @@ void QDeclarativeTextEdit::setTextMargin(qreal margin)
 void QDeclarativeTextEdit::geometryChanged(const QRectF &newGeometry,
                                   const QRectF &oldGeometry)
 {
-    if (newGeometry.width() != oldGeometry.width())
+    if (newGeometry.size() != oldGeometry.size())
         updateSize();
     QDeclarativePaintedItem::geometryChanged(newGeometry, oldGeometry);
 }
