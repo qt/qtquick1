@@ -101,7 +101,7 @@ Rectangle {
         Text {
              id: label
              anchors.centerIn:  parent
-             text: effect.vertexShader == effect.defaultVertexShader ? "Effect (display shoud be green)" : "Effect (display shoud be red)"
+             text: effect.vertexShader == effect.defaultVertexShader ? "Effect (display should be green)" : "Effect (display should be red)"
              color: "white"
              font.bold: true
         }

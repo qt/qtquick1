@@ -782,7 +782,7 @@ QObject *QDeclarativeComponent::create(QDeclarativeContext *context)
     When QDeclarativeComponent constructs an instance, it occurs in three steps:
     \list 1
     \li The object hierarchy is created, and constant values are assigned.
-    \li Property bindings are evaluated for the the first time.
+    \li Property bindings are evaluated for the first time.
     \li If applicable, QDeclarativeParserStatus::componentComplete() is called on objects.
     \endlist
     QDeclarativeComponent::beginCreate() differs from QDeclarativeComponent::create() in that it

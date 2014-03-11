@@ -791,7 +791,7 @@ void QDeclarativeScriptAction::setScript(const QDeclarativeScriptString &script)
 
 /*!
     \qmlproperty string ScriptAction::scriptName
-    This property holds the the name of the StateChangeScript to run.
+    This property holds the name of the StateChangeScript to run.
 
     This property is only valid when ScriptAction is used as part of a transition.
     If both script and scriptName are set, scriptName will be used.
