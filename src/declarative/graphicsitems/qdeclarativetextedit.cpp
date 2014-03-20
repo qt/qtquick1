@@ -673,7 +673,7 @@ QRectF QDeclarativeTextEdit::positionToRectangle(int pos) const
     Q_D(const QDeclarativeTextEdit);
     QTextCursor c(d->document);
     c.setPosition(pos);
-    return d->control->cursorRect(c);
+    return d->control->cursorRect(c).translated(0, d->yoff);
 
 }
 
