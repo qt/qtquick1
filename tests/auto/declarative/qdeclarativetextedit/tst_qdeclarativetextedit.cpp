@@ -639,6 +639,30 @@ void tst_qdeclarativetextedit::vAlign()
         }
     }
 
+    QDeclarativeComponent texteditComponent(&engine);
+    texteditComponent.setData("import QtQuick 1.0\n TextEdit { width: 200; height: 200; text: \"Hello World\" }", QUrl());
+    QDeclarativeTextEdit *textEditObject = qobject_cast<QDeclarativeTextEdit*>(texteditComponent.create());
+
+    QVERIFY(textEditObject != 0);
+
+    QCOMPARE(textEditObject->vAlign(), QDeclarativeTextEdit::AlignTop);
+    QVERIFY(textEditObject->cursorRectangle().bottom() < 50);
+    QVERIFY(textEditObject->positionToRectangle(0).bottom() < 50);
+
+    // bottom aligned
+    textEditObject->setVAlign(QDeclarativeTextEdit::AlignBottom);
+
+    QCOMPARE(textEditObject->vAlign(), QDeclarativeTextEdit::AlignBottom);
+    QVERIFY(textEditObject->cursorRectangle().top() > 100);
+    QVERIFY(textEditObject->positionToRectangle(0).top() > 100);
+
+    // explicitly center aligned
+    textEditObject->setVAlign(QDeclarativeTextEdit::AlignVCenter);
+    QCOMPARE(textEditObject->vAlign(), QDeclarativeTextEdit::AlignVCenter);
+    QVERIFY(textEditObject->cursorRectangle().top() < 100);
+    QVERIFY(textEditObject->cursorRectangle().bottom() > 100);
+    QVERIFY(textEditObject->positionToRectangle(0).top() < 100);
+    QVERIFY(textEditObject->positionToRectangle(0).bottom() > 100);
 }
 
 void tst_qdeclarativetextedit::font()
