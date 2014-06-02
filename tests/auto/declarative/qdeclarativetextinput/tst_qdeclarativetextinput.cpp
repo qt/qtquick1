@@ -1735,7 +1735,7 @@ void tst_qdeclarativetextinput::copyAndPaste() {
     QClipboard *clipboard = QApplication::clipboard();
     QVERIFY(clipboard);
     clipboard->clear();
-    QVERIFY(!textInput->canPaste());
+    QTRY_VERIFY(!textInput->canPaste());
 
     // test that copy functionality is disabled
     // when echo mode is set to hide text/password mode
