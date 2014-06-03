@@ -87,9 +87,15 @@ void tst_qdeclarativeapplication::active()
     QCOMPARE(QApplication::activeWindow(), static_cast<QWidget *>(&view));
     QCOMPARE(item->property("active").toBool(), QApplication::activeWindow() != 0);
 
-    // not active again
     QWindowSystemInterface::handleWindowActivated(0);
+
+#ifdef Q_OS_OSX
+    // OS X has the concept of "reactivation"
+    QTRY_VERIFY(item->property("active").toBool());
+#else
+    // not active again
     QTRY_VERIFY(!item->property("active").toBool());
+#endif
 }
 
 void tst_qdeclarativeapplication::layoutDirection()
