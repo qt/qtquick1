@@ -437,36 +437,33 @@ void ShaderEffectItem::renderEffect(QPainter *painter, const QMatrix4x4 &matrix)
     bindGeometry();
 
     // Optimization, disable depth test when we know we don't need it.
+    QOpenGLFunctions *f = QOpenGLContext::currentContext()->functions();
     if (m_defaultVertexShader) {
-        glDepthMask(false);
-        glDisable(GL_DEPTH_TEST);
+        f->glDepthMask(false);
+        f->glDisable(GL_DEPTH_TEST);
     } else {
-        glEnable(GL_DEPTH_TEST);
-        glDepthFunc(GL_GREATER);
-        glDepthMask(true);
-#if defined(QT_OPENGL_ES)
-        glClearDepthf(0);
-#else
-        glClearDepth(0);
-#endif
-        glClearColor(0, 0, 0, 0);
-        glClear(GL_DEPTH_BUFFER_BIT);
+        f->glEnable(GL_DEPTH_TEST);
+        f->glDepthFunc(GL_GREATER);
+        f->glDepthMask(true);
+        f->glClearDepthf(0);
+        f->glClearColor(0, 0, 0, 0);
+        f->glClear(GL_DEPTH_BUFFER_BIT);
     }
 
     if (m_blending){
-        glEnable(GL_BLEND);
-        glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        f->glEnable(GL_BLEND);
+        f->glBlendFunc (GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     } else {
-        glDisable(GL_BLEND);
+        f->glDisable(GL_BLEND);
     }
 
     if (m_geometry.indexCount())
-        glDrawElements(m_geometry.drawingMode(), m_geometry.indexCount(), m_geometry.indexType(), m_geometry.indexData());
+        f->glDrawElements(m_geometry.drawingMode(), m_geometry.indexCount(), m_geometry.indexType(), m_geometry.indexData());
     else
-        glDrawArrays(m_geometry.drawingMode(), 0, m_geometry.vertexCount());
+        f->glDrawArrays(m_geometry.drawingMode(), 0, m_geometry.vertexCount());
 
-    glDepthMask(false);
-    glDisable(GL_DEPTH_TEST);
+    f->glDepthMask(false);
+    f->glDisable(GL_DEPTH_TEST);
 
    for (int i = 0; i < m_attributeNames.size(); ++i)
         m_program->disableAttributeArray(m_geometry.attributes()[i].position);

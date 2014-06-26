@@ -284,23 +284,24 @@ void ShaderEffectSource::bind()
     GLuint hwrap = (m_wrapMode == Repeat || m_wrapMode == RepeatHorizontally) ? GL_REPEAT : GL_CLAMP_TO_EDGE;
     GLuint vwrap = (m_wrapMode == Repeat || m_wrapMode == RepeatVertically) ? GL_REPEAT : GL_CLAMP_TO_EDGE;
 
-#if !defined(QT_OPENGL_ES_2)
-    glEnable(GL_TEXTURE_2D);
-#endif
+    QOpenGLContext *context = QOpenGLContext::currentContext();
+    QOpenGLFunctions *f = context->functions();
+    if (!context->isOpenGLES())
+        f->glEnable(GL_TEXTURE_2D);
 
     if (m_fbo && m_fbo->isValid()) {
-        glBindTexture(GL_TEXTURE_2D, m_fbo->texture());
+        f->glBindTexture(GL_TEXTURE_2D, m_fbo->texture());
     } else {
         m_dirtyTexture = true;
         emit repaintRequired();
         markSourceItemDirty();
-        glBindTexture(GL_TEXTURE_2D, 0);
+        f->glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filtering);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, smooth() ? GL_LINEAR : GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, hwrap);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, vwrap);
+    f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filtering);
+    f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, smooth() ? GL_LINEAR : GL_NEAREST);
+    f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, hwrap);
+    f->glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, vwrap);
 }
 
 void ShaderEffectSource::refFromEffectItem()
