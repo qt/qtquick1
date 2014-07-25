@@ -140,7 +140,7 @@ void tst_qdeclarativefontloader::failLocalFont()
     const QString componentStr =
         QStringLiteral("import QtQuick 1.0\nFontLoader { source: \"")
         + urlString + QStringLiteral("\" }");
-    const QByteArray message = QByteArrayLiteral("file::2:1: QML FontLoader: Cannot load font: \"")
+    const QByteArray message = QByteArrayLiteral("<Unknown File>:2:1: QML FontLoader: Cannot load font: \"")
                                + urlString.toUtf8() + '"';
     QTest::ignoreMessage(QtWarningMsg, message.constData());
     QDeclarativeComponent component(&engine);
@@ -186,7 +186,7 @@ void tst_qdeclarativefontloader::redirWebFont()
 void tst_qdeclarativefontloader::failWebFont()
 {
     QString componentStr = "import QtQuick 1.0\nFontLoader { source: \"http://localhost:14448/nonexist.ttf\" }";
-    QTest::ignoreMessage(QtWarningMsg, "file::2:1: QML FontLoader: Cannot load font: \"http://localhost:14448/nonexist.ttf\"");
+    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>:2:1: QML FontLoader: Cannot load font: \"http://localhost:14448/nonexist.ttf\"");
     QDeclarativeComponent component(&engine);
     component.setData(componentStr.toLatin1(), QUrl::fromLocalFile(""));
     QDeclarativeFontLoader *fontObject = qobject_cast<QDeclarativeFontLoader*>(component.create());

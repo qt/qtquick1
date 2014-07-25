@@ -134,7 +134,7 @@ QDeclarativeInfo::~QDeclarativeInfo()
                 d->buffer.prepend(QLatin1String("QML ") + typeName + QLatin1String(": "));
 
                 QDeclarativeData *ddata = QDeclarativeData::get(object, false);
-                if (ddata && ddata->outerContext && !ddata->outerContext->url.isEmpty()) {
+                if (ddata && ddata->outerContext) {
                     error.setUrl(ddata->outerContext->url);
                     error.setLine(ddata->lineNumber);
                     error.setColumn(ddata->columnNumber);

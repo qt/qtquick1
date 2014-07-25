@@ -558,7 +558,7 @@ void tst_QDeclarativeItem::layoutMirroringIllegalParent()
 {
     QDeclarativeComponent component(&engine);
     component.setData("import QtQuick 1.1; QtObject { LayoutMirroring.enabled: true; LayoutMirroring.childrenInherit: true }", QUrl::fromLocalFile(""));
-    QTest::ignoreMessage(QtWarningMsg, "file::1:21: QML QtObject: LayoutDirection attached property only works with Items");
+    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>:1:21: QML QtObject: LayoutDirection attached property only works with Items");
     QObject *object = component.create();
     QVERIFY(object != 0);
 }

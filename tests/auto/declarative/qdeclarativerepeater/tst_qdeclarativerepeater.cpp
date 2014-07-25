@@ -664,7 +664,7 @@ void tst_QDeclarativeRepeater::testQtQuick11Attributes_data()
             << ":1 \"Repeater.onItemRemoved\" is not available in QtQuick 1.0.\n";
 
     QTest::newRow("itemAt") << "Component.onCompleted: itemAt(0)"
-            << "<Unknown File>: ReferenceError: Can't find variable: itemAt"
+            << "<Unknown File>:1: ReferenceError: Can't find variable: itemAt"
             << "";
 }
 

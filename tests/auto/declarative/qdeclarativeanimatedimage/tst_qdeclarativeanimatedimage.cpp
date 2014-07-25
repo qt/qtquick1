@@ -293,10 +293,10 @@ void tst_qdeclarativeanimatedimage::invalidSource()
 {
     QDeclarativeEngine engine;
     QDeclarativeComponent component(&engine);
-    component.setData("import QtQuick 1.0\n AnimatedImage { source: \"no-such-file.gif\" }", QUrl::fromLocalFile(""));
+    component.setData("import QtQuick 1.0\n AnimatedImage { source: \"no-such-file.gif\" }", QUrl::fromLocalFile("relative"));
     QVERIFY(component.isReady());
 
-    QTest::ignoreMessage(QtWarningMsg, "file::2:2: QML AnimatedImage: Error Reading Animated Image File file:no-such-file.gif");
+    QTest::ignoreMessage(QtWarningMsg, "file:relative:2:2: QML AnimatedImage: Error Reading Animated Image File file:no-such-file.gif");
 
     QDeclarativeAnimatedImage *anim = qobject_cast<QDeclarativeAnimatedImage *>(component.create());
     QVERIFY(anim);

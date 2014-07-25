@@ -2058,11 +2058,11 @@ void tst_QDeclarativeGridView::testQtQuick11Attributes_data()
     QTest::addColumn<QString>("error");
 
     QTest::newRow("positionViewAtBeginning") << "Component.onCompleted: positionViewAtBeginning()"
-        << "<Unknown File>: ReferenceError: Can't find variable: positionViewAtBeginning"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: positionViewAtBeginning"
         << "";
 
     QTest::newRow("positionViewAtEnd") << "Component.onCompleted: positionViewAtEnd()"
-        << "<Unknown File>: ReferenceError: Can't find variable: positionViewAtEnd"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: positionViewAtEnd"
         << "";
 }
 

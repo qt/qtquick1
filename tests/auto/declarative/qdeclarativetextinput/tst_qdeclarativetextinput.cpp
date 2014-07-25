@@ -2440,15 +2440,15 @@ void tst_qdeclarativetextinput::testQtQuick11Attributes_data()
     QTest::addColumn<QString>("error");
 
     QTest::newRow("canPaste") << "property bool foo: canPaste"
-        << "<Unknown File>: ReferenceError: Can't find variable: canPaste"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: canPaste"
         << "";
 
     QTest::newRow("moveCursorSelection") << "Component.onCompleted: moveCursorSelection(0, TextEdit.SelectCharacters)"
-        << "<Unknown File>: ReferenceError: Can't find variable: moveCursorSelection"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: moveCursorSelection"
         << "";
 
     QTest::newRow("deselect") << "Component.onCompleted: deselect()"
-        << "<Unknown File>: ReferenceError: Can't find variable: deselect"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: deselect"
         << "";
 }
 

@@ -1307,11 +1307,11 @@ void tst_qdeclarativetext::testQtQuick11Attributes_data()
         << ":1 \"Text.lineHeightMode\" is not available in QtQuick 1.0.\n";
 
     QTest::newRow("lineCount") << "property int foo: lineCount"
-        << "<Unknown File>: ReferenceError: Can't find variable: lineCount"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: lineCount"
         << "";
 
     QTest::newRow("truncated") << "property bool foo: truncated"
-        << "<Unknown File>: ReferenceError: Can't find variable: truncated"
+        << "<Unknown File>:1: ReferenceError: Can't find variable: truncated"
         << "";
 }
 
