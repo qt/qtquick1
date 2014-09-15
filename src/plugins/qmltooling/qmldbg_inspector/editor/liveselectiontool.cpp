@@ -369,7 +369,9 @@ void LiveSelectionTool::setSelectOnlyContentItems(bool selectOnlyContentItems)
 
 void LiveSelectionTool::clear()
 {
+#ifndef QT_NO_CURSOR
     view()->setCursor(Qt::ArrowCursor);
+#endif // QT_NO_CURSOR
     m_rubberbandSelectionManipulator.clear(),
             m_singleSelectionManipulator.clear();
     m_selectionIndicator.clear();
