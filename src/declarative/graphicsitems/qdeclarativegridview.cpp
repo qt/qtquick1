@@ -2759,8 +2759,10 @@ void QDeclarativeGridView::trackedPositionChanged()
 void QDeclarativeGridView::itemsInserted(int modelIndex, int count)
 {
     Q_D(QDeclarativeGridView);
-    if (!isComponentComplete())
+    if (!isComponentComplete()) {
+        emit countChanged();
         return;
+    }
 
     int index = d->visibleItems.count() ? d->mapFromModel(modelIndex) : 0;
     if (index < 0) {
@@ -2895,8 +2897,10 @@ void QDeclarativeGridView::itemsInserted(int modelIndex, int count)
 void QDeclarativeGridView::itemsRemoved(int modelIndex, int count)
 {
     Q_D(QDeclarativeGridView);
-    if (!isComponentComplete())
+    if (!isComponentComplete()) {
+        emit countChanged();
         return;
+    }
 
     d->itemCount -= count;
     bool currentRemoved = d->currentIndex >= modelIndex && d->currentIndex < modelIndex + count;

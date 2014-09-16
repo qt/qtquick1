@@ -3203,8 +3203,10 @@ void QDeclarativeListView::trackedPositionChanged()
 void QDeclarativeListView::itemsInserted(int modelIndex, int count)
 {
     Q_D(QDeclarativeListView);
-    if (!isComponentComplete())
+    if (!isComponentComplete()) {
+        emit countChanged();
         return;
+    }
     d->updateUnrequestedIndexes();
     d->moveReason = QDeclarativeListViewPrivate::Other;
 
@@ -3356,8 +3358,10 @@ void QDeclarativeListView::itemsInserted(int modelIndex, int count)
 void QDeclarativeListView::itemsRemoved(int modelIndex, int count)
 {
     Q_D(QDeclarativeListView);
-    if (!isComponentComplete())
+    if (!isComponentComplete()) {
+        emit countChanged();
         return;
+    }
     d->moveReason = QDeclarativeListViewPrivate::Other;
     d->updateUnrequestedIndexes();
     d->itemCount -= count;

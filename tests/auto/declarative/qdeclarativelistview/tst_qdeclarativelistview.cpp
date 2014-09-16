@@ -52,6 +52,8 @@ public:
     tst_QDeclarativeListView();
 
 private slots:
+    void initTestCase();
+
     // Test both QListModelInterface and QAbstractItemModel model types
     void qListModelInterface_items();
     void qAbstractItemModel_items();
@@ -108,6 +110,7 @@ private slots:
     void test_mirroring();
     void orientationChange();
     void contentPosJump();
+    void QTBUG_37115();
 
 private:
     template <class T> void items();
@@ -342,8 +345,39 @@ private:
     QList<QPair<QString,QString> > list;
 };
 
+class TestFilterModel : public QSortFilterProxyModel
+{
+    Q_OBJECT
+    Q_PROPERTY(QString filter READ filter WRITE setFilter NOTIFY filterChanged)
+    QString m_filter;
+
+public:
+    explicit TestFilterModel(QObject *parent = 0) : QSortFilterProxyModel(parent)
+    {
+        setSourceModel(new QStringListModel(QStringList() << "AA" << "BB" << "CC", this));
+    }
+
+    QString filter() const { return m_filter; }
+    void setFilter(const QString &filter)
+    {
+        if (m_filter != filter) {
+            m_filter = filter;
+            setFilterWildcard(m_filter);
+            emit filterChanged();
+        }
+    }
+
+signals:
+    void filterChanged();
+};
+
 tst_QDeclarativeListView::tst_QDeclarativeListView()
 {
+}
+
+void tst_QDeclarativeListView::initTestCase()
+{
+    qmlRegisterType<TestFilterModel>("org.test.models", 1, 0, "TestFilterModel");
 }
 
 template <class T>
@@ -2709,6 +2743,20 @@ void tst_QDeclarativeListView::contentPosJump()
         QTRY_VERIFY(item);
         QTRY_VERIFY(item->y() == i*20);
     }
+
+    delete canvas;
+}
+
+void tst_QDeclarativeListView::QTBUG_37115()
+{
+    QDeclarativeView *canvas = createView();
+
+    canvas->setSource(QUrl::fromLocalFile(SRCDIR "/data/qtbug37115.qml"));
+    qApp->processEvents();
+
+    QDeclarativeListView *listview = findItem<QDeclarativeListView>(canvas->rootObject(), "listview");
+    QTRY_VERIFY(listview != 0);
+    QTRY_COMPARE(listview->property("countCopy").toInt(), 0);
 
     delete canvas;
 }
