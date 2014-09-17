@@ -373,8 +373,10 @@ void QDeclarativeRepeater::regenerate()
 void QDeclarativeRepeater::itemsInserted(int index, int count)
 {
     Q_D(QDeclarativeRepeater);
-    if (!isComponentComplete())
+    if (!isComponentComplete()) {
+        emit countChanged();
         return;
+    }
     for (int i = 0; i < count; ++i) {
         int modelIndex = index + i;
         QDeclarativeItem *item = d->model->item(modelIndex);
@@ -395,8 +397,13 @@ void QDeclarativeRepeater::itemsInserted(int index, int count)
 void QDeclarativeRepeater::itemsRemoved(int index, int count)
 {
     Q_D(QDeclarativeRepeater);
-    if (!isComponentComplete() || count <= 0)
+    if (count <= 0)
         return;
+
+    if (!isComponentComplete()) {
+        emit countChanged();
+        return;
+    }
     while (count--) {
         QDeclarativeItem *item = d->deletables.takeAt(index);
         emit itemRemoved(index, item);
