@@ -529,13 +529,13 @@ void printUsage(const QString &appName)
 
 int main(int argc, char *argv[])
 {
-#ifdef Q_OS_WIN
+#if defined(Q_OS_WIN) && !defined(Q_CC_MINGW)
     // we do not want windows popping up if the module loaded triggers an assert
     SetErrorMode(SEM_NOGPFAULTERRORBOX);
     _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_DEBUG);
     _CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_DEBUG);
     _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_DEBUG);
-#endif
+#endif // Q_OS_WIN && !Q_CC_MINGW
 #ifdef Q_OS_UNIX
     // qmldump may crash, but we don't want any crash handlers to pop up
     // therefore we intercept the segfault and just exit() ourselves
