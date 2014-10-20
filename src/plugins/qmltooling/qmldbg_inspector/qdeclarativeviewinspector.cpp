@@ -195,12 +195,14 @@ bool QDeclarativeViewInspector::leaveEvent(QEvent *event)
 
 bool QDeclarativeViewInspector::mouseMoveEvent(QMouseEvent *event)
 {
+#ifndef QT_NO_TOOLTIP
     QList<QGraphicsItem*> selItems = data->selectableItems(event->pos());
     if (!selItems.isEmpty()) {
         declarativeView()->setToolTip(currentTool()->titleForItem(selItems.first()));
     } else {
         declarativeView()->setToolTip(QString());
     }
+#endif // QT_NO_TOOLTIP
 
     return AbstractViewInspector::mouseMoveEvent(event);
 }
