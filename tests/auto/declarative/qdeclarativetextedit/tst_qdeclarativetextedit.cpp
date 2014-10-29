@@ -1935,7 +1935,7 @@ void tst_qdeclarativetextedit::delegateLoading()
         QTRY_VERIFY(view->status()==QDeclarativeView::Error);
         QTRY_VERIFY(!view->rootObject()); // there is fail item inside this test
     } else {
-        QTRY_VERIFY(view->rootObject());//Wait for loading to finish.
+        QTRY_VERIFY_WITH_TIMEOUT(view->rootObject(), 7000);//Wait for loading to finish.
         QDeclarativeTextEdit *textEditObject = view->rootObject()->findChild<QDeclarativeTextEdit*>("textEditObject");
         //    view->rootObject()->dumpObjectTree();
         QVERIFY(textEditObject != 0);
