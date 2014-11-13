@@ -2295,21 +2295,6 @@ QString QDeclarativeEngine::offlineStoragePath() const
     return d->scriptEngine.offlineStoragePath;
 }
 
-static void voidptr_destructor(void *v)
-{
-    void **ptr = (void **)v;
-    delete ptr;
-}
-
-static void *voidptr_constructor(const void *v)
-{
-    if (!v) {
-        return new void*;
-    } else {
-        return new void*(*(void **)v);
-    }
-}
-
 QDeclarativePropertyCache *QDeclarativeEnginePrivate::createCache(const QMetaObject *mo)
 {
     Q_Q(QDeclarativeEngine);
@@ -2436,10 +2421,19 @@ void QDeclarativeEnginePrivate::registerCompositeType(QDeclarativeCompiledData *
     QByteArray ptr = name + '*';
     QByteArray lst = "QDeclarativeListProperty<" + name + '>';
 
-    int ptr_type = QMetaType::registerType(ptr.constData(), voidptr_destructor,
-                                           voidptr_constructor);
-    int lst_type = QMetaType::registerType(lst.constData(), voidptr_destructor,
-                                           voidptr_constructor);
+    int ptr_type = QMetaType::registerNormalizedType(ptr,
+                                                     QtMetaTypePrivate::QMetaTypeFunctionHelper<QObject*>::Destruct,
+                                                     QtMetaTypePrivate::QMetaTypeFunctionHelper<QObject*>::Construct,
+                                                     sizeof(QObject*),
+                                                     static_cast<QFlags<QMetaType::TypeFlag> >(QtPrivate::QMetaTypeTypeFlags<QObject*>::Flags),
+                                                     data->root);
+    int lst_type = QMetaType::registerNormalizedType(lst,
+                                                     QtMetaTypePrivate::QMetaTypeFunctionHelper<QDeclarativeListProperty<QObject> >::Destruct,
+                                                     QtMetaTypePrivate::QMetaTypeFunctionHelper<QDeclarativeListProperty<QObject> >::Construct,
+                                                     sizeof(QDeclarativeListProperty<QObject>),
+                                                     static_cast<QFlags<QMetaType::TypeFlag> >(QtPrivate::QMetaTypeTypeFlags<QDeclarativeListProperty<QObject> >::Flags),
+                                                     static_cast<QMetaObject*>(0));
+
 
     m_qmlLists.insert(lst_type, ptr_type);
     m_compositeTypes.insert(ptr_type, data);
