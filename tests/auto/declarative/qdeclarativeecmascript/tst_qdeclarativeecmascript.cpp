@@ -2309,8 +2309,8 @@ void tst_qdeclarativeecmascript::compiled()
     QCOMPARE(object->property("test17").toInt(), 5);
     QCOMPARE(object->property("test18").toReal(), qreal(176));
     QCOMPARE(object->property("test19").toInt(), 7);
-    QCOMPARE(object->property("test20").toReal(), qreal(6.7));
-    QCOMPARE(object->property("test21").toString(), QLatin1String("6.7"));
+    QCOMPARE(object->property("test20").toReal(), qreal(6.5));
+    QCOMPARE(object->property("test21").toString(), QLatin1String("6.5"));
     QCOMPARE(object->property("test22").toString(), QLatin1String("!"));
     QCOMPARE(object->property("test23").toBool(), true);
     QCOMPARE(qvariant_cast<QColor>(object->property("test24")), QColor(0x11,0x22,0x33));
