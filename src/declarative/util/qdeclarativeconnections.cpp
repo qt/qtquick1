@@ -41,6 +41,7 @@
 #include <qdeclarativeinfo.h>
 
 #include <QtCore/qdebug.h>
+#include <QtCore/qdatastream.h>
 #include <QtCore/qstringlist.h>
 
 #include <private/qobject_p.h>
