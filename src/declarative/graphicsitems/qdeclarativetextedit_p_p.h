@@ -66,7 +66,7 @@ public:
       hAlignImplicit(true), rightToLeftText(false), selectByMouse(false), canPaste(false), canPasteValid(false),
       textMargin(0.0), lastSelectionStart(0), lastSelectionEnd(0),
       cursorComponent(0), cursor(0), format(QDeclarativeTextEdit::AutoText), document(0), wrapMode(QDeclarativeTextEdit::NoWrap),
-      mouseSelectionMode(QDeclarativeTextEdit::SelectCharacters),
+      mouseSelectionMode(QDeclarativeTextEdit::SelectCharacters), lineCount(0),
       yoff(0)
     {
     }
