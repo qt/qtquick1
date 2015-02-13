@@ -166,20 +166,19 @@ void tst_qdeclarativeinfo::types()
 
 void tst_qdeclarativeinfo::chaining()
 {
-    //### should more of these be automatically inserting spaces?
     QString str("Hello World");
     QStringRef ref(&str, 6, 5);
-    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: false 1.1 1.2 15 hello 'b' QUrl(\"http://www.qt-project.org\") World \"Qt\" Quick ");
+    QTest::ignoreMessage(QtWarningMsg, "<Unknown File>: false 1.1 1.2 15 hello 'b' World \"Qt\" Quick QUrl(\"http://www.qt-project.org\") ");
     qmlInfo(0) << false << ' '
                << 1.1 << ' '
                << 1.2f << ' '
                << 15 << ' '
                << QLatin1String("hello") << ' '
                << QChar('b') << ' '
-               << QUrl("http://www.qt-project.org")
-               << ref
-               << QByteArray("Qt")
-               << QString ("Quick");
+               << ref << ' '
+               << QByteArray("Qt") << ' '
+               << QString ("Quick") << ' '
+               << QUrl("http://www.qt-project.org");
 }
 
 QTEST_MAIN(tst_qdeclarativeinfo)
