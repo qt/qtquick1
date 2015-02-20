@@ -64,7 +64,7 @@ int main(int argc, char* argv[])
 
     //Add the QML snippet into the layout
     QDeclarativeEngine engine;
-    QDeclarativeComponent c(&engine, QUrl(":layoutitem.qml"));
+    QDeclarativeComponent c(&engine, QUrl("qrc:layoutitem.qml"));
     QGraphicsLayoutItem* obj = qobject_cast<QGraphicsLayoutItem*>(c.create());
     layout->addItem(obj);
 
