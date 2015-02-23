@@ -474,7 +474,7 @@ void tst_qdeclarativeflickable::wheel()
 
 void tst_qdeclarativeflickable::flickVelocity()
 {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_OSX
     QSKIP("Producing flicks on Mac CI impossible due to timing problems");
 #endif
 
