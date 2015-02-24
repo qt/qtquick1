@@ -87,7 +87,7 @@ void tst_qdeclarativecomponent::loadEmptyUrl()
 void tst_qdeclarativecomponent::qmlCreateObject()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/createObject.qml"));
+    QDeclarativeComponent component(&engine, QUrl("qrc:/createObject.qml"));
     QObject *object = component.create();
     QVERIFY(object != 0);
 
@@ -112,7 +112,7 @@ void tst_qdeclarativecomponent::qmlCreateObject()
 void tst_qdeclarativecomponent::qmlCreateObjectWithProperties()
 {
     QDeclarativeEngine engine;
-    QDeclarativeComponent component(&engine, QUrl::fromLocalFile(SRCDIR "/data/createObjectWithScript.qml"));
+    QDeclarativeComponent component(&engine, QUrl("qrc:/createObjectWithScript.qml"));
     QVERIFY2(component.errorString().isEmpty(), component.errorString().toUtf8());
     QObject *object = component.create();
     QVERIFY(object != 0);
