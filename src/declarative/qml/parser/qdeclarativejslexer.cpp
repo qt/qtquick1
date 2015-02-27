@@ -48,10 +48,6 @@
 #include <stdio.h>
 #include <string.h>
 
-QT_BEGIN_NAMESPACE
-Q_CORE_EXPORT double qstrtod(const char *s00, char const **se, bool *ok);
-QT_END_NAMESPACE
-
 QT_QML_BEGIN_NAMESPACE
 
 #define shiftWindowsLineBreak() \
@@ -819,7 +815,7 @@ int Lexer::lex()
 
     double dval = 0;
     if (state == Number) {
-        dval = qstrtod(buffer8, 0, 0);
+        dval = QByteArray::fromRawData(buffer8, pos8).toDouble();
     } else if (state == Hex) { // scan hex numbers
         dval = integerFromString(buffer8, pos8, 16);
         state = Number;
