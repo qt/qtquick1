@@ -1132,12 +1132,12 @@ bool QDeclarativePropertyPrivate::write(QObject *object, const QDeclarativePrope
 
     } else if (variantType == propertyType) {
 
-        void *a[] = { (void *)value.constData(), 0, &status, &flags };
+        void *a[] = { const_cast<void *>(value.constData()), 0, &status, &flags };
         QMetaObject::metacall(object, QMetaObject::WriteProperty, coreIdx, a);
 
     } else if (qMetaTypeId<QVariant>() == propertyType) {
 
-        void *a[] = { (void *)&value, 0, &status, &flags };
+        void *a[] = { const_cast<QVariant *>(&value), 0, &status, &flags };
         QMetaObject::metacall(object, QMetaObject::WriteProperty, coreIdx, a);
 
     } else if (property.flags & QDeclarativePropertyCache::Data::IsQObjectDerived) {
@@ -1147,7 +1147,7 @@ bool QDeclarativePropertyPrivate::write(QObject *object, const QDeclarativePrope
         if (!valMo)
             return false;
 
-        QObject *o = *(QObject **)value.constData();
+        QObject *o = *(QObject *const *)value.constData();
         const QMetaObject *propMo = rawMetaObjectForType(enginePriv, propertyType);
 
         if (o) valMo = o->metaObject();
@@ -1224,7 +1224,7 @@ bool QDeclarativePropertyPrivate::write(QObject *object, const QDeclarativePrope
             }
         }
         if (ok) {
-            void *a[] = { (void *)v.constData(), 0, &status, &flags};
+            void *a[] = { const_cast<void *>(v.constData()), 0, &status, &flags};
             QMetaObject::metacall(object, QMetaObject::WriteProperty, coreIdx, a);
         } else {
             return false;

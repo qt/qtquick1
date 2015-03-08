@@ -236,7 +236,7 @@ QDeclarativeObjectScriptClass::property(QObject *obj, const Identifier &name)
 
     } else if (lastData->flags & QDeclarativePropertyCache::Data::IsFunction) {
         if (lastData->flags & QDeclarativePropertyCache::Data::IsVMEFunction) {
-            return Value(scriptEngine, ((QDeclarativeVMEMetaObject *)(obj->metaObject()))->vmeMethod(lastData->coreIndex));
+            return Value(scriptEngine, ((QDeclarativeVMEMetaObject *)const_cast<QMetaObject *>(obj->metaObject()))->vmeMethod(lastData->coreIndex));
         } else {
             // Uncomment to use QtScript method call logic
             // QScriptValue sobj = scriptEngine->newQObject(obj);
@@ -411,7 +411,7 @@ void QDeclarativeObjectScriptClass::setProperty(QObject *obj,
             const QString &rawValue = value.toString();
             int status = -1;
             int flags = 0;
-            void *a[] = { (void *)&rawValue, 0, &status, &flags };
+            void *a[] = { const_cast<QString *>(&rawValue), 0, &status, &flags };
             QMetaObject::metacall(obj, QMetaObject::WriteProperty,
                                   lastData->coreIndex, a);
             return;

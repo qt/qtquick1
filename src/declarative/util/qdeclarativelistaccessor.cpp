@@ -91,7 +91,7 @@ int QDeclarativeListAccessor::count() const
     case VariantList:
         return qvariant_cast<QVariantList>(d).count();
     case ListProperty:
-        return ((QDeclarativeListReference *)d.constData())->count();
+        return ((const QDeclarativeListReference *)d.constData())->count();
     case Instance:
         return 1;
     case Integer:
@@ -111,7 +111,7 @@ QVariant QDeclarativeListAccessor::at(int idx) const
     case VariantList:
         return qvariant_cast<QVariantList>(d).at(idx);
     case ListProperty:
-        return QVariant::fromValue(((QDeclarativeListReference *)d.constData())->at(idx));
+        return QVariant::fromValue(((const QDeclarativeListReference *)d.constData())->at(idx));
     case Instance:
         return d;
     case Integer:
