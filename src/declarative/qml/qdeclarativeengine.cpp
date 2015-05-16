@@ -2084,14 +2084,14 @@ QScriptValue QDeclarativeEnginePrivate::scriptValueFromVariant(const QVariant &v
 {
     if (val.userType() == qMetaTypeId<QDeclarativeListReference>()) {
         QDeclarativeListReferencePrivate *p =
-            QDeclarativeListReferencePrivate::get((QDeclarativeListReference*)val.constData());
+            QDeclarativeListReferencePrivate::get((QDeclarativeListReference*)const_cast<void *>(val.constData()));
         if (p->object) {
             return listClass->newList(p->property, p->propertyType);
         } else {
             return scriptEngine.nullValue();
         }
     } else if (val.userType() == qMetaTypeId<QList<QObject *> >()) {
-        const QList<QObject *> &list = *(QList<QObject *>*)val.constData();
+        const QList<QObject *> &list = *(const QList<QObject *>*)val.constData();
         QScriptValue rv = scriptEngine.newArray(list.count());
         for (int ii = 0; ii < list.count(); ++ii) {
             QObject *object = list.at(ii);
@@ -2466,7 +2466,7 @@ QObject *QDeclarativeEnginePrivate::toQObject(const QVariant &v, bool *ok) const
     int t = v.userType();
     if (t == QMetaType::QObjectStar || m_compositeTypes.contains(t)) {
         if (ok) *ok = true;
-        return *(QObject **)(v.constData());
+        return *(QObject *const *)(v.constData());
     } else {
         return QDeclarativeMetaType::toQObject(v, ok);
     }

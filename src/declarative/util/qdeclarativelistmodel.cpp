@@ -74,7 +74,7 @@ void qdeclarativelistmodel_move(int from, int to, int n, T *items)
 
 QDeclarativeListModelParser::ListInstruction *QDeclarativeListModelParser::ListModelData::instructions() const
 {
-    return (QDeclarativeListModelParser::ListInstruction *)((char *)this + sizeof(ListModelData));
+    return (QDeclarativeListModelParser::ListInstruction *)(const_cast<char *>((const char *)this) + sizeof(ListModelData));
 }
 
 /*!

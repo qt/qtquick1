@@ -103,7 +103,7 @@ bool QSmoothedAnimation::recalc()
         return false;
     }
 
-    finalDuration = ceil(tf * qreal(1000.0));
+    finalDuration = std::ceil(tf * qreal(1000.0));
 
     if (maximumEasingTime == 0) {
         a = 0;

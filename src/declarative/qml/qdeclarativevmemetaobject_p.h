@@ -109,7 +109,7 @@ struct QDeclarativeVMEMetaData
     };
 
     PropertyData *propertyData() const {
-        return (PropertyData *)(((const char *)this) + sizeof(QDeclarativeVMEMetaData));
+        return (PropertyData *)const_cast<char *>(((const char *)this) + sizeof(QDeclarativeVMEMetaData));
     }
 
     AliasData *aliasData() const {

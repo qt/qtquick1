@@ -494,7 +494,7 @@ int QDeclarativeVMEMetaObject::metaCall(QMetaObject::Call c, int _id, void **a)
                         int listIndex = data[id].asInt();
                         const List *list = &listProperties.at(listIndex);
                         *reinterpret_cast<QDeclarativeListProperty<QObject> *>(a[0]) =
-                            QDeclarativeListProperty<QObject>(object, (void *)list,
+                            QDeclarativeListProperty<QObject>(object, const_cast<List *>(list),
                                                               list_append, list_count, list_at,
                                                               list_clear);
                     }

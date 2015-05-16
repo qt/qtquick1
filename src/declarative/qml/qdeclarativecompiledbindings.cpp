@@ -150,14 +150,14 @@ struct Register {
     QVariant *getvariantptr() { return (QVariant *)typeDataPtr(); }
     QString *getstringptr() { return (QString *)typeDataPtr(); }
     QUrl *geturlptr() { return (QUrl *)typeDataPtr(); }
-    const QVariant *getvariantptr() const { return (QVariant *)typeDataPtr(); }
-    const QString *getstringptr() const { return (QString *)typeDataPtr(); }
-    const QUrl *geturlptr() const { return (QUrl *)typeDataPtr(); }
+    const QVariant *getvariantptr() const { return (const QVariant *)typeDataPtr(); }
+    const QString *getstringptr() const { return (const QString *)typeDataPtr(); }
+    const QUrl *geturlptr() const { return (const QUrl *)typeDataPtr(); }
 
     void *typeDataPtr() { return (void *)&data; }
     void *typeMemory() { return (void *)data; }
-    const void *typeDataPtr() const { return (void *)&data; }
-    const void *typeMemory() const { return (void *)data; }
+    const void *typeDataPtr() const { return (const void *)&data; }
+    const void *typeMemory() const { return (const void *)data; }
 
     int gettype() const { return type; }
     void settype(int t) { type = t; }
@@ -945,13 +945,13 @@ void QDeclarativeCompiledBindingsPrivate::findgeneric(Register *output,
 
 void QDeclarativeCompiledBindingsPrivate::init()
 {
-    Program *program = (Program *)programData;
+    Program *program = (Program *)const_cast<char *>(programData);
     if (program->subscriptions)
         subscriptions = new QDeclarativeCompiledBindingsPrivate::Subscription[program->subscriptions];
     if (program->identifiers)
         identifiers = new QScriptDeclarativeClass::PersistentIdentifier[program->identifiers];
 
-    m_signalTable = (quint32 *)(program->data() + program->signalTableOffset);
+    m_signalTable = (quint32 *)const_cast<char *>(program->data() + program->signalTableOffset);
     m_bindings = new QDeclarativeCompiledBindingsPrivate::Binding[program->bindings];
 }
 
@@ -965,7 +965,7 @@ static void throwException(int id, QDeclarativeDelayedError *error,
     else
         error->error.setDescription(description);
     if (id != 0xFF) {
-        quint64 e = *((quint64 *)(program->data() + program->exceptionDataOffset) + id);
+        quint64 e = *((const quint64 *)(program->data() + program->exceptionDataOffset) + id);
         error->error.setLine((e >> 32) & 0xFFFFFFFF);
         error->error.setColumn(e & 0xFFFFFFFF);
     } else {
@@ -1134,7 +1134,8 @@ void QDeclarativeCompiledBindingsPrivate::run(int instrIndex,
     Register registers[32];
 
     QDeclarativeEnginePrivate *engine = QDeclarativeEnginePrivate::get(context->engine);
-    Program *program = (Program *)programData;
+
+    Program *program = (Program *)const_cast<char *>(programData);
     const Instr *instr = program->instructions();
     instr += instrIndex;
     const char *data = program->data();
@@ -1148,7 +1149,7 @@ void QDeclarativeCompiledBindingsPrivate::run(int instrIndex,
         program->compiled = true;
         const Instr *inop = program->instructions();
         for (int i = 0; i < program->instructionCount; ++i) {
-            Instr *op = (Instr *) inop++;
+            Instr *op = const_cast<Instr *>(inop++);
             op->common.code = decode_instr[op->common.type];
         }
     }
@@ -1284,7 +1285,7 @@ void QDeclarativeCompiledBindingsPrivate::run(int instrIndex,
     {
         Register &output = registers[instr->string_value.reg];
         new (output.getstringptr())
-            QString((QChar *)(data + instr->string_value.offset), instr->string_value.length);
+            QString((const QChar *)(data + instr->string_value.offset), instr->string_value.length);
         output.settype(QMetaType::QString);
     }
     QML_END_INSTR(String)
@@ -1502,8 +1503,8 @@ void QDeclarativeCompiledBindingsPrivate::run(int instrIndex,
 
     QML_BEGIN_INSTR(InitString)
         if (!identifiers[instr->initstring.offset].identifier) {
-            quint32 len = *(quint32 *)(data + instr->initstring.dataIdx);
-            QChar *strdata = (QChar *)(data + instr->initstring.dataIdx + sizeof(quint32));
+            quint32 len = *(const quint32 *)(data + instr->initstring.dataIdx);
+            const QChar *strdata = (const QChar *)(data + instr->initstring.dataIdx + sizeof(quint32));
 
             QString str = QString::fromRawData(strdata, len);
 
@@ -2899,9 +2900,9 @@ QByteArray QDeclarativeBindingCompiler::program() const
         programData.resize(size);
         memcpy(programData.data(), &prog, sizeof(Program));
         if (prog.dataLength)
-            memcpy((char *)((Program *)programData.data())->data(), data.constData(),
+            memcpy(const_cast<char *>(((Program *)programData.data())->data()), data.constData(),
                    data.size());
-        memcpy((char *)((Program *)programData.data())->instructions(), bytecode.constData(),
+        memcpy(const_cast<Instr *>(((Program *)programData.data())->instructions()), bytecode.constData(),
                bytecode.count() * sizeof(Instr));
     }
 

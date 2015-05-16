@@ -780,7 +780,7 @@ QObject *QDeclarativeMetaType::toQObject(const QVariant &v, bool *ok)
 
     if (ok) *ok = true;
 
-    return *(QObject **)v.constData();
+    return *(QObject *const *)v.constData();
 }
 
 bool QDeclarativeMetaType::isQObject(int userType)
