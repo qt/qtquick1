@@ -34,7 +34,7 @@
 #ifndef QDECLARATIVEVIEW_PLUGIN_H
 #define QDECLARATIVEVIEW_PLUGIN_H
 
-#include <QtDesigner/QDesignerCustomWidgetInterface>
+#include <QtUiPlugin/QDesignerCustomWidgetInterface>
 
 QT_BEGIN_NAMESPACE
 
