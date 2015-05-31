@@ -111,7 +111,7 @@ void QDeclarativeStyledText::parse(const QString &string, QTextLayout &layout)
 
 void QDeclarativeStyledTextPrivate::parse()
 {
-    QList<QTextLayout::FormatRange> ranges;
+    QVector<QTextLayout::FormatRange> ranges;
     QStack<QTextCharFormat> formatStack;
 
     QString drawText;
@@ -172,7 +172,7 @@ void QDeclarativeStyledTextPrivate::parse()
     }
 
     layout.setText(drawText);
-    layout.setAdditionalFormats(ranges);
+    layout.setFormats(ranges);
 }
 
 bool QDeclarativeStyledTextPrivate::parseTag(const QChar *&ch, const QString &textIn, QString &textOut, QTextCharFormat &format)
