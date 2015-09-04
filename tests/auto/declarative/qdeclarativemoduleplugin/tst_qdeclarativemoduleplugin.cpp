@@ -43,6 +43,9 @@
 #define SERVER_ADDR "http://127.0.0.1:14450"
 #define SERVER_PORT 14450
 
+#if defined(Q_OS_MAC)
+#include <unistd.h>
+#endif
 
 class tst_qdeclarativemoduleplugin : public QDeclarativeDataTest
 {

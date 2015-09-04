@@ -47,6 +47,9 @@
 
 #include "testhttpserver.h"
 
+#if defined(Q_OS_OSX)
+#include <unistd.h>
+#endif
 
 DEFINE_BOOL_CONFIG_OPTION(qmlCheckTypes, QML_CHECK_TYPES)
 
