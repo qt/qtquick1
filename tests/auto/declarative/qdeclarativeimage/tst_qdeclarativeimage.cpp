@@ -137,7 +137,7 @@ void tst_qdeclarativeimage::imageSource_data()
     if (QImageReader::supportedImageFormats().contains("SVG"))
         QTest::newRow("remote svg") << SERVER_ADDR "/heart.svg" << 550.0 << 500.0 << true << false << false << "";
     QTest::newRow("remote not found") << SERVER_ADDR "/no-such-file.png" << 0.0 << 0.0 << true
-        << false << true << "<Unknown File>:2:1: QML Image: Error downloading " SERVER_ADDR "/no-such-file.png - server replied: Not found";
+        << false << true << "<Unknown File>:2:1: QML Image: Error transferring " SERVER_ADDR "/no-such-file.png - server replied: Not found";
 
 }
 
