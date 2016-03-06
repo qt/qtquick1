@@ -56,13 +56,21 @@ public:
     typedef void (*ClearFunction)(QDeclarativeListProperty<T> *);
 
     QDeclarativeListProperty()
-        : object(0), data(0), append(0), count(0), at(0), clear(0), dummy1(0), dummy2(0) {}
+        : object(Q_NULLPTR),
+          data(Q_NULLPTR),
+          append(Q_NULLPTR),
+          count(Q_NULLPTR),
+          at(Q_NULLPTR),
+          clear(Q_NULLPTR),
+          dummy1(Q_NULLPTR),
+          dummy2(Q_NULLPTR)
+    {}
     QDeclarativeListProperty(QObject *o, QList<T *> &list)
         : object(o), data(&list), append(qlist_append), count(qlist_count), at(qlist_at),
-          clear(qlist_clear), dummy1(0), dummy2(0) {}
-    QDeclarativeListProperty(QObject *o, void *d, AppendFunction a, CountFunction c = 0, AtFunction t = 0,
-                    ClearFunction r = 0)
-        : object(o), data(d), append(a), count(c), at(t), clear(r), dummy1(0), dummy2(0) {}
+          clear(qlist_clear), dummy1(Q_NULLPTR), dummy2(Q_NULLPTR) {}
+    QDeclarativeListProperty(QObject *o, void *d, AppendFunction a, CountFunction c = Q_NULLPTR,
+                             AtFunction t = Q_NULLPTR, ClearFunction r = Q_NULLPTR)
+        : object(o), data(d), append(a), count(c), at(t), clear(r), dummy1(Q_NULLPTR), dummy2(Q_NULLPTR) {}
 
     bool operator==(const QDeclarativeListProperty &o) const {
         return object == o.object &&
@@ -108,7 +116,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativeListReference
 {
 public:
     QDeclarativeListReference();
-    QDeclarativeListReference(QObject *, const char *property, QDeclarativeEngine * = 0);
+    QDeclarativeListReference(QObject *, const char *property, QDeclarativeEngine * = Q_NULLPTR);
     QDeclarativeListReference(const QDeclarativeListReference &);
     QDeclarativeListReference &operator=(const QDeclarativeListReference &);
     ~QDeclarativeListReference();

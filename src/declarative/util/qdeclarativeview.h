@@ -59,8 +59,8 @@ class Q_DECLARATIVE_EXPORT QDeclarativeView : public QGraphicsView
     Q_PROPERTY(QUrl source READ source WRITE setSource DESIGNABLE true)
     Q_ENUMS(ResizeMode Status)
 public:
-    explicit QDeclarativeView(QWidget *parent = 0);
-    QDeclarativeView(const QUrl &source, QWidget *parent = 0);
+    explicit QDeclarativeView(QWidget *parent = Q_NULLPTR);
+    QDeclarativeView(const QUrl &source, QWidget *parent = Q_NULLPTR);
     virtual ~QDeclarativeView();
 
     QUrl source() const;
