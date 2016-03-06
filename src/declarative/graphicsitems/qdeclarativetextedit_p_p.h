@@ -54,7 +54,7 @@ QT_BEGIN_NAMESPACE
 class QTextLayout;
 class QTextDocument;
 class QWidgetTextControl;
-class QDeclarativeTextEditPrivate : public QDeclarativeImplicitSizePaintedItemPrivate
+class Q_AUTOTEST_EXPORT QDeclarativeTextEditPrivate : public QDeclarativeImplicitSizePaintedItemPrivate
 {
     Q_DECLARE_PUBLIC(QDeclarativeTextEdit)
 

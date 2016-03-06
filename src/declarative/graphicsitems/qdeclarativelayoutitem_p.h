@@ -42,7 +42,7 @@ QT_BEGIN_NAMESPACE
 
 QT_MODULE(Declarative)
 
-class QDeclarativeLayoutItem : public QDeclarativeItem, public QGraphicsLayoutItem
+class Q_AUTOTEST_EXPORT QDeclarativeLayoutItem : public QDeclarativeItem, public QGraphicsLayoutItem
 {
     Q_OBJECT
     Q_INTERFACES(QGraphicsLayoutItem)
