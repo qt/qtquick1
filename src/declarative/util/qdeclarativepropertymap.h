@@ -49,7 +49,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativePropertyMap : public QObject
 {
     Q_OBJECT
 public:
-    QDeclarativePropertyMap(QObject *parent = Q_NULLPTR);
+    explicit QDeclarativePropertyMap(QObject *parent = Q_NULLPTR);
     virtual ~QDeclarativePropertyMap();
 
     QVariant value(const QString &key) const;

@@ -55,7 +55,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativeExpression : public QObject
     Q_OBJECT
 public:
     QDeclarativeExpression();
-    QDeclarativeExpression(QDeclarativeContext *, QObject *, const QString &, QObject * = Q_NULLPTR);
+    explicit QDeclarativeExpression(QDeclarativeContext *, QObject *, const QString &, QObject * = Q_NULLPTR);
     virtual ~QDeclarativeExpression();
 
     QDeclarativeEngine *engine() const;

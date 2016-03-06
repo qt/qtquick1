@@ -116,7 +116,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativeListReference
 {
 public:
     QDeclarativeListReference();
-    QDeclarativeListReference(QObject *, const char *property, QDeclarativeEngine * = Q_NULLPTR);
+    explicit QDeclarativeListReference(QObject *, const char *property, QDeclarativeEngine * = Q_NULLPTR);
     QDeclarativeListReference(const QDeclarativeListReference &);
     QDeclarativeListReference &operator=(const QDeclarativeListReference &);
     ~QDeclarativeListReference();

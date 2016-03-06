@@ -58,8 +58,8 @@ class Q_DECLARATIVE_EXPORT QDeclarativeContext : public QObject
     Q_DECLARE_PRIVATE(QDeclarativeContext)
 
 public:
-    QDeclarativeContext(QDeclarativeEngine *parent, QObject *objParent = Q_NULLPTR);
-    QDeclarativeContext(QDeclarativeContext *parent, QObject *objParent = Q_NULLPTR);
+    explicit QDeclarativeContext(QDeclarativeEngine *parent, QObject *objParent = Q_NULLPTR);
+    explicit QDeclarativeContext(QDeclarativeContext *parent, QObject *objParent = Q_NULLPTR);
     virtual ~QDeclarativeContext();
 
     bool isValid() const;
