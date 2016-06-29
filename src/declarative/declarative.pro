@@ -4,13 +4,8 @@ qtHaveModule(xmlpatterns): QT_PRIVATE = xmlpatterns
 else: DEFINES += QT_NO_XMLPATTERNS
 
 MODULE=declarative
-MODULE_PLUGIN_TYPES = \
-    qml1tooling
-
 ANDROID_BUNDLED_FILES = \
     imports
-
-load(qt_module)
 
 DEFINES   += QT_NO_URL_CAST_FROM_STRING
 
@@ -39,3 +34,7 @@ DEFINES += QT_NO_OPENTYPE
 blackberry: {
     DEFINES   += CUSTOM_DECLARATIVE_DEBUG_TRACE_INSTANCE
 }
+
+MODULE_PLUGIN_TYPES = \
+    qml1tooling
+load(qt_module)
