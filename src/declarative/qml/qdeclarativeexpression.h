@@ -55,7 +55,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativeExpression : public QObject
     Q_OBJECT
 public:
     QDeclarativeExpression();
-    QDeclarativeExpression(QDeclarativeContext *, QObject *, const QString &, QObject * = 0);
+    explicit QDeclarativeExpression(QDeclarativeContext *, QObject *, const QString &, QObject * = Q_NULLPTR);
     virtual ~QDeclarativeExpression();
 
     QDeclarativeEngine *engine() const;
@@ -77,7 +77,7 @@ public:
     void clearError();
     QDeclarativeError error() const;
 
-    QVariant evaluate(bool *valueIsUndefined = 0);
+    QVariant evaluate(bool *valueIsUndefined = Q_NULLPTR);
 
 Q_SIGNALS:
     void valueChanged();

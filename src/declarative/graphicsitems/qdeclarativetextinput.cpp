@@ -68,7 +68,7 @@ QT_BEGIN_NAMESPACE
     and setting \l echoMode to an appropriate value enables TextInput to be used for
     a password input field.
 
-    On Mac OS X, the Up/Down key bindings for Home/End are explicitly disabled.
+    On OS X, the Up/Down key bindings for Home/End are explicitly disabled.
     If you want such bindings (on any platform), you will need to construct them in QML.
 
     \sa TextEdit, Text, {declarative/text/textselection}{Text Selection example}
@@ -514,7 +514,7 @@ void QDeclarativeTextInput::setCursorVisible(bool on)
     if (d->cursorVisible == on)
         return;
     d->cursorVisible = on;
-    d->control->setCursorBlinkPeriod(on?QApplication::cursorFlashTime():0);
+    d->control->setBlinkingCursorEnabled(on);
     QRect r = d->control->cursorRect();
     if (d->control->inputMask().isEmpty())
         updateRect(r);

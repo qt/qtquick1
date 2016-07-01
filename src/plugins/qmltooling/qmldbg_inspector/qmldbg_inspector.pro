@@ -1,10 +1,6 @@
 TARGET = qmldbg_inspector
 QT       += declarative declarative-private gui widgets core-private
 
-PLUGIN_TYPE = qml1tooling
-PLUGIN_CLASS_NAME = QtQuick1Plugin
-load(qt_plugin)
-
 INCLUDEPATH *= $$PWD
 
 SOURCES += \
@@ -45,3 +41,7 @@ HEADERS += \
     abstracttool.h
 
 OTHER_FILES += qtquick1plugin.json
+
+PLUGIN_TYPE = qml1tooling
+PLUGIN_CLASS_NAME = QtQuick1Plugin
+load(qt_plugin)
