@@ -2595,32 +2595,32 @@ QPointF QDeclarativeParentAnimationPrivate::computeTransformOrigin(QDeclarativeI
     }
 }
 
+struct QDeclarativeParentAnimationData : public QAbstractAnimationAction
+{
+    QDeclarativeParentAnimationData() {}
+    ~QDeclarativeParentAnimationData() { qDeleteAll(pc); }
+
+    QDeclarativeStateActions actions;
+    //### reverse should probably apply on a per-action basis
+    bool reverse;
+    QList<QDeclarativeParentChange *> pc;
+    virtual void doAction()
+    {
+        for (int ii = 0; ii < actions.count(); ++ii) {
+            const QDeclarativeAction &action = actions.at(ii);
+            if (reverse)
+                action.event->reverse();
+            else
+                action.event->execute();
+        }
+    }
+};
+
 void QDeclarativeParentAnimation::transition(QDeclarativeStateActions &actions,
                         QDeclarativeProperties &modified,
                         TransitionDirection direction)
 {
     Q_D(QDeclarativeParentAnimation);
-
-    struct QDeclarativeParentAnimationData : public QAbstractAnimationAction
-    {
-        QDeclarativeParentAnimationData() {}
-        ~QDeclarativeParentAnimationData() { qDeleteAll(pc); }
-
-        QDeclarativeStateActions actions;
-        //### reverse should probably apply on a per-action basis
-        bool reverse;
-        QList<QDeclarativeParentChange *> pc;
-        virtual void doAction()
-        {
-            for (int ii = 0; ii < actions.count(); ++ii) {
-                const QDeclarativeAction &action = actions.at(ii);
-                if (reverse)
-                    action.event->reverse();
-                else
-                    action.event->execute();
-            }
-        }
-    };
 
     QDeclarativeParentAnimationData *data = new QDeclarativeParentAnimationData;
     QDeclarativeParentAnimationData *viaData = new QDeclarativeParentAnimationData;
