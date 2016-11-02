@@ -431,7 +431,7 @@ void AbstractViewInspector::sendCurrentTool(Constants::DesignTool toolId)
     QDataStream ds(&message, QIODevice::WriteOnly);
 
     ds << InspectorProtocol::ToolChanged
-       << toolId;
+       << int(toolId);
 
     m_debugService->sendMessage(message);
 }
