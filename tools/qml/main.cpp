@@ -38,6 +38,7 @@
 #include <QLibraryInfo>
 #include <QProcess>
 #include <QPointer>
+#include <QRegExp>
 
 #include <QWidget>
 #include <QApplication>

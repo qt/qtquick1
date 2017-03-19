@@ -39,6 +39,7 @@
 #include <QGLFramebufferObject>
 #include <QGraphicsView>
 #include <QPainter>
+#include <QRegExp>
 
 static const char qt_default_vertex_code[] =
         "uniform highp mat4 qt_ModelViewProjectionMatrix;\n"

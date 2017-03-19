@@ -39,6 +39,7 @@
 #include <QtDebug>
 #include <QGraphicsItem>
 #include <QDeclarativeItem>
+#include <QRegExp>
 
 namespace QmlJSDebugger {
 namespace QtQuick1 {
