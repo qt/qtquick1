@@ -1758,7 +1758,7 @@ void QDeclarativeTextEditPrivate::updateDefaultTextOption()
 {
     Q_Q(QDeclarativeTextEdit);
     QTextOption opt = document->defaultTextOption();
-    int oldAlignment = opt.alignment();
+    const Qt::Alignment oldAlignment = opt.alignment();
 
     QDeclarativeTextEdit::HAlignment horizontalAlignment = q->effectiveHAlign();
     if (rightToLeftText) {
