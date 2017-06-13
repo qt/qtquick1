@@ -32,7 +32,7 @@
 ****************************************************************************/
 
 #include <stdlib.h>
-#include <QTime>
+#include <QRandomGenerator>
 #include <QTimer>
 
 #include "minehunt.h"
@@ -63,7 +63,6 @@ MinehuntGame::MinehuntGame()
 : numCols(9), numRows(9), playing(true), won(false)
 {
     setObjectName("mainObject");
-    srand(QTime(0,0,0).secsTo(QTime::currentTime()));
 
     //initialize array
     for(int ii = 0; ii < numRows * numCols; ++ii) {
@@ -83,8 +82,8 @@ void MinehuntGame::setBoard()
     int mines = nMines;
     remaining = numRows*numCols-mines;
     while ( mines ) {
-        int col = int((double(rand()) / double(RAND_MAX)) * numCols);
-        int row = int((double(rand()) / double(RAND_MAX)) * numRows);
+        int col = QRandomGenerator::bounded(numCols);
+        int row = QRandomGenerator::bounded(numRows);
 
         TileData* t = tile( row, col );
 
