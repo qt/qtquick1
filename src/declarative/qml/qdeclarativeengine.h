@@ -62,7 +62,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativeEngine : public QObject
     Q_PROPERTY(QString offlineStoragePath READ offlineStoragePath WRITE setOfflineStoragePath)
     Q_OBJECT
 public:
-    explicit QDeclarativeEngine(QObject *p = Q_NULLPTR);
+    explicit QDeclarativeEngine(QObject *p = nullptr);
     virtual ~QDeclarativeEngine();
 
     QDeclarativeContext *rootContext() const;

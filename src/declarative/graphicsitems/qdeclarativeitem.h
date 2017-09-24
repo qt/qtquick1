@@ -95,7 +95,7 @@ public:
         BottomLeft, Bottom, BottomRight
     };
 
-    explicit QDeclarativeItem(QDeclarativeItem *parent = Q_NULLPTR);
+    explicit QDeclarativeItem(QDeclarativeItem *parent = nullptr);
     virtual ~QDeclarativeItem();
 
     QDeclarativeItem *parentItem() const;
@@ -182,7 +182,7 @@ protected:
                                  const QRectF &oldGeometry);
 
 protected:
-    explicit QDeclarativeItem(QDeclarativeItemPrivate &dd, QDeclarativeItem *parent = Q_NULLPTR);
+    explicit QDeclarativeItem(QDeclarativeItemPrivate &dd, QDeclarativeItem *parent = nullptr);
 
 private:
     Q_DISABLE_COPY(QDeclarativeItem)

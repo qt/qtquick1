@@ -60,10 +60,10 @@ class Q_DECLARATIVE_EXPORT QDeclarativeComponent : public QObject
     Q_PROPERTY(QUrl url READ url CONSTANT)
 
 public:
-    explicit QDeclarativeComponent(QObject *parent = Q_NULLPTR);
-    explicit QDeclarativeComponent(QDeclarativeEngine *, QObject *parent = Q_NULLPTR);
-    explicit QDeclarativeComponent(QDeclarativeEngine *, const QString &fileName, QObject *parent = Q_NULLPTR);
-    explicit QDeclarativeComponent(QDeclarativeEngine *, const QUrl &url, QObject *parent = Q_NULLPTR);
+    explicit QDeclarativeComponent(QObject *parent = nullptr);
+    explicit QDeclarativeComponent(QDeclarativeEngine *, QObject *parent = nullptr);
+    explicit QDeclarativeComponent(QDeclarativeEngine *, const QString &fileName, QObject *parent = nullptr);
+    explicit QDeclarativeComponent(QDeclarativeEngine *, const QUrl &url, QObject *parent = nullptr);
     virtual ~QDeclarativeComponent();
 
     Q_ENUMS(Status)
@@ -82,7 +82,7 @@ public:
 
     QUrl url() const;
 
-    virtual QObject *create(QDeclarativeContext *context = Q_NULLPTR);
+    virtual QObject *create(QDeclarativeContext *context = nullptr);
     virtual QObject *beginCreate(QDeclarativeContext *);
     virtual void completeCreate();
 

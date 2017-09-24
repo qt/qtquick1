@@ -56,21 +56,21 @@ public:
     typedef void (*ClearFunction)(QDeclarativeListProperty<T> *);
 
     QDeclarativeListProperty()
-        : object(Q_NULLPTR),
-          data(Q_NULLPTR),
-          append(Q_NULLPTR),
-          count(Q_NULLPTR),
-          at(Q_NULLPTR),
-          clear(Q_NULLPTR),
-          dummy1(Q_NULLPTR),
-          dummy2(Q_NULLPTR)
+        : object(nullptr),
+          data(nullptr),
+          append(nullptr),
+          count(nullptr),
+          at(nullptr),
+          clear(nullptr),
+          dummy1(nullptr),
+          dummy2(nullptr)
     {}
     QDeclarativeListProperty(QObject *o, QList<T *> &list)
         : object(o), data(&list), append(qlist_append), count(qlist_count), at(qlist_at),
-          clear(qlist_clear), dummy1(Q_NULLPTR), dummy2(Q_NULLPTR) {}
-    QDeclarativeListProperty(QObject *o, void *d, AppendFunction a, CountFunction c = Q_NULLPTR,
-                             AtFunction t = Q_NULLPTR, ClearFunction r = Q_NULLPTR)
-        : object(o), data(d), append(a), count(c), at(t), clear(r), dummy1(Q_NULLPTR), dummy2(Q_NULLPTR) {}
+          clear(qlist_clear), dummy1(nullptr), dummy2(nullptr) {}
+    QDeclarativeListProperty(QObject *o, void *d, AppendFunction a, CountFunction c = nullptr,
+                             AtFunction t = nullptr, ClearFunction r = nullptr)
+        : object(o), data(d), append(a), count(c), at(t), clear(r), dummy1(nullptr), dummy2(nullptr) {}
 
     bool operator==(const QDeclarativeListProperty &o) const {
         return object == o.object &&
@@ -116,7 +116,7 @@ class Q_DECLARATIVE_EXPORT QDeclarativeListReference
 {
 public:
     QDeclarativeListReference();
-    explicit QDeclarativeListReference(QObject *, const char *property, QDeclarativeEngine * = Q_NULLPTR);
+    explicit QDeclarativeListReference(QObject *, const char *property, QDeclarativeEngine * = nullptr);
     QDeclarativeListReference(const QDeclarativeListReference &);
     QDeclarativeListReference &operator=(const QDeclarativeListReference &);
     ~QDeclarativeListReference();
