@@ -38,12 +38,12 @@
 
 #include <private/qdeclarativepixmapcache_p.h>
 #include <QtCore/QAbstractAnimation>
-#include <QtCore/QRandomGenerator>
 
 #include <QPainter>
 #include <QtWidgets/qdrawutil.h>
 #include <QVarLengthArray>
 
+#include <stdlib.h>
 #include <math.h>
 
 #ifndef M_PI
@@ -311,7 +311,7 @@ void QDeclarativeParticleMotionWander::advance(QDeclarativeParticle &p, int inte
             qreal xdiff = p.x_velocity - d->x_targetV;
             if ((xdiff > d->x_peak && d->x_var > 0.0) || (xdiff < -d->x_peak && d->x_var < 0.0)) {
                 d->x_var = -d->x_var;
-                d->x_peak = _xvariance + _xvariance * QRandomGenerator::getReal();
+                d->x_peak = _xvariance + _xvariance * qreal(qrand()) / RAND_MAX;
             }
             p.x_velocity += d->x_var * interval;
         }
@@ -321,7 +321,7 @@ void QDeclarativeParticleMotionWander::advance(QDeclarativeParticle &p, int inte
             qreal ydiff = p.y_velocity - d->y_targetV;
             if ((ydiff > d->y_peak && d->y_var > 0.0) || (ydiff < -d->y_peak && d->y_var < 0.0)) {
                 d->y_var = -d->y_var;
-                d->y_peak = _yvariance + _yvariance * QRandomGenerator::getReal();
+                d->y_peak = _yvariance + _yvariance * qreal(qrand()) / RAND_MAX;
             }
             p.y_velocity += d->y_var * interval;
         }
@@ -338,8 +338,8 @@ void QDeclarativeParticleMotionWander::created(QDeclarativeParticle &p)
         d->y_targetV = p.y_velocity;
         d->x_peak = _xvariance;
         d->y_peak = _yvariance;
-        d->x_var = _pace * QRandomGenerator::getReal() / 1000.0;
-        d->y_var = _pace * QRandomGenerator::getReal() / 1000.0;
+        d->x_var = _pace * qreal(qrand()) / RAND_MAX / 1000.0;
+        d->y_var = _pace * qreal(qrand()) / RAND_MAX / 1000.0;
     }
 }
 
@@ -504,7 +504,7 @@ void QDeclarativeParticlesPrivate::tick(int time)
         if (emissionRate != -1){
             qreal variance = 1.;
             if (emissionVariance > 0.){
-                variance += QRandomGenerator::getReal() * emissionVariance * (QRandomGenerator::bounded(2)?-1.:1.);
+                variance += (qreal(qrand())/RAND_MAX) * emissionVariance * (qrand()%2?-1.:1.);
             }
             qreal emission = emissionRate * (qreal(interval)/1000.);
             emission = emission * variance + emissionCarry;
@@ -526,7 +526,7 @@ void QDeclarativeParticlesPrivate::tick(int time)
         }else{
             qreal variance = 1.;
             if (emissionVariance > 0.){
-                variance += QRandomGenerator::getReal() * emissionVariance * (QRandomGenerator::bounded(2)?-1.:1.);
+                variance += (qreal(qrand())/RAND_MAX) * emissionVariance * (qrand()%2?-1.:1.);
             }
             qreal workingEmission = bursts[i].second * (qreal(interval)/1000.);
             workingEmission *= variance;
@@ -555,11 +555,11 @@ void QDeclarativeParticlesPrivate::createParticle(int time)
 {
     Q_Q(QDeclarativeParticles);
     QDeclarativeParticle p(time);
-    p.x = q->x() + q->width() * QRandomGenerator::getReal() - image.width()/2.0;
-    p.y = q->y() + q->height() * QRandomGenerator::getReal() - image.height()/2.0;
+    p.x = q->x() + q->width() * qreal(qrand()) / RAND_MAX - image.width()/2.0;
+    p.y = q->y() + q->height() * qreal(qrand()) / RAND_MAX - image.height()/2.0;
     p.lifeSpan = lifeSpan;
     if (lifeSpanDev)
-        p.lifeSpan += int(lifeSpanDev/2 - lifeSpanDev * QRandomGenerator::getReal());
+        p.lifeSpan += int(lifeSpanDev/2 - lifeSpanDev * qreal(qrand()) / RAND_MAX);
     p.fadeOutAge = p.lifeSpan - fadeOutDur;
     if (fadeInDur == 0.) {
         p.state= QDeclarativeParticle::Solid;
@@ -567,12 +567,12 @@ void QDeclarativeParticlesPrivate::createParticle(int time)
     }
     qreal a = angle;
     if (angleDev)
-        a += angleDev/2 - angleDev * QRandomGenerator::getReal();
+        a += angleDev/2 - angleDev * qreal(qrand()) / RAND_MAX;
     if (a > M_PI)
         a = a - 2 * M_PI;
     qreal v = velocity;
     if (velocityDev)
-        v += velocityDev/2 - velocityDev * QRandomGenerator::getReal();
+        v += velocityDev/2 - velocityDev * qreal(qrand()) / RAND_MAX;
     p.x_velocity = v * fastCos(a);
     p.y_velocity = v * fastSin(a);
     particles.append(p);
